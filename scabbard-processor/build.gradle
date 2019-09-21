@@ -1,0 +1,31 @@
+plugins {
+    id "java-library"
+    id "org.jetbrains.kotlin.jvm"
+    id "kotlin-kapt"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testImplementation("junit:junit:4.12")
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+
+    implementation "guru.nidi:graphviz-java:${versions.graphviz}"
+    implementation "guru.nidi:graphviz-kotlin:${versions.graphviz}"
+
+    implementation "com.google.dagger:dagger-spi:${versions.dagger}"
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+
+    compileOnly "com.google.auto.service:auto-service:${versions.autoService}"
+    kapt "com.google.auto.service:auto-service:${versions.autoService}"
+
+    implementation "com.google.guava:guava:${versions.guava}"
+}

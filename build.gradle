@@ -1,12 +1,12 @@
 buildscript {
-    ext.kotlin_version = '1.3.50'
+    apply from: 'constants.gradle'
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.android.tools.build:gradle:${versions.agp}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     }
 }
 
@@ -14,7 +14,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-
     }
 }
 
