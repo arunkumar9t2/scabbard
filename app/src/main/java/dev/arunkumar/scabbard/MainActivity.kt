@@ -1,4 +1,4 @@
-package dev.arunkumar.sample
+package dev.arunkumar.scabbard
 
 import android.os.Bundle
 import dagger.Module

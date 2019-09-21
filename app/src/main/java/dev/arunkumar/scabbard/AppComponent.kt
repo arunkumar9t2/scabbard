@@ -1,4 +1,4 @@
-package dev.arunkumar.sample
+package dev.arunkumar.scabbard
 
 import android.app.Application
 import dagger.BindsInstance
@@ -15,7 +15,6 @@ import javax.inject.Singleton
     ]
 )
 interface AppComponent : AndroidInjector<App> {
-
     @Component.Factory
     interface Factory {
         fun build(@BindsInstance application: Application): AppComponent
