@@ -28,6 +28,5 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
     }
 
     override fun visitGraph(bindingGraph: BindingGraph, diagnosticReporter: DiagnosticReporter) {
-
     }
 }
