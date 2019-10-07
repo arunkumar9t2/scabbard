@@ -7,6 +7,7 @@ import dagger.spi.DiagnosticReporter
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
+import javax.tools.Diagnostic.Kind.WARNING
 
 @AutoService(BindingGraphPlugin::class)
 class ScabbardBindingGraphPlugin : BindingGraphPlugin {
@@ -28,5 +29,8 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
     }
 
     override fun visitGraph(bindingGraph: BindingGraph, diagnosticReporter: DiagnosticReporter) {
+        bindingGraph.bindings().forEach { binding ->
+            diagnosticReporter.reportBinding(WARNING, binding, "Processing")
+        }
     }
 }
