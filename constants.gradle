@@ -1,6 +1,6 @@
 ext {
     versions = [
-            'agp'        : '3.6.0-alpha12',
+            'agp'        : '3.6.0-beta04',
             'androidx'   : [
                     'appcompat'       : '1.1.0',
                     'core'            : '1.1.0',
