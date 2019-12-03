@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard
+package dev.arunkumar.scabbard.home
 
 import javax.inject.Inject
 

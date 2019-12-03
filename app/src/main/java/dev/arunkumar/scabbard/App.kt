@@ -1,10 +1,14 @@
 package dev.arunkumar.scabbard
 
-import dagger.android.support.DaggerApplication
+import android.app.Application
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class App : DaggerApplication() {
-
-    private val appComponent by lazy { DaggerAppComponent.factory().build(this) }
-
-    override fun applicationInjector() = appComponent
+class App : Application() {
+    val appComponent by lazy { DaggerAppComponent.factory().build(this) }
 }
+
+fun Application.appComponent() = (this as App).appComponent
+
+@Singleton
+class SimpleSingleton @Inject constructor()
