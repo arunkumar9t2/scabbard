@@ -1,8 +1,9 @@
-package dev.arunkumar.scabbard
+package dev.arunkumar.scabbard.di
 
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
+import dev.arunkumar.scabbard.App
 import dev.arunkumar.scabbard.home.MainActivitySubComponent
 import javax.inject.Singleton
 

@@ -1,5 +1,6 @@
 package dev.arunkumar.scabbard.home
 
+import dagger.BindsInstance
 import dagger.Subcomponent
 import dev.arunkumar.scabbard.di.ActivityScope
 
@@ -10,6 +11,6 @@ interface MainActivitySubComponent {
 
     @Subcomponent.Factory
     interface Factory {
-        fun create(): MainActivitySubComponent
+        fun create(@BindsInstance mainActivity: MainActivity): MainActivitySubComponent
     }
 }

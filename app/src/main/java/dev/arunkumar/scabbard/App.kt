@@ -1,6 +1,7 @@
 package dev.arunkumar.scabbard
 
 import android.app.Application
+import dev.arunkumar.scabbard.di.DaggerAppComponent
 import javax.inject.Inject
 
 class App : Application() {
