@@ -12,6 +12,8 @@ interface AppComponent {
 
     fun mainActivitySubComponentFactory(): MainActivitySubComponent.Factory
 
+    fun inject(app: App)
+
     @Component.Factory
     interface Factory {
         fun build(@BindsInstance application: Application): AppComponent

@@ -27,6 +27,7 @@ import com.squareup.javapoet.ClassName;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -55,6 +56,8 @@ import dagger.model.BindingKind;
 import dagger.model.ComponentPath;
 import dagger.spi.BindingGraphPlugin;
 import dagger.spi.DiagnosticReporter;
+import guru.nidi.graphviz.engine.Format;
+import guru.nidi.graphviz.engine.Graphviz;
 
 import static java.util.UUID.randomUUID;
 import static java.util.regex.Matcher.quoteReplacement;
@@ -103,15 +106,21 @@ public final class BindingGraphVisualizer implements BindingGraphPlugin {
         DotGraph graph = new NodesGraph(bindingGraph).graph();
         ClassName componentName = ClassName.get(componentElement);
         try {
-            FileObject file =
-                    filer
-                            .createResource(
-                                    StandardLocation.CLASS_OUTPUT,
-                                    componentName.packageName(),
-                                    Joiner.on('_').join(componentName.simpleNames()) + ".dot",
-                                    componentElement);
-            try (PrintWriter writer = new PrintWriter(file.openWriter())) {
-                graph.write(0, writer);
+            FileObject file = filer.createResource(
+                    StandardLocation.CLASS_OUTPUT,
+                    componentName.packageName(),
+                    Joiner.on('_').join(componentName.simpleNames()) + ".png",
+                    componentElement
+            );
+
+            try (final StringWriter stringWriter = new StringWriter()) {
+                try (PrintWriter writer = new PrintWriter(stringWriter)) {
+                    graph.write(0, writer);
+                }
+                Graphviz.fromString(stringWriter.toString())
+                        .scale(1.2)
+                        .render(Format.PNG)
+                        .toOutputStream(file.openOutputStream());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
