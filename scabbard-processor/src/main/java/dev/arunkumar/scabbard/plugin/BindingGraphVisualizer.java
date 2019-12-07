@@ -106,10 +106,17 @@ public final class BindingGraphVisualizer implements BindingGraphPlugin {
         DotGraph graph = new NodesGraph(bindingGraph).graph();
         ClassName componentName = ClassName.get(componentElement);
         try {
-            FileObject file = filer.createResource(
+            final FileObject png = filer.createResource(
                     StandardLocation.CLASS_OUTPUT,
                     componentName.packageName(),
                     Joiner.on('_').join(componentName.simpleNames()) + ".png",
+                    componentElement
+            );
+
+            final FileObject dot = filer.createResource(
+                    StandardLocation.CLASS_OUTPUT,
+                    componentName.packageName(),
+                    Joiner.on('_').join(componentName.simpleNames()) + ".dot",
                     componentElement
             );
 
@@ -120,7 +127,12 @@ public final class BindingGraphVisualizer implements BindingGraphPlugin {
                 Graphviz.fromString(stringWriter.toString())
                         .scale(1.2)
                         .render(Format.PNG)
-                        .toOutputStream(file.openOutputStream());
+                        .toOutputStream(png.openOutputStream());
+
+                Graphviz.fromString(stringWriter.toString())
+                        .scale(1.2)
+                        .render(Format.DOT)
+                        .toOutputStream(dot.openOutputStream());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
