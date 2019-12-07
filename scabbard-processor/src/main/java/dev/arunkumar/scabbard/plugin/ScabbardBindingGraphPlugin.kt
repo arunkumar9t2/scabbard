@@ -1,12 +1,23 @@
 package dev.arunkumar.scabbard.plugin
 
 import com.google.auto.service.AutoService
+import com.google.common.base.Joiner
+import com.squareup.javapoet.ClassName
 import dagger.model.BindingGraph
 import dagger.spi.BindingGraphPlugin
 import dagger.spi.DiagnosticReporter
+import dev.arunkumar.graphviz.dsl.add
+import dev.arunkumar.graphviz.dsl.attr
+import dev.arunkumar.graphviz.dsl.mutGraph
+import dev.arunkumar.graphviz.dsl.mutableNode
+import guru.nidi.graphviz.attribute.Rank.RankDir.LEFT_TO_RIGHT
+import guru.nidi.graphviz.attribute.Rank.dir
+import guru.nidi.graphviz.engine.Format
+import guru.nidi.graphviz.engine.Graphviz
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
+import javax.tools.StandardLocation
 
 @AutoService(BindingGraphPlugin::class)
 class ScabbardBindingGraphPlugin : BindingGraphPlugin {
@@ -33,22 +44,33 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
             .asSequence()
             .groupBy { it.componentPath() }
             .forEach { (component, nodes) ->
-                /* val outputFile = filer.createResource(
-                     StandardLocation.CLASS_OUTPUT,
-                     "",
-                     component.currentComponent().qualifiedName.toString().replace(".", "_") + ".png"
-                 )
+                val currentComponent = component.currentComponent()
+                val componentName = ClassName.get(currentComponent)
 
-                 graph(directed = true) {
-                     edge["color" eq "red", Arrow.TEE]
-                     graph[dir(LEFT_TO_RIGHT)]
-                     nodes.reduce { acc, node ->
-                         acc.componentPath().currentComponent().qualifiedName.toString() - node.componentPath().currentComponent().qualifiedName.toString()
-                         node
-                     }
-                 }.toGraphviz()
-                     .render(Format.PNG)
-                     .toOutputStream(outputFile.openOutputStream())*/
+                val outputFile = filer.createResource(
+                    StandardLocation.CLASS_OUTPUT,
+                    componentName.toString(),
+                    Joiner.on('_').join(componentName.simpleNames()) + ".png"
+                )
+
+                val builder = mutGraph(
+                    name = currentComponent.toString(),
+                    directed = true
+                ) {
+                    attr {
+                        add(dir(LEFT_TO_RIGHT))
+                        add("labeljust", "l")
+                        add("label" to name())
+                        add("compound" to true)
+                    }
+                    nodes.forEach {
+                        mutableNode(it.componentPath().currentComponent().simpleName.toString())
+                    }
+                }
+
+                Graphviz.fromGraph(builder)
+                    .render(Format.PNG)
+                    .toOutputStream(outputFile.openOutputStream())
             }
     }
 }

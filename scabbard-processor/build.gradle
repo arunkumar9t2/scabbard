@@ -16,10 +16,10 @@ repositories {
 dependencies {
     testImplementation("junit:junit:4.12")
 
+    implementation project(path: ':graphviz-dsl')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     implementation "guru.nidi:graphviz-java:${versions.graphviz}"
-    implementation "guru.nidi:graphviz-kotlin:${versions.graphviz}"
 
     implementation "com.google.dagger:dagger-spi:${versions.dagger}"
     implementation "com.google.dagger:dagger:${versions.dagger}"

@@ -1,1 +1,3 @@
-include ':app', ':scabbard-processor'
+include ':app'
+include ':scabbard-processor'
+include ':graphviz-dsl'
