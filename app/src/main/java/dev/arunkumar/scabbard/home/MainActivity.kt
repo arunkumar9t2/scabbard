@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dev.arunkumar.scabbard.R
 import dev.arunkumar.scabbard.appComponent
-import dev.arunkumar.scabbard.debug.ComplexSingleton
 import dev.arunkumar.scabbard.debug.ApplicationSingleton
+import dev.arunkumar.scabbard.debug.ComplexSingleton
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {

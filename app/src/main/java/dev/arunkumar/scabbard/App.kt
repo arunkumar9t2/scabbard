@@ -2,6 +2,7 @@ package dev.arunkumar.scabbard
 
 import android.app.Application
 import dev.arunkumar.scabbard.debug.ApplicationSingleton
+import dev.arunkumar.scabbard.debug.ComplexSingleton
 import dev.arunkumar.scabbard.di.DaggerAppComponent
 import javax.inject.Inject
 
@@ -10,6 +11,8 @@ class App : Application() {
 
     @Inject
     lateinit var applicationSingleton: ApplicationSingleton
+    @Inject
+    lateinit var complexSingleton: ComplexSingleton
 
     override fun onCreate() {
         appComponent.inject(this)
