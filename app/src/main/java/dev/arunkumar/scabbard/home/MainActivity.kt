@@ -2,19 +2,19 @@ package dev.arunkumar.scabbard.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import dev.arunkumar.scabbard.ASingleton
-import dev.arunkumar.scabbard.BSingleton
 import dev.arunkumar.scabbard.R
 import dev.arunkumar.scabbard.appComponent
+import dev.arunkumar.scabbard.debug.ComplexSingleton
+import dev.arunkumar.scabbard.debug.ApplicationSingleton
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var activityScopeDependency: ActivityScopeDependency
     @Inject
-    lateinit var aSingleton: ASingleton
+    lateinit var applicationSingleton: ApplicationSingleton
     @Inject
-    lateinit var bSingleton: BSingleton
+    lateinit var complexSingleton: ComplexSingleton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
