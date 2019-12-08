@@ -6,9 +6,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ApplicationSingleton
+class SimpleSingleton
 @Inject
-constructor(private val unScopedBinding: UnScopedBinding)
+constructor()
 
 class UnScopedBinding @Inject constructor()
 
@@ -17,7 +17,7 @@ class ComplexSingleton
 @Inject
 constructor(
     private val unScopedBinding: UnScopedBinding,
-    private val applicationSingleton: ApplicationSingleton
+    private val applicationSingleton: SimpleSingleton
 )
 
 // Empty Entry Point
