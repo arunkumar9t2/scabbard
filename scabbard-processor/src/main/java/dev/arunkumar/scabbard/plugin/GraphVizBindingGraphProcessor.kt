@@ -84,10 +84,6 @@ constructor(
         val network = bindingGraph.network()
         val nodes = network.nodes()
         val edges = network.edges()
-
-        val nodeIds = HashMap<BindingGraph.Node, UUID>()
-        fun BindingGraph.Node.id() = nodeIds.computeIfAbsent(this) { UUID.randomUUID() }.toString()
-
         nodes.asSequence()
             .groupBy { it.componentPath() }
             .forEach { (component, nodes) ->
