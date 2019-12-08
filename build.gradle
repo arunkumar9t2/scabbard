@@ -24,13 +24,15 @@ task clean(type: Delete) {
 //TODO Investigate migrating to GradleBuild. ATM has issues disabling daemon.
 tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
     doLast {
-        delete fileTree("app/build").matching {
-            include "**/*.dot"
-            include "**/*.png"
+        def isDebug = project.hasProperty("debug")
+        if (isDebug) {
+            delete fileTree("app/build").matching {
+                include "**/*.dot"
+                include "**/*.png"
+            }
         }
         exec {
             def shell = System.getProperty("os.name").toLowerCase().contains("win") ? 'cmd' : 'sh'
-            def isDebug = project.hasProperty("debug")
             def gradleDebug = "-Dorg.gradle.debug=$isDebug"
             def daemon = isDebug ? '--no-daemon' : ''
             workingDir(projectDir)
