@@ -4,6 +4,7 @@ import com.squareup.javapoet.ClassName
 import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.DependencyEdge
+import dagger.model.BindingKind
 import dev.arunkumar.graphviz.dsl.*
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
@@ -54,22 +55,24 @@ constructor(
         put("", TURQUOISE)
     }
 
-    private fun Binding.scopeName() = if (scope().isPresent) {
-        "@" + scope().get().scopeAnnotationElement().simpleName.toString()
-    } else {
-        null
+    private fun Binding.scopeName() = when {
+        scope().isPresent -> "@" + scope().get().scopeAnnotationElement().simpleName.toString()
+        else -> null
     }
 
     private val Binding.color
         get() = scopeColorCache.computeIfAbsent(scopeName() ?: "") {
             scopeColors.random()
         }
+
     private val Binding.isEntryPoint get() = bindingGraph.entryPointBindings().contains(this)
 
     private fun BindingGraph.Node.label(): String = when (this) {
         is Binding -> {
             val scopeName = scopeName()
+            val isSubComponentCreator = kind() == BindingKind.SUBCOMPONENT_CREATOR
             when {
+                isSubComponentCreator -> "${key()}\\n\\nSubcomponent Creator"
                 scopeName != null -> "$scopeName\\n${key()}"
                 else -> key().toString()
             }
@@ -104,7 +107,7 @@ constructor(
 
                     graphAttr {
                         add(dir(LEFT_TO_RIGHT))
-                        add("labeljust", "l")
+                        add("labeljust" to "l")
                         add("label" to name())
                         add("compound" to true)
                     }
@@ -119,8 +122,8 @@ constructor(
                     mutableGraph(name = "Dependency Graph", cluster = true) {
 
                         graphAttr {
-                            add(dir(LEFT_TO_RIGHT))
-                            add("labeljust", "l")
+                            add("dir" to "forward")
+                            add("labeljust" to "l")
                             add("label" to name())
                             add("compound" to true)
                         }
