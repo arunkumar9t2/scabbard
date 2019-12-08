@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Debug Scabbard" type="Remote">
+  <configuration default="false" name="Attach Scabbard Debugger" type="Remote">
     <module name="scabbard-processor" />
     <option name="USE_SOCKET_TRANSPORT" value="true" />
     <option name="SERVER_MODE" value="false" />

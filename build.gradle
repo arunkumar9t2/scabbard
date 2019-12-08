@@ -20,3 +20,21 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+//TODO Investigate migrating to GradleBuild. ATM has issues disabling daemon.
+tasks.register("debugScabbardProcessor" /*, GradleBuild*/) {
+    doLast {
+        delete fileTree("app/build").matching {
+            include "**/*.dot"
+            include "**/*.png"
+        }
+        exec {
+            def shell = "sh"
+            if (System.getProperty("os.name").toLowerCase().contains("win")) {
+                shell = "cmd"
+            }
+            workingDir(projectDir)
+            commandLine shell, '/c', 'gradlew', '--no-daemon', '-Dorg.gradle.debug=true', 'app:kaptDebugKotlin'
+        }
+    }
+}
