@@ -3,16 +3,19 @@ package dev.arunkumar.scabbard.plugin
 import com.squareup.javapoet.ClassName
 import dagger.model.Binding
 import dagger.model.BindingGraph
+import dagger.model.BindingGraph.DependencyEdge
 import dev.arunkumar.graphviz.dsl.*
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
 import guru.nidi.graphviz.attribute.Color
 import guru.nidi.graphviz.attribute.Color.*
-import guru.nidi.graphviz.attribute.Rank
-import guru.nidi.graphviz.attribute.Shape
-import guru.nidi.graphviz.attribute.Style
+import guru.nidi.graphviz.attribute.Rank.RankDir.LEFT_TO_RIGHT
+import guru.nidi.graphviz.attribute.Rank.dir
+import guru.nidi.graphviz.attribute.Shape.RECTANGLE
+import guru.nidi.graphviz.attribute.Style.FILLED
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
+import guru.nidi.graphviz.model.MutableGraph
 import guru.nidi.graphviz.model.MutableNode
 import java.util.*
 import javax.annotation.processing.Filer
@@ -44,6 +47,36 @@ constructor(
         )
     }
 
+    private val nodeIds = HashMap<BindingGraph.Node, UUID>()
+    private val BindingGraph.Node.id get() = nodeIds.computeIfAbsent(this) { UUID.randomUUID() }.toString()
+
+    private val scopeColorCache = HashMap<String, Color>().apply {
+        put("", TURQUOISE)
+    }
+
+    private fun Binding.scopeName() = if (scope().isPresent) {
+        "@" + scope().get().scopeAnnotationElement().simpleName.toString()
+    } else {
+        null
+    }
+
+    private val Binding.color
+        get() = scopeColorCache.computeIfAbsent(scopeName() ?: "") {
+            scopeColors.random()
+        }
+    private val Binding.isEntryPoint get() = bindingGraph.entryPointBindings().contains(this)
+
+    private fun BindingGraph.Node.label(): String = when (this) {
+        is Binding -> {
+            val scopeName = scopeName()
+            when {
+                scopeName != null -> "$scopeName\\n${key()}"
+                else -> key().toString()
+            }
+        }
+        else -> componentPath().toString()
+    }
+
     override fun process() {
         val network = bindingGraph.network()
         val nodes = network.nodes()
@@ -51,14 +84,6 @@ constructor(
 
         val nodeIds = HashMap<BindingGraph.Node, UUID>()
         fun BindingGraph.Node.id() = nodeIds.computeIfAbsent(this) { UUID.randomUUID() }.toString()
-
-        val scopeColorCache = HashMap<String, Color>().apply {
-            put("", TURQUOISE)
-        }
-
-        fun Binding.color() = scopeColorCache.computeIfAbsent(scopeName() ?: "") {
-            scopeColors.random()
-        }
 
         nodes.asSequence()
             .groupBy { it.componentPath() }
@@ -76,41 +101,45 @@ constructor(
                 )
 
                 val rootGraph = mutGraph(name = currentComponent.toString(), directed = true) {
+
                     graphAttr {
-                        add(Rank.dir(Rank.RankDir.LEFT_TO_RIGHT))
+                        add(dir(LEFT_TO_RIGHT))
                         add("labeljust", "l")
                         add("label" to name())
                         add("compound" to true)
                     }
                     nodeAttr {
-                        add(Shape.RECTANGLE)
-                        add(Style.FILLED)
+                        add(RECTANGLE)
+                        add(FILLED)
                         add(TURQUOISE)
                     }
 
-                    // Add all valid nodes
-                    nodes.forEach { node ->
-                        when (node) {
-                            is Binding -> {
-                                mutableNode(node.id()) {
-                                    add("label" to node.label())
-                                    add(node.color())
-                                    nodesCache[node.id()] = this
-                                }
-                            }
-                            else -> {
-                                println("${node.componentPath()} ${node.javaClass.name}")
+                    addEntryPoints(nodes, nodesCache)
+
+                    mutableGraph(name = "Dependency Graph", cluster = true) {
+
+                        graphAttr {
+                            add(dir(LEFT_TO_RIGHT))
+                            add("labeljust", "l")
+                            add("label" to name())
+                            add("compound" to true)
+                        }
+
+                        // Add dependency graph
+                        nodes.forEach { node ->
+                            when (node) {
+                                is Binding -> addDependencyNode(node, nodesCache)
                             }
                         }
-                    }
-                    // Render edges between nodes
-                    edges.forEach { edge ->
-                        val (source, target) = bindingGraph.network().incidentNodes(edge)
-                        if (edge is BindingGraph.DependencyEdge) {
-                            val sourceGraphNode = nodesCache[source.id()]
-                            val targetGraphNode = nodesCache[target.id()]
-                            if (sourceGraphNode != null && targetGraphNode != null) {
-                                sourceGraphNode.addLink(targetGraphNode)
+                        // Render edges between all nodes
+                        edges.forEach { edge ->
+                            val (source, target) = bindingGraph.network().incidentNodes(edge)
+                            if (edge is DependencyEdge) {
+                                val sourceGraphNode = nodesCache[source.id]
+                                val targetGraphNode = nodesCache[target.id]
+                                if (sourceGraphNode != null && targetGraphNode != null) {
+                                    sourceGraphNode.addLink(targetGraphNode)
+                                }
                             }
                         }
                     }
@@ -122,20 +151,28 @@ constructor(
             }
     }
 
-    protected fun Binding.scopeName() = if (scope().isPresent) {
-        "@" + scope().get().scopeAnnotationElement().simpleName.toString()
-    } else {
-        null
-    }
-
-    protected fun BindingGraph.Node.label(): String = when (this) {
-        is Binding -> {
-            val scopeName = scopeName()
-            when {
-                scopeName != null -> "$scopeName\\n${key()}"
-                else -> key().toString()
+    private fun MutableGraph.addEntryPoints(
+        nodes: List<BindingGraph.Node>,
+        cache: HashMap<String, MutableNode>
+    ) = nodes.asSequence()
+        .filterIsInstance<Binding>()
+        .filter { it.isEntryPoint }
+        .forEach { node ->
+            val id = node.id
+            cache[id] = mutableNode(id) {
+                add("shape" to "component")
+                add("label" to node.label())
+                add(node.color)
             }
         }
-        else -> componentPath().toString()
+
+    private fun MutableGraph.addDependencyNode(node: Binding, cache: HashMap<String, MutableNode>) {
+        if (node.isEntryPoint) return
+
+        val id = node.id
+        cache[id] = mutableNode(id) {
+            add("label" to node.label())
+            add(node.color)
+        }
     }
 }
