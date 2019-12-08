@@ -32,11 +32,16 @@ tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
             }
         }
         exec {
-            def shell = System.getProperty("os.name").toLowerCase().contains("win") ? 'cmd' : 'sh'
+            def isWin = System.getProperty("os.name").toLowerCase().contains("win")
+            def shell = isWin ? 'cmd' : 'sh'
+            def commandPrefix = isWin ? '' : './'
+            def shellArg = isWin ? '/c' : '-c'
+
             def gradleDebug = "-Dorg.gradle.debug=$isDebug"
             def daemon = isDebug ? '--no-daemon' : ''
+            def command = "${commandPrefix}gradlew $daemon $gradleDebug app:kaptDebugKotlin"
             workingDir(projectDir)
-            commandLine shell, '/c', 'gradlew', daemon, gradleDebug, 'app:kaptDebugKotlin'
+            commandLine shell, shellArg, command
         }
     }
 }
