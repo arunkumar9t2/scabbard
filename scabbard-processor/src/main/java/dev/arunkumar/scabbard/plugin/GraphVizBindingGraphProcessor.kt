@@ -3,21 +3,19 @@ package dev.arunkumar.scabbard.plugin
 import com.squareup.javapoet.ClassName
 import dagger.model.Binding
 import dagger.model.BindingGraph
-import dev.arunkumar.graphviz.dsl.add
-import dev.arunkumar.graphviz.dsl.attr
-import dev.arunkumar.graphviz.dsl.mutGraph
-import dev.arunkumar.graphviz.dsl.mutableNode
+import dev.arunkumar.graphviz.dsl.*
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
+import guru.nidi.graphviz.attribute.Color
 import guru.nidi.graphviz.attribute.Rank
+import guru.nidi.graphviz.attribute.Shape
+import guru.nidi.graphviz.attribute.Style
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
 import guru.nidi.graphviz.model.MutableNode
 import java.util.*
 import javax.annotation.processing.Filer
 import javax.inject.Inject
-import javax.lang.model.util.Elements
-import javax.lang.model.util.Types
 import javax.tools.StandardLocation
 import kotlin.collections.HashMap
 
@@ -26,9 +24,7 @@ class GraphVizBindingGraphProcessor
 @Inject
 constructor(
     private val bindingGraph: BindingGraph,
-    private val filer: Filer,
-    private val types: Types,
-    private val elements: Elements
+    private val filer: Filer
 ) : BindingGraphProcessor {
 
     override fun process() {
@@ -43,7 +39,6 @@ constructor(
             .asSequence()
             .groupBy { it.componentPath() }
             .forEach { (component, nodes) ->
-
                 val currentComponent = component.currentComponent()
                 val componentName = ClassName.get(currentComponent)
 
@@ -53,20 +48,21 @@ constructor(
                     componentName.simpleNames().joinToString("_").plus(".png")
                 )
 
-                val builder = mutGraph(
-                    name = currentComponent.toString(),
-                    directed = true
-                ) {
-                    attr {
+                val builder = mutGraph(name = currentComponent.toString(), directed = true) {
+                    graphAttr {
                         add(Rank.dir(Rank.RankDir.LEFT_TO_RIGHT))
                         add("labeljust", "l")
                         add("label" to name())
                         add("compound" to true)
                     }
+                    nodeAttr {
+                        add(Shape.RECTANGLE)
+                        add(Style.FILLED)
+                        add(Color.TURQUOISE)
+                    }
 
                     // Cache all added nodes for edge linking later
-                    val nodesCache =
-                        HashMap<String, MutableNode>()
+                    val nodesCache = HashMap<String, MutableNode>()
                     // Render all nodes
                     nodes.forEach { node ->
                         when (node) {

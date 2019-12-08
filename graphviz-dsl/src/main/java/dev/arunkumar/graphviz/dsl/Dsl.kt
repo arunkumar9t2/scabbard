@@ -28,7 +28,7 @@ inline fun MutableGraph.mutableGraph(
     crossinline builder: MutableGraph.() -> Unit = { }
 ): MutableGraph = mutGraph(name, strict, directed, cluster, builder).also { it.addTo(this) }
 
-inline fun MutableGraph.attr(builder: MutableAttributed<MutableGraph, ForGraph>.() -> Unit) =
+inline fun MutableGraph.graphAttr(builder: MutableAttributed<MutableGraph, ForGraph>.() -> Unit) =
     graphAttrs().builder()
 
 inline fun MutableGraph.nodeAttr(builder: MutableAttributed<MutableGraph, ForNode>.() -> Unit) =
