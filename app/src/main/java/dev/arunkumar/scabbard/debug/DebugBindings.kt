@@ -1,5 +1,7 @@
 package dev.arunkumar.scabbard.debug
 
+import dagger.Module
+import dagger.Provides
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,5 +20,15 @@ constructor(
     private val applicationSingleton: ApplicationSingleton
 )
 
-// Targets
+// Empty Entry Point
 class DummyInjectionTarget
+
+class ProvisionBinding
+
+@Module
+object ProvisionModule {
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun providesProvisionBinding() = ProvisionBinding()
+}
