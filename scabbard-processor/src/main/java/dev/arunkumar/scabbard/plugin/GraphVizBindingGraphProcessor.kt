@@ -106,6 +106,7 @@ constructor(
                         add("labeljust" to "l")
                         add("label" to name())
                         add("compound" to true)
+                        add("pad" to "0.5")
                     }
                     nodeAttr {
                         add(RECTANGLE)
