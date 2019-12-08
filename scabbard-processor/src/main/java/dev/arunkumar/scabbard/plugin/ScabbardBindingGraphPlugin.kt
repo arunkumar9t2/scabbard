@@ -16,12 +16,13 @@ import guru.nidi.graphviz.attribute.Rank.RankDir.LEFT_TO_RIGHT
 import guru.nidi.graphviz.attribute.Rank.dir
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
+import guru.nidi.graphviz.model.MutableNode
 import java.util.*
 import java.util.UUID.randomUUID
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
-import javax.tools.StandardLocation
+import javax.tools.StandardLocation.CLASS_OUTPUT
 import kotlin.collections.HashMap
 
 @AutoService(BindingGraphPlugin::class)
@@ -52,15 +53,17 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
 
         val nodeIds = HashMap<BindingGraph.Node, UUID>()
         fun BindingGraph.Node.id() = nodeIds.computeIfAbsent(this) { randomUUID() }.toString()
+
         nodes
             .asSequence()
             .groupBy { it.componentPath() }
             .forEach { (component, nodes) ->
+
                 val currentComponent = component.currentComponent()
                 val componentName = ClassName.get(currentComponent)
 
                 val outputFile = filer.createResource(
-                    StandardLocation.CLASS_OUTPUT,
+                    CLASS_OUTPUT,
                     componentName.toString(),
                     componentName.simpleNames().joinToString("_").plus(".png")
                 )
@@ -72,12 +75,16 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
                         add("label" to name())
                         add("compound" to true)
                     }
+
+                    // Cache all added nodes for edge linking later
+                    val nodesCache = HashMap<String, MutableNode>()
                     // Render all nodes
                     nodes.forEach { node ->
                         when (node) {
                             is Binding -> {
                                 mutableNode(node.id()) {
                                     add("label" to node.key().toString())
+                                    nodesCache[node.id()] = this
                                 }
                             }
                             else -> {
@@ -85,16 +92,14 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
                             }
                         }
                     }
-
                     // Render edges between nodes
                     edges.forEach { edge ->
                         val (source, target) = bindingGraph.network().incidentNodes(edge)
                         if (edge is BindingGraph.DependencyEdge) {
-                            if (!edge.isEntryPoint) {
-                                mutableNode(source.id()) {
-                                    add("label" to source.toString())
-                                    addLink(target.id())
-                                }
+                            val sourceGraphNode = nodesCache[source.id()]
+                            val targetGraphNode = nodesCache[target.id()]
+                            if (sourceGraphNode != null && targetGraphNode != null) {
+                                sourceGraphNode.addLink(targetGraphNode)
                             }
                         }
                     }
