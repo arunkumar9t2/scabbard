@@ -13,6 +13,14 @@ repositories {
     jcenter()
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/kapt'
+        }
+    }
+}
+
 dependencies {
     testImplementation("junit:junit:4.12")
 
@@ -23,6 +31,7 @@ dependencies {
 
     implementation "com.google.dagger:dagger-spi:${versions.dagger}"
     implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
     compileOnly "com.google.auto.service:auto-service:${versions.autoService}"
     kapt "com.google.auto.service:auto-service:${versions.autoService}"
