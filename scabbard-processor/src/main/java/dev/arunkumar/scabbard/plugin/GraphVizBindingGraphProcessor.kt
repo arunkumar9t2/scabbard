@@ -159,20 +159,23 @@ constructor(
         .filter { it.isEntryPoint }
         .forEach { node ->
             val id = node.id
-            cache[id] = mutableNode(id) {
-                add("shape" to "component")
-                add("label" to node.label())
-                add(node.color)
+            if (cache[id] == null) {
+                cache[id] = mutableNode(id) {
+                    add("shape" to "component")
+                    add("label" to node.label())
+                    add(node.color)
+                }
             }
         }
 
     private fun MutableGraph.addDependencyNode(node: Binding, cache: HashMap<String, MutableNode>) {
         if (node.isEntryPoint) return
-
         val id = node.id
-        cache[id] = mutableNode(id) {
-            add("label" to node.label())
-            add(node.color)
+        if (cache[id] == null) {
+            cache[id] = mutableNode(id) {
+                add("label" to node.label())
+                add(node.color)
+            }
         }
     }
 }
