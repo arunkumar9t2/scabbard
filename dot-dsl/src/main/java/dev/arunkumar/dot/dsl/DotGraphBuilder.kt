@@ -22,7 +22,7 @@ class DotGraphBuilder(val dotGraph: DotGraph) {
     }
 
     inline fun cluster(name: String, graphBuilder: DotGraphBuilder.() -> Unit) {
-        subgraph("cluster_$name", graphBuilder)
+        subgraph("cluster_$name".quote(), graphBuilder)
     }
 
     inline operator fun String.invoke(nodeBuilder: DotNode.() -> Unit = {}) {
@@ -53,7 +53,7 @@ class EdgeBuilder(private val dotEdge: DotEdge) {
 fun directedGraph(
     label: String,
     builder: DotGraphBuilder.() -> Unit
-) = DotGraphBuilder(DotGraph("digraph $label")).apply(builder).dotGraph
+) = DotGraphBuilder(DotGraph("digraph ${label.quote()}")).apply(builder).dotGraph
 
 fun main(ars: Array<String>) {
     val dotGraph = directedGraph("Arun") {

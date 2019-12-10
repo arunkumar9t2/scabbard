@@ -5,25 +5,16 @@ import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.DependencyEdge
 import dagger.model.BindingKind
-import dev.arunkumar.dot.*
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.dot.dsl.directedGraph
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
-import guru.nidi.graphviz.attribute.Color
-import guru.nidi.graphviz.attribute.Color.*
-import guru.nidi.graphviz.attribute.Rank.RankDir.LEFT_TO_RIGHT
-import guru.nidi.graphviz.attribute.Rank.dir
-import guru.nidi.graphviz.attribute.Shape.RECTANGLE
-import guru.nidi.graphviz.attribute.Style.FILLED
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
-import guru.nidi.graphviz.model.MutableNode
 import java.util.*
 import javax.annotation.processing.Filer
 import javax.inject.Inject
 import javax.tools.StandardLocation
-import kotlin.collections.HashMap
 
 @ProcessorScope
 class GraphVizBindingGraphProcessor
@@ -35,26 +26,24 @@ constructor(
 
     private val scopeColors by lazy {
         listOf(
-            AQUAMARINE,
-            BLUE,
-            CYAN,
-            MAGENTA,
-            TOMATO,
-            YELLOW,
-            DEEPPINK,
-            GOLD,
-            CRIMSON,
-            CHOCOLATE1,
-            CADETBLUE1
+            "aquamarine",
+            "blue",
+            "cyan",
+            "magenta",
+            "tomato",
+            "yellow",
+            "deeppink",
+            "gold",
+            "crimson",
+            "chocolate1",
+            "cadetblue1"
         )
     }
 
-    private val nodeIds = HashMap<BindingGraph.Node, UUID>()
+    private val nodeIds = mutableMapOf<BindingGraph.Node, UUID>()
     private val BindingGraph.Node.id get() = nodeIds.computeIfAbsent(this) { UUID.randomUUID() }.toString()
 
-    private val scopeColorCache = HashMap<String, Color>().apply {
-        put("", TURQUOISE)
-    }
+    private val scopeColorCache = mutableMapOf("" to "turquoise")
 
     private fun Binding.scopeName() = when {
         scope().isPresent -> "@" + scope().get().scopeAnnotationElement().simpleName.toString()
@@ -88,9 +77,6 @@ constructor(
         nodes.asSequence()
             .groupBy { it.componentPath() }
             .forEach { (component, nodes) ->
-                // Cache all added nodes for edge linking later
-                val nodesCache = HashMap<String, MutableNode>()
-
                 val currentComponent = component.currentComponent()
                 val componentName = ClassName.get(currentComponent)
 
@@ -100,7 +86,7 @@ constructor(
                     componentName.simpleNames().joinToString("_").plus(".png")
                 )
 
-                val componentGraph = directedGraph(currentComponent.toString()) {
+                directedGraph(currentComponent.toString()) {
 
                     graphAttributes {
                         "rankdir" eq "LR"
@@ -116,7 +102,7 @@ constructor(
                         "color" eq "turquoise"
                     }
 
-                    subgraph("Entry Points") {
+                    cluster("Entry Points") {
 
                         graphAttributes {
                             "dir" eq "forward"
@@ -128,12 +114,12 @@ constructor(
                         addEntryPoints(nodes)
                     }
 
-                    subgraph("Dependency Graph") {
+                    cluster("Dependency Graph") {
 
                         graphAttributes {
                             "dir" eq "forward"
                             "labeljust" eq "l"
-                            "label" eq "Entry Points"
+                            "label" eq "Dependency Graph"
                             "compound" eq true
                         }
 
@@ -144,59 +130,29 @@ constructor(
                             }
                         }
                     }
-                }
 
-                val rootGraph = mutGraph(name = currentComponent.toString(), directed = true) {
-
-                    graphAttr {
-                        add(dir(LEFT_TO_RIGHT))
-                        add("labeljust" to "l")
-                        add("label" to name())
-                        add("compound" to true)
-                        add("pad" to "0.5")
-                    }
-                    nodeAttr {
-                        add(RECTANGLE)
-                        add(FILLED)
-                        add(TURQUOISE)
-                    }
-
-                    mutableGraph(name = "Dependency Graph", cluster = true) {
-
-                        graphAttr {
-                            add("dir" to "forward")
-                            add("labeljust" to "l")
-                            add("label" to name())
-                            add("compound" to true)
-                        }
-
-                        // Render edges between all nodes
-                        edges.forEach { edge ->
-                            val (source, target) = bindingGraph.network().incidentNodes(edge)
-                            if (edge is DependencyEdge) {
-                                val sourceGraphNode = nodesCache[source.id]
-                                val targetGraphNode = nodesCache[target.id]
-                                if (sourceGraphNode != null && targetGraphNode != null) {
-                                    sourceGraphNode.addLink(targetGraphNode)
-                                }
-                            }
+                    // Render edges between all nodes
+                    edges.forEach { edge ->
+                        val (source, target) = bindingGraph.network().incidentNodes(edge)
+                        if (edge is DependencyEdge) {
+                            source.id link target.id
                         }
                     }
+                }.let { dotGraph ->
+                    Graphviz.fromString(dotGraph.toString())
+                        .render(Format.PNG)
+                        .toOutputStream(outputFile.openOutputStream())
                 }
-
-                Graphviz.fromGraph(rootGraph)
-                    .render(Format.PNG)
-                    .toOutputStream(outputFile.openOutputStream())
             }
     }
 
     private fun DotGraphBuilder.addEntryPoints(nodes: List<BindingGraph.Node>) = nodes.asSequence()
         .filterIsInstance<Binding>()
         .filter { it.isEntryPoint }
-        .map { it.id }
-        .forEach { nodeId ->
-            nodeId {
+        .forEach { node ->
+            node.id {
                 "shape" eq "component"
+                "label" eq node.label()
             }
         }
 
