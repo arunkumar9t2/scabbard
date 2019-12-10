@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package dev.arunkumar.graphviz.dsl
+package dev.arunkumar.dot
 
 import guru.nidi.graphviz.attribute.*
 import guru.nidi.graphviz.model.Factory

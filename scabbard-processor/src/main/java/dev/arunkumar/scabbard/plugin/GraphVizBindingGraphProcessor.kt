@@ -5,7 +5,7 @@ import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.DependencyEdge
 import dagger.model.BindingKind
-import dev.arunkumar.graphviz.dsl.*
+import dev.arunkumar.dot.*
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
 import guru.nidi.graphviz.attribute.Color
