@@ -25,8 +25,9 @@ class DotGraphBuilder(val dotGraph: DotGraph) {
         subgraph("cluster_$name".quote(), graphBuilder)
     }
 
-    inline operator fun String.invoke(nodeBuilder: DotNode.() -> Unit = {}) {
+    inline operator fun String.invoke(nodeBuilder: DotNode.() -> Unit = {}): String {
         dotGraph.add(DotNode(this).apply(nodeBuilder))
+        return this
     }
 
     inline fun nodes(vararg nodes: String, nodeBuilder: DotNode.() -> Unit = {}) {
@@ -36,10 +37,6 @@ class DotGraphBuilder(val dotGraph: DotGraph) {
     infix fun String.link(target: String): EdgeBuilder {
         val dotEdge = DirectedDotEdge(this, target).also(dotGraph::add)
         return EdgeBuilder(dotEdge)
-    }
-
-    inline fun edge(left: String, right: String, edgeBuilder: DotEdge.() -> Unit) {
-        dotGraph.add(DirectedDotEdge(left, right).apply(edgeBuilder))
     }
 }
 

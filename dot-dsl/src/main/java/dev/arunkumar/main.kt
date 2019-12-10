@@ -36,8 +36,14 @@ fun main(ars: Array<String>) {
             "style" eq "dashed"
             "taillabel" eq "subcomponent"
         }
-        "E" link "C"
-        "A" link "C"
+        "E" {
+            "shape" eq "component"
+        } link "C" {
+            "shape" eq "oval"
+        }
+        "A" link "C" {
+            "color" eq "yellow"
+        }
     }
 
     println(dotGraph.toString())
