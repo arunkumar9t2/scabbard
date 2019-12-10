@@ -1,6 +1,7 @@
 package dev.arunkumar.dot
 
 import java.io.PrintWriter
+import java.io.StringWriter
 import java.util.*
 
 class DotGraph(private val header: String) : Indented() {
@@ -18,5 +19,9 @@ class DotGraph(private val header: String) : Indented() {
         }
         indent(level, writer)
         writer.println("}")
+    }
+
+    override fun toString(): String {
+        return StringWriter().also { write(0, PrintWriter(it)) }.toString()
     }
 }

@@ -2,8 +2,6 @@ package dev.arunkumar.dot.dsl
 
 import dev.arunkumar.dot.DotGraph
 import dev.arunkumar.dot.DotStatement
-import java.io.PrintWriter
-import java.io.StringWriter
 
 @DslMarker
 annotation class DotDslScope
@@ -78,7 +76,5 @@ fun main(ars: Array<String>) {
         }
     }
 
-    val stringWriter = StringWriter()
-    PrintWriter(stringWriter).let { dotGraph.write(0, it) }
-    println(stringWriter.toString())
+    println(dotGraph.toString())
 }
