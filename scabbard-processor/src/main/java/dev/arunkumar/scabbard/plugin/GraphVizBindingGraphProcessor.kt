@@ -35,8 +35,7 @@ constructor(
             "deeppink",
             "gold",
             "crimson",
-            "chocolate1",
-            "cadetblue1"
+            "chocolate1"
         )
     }
 
