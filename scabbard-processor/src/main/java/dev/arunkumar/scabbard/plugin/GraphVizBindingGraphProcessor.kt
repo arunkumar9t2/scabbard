@@ -6,6 +6,8 @@ import dagger.model.BindingGraph
 import dagger.model.BindingGraph.DependencyEdge
 import dagger.model.BindingKind
 import dev.arunkumar.dot.*
+import dev.arunkumar.dot.dsl.DotGraphBuilder
+import dev.arunkumar.dot.dsl.directedGraph
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
 import guru.nidi.graphviz.attribute.Color
@@ -16,7 +18,6 @@ import guru.nidi.graphviz.attribute.Shape.RECTANGLE
 import guru.nidi.graphviz.attribute.Style.FILLED
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
-import guru.nidi.graphviz.model.MutableGraph
 import guru.nidi.graphviz.model.MutableNode
 import java.util.*
 import javax.annotation.processing.Filer
@@ -99,6 +100,52 @@ constructor(
                     componentName.simpleNames().joinToString("_").plus(".png")
                 )
 
+                val componentGraph = directedGraph(currentComponent.toString()) {
+
+                    graphAttributes {
+                        "rankdir" eq "LR"
+                        "labeljust" eq "l"
+                        "label" eq currentComponent.toString()
+                        "pad" eq 0.5
+                        "compound" eq true
+                    }
+
+                    nodeAttributes {
+                        "shape" eq "rectangle"
+                        "style" eq "filled"
+                        "color" eq "turquoise"
+                    }
+
+                    subgraph("Entry Points") {
+
+                        graphAttributes {
+                            "dir" eq "forward"
+                            "labeljust" eq "l"
+                            "label" eq "Entry Points"
+                            "compound" eq true
+                        }
+
+                        addEntryPoints(nodes)
+                    }
+
+                    subgraph("Dependency Graph") {
+
+                        graphAttributes {
+                            "dir" eq "forward"
+                            "labeljust" eq "l"
+                            "label" eq "Entry Points"
+                            "compound" eq true
+                        }
+
+                        // Add dependency graph
+                        nodes.forEach { node ->
+                            when (node) {
+                                is Binding -> addDependencyNode(node)
+                            }
+                        }
+                    }
+                }
+
                 val rootGraph = mutGraph(name = currentComponent.toString(), directed = true) {
 
                     graphAttr {
@@ -114,8 +161,6 @@ constructor(
                         add(TURQUOISE)
                     }
 
-                    addEntryPoints(nodes, nodesCache)
-
                     mutableGraph(name = "Dependency Graph", cluster = true) {
 
                         graphAttr {
@@ -125,12 +170,6 @@ constructor(
                             add("compound" to true)
                         }
 
-                        // Add dependency graph
-                        nodes.forEach { node ->
-                            when (node) {
-                                is Binding -> addDependencyNode(node, nodesCache)
-                            }
-                        }
                         // Render edges between all nodes
                         edges.forEach { edge ->
                             val (source, target) = bindingGraph.network().incidentNodes(edge)
@@ -151,31 +190,21 @@ constructor(
             }
     }
 
-    private fun MutableGraph.addEntryPoints(
-        nodes: List<BindingGraph.Node>,
-        cache: HashMap<String, MutableNode>
-    ) = nodes.asSequence()
+    private fun DotGraphBuilder.addEntryPoints(nodes: List<BindingGraph.Node>) = nodes.asSequence()
         .filterIsInstance<Binding>()
         .filter { it.isEntryPoint }
-        .forEach { node ->
-            val id = node.id
-            if (cache[id] == null) {
-                cache[id] = mutableNode(id) {
-                    add("shape" to "component")
-                    add("label" to node.label())
-                    add(node.color)
-                }
+        .map { it.id }
+        .forEach { nodeId ->
+            nodeId {
+                "shape" eq "component"
             }
         }
 
-    private fun MutableGraph.addDependencyNode(node: Binding, cache: HashMap<String, MutableNode>) {
+    private fun DotGraphBuilder.addDependencyNode(node: Binding) {
         if (node.isEntryPoint) return
-        val id = node.id
-        if (cache[id] == null) {
-            cache[id] = mutableNode(id) {
-                add("label" to node.label())
-                add(node.color)
-            }
+        node.id {
+            "label" eq node.label()
+            "color" eq node.color
         }
     }
 }

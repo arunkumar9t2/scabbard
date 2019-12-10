@@ -1,7 +1,6 @@
 package dev.arunkumar.dot.dsl
 
-import dev.arunkumar.dot.DotGraph
-import dev.arunkumar.dot.DotStatement
+import dev.arunkumar.dot.*
 
 @DslMarker
 annotation class DotDslScope
@@ -14,24 +13,40 @@ class DotGraphBuilder(val dotGraph: DotGraph) {
     }
 
     inline fun nodeAttributes(builder: DotStatement.() -> Unit) {
-        "node".invoke(builder)
+        dotGraph.add(DotStatement("node").apply(builder))
     }
 
-    inline fun subgraph(name: String, builder: DotGraphBuilder.() -> Unit) {
-        val subgraph = DotGraphBuilder(DotGraph("subgraph $name")).apply(builder).dotGraph
+    inline fun subgraph(name: String, graphBuilder: DotGraphBuilder.() -> Unit) {
+        val subgraph = DotGraphBuilder(DotGraph("subgraph $name")).apply(graphBuilder).dotGraph
         dotGraph.add(subgraph)
     }
 
-    inline fun cluster(name: String, builder: DotGraphBuilder.() -> Unit) {
-        subgraph("cluster_$name", builder)
+    inline fun cluster(name: String, graphBuilder: DotGraphBuilder.() -> Unit) {
+        subgraph("cluster_$name", graphBuilder)
     }
 
-    inline operator fun String.invoke(builder: DotStatement.() -> Unit = {}) {
-        dotGraph.add(DotStatement(this).apply(builder))
+    inline operator fun String.invoke(nodeBuilder: DotNode.() -> Unit = {}) {
+        dotGraph.add(DotNode(this).apply(nodeBuilder))
     }
 
-    inline fun nodes(vararg nodes: String, builder: DotStatement.() -> Unit = {}) {
-        nodes.forEach { it.invoke(builder) }
+    inline fun nodes(vararg nodes: String, nodeBuilder: DotNode.() -> Unit = {}) {
+        nodes.forEach { it.invoke(nodeBuilder) }
+    }
+
+    infix fun String.link(target: String): EdgeBuilder {
+        val dotEdge = DirectedDotEdge(this, target).also(dotGraph::add)
+        return EdgeBuilder(dotEdge)
+    }
+
+    inline fun edge(left: String, right: String, edgeBuilder: DotEdge.() -> Unit) {
+        dotGraph.add(DirectedDotEdge(left, right).apply(edgeBuilder))
+    }
+}
+
+@DotDslScope
+class EdgeBuilder(private val dotEdge: DotEdge) {
+    operator fun invoke(edgeBuilder: DotEdge.() -> Unit) {
+        dotEdge.apply(edgeBuilder)
     }
 }
 
@@ -59,21 +74,23 @@ fun main(ars: Array<String>) {
             }
 
             nodeAttributes {
-                "style" eq "dashed"
                 "fillcolor" eq "black"
             }
 
-            nodes("A", "B", "C") {
-                "label" eq "Grouped Node"
-            }
+            nodes("A", "B", "C")
         }
 
         cluster("World") {
 
-            nodes("D", "E", "F") {
-                "label" eq "Grouped Node"
-            }
+            nodes("D", "E", "F")
         }
+
+        ("A" link "B") {
+            "style" eq "dashed"
+            "taillabel" eq "subcomponent"
+        }
+        "E" link "C"
+        "A" link "C"
     }
 
     println(dotGraph.toString())
