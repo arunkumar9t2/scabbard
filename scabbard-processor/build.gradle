@@ -24,7 +24,7 @@ sourceSets {
 dependencies {
     testImplementation("junit:junit:4.12")
 
-    implementation project(path: ':graphviz-dsl')
+    implementation project(path: ':dot-dsl')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     implementation "guru.nidi:graphviz-java:${versions.graphviz}"
