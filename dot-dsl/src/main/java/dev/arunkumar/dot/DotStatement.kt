@@ -4,6 +4,9 @@ package dev.arunkumar.dot
 
 import java.io.PrintWriter
 import java.util.*
+import java.util.regex.Matcher
+
+fun Any.quote() = '"' + toString().replace("\"".toRegex(), Matcher.quoteReplacement("\\\"")) + '"'
 
 open class DotStatement(
     private val base: String,
@@ -39,3 +42,5 @@ open class DotStatement(
         writer.println()
     }
 }
+
+class DotNode(nodeName: Any) : DotStatement(nodeName.quote())
