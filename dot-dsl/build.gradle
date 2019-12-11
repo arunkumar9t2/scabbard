@@ -14,9 +14,7 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-    implementation "guru.nidi:graphviz-java:${versions.graphviz}"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:${versions.junit}"
 }
