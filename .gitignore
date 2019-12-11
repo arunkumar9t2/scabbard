@@ -43,3 +43,4 @@ _sandbox
 .project
 .classpath
 .settings/
+.settings.json
