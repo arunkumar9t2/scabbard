@@ -2,6 +2,7 @@ package dev.arunkumar.scabbard
 
 import android.app.Application
 import dev.arunkumar.scabbard.debug.ComplexSingleton
+import dev.arunkumar.scabbard.debug.MultiBindingType
 import dev.arunkumar.scabbard.debug.ProvisionBinding
 import dev.arunkumar.scabbard.di.DaggerAppComponent
 import javax.inject.Inject
@@ -13,6 +14,9 @@ class App : Application() {
     lateinit var complexSingleton: ComplexSingleton
     @Inject
     lateinit var provisionBinding: ProvisionBinding
+    @Inject
+    @JvmSuppressWildcards
+    lateinit var multiBindingTypes: Set<MultiBindingType>
 
     override fun onCreate() {
         appComponent.inject(this)

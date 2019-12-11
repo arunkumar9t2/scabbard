@@ -5,12 +5,18 @@ import dagger.BindsInstance
 import dagger.Component
 import dev.arunkumar.scabbard.App
 import dev.arunkumar.scabbard.debug.DummyInjectionTarget
+import dev.arunkumar.scabbard.debug.MultiBindingsProvisionModule
 import dev.arunkumar.scabbard.debug.ProvisionModule
 import dev.arunkumar.scabbard.home.MainActivitySubComponent
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ProvisionModule::class])
+@Component(
+    modules = [
+        ProvisionModule::class,
+        MultiBindingsProvisionModule::class
+    ]
+)
 interface AppComponent {
 
     // Bindings
