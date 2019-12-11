@@ -6,7 +6,7 @@ import dev.arunkumar.dot.*
 annotation class DotDslScope
 
 @DotDslScope
-class DotGraphBuilder(val dotGraph: DotGraph) {
+inline class DotGraphBuilder(val dotGraph: DotGraph) {
 
     inline fun graphAttributes(builder: DotStatement.() -> Unit) {
         dotGraph.add(DotStatement("graph").apply(builder))
@@ -48,7 +48,7 @@ class EdgeBuilder(private val dotEdge: DotEdge) {
     }
 }
 
-fun directedGraph(
+inline fun directedGraph(
     label: String,
     builder: DotGraphBuilder.() -> Unit
 ) = DotGraphBuilder(DotGraph("digraph ${label.quote()}")).apply(builder).dotGraph
