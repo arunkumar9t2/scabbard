@@ -11,6 +11,7 @@ ext {
             'dagger'     : '2.23.2',
             'autoService': '1.0-rc6',
             'guava'      : '24.1-jre',
-            'junit'      : '4.12'
+            'junit'      : '4.12',
+            'truth'      : '1.0'
     ]
 }
