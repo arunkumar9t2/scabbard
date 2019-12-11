@@ -131,7 +131,7 @@ constructor(
                         // Render edges between all nodes
                         edges.forEach { edge ->
                             val (source, target) = bindingGraph.network().incidentNodes(edge)
-                            if (edge is DependencyEdge) {
+                            if (edge is DependencyEdge && !edge.isEntryPoint) {
                                 source.id link target.id
                             }
                         }
