@@ -20,8 +20,4 @@ class DotGraph(private val header: String) : Indented() {
         indent(level, writer)
         writer.println("}")
     }
-
-    override fun toString(): String {
-        return StringWriter().also { write(0, PrintWriter(it)) }.toString()
-    }
 }

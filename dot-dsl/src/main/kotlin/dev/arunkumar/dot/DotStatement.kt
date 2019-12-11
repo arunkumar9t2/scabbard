@@ -9,9 +9,10 @@ import java.util.regex.Matcher
 fun Any.quote() = '"' + toString().replace("\"".toRegex(), Matcher.quoteReplacement("\\\"")) + '"'
 
 open class DotStatement(
-    private val base: String,
-    private val attributes: LinkedHashMap<String, Any> = LinkedHashMap()
+    protected val base: String
 ) : Indented() {
+
+    protected val attributes: LinkedHashMap<String, Any> = LinkedHashMap()
 
     fun addAttribute(name: String, value: Any) {
         attributes[name] = value

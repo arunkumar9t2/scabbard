@@ -1,6 +1,7 @@
 package dev.arunkumar.dot
 
 import java.io.PrintWriter
+import java.io.StringWriter
 
 abstract class Indented {
 
@@ -12,5 +13,9 @@ abstract class Indented {
     ): PrintWriter {
         writer.print(" ".repeat(level * 2))
         return writer
+    }
+
+    override fun toString(): String {
+        return StringWriter().also { write(0, PrintWriter(it)) }.toString()
     }
 }
