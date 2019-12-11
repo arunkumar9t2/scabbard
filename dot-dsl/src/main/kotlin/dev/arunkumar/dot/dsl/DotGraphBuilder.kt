@@ -17,7 +17,8 @@ class DotGraphBuilder(val dotGraph: DotGraph) {
     }
 
     inline fun subgraph(name: String, graphBuilder: DotGraphBuilder.() -> Unit) {
-        val subgraph = DotGraphBuilder(DotGraph("subgraph $name")).apply(graphBuilder).dotGraph
+        val subgraph = DotGraphBuilder(DotGraph("subgraph ${name.quote()}"))
+            .apply(graphBuilder).dotGraph
         dotGraph.add(subgraph)
     }
 

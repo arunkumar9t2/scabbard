@@ -1,7 +1,6 @@
 package dev.arunkumar.dot
 
 import java.io.PrintWriter
-import java.io.StringWriter
 import java.util.*
 
 class DotGraph(private val header: String) : Indented() {
