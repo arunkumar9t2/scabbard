@@ -14,7 +14,9 @@ import guru.nidi.graphviz.engine.Graphviz
 import java.util.*
 import javax.annotation.processing.Filer
 import javax.inject.Inject
-import javax.tools.StandardLocation
+import javax.lang.model.element.TypeElement
+import javax.tools.FileObject
+import javax.tools.StandardLocation.CLASS_OUTPUT
 
 @ProcessorScope
 class GraphVizBindingGraphProcessor
@@ -73,76 +75,93 @@ constructor(
         val network = bindingGraph.network()
         val nodes = network.nodes()
         val edges = network.edges()
-        nodes.asSequence()
-            .groupBy { it.componentPath() }
-            .forEach { (component, nodes) ->
-                val currentComponent = component.currentComponent()
-                val componentName = ClassName.get(currentComponent)
+        try {
+            nodes.asSequence()
+                .groupBy { it.componentPath() }
+                .forEach { (component, nodes) ->
+                    val currentComponent = component.currentComponent()
 
-                val outputFile = filer.createResource(
-                    StandardLocation.CLASS_OUTPUT,
-                    componentName.toString(),
-                    componentName.simpleNames().joinToString("_").plus(".png")
-                )
+                    val (outputFile, dotFile) = createOutputFiles(currentComponent)
 
-                directedGraph(currentComponent.toString()) {
-
-                    graphAttributes {
-                        "rankdir" eq "LR"
-                        "labeljust" eq "l"
-                        "label" eq currentComponent.toString()
-                        "pad" eq 0.5
-                        "compound" eq true
-                    }
-
-                    nodeAttributes {
-                        "shape" eq "rectangle"
-                        "style" eq "filled"
-                        "color" eq "turquoise"
-                    }
-
-                    cluster("Entry Points") {
+                    directedGraph(currentComponent.toString()) {
 
                         graphAttributes {
-                            "dir" eq "forward"
+                            "rankdir" eq "LR"
                             "labeljust" eq "l"
-                            "label" eq "Entry Points"
+                            "label" eq currentComponent.toString()
+                            "pad" eq 0.5
                             "compound" eq true
                         }
 
-                        addEntryPoints(nodes)
-                    }
-
-                    cluster("Dependency Graph") {
-
-                        graphAttributes {
-                            "dir" eq "forward"
-                            "labeljust" eq "l"
-                            "label" eq "Dependency Graph"
-                            "compound" eq true
+                        nodeAttributes {
+                            "shape" eq "rectangle"
+                            "style" eq "filled"
+                            "color" eq "turquoise"
                         }
 
-                        // Add dependency graph
-                        nodes.forEach { node ->
-                            when (node) {
-                                is Binding -> addDependencyNode(node)
+                        cluster("Entry Points") {
+
+                            graphAttributes {
+                                "dir" eq "forward"
+                                "labeljust" eq "l"
+                                "label" eq "Entry Points"
+                                "compound" eq true
+                            }
+
+                            addEntryPoints(nodes)
+                        }
+
+                        cluster("Dependency Graph") {
+
+                            graphAttributes {
+                                "dir" eq "forward"
+                                "labeljust" eq "l"
+                                "label" eq "Dependency Graph"
+                                "compound" eq true
+                            }
+
+                            // Add dependency graph
+                            nodes.forEach { node ->
+                                when (node) {
+                                    is Binding -> addDependencyNode(node)
+                                }
                             }
                         }
-                    }
 
-                    // Render edges between all nodes
-                    edges.forEach { edge ->
-                        val (source, target) = bindingGraph.network().incidentNodes(edge)
-                        if (edge is DependencyEdge) {
-                            source.id link target.id
+                        // Render edges between all nodes
+                        edges.forEach { edge ->
+                            val (source, target) = bindingGraph.network().incidentNodes(edge)
+                            if (edge is DependencyEdge) {
+                                source.id link target.id
+                            }
                         }
+                    }.let { dotGraph ->
+                        val dotCode = dotGraph.toString()
+
+                        Graphviz.fromString(dotCode)
+                            .render(Format.PNG)
+                            .toOutputStream(outputFile.openOutputStream())
+
+                        dotFile.openOutputStream().write(dotCode.toByteArray())
                     }
-                }.let { dotGraph ->
-                    Graphviz.fromString(dotGraph.toString())
-                        .render(Format.PNG)
-                        .toOutputStream(outputFile.openOutputStream())
                 }
-            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun createOutputFiles(currentComponent: TypeElement): Pair<FileObject, FileObject> {
+        val componentName = ClassName.get(currentComponent)
+        val fileName = componentName.simpleNames().joinToString("_")
+        return filer.createResource(
+            CLASS_OUTPUT,
+            componentName.toString(),
+            fileName.plus(".png")
+        ) to filer.createResource(
+            CLASS_OUTPUT,
+            componentName.toString(),
+            fileName.plus(".dot")
+        )
     }
 
     private fun DotGraphBuilder.addEntryPoints(nodes: List<BindingGraph.Node>) = nodes.asSequence()
