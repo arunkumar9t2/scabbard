@@ -4,7 +4,7 @@ import com.squareup.javapoet.ClassName
 import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.DependencyEdge
-import dagger.model.BindingKind.*
+import dagger.model.BindingKind.DELEGATE
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.dot.dsl.directedGraph
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
@@ -30,74 +30,34 @@ constructor(
     private val filer: Filer
 ) : BindingGraphProcessor {
 
-    private val scopeColors by lazy {
-        listOf(
-            "aquamarine",
-            "blue",
-            "cyan",
-            "magenta",
-            "tomato",
-            "yellow",
-            "deeppink",
-            "gold",
-            "crimson",
-            "chocolate1"
-        )
-    }
-
-    private val nodeIds = mutableMapOf<BindingGraph.Node, UUID>()
-    private val BindingGraph.Node.id get() = nodeIds.computeIfAbsent(this) { UUID.randomUUID() }.toString()
-
-    private val scopeColorCache = mutableMapOf("" to "turquoise")
-
-    private fun Binding.scopeName() = when {
-        scope().isPresent -> "@" + scope().get().scopeAnnotationElement().simpleName.toString()
-        else -> null
-    }
+    private val scopeColorsCache = mutableMapOf("" to "turquoise")
 
     private val Binding.color
-        get() = scopeColorCache.computeIfAbsent(scopeName() ?: "") {
-            scopeColors.random()
+        get() = scopeColorsCache.computeIfAbsent(scopeName() ?: "") {
+            SCOPE_COLORS.random()
         }
 
     private val Binding.isEntryPoint get() = bindingGraph.entryPointBindings().contains(this)
 
-    private fun BindingGraph.Node.label(): String = when (this) {
-        is Binding -> {
-            var name = key().toString()
-            val scopeName = scopeName()
-            val isSubComponentCreator = kind() == SUBCOMPONENT_CREATOR
-            val isMultibinding = kind().isMultibinding
-            val newLine = "\\n"
-
-            val isDelegate = kind() == DELEGATE
-            if (isDelegate) {
-                name = key().multibindingContributionIdentifier().get()
-                    .let { it.module().split(".").last() + "." + it.bindingElement() }
-            }
-
-            buildString {
-                scopeName?.let {
-                    append(scopeName)
-                    append(newLine)
-                }
-                append(name)
-                if (isSubComponentCreator) {
-                    append(newLine)
-                    append("Subcomponent Creator")
-                }
-                if (isMultibinding) {
-                    append(newLine)
-                    @Suppress("NON_EXHAUSTIVE_WHEN")
-                    when (kind()) {
-                        MULTIBOUND_MAP -> append("MAP")
-                        MULTIBOUND_SET -> append("SET")
-                    }
-                }
-            }
-        }
-        else -> componentPath().toString()
+    private fun createOutputFiles(currentComponent: TypeElement): Pair<FileObject, FileObject> {
+        val componentName = ClassName.get(currentComponent)
+        val fileName = componentName.simpleNames().joinToString("_")
+        return filer.createResource(
+            CLASS_OUTPUT,
+            componentName.toString(),
+            "$fileName.png"
+        ) to filer.createResource(
+            CLASS_OUTPUT,
+            componentName.toString(),
+            "$fileName.dot"
+        )
     }
+
+    private val globalNodeIds = mutableMapOf<BindingGraph.Node, String>()
+    private val BindingGraph.Node.id
+        get() = globalNodeIds.computeIfAbsent(this) {
+            UUID.randomUUID().toString()
+        }
 
     override fun process() {
         val network = bindingGraph.network()
@@ -176,20 +136,6 @@ constructor(
         }
     }
 
-    private fun createOutputFiles(currentComponent: TypeElement): Pair<FileObject, FileObject> {
-        val componentName = ClassName.get(currentComponent)
-        val fileName = componentName.simpleNames().joinToString("_")
-        return filer.createResource(
-            CLASS_OUTPUT,
-            componentName.toString(),
-            fileName.plus(".png")
-        ) to filer.createResource(
-            CLASS_OUTPUT,
-            componentName.toString(),
-            fileName.plus(".dot")
-        )
-    }
-
     private fun DotGraphBuilder.addEntryPoints(nodes: List<BindingGraph.Node>) = nodes.asSequence()
         .filterIsInstance<Binding>()
         .filter { it.isEntryPoint }
@@ -238,8 +184,8 @@ constructor(
         source: BindingGraph.Node,
         target: BindingGraph.Node
     ) {
-        if (!nodeIds.containsKey(source)) return
-        if (!nodeIds.containsKey(target)) return
+        if (!globalNodeIds.containsKey(source)) return
+        if (!globalNodeIds.containsKey(target)) return
 
         if (edge is DependencyEdge && !edge.isEntryPoint) {
             (source.id link target.id) {
