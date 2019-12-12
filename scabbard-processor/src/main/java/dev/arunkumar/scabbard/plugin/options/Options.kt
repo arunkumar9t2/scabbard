@@ -1,7 +1,7 @@
 package dev.arunkumar.scabbard.plugin.options
 
 data class ScabbardOptions(
-    val isSingleFile: Boolean
+    val singleGraph: Boolean
 )
 
 const val SINGLE_GRAPH = "scabbard.singleGraph"

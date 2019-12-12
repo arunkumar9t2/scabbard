@@ -3,15 +3,16 @@ package dev.arunkumar.scabbard.plugin.graphviz
 import com.squareup.javapoet.ClassName
 import dagger.model.Binding
 import dagger.model.BindingGraph
-import dagger.model.BindingGraph.DependencyEdge
+import dagger.model.BindingGraph.*
 import dagger.model.BindingKind.DELEGATE
 import dev.arunkumar.dot.dsl.DotGraphBuilder
-import dev.arunkumar.dot.dsl.directedGraph
+import dev.arunkumar.dot.dsl.directedGraphBuilder
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
+import dev.arunkumar.scabbard.plugin.util.tryCatchLogging
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
 import java.util.*
@@ -33,9 +34,8 @@ constructor(
     private val scopeColorsCache = mutableMapOf("" to "turquoise")
 
     private val Binding.color
-        get() = scopeColorsCache.computeIfAbsent(scopeName() ?: "") {
-            SCOPE_COLORS.random()
-        }
+        get() = scopeColorsCache
+            .computeIfAbsent(scopeName() ?: "") { SCOPE_COLORS.random() }
 
     private val Binding.isEntryPoint get() = bindingGraph.entryPointBindings().contains(this)
 
@@ -53,90 +53,91 @@ constructor(
         )
     }
 
-    private val globalNodeIds = mutableMapOf<BindingGraph.Node, String>()
-    private val BindingGraph.Node.id
+    private val globalNodeIds = mutableMapOf<Node, String>()
+    private val Node.id
         get() = globalNodeIds.computeIfAbsent(this) {
             UUID.randomUUID().toString()
         }
 
-    override fun process() {
+    override fun process() = tryCatchLogging {
         val network = bindingGraph.network()
         val nodes = network.nodes()
-        val edges = network.edges()
-        try {
-            nodes.asSequence()
-                .groupBy { it.componentPath() }
-                .forEach { (component, nodes) ->
-                    val currentComponent = component.currentComponent()
+        val allEdges = network.edges()
+        nodes.asSequence()
+            .groupBy { it.componentPath() }
+            .forEach { (component, componentNodes) ->
+                val currentComponent = component.currentComponent()
+                val dotGraphBuilder = buildGraph(
+                    currentComponent,
+                    componentNodes.asSequence(),
+                    allEdges.asSequence() // TODO(arun) why pass global edges here?
+                )
+                val (outputFile, dotFile) = createOutputFiles(currentComponent)
+                val dotOutput = dotGraphBuilder.dotGraph.toString()
 
-                    val (outputFile, dotFile) = createOutputFiles(currentComponent)
+                Graphviz.fromString(dotOutput)
+                    .scale(1.2)
+                    .render(Format.PNG)
+                    .toOutputStream(outputFile.openOutputStream())
+                dotFile.openOutputStream().write(dotOutput.toByteArray())
+            }
+    }
 
-                    directedGraph(currentComponent.toString()) {
+    private fun buildGraph(
+        currentComponent: TypeElement,
+        nodes: Sequence<Node>,
+        edges: Sequence<Edge>
+    ): DotGraphBuilder = directedGraphBuilder(currentComponent.toString()) {
+        graphAttributes {
+            "rankdir" eq "LR"
+            "labeljust" eq "l"
+            "label" eq currentComponent.toString()
+            "pad" eq 0.5
+            "compound" eq true
+        }
 
-                        graphAttributes {
-                            "rankdir" eq "LR"
-                            "labeljust" eq "l"
-                            "label" eq currentComponent.toString()
-                            "pad" eq 0.5
-                            "compound" eq true
-                        }
+        nodeAttributes {
+            "shape" eq "rectangle"
+            "style" eq "filled"
+            "color" eq "turquoise"
+        }
 
-                        nodeAttributes {
-                            "shape" eq "rectangle"
-                            "style" eq "filled"
-                            "color" eq "turquoise"
-                        }
+        cluster("Entry Points") {
 
-                        cluster("Entry Points") {
+            graphAttributes {
+                "labeljust" eq "l"
+                "label" eq "Entry Points"
+            }
 
-                            graphAttributes {
-                                "labeljust" eq "l"
-                                "label" eq "Entry Points"
-                            }
+            addEntryPoints(nodes)
+        }
 
-                            addEntryPoints(nodes)
-                        }
+        cluster("Dependency Graph") {
 
-                        cluster("Dependency Graph") {
+            graphAttributes {
+                "labeljust" eq "l"
+                "label" eq "Dependency Graph"
+            }
 
-                            graphAttributes {
-                                "labeljust" eq "l"
-                                "label" eq "Dependency Graph"
-                            }
-
-                            // Add dependency graph
-                            nodes.forEach { node ->
-                                when (node) {
-                                    is Binding -> addDependencyNode(node)
-                                }
-                            }
-
-                            // Add multi bindings
-                            addMultibindings(nodes)
-                        }
-
-                        // Render edges between all nodes
-                        edges.forEach { edge ->
-                            val (source, target) = bindingGraph.network().incidentNodes(edge)
-                            addEdge(edge, source, target)
-                        }
-                    }.let { dotGraph ->
-                        val dotCode = dotGraph.toString()
-
-                        Graphviz.fromString(dotCode)
-                            .scale(1.2)
-                            .render(Format.PNG)
-                            .toOutputStream(outputFile.openOutputStream())
-
-                        dotFile.openOutputStream().write(dotCode.toByteArray())
-                    }
+            // Add dependency graph
+            nodes.forEach { node ->
+                when (node) {
+                    is Binding -> addDependencyNode(node)
                 }
-        } catch (e: Exception) {
-            e.printStackTrace()
+            }
+
+            // Add multi bindings
+            addMultiBindings(nodes)
+        }
+
+        // Render edges between all nodes
+        edges.forEach { edge ->
+            val (source, target) = bindingGraph.network().incidentNodes(edge)
+            addEdge(edge, source, target)
         }
     }
 
-    private fun DotGraphBuilder.addEntryPoints(nodes: List<BindingGraph.Node>) = nodes.asSequence()
+    private fun DotGraphBuilder.addEntryPoints(nodes: Sequence<Node>) = nodes
         .filterIsInstance<Binding>()
         .filter { it.isEntryPoint }
         .forEach { node ->
@@ -147,7 +148,7 @@ constructor(
         }
 
     private fun DotGraphBuilder.addDependencyNode(node: Binding) {
-        if (node.isEntryPoint) return
+        if (node.isEntryPoint) return // Entry points are rendered in another cluster
         if (node.kind().isMultibinding) return // Multi binding rendered as another cluster
         node.id {
             "label" eq node.label()
@@ -155,7 +156,7 @@ constructor(
         }
     }
 
-    private fun DotGraphBuilder.addMultibindings(currentComponentNodes: List<BindingGraph.Node>) {
+    private fun DotGraphBuilder.addMultiBindings(currentComponentNodes: Sequence<Node>) {
         currentComponentNodes.asSequence()
             .filterIsInstance<Binding>()
             .filter { it.kind().isMultibinding }
@@ -179,11 +180,7 @@ constructor(
             }
     }
 
-    private fun DotGraphBuilder.addEdge(
-        edge: BindingGraph.Edge,
-        source: BindingGraph.Node,
-        target: BindingGraph.Node
-    ) {
+    private fun DotGraphBuilder.addEdge(edge: Edge, source: Node, target: Node) {
         if (!globalNodeIds.containsKey(source)) return
         if (!globalNodeIds.containsKey(target)) return
 

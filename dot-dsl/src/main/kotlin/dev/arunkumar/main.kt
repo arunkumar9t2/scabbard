@@ -1,9 +1,9 @@
 package dev.arunkumar
 
-import dev.arunkumar.dot.dsl.directedGraph
+import dev.arunkumar.dot.dsl.directedGraphBuilder
 
 fun main(ars: Array<String>) {
-    val dotGraph = directedGraph("Arun") {
+    val dotGraph = directedGraphBuilder("Arun") {
 
         graphAttributes {
             "rankdir" eq "LR"

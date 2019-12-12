@@ -48,7 +48,7 @@ class EdgeBuilder(private val dotEdge: DotEdge) {
     }
 }
 
-inline fun directedGraph(
+inline fun directedGraphBuilder(
     label: String,
     builder: DotGraphBuilder.() -> Unit
-) = DotGraphBuilder(DotGraph("digraph ${label.quote()}")).apply(builder).dotGraph
+) = DotGraphBuilder(DotGraph("digraph ${label.quote()}")).apply(builder)
