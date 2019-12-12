@@ -4,7 +4,7 @@ import com.squareup.javapoet.ClassName
 import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.DependencyEdge
-import dagger.model.BindingKind
+import dagger.model.BindingKind.*
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.dot.dsl.directedGraph
 import dev.arunkumar.scabbard.plugin.util.component1
@@ -60,12 +60,29 @@ constructor(
 
     private fun BindingGraph.Node.label(): String = when (this) {
         is Binding -> {
+            val name = key()
             val scopeName = scopeName()
-            val isSubComponentCreator = kind() == BindingKind.SUBCOMPONENT_CREATOR
-            when {
-                isSubComponentCreator -> "${key()}\\n\\nSubcomponent Creator"
-                scopeName != null -> "$scopeName\\n${key()}"
-                else -> key().toString()
+            val isSubComponentCreator = kind() == SUBCOMPONENT_CREATOR
+            val isMultibinding = kind().isMultibinding
+            val newLine = "\\n"
+            buildString {
+                scopeName?.let {
+                    append(scopeName)
+                    append(newLine)
+                }
+                append(name)
+                if (isSubComponentCreator) {
+                    append(newLine)
+                    append("Subcomponent Creator")
+                }
+                if (isMultibinding) {
+                    append(newLine)
+                    @Suppress("NON_EXHAUSTIVE_WHEN")
+                    when (kind()) {
+                        MULTIBOUND_MAP -> append("MAP")
+                        MULTIBOUND_SET -> append("SET")
+                    }
+                }
             }
         }
         else -> componentPath().toString()
@@ -139,6 +156,7 @@ constructor(
                         val dotCode = dotGraph.toString()
 
                         Graphviz.fromString(dotCode)
+                            .scale(1.2)
                             .render(Format.PNG)
                             .toOutputStream(outputFile.openOutputStream())
 
