@@ -60,11 +60,18 @@ constructor(
 
     private fun BindingGraph.Node.label(): String = when (this) {
         is Binding -> {
-            val name = key()
+            var name = key().toString()
             val scopeName = scopeName()
             val isSubComponentCreator = kind() == SUBCOMPONENT_CREATOR
             val isMultibinding = kind().isMultibinding
             val newLine = "\\n"
+
+            val isDelegate = kind() == DELEGATE
+            if (isDelegate) {
+                name = key().multibindingContributionIdentifier().get()
+                    .let { it.module().split(".").last() + "." + it.bindingElement() }
+            }
+
             buildString {
                 scopeName?.let {
                     append(scopeName)
@@ -119,10 +126,8 @@ constructor(
                         cluster("Entry Points") {
 
                             graphAttributes {
-                                "dir" eq "forward"
                                 "labeljust" eq "l"
                                 "label" eq "Entry Points"
-                                "compound" eq true
                             }
 
                             addEntryPoints(nodes)
@@ -131,10 +136,8 @@ constructor(
                         cluster("Dependency Graph") {
 
                             graphAttributes {
-                                "dir" eq "forward"
                                 "labeljust" eq "l"
                                 "label" eq "Dependency Graph"
-                                "compound" eq true
                             }
 
                             // Add dependency graph
@@ -143,6 +146,9 @@ constructor(
                                     is Binding -> addDependencyNode(node)
                                 }
                             }
+
+                            // Add multi bindings
+                            addMultibindings(nodes)
                         }
 
                         // Render edges between all nodes
@@ -194,9 +200,29 @@ constructor(
 
     private fun DotGraphBuilder.addDependencyNode(node: Binding) {
         if (node.isEntryPoint) return
+        if (node.kind().isMultibinding) return // Multi binding rendered as another cluster
         node.id {
             "label" eq node.label()
             "color" eq node.color
         }
+    }
+
+    private fun DotGraphBuilder.addMultibindings(currentComponentNodes: List<BindingGraph.Node>) {
+        currentComponentNodes.asSequence()
+            .filterIsInstance<Binding>()
+            .filter { it.kind().isMultibinding }
+            .forEach { multiBinding ->
+                val name = multiBinding.key().toString()
+                cluster(name) {
+                    graphAttributes {
+                        "label" eq name
+                        "labeljust" eq "c"
+                        "style" eq "rounded"
+                    }
+                    bindingGraph
+                        .requestedBindings(multiBinding)
+                        .forEach { binding -> addDependencyNode(binding) }
+                }
+            }
     }
 }

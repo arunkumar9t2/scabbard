@@ -37,7 +37,8 @@ object ProvisionModule {
 interface MultiBindingType
 
 class SimpleMultiBindingType @Inject constructor() : MultiBindingType
-class ComplexMultiBindingType @Inject constructor() : MultiBindingType
+class ComplexMultiBindingType
+@Inject constructor(val provisionBinding: ProvisionBinding) : MultiBindingType
 
 @Module
 abstract class MultiBindingsProvisionModule {
