@@ -6,6 +6,7 @@ import dagger.spi.BindingGraphPlugin
 import dagger.spi.DiagnosticReporter
 import dev.arunkumar.scabbard.plugin.di.DaggerScabbardComponent
 import dev.arunkumar.scabbard.plugin.di.ProcessingEnvModule
+import dev.arunkumar.scabbard.plugin.options.SINGLE_GRAPH
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
@@ -15,8 +16,11 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
     private lateinit var filer: Filer
     private lateinit var types: Types
     private lateinit var elements: Elements
+    private lateinit var options: Map<String, String>
 
     override fun pluginName() = "Scabbard Dagger Plugin"
+
+    override fun supportedOptions() = mutableSetOf(SINGLE_GRAPH)
 
     override fun initFiler(filer: Filer) {
         this.filer = filer
@@ -30,8 +34,12 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
         this.elements = elements
     }
 
+    override fun initOptions(options: Map<String, String>) {
+        this.options = options
+    }
+
     override fun visitGraph(bindingGraph: BindingGraph, diagnosticReporter: DiagnosticReporter) {
-        val processingEnvModule = ProcessingEnvModule(filer, types, elements)
+        val processingEnvModule = ProcessingEnvModule(filer, types, elements, options)
         DaggerScabbardComponent.factory()
             .create(processingEnvModule, bindingGraph, diagnosticReporter)
             .bindingGraphProcessor()

@@ -27,6 +27,12 @@ android {
     }
 }
 
+kapt {
+    arguments {
+        arg('scabbard.singleGraph', 'true')
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 

@@ -9,6 +9,7 @@ import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.dot.dsl.directedGraph
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
+import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
 import guru.nidi.graphviz.engine.Format
@@ -25,6 +26,7 @@ class GraphVizBindingGraphProcessor
 @Inject
 constructor(
     override val bindingGraph: BindingGraph,
+    private val scabbardOptions: ScabbardOptions,
     private val filer: Filer
 ) : BindingGraphProcessor {
 

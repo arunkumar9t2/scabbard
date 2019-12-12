@@ -8,6 +8,8 @@ import dagger.model.BindingGraph
 import dagger.spi.DiagnosticReporter
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.graphviz.GraphVizBindingGraphProcessorModule
+import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
+import dev.arunkumar.scabbard.plugin.options.parseOptions
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
@@ -37,7 +39,8 @@ interface ScabbardComponent {
 class ProcessingEnvModule(
     private val filer: Filer,
     private val types: Types,
-    private val elements: Elements
+    private val elements: Elements,
+    private val options: Map<String, String>
 ) {
     @ProcessorScope
     @Provides
@@ -50,5 +53,9 @@ class ProcessingEnvModule(
     @ProcessorScope
     @Provides
     fun elements(): Elements = elements
+
+    @ProcessorScope
+    @Provides
+    fun scabbardOptions(): ScabbardOptions = parseOptions(options)
 }
 
