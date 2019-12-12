@@ -123,6 +123,7 @@ constructor(
             nodes.forEach { node ->
                 when (node) {
                     is Binding -> addDependencyNode(node)
+                    is ComponentNode -> addComponentNode(node)
                 }
             }
 
@@ -144,6 +145,7 @@ constructor(
             node.id {
                 "shape" eq "component"
                 "label" eq node.label()
+                "penwidth" eq 2
             }
         }
 
@@ -153,6 +155,13 @@ constructor(
         node.id {
             "label" eq node.label()
             "color" eq node.color
+        }
+    }
+
+    private fun DotGraphBuilder.addComponentNode(node: ComponentNode) {
+        node.id {
+            "style" eq "invis"
+            "shape" eq "point"
         }
     }
 
