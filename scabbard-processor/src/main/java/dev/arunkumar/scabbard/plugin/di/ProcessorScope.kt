@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.plugin
+package dev.arunkumar.scabbard.plugin.di
 
 import javax.inject.Scope
 

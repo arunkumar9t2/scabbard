@@ -4,6 +4,7 @@ import com.google.auto.service.AutoService
 import dagger.model.BindingGraph
 import dagger.spi.BindingGraphPlugin
 import dagger.spi.DiagnosticReporter
+import dev.arunkumar.scabbard.plugin.di.ProcessingEnvModule
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types

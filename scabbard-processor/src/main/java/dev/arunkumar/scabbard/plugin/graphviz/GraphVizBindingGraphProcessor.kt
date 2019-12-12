@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.plugin
+package dev.arunkumar.scabbard.plugin.graphviz
 
 import com.squareup.javapoet.ClassName
 import dagger.model.Binding
@@ -7,6 +7,8 @@ import dagger.model.BindingGraph.DependencyEdge
 import dagger.model.BindingKind.*
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.dot.dsl.directedGraph
+import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
+import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
 import guru.nidi.graphviz.engine.Format
@@ -22,7 +24,7 @@ import javax.tools.StandardLocation.CLASS_OUTPUT
 class GraphVizBindingGraphProcessor
 @Inject
 constructor(
-    private val bindingGraph: BindingGraph,
+    override val bindingGraph: BindingGraph,
     private val filer: Filer
 ) : BindingGraphProcessor {
 

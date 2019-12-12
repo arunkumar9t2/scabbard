@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.plugin
+package dev.arunkumar.scabbard.plugin.di
 
 import dagger.BindsInstance
 import dagger.Component
@@ -6,6 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.model.BindingGraph
 import dagger.spi.DiagnosticReporter
+import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
+import dev.arunkumar.scabbard.plugin.graphviz.GraphVizBindingGraphProcessorModule
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
