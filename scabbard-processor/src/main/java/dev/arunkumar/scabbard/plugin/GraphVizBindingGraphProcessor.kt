@@ -154,9 +154,7 @@ constructor(
                         // Render edges between all nodes
                         edges.forEach { edge ->
                             val (source, target) = bindingGraph.network().incidentNodes(edge)
-                            if (edge is DependencyEdge && !edge.isEntryPoint) {
-                                source.id link target.id
-                            }
+                            addEdge(edge, source, target)
                         }
                     }.let { dotGraph ->
                         val dotCode = dotGraph.toString()
@@ -219,10 +217,34 @@ constructor(
                         "labeljust" eq "c"
                         "style" eq "rounded"
                     }
+                    multiBinding.id {
+                        "shape" eq "tab"
+                        "label" eq multiBinding.label()
+                        "color" eq multiBinding.color
+                    }
                     bindingGraph
                         .requestedBindings(multiBinding)
                         .forEach { binding -> addDependencyNode(binding) }
                 }
             }
+    }
+
+    private fun DotGraphBuilder.addEdge(
+        edge: BindingGraph.Edge,
+        source: BindingGraph.Node,
+        target: BindingGraph.Node
+    ) {
+        if (!nodeIds.containsKey(source)) return
+        if (!nodeIds.containsKey(target)) return
+
+        if (edge is DependencyEdge && !edge.isEntryPoint) {
+            (source.id link target.id) {
+                if ((source as? Binding)?.kind() == DELEGATE) {
+                    // Delegate edges i.e usually using @Binds
+                    "style" eq "dotted"
+                    "label" eq "implements"
+                }
+            }
+        }
     }
 }
