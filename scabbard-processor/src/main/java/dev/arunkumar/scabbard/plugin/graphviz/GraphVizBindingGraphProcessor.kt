@@ -216,12 +216,28 @@ constructor(
     if (!globalNodeIds.containsKey(source)) return
     if (!globalNodeIds.containsKey(target)) return
 
-    if (edge is DependencyEdge && !edge.isEntryPoint) {
-      (source.id link target.id) {
-        if ((source as? Binding)?.kind() == DELEGATE) {
-          // Delegate edges i.e usually using @Binds
-          "style" eq "dotted"
-          "label" eq "implements"
+    when (edge) {
+      is DependencyEdge -> {
+        if (!edge.isEntryPoint) {
+          (source.id link target.id) {
+            if ((source as? Binding)?.kind() == DELEGATE) {
+              // Delegate edges i.e usually using @Binds
+              "style" eq "dotted"
+              "label" eq "implements"
+            }
+          }
+        }
+      }
+      is ChildFactoryMethodEdge -> {
+        (source.id link target.id) {
+          "style" eq "dashed"
+          "taillabel" eq edge.factoryMethod()
+        }
+      }
+      is SubcomponentCreatorBindingEdge -> {
+        (source.id link target.id) {
+          "style" eq "dashed"
+          "xlabel" eq "subcomponent"
         }
       }
     }
