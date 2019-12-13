@@ -67,6 +67,8 @@ constructor(
     nodes.asSequence()
       .groupBy { it.componentPath() }
       .forEach { (component, componentNodes) ->
+        globalNodeIds.clear()
+
         val currentComponent = component.currentComponent()
         val subcomponents = bindingGraph.subcomponents(currentComponent)
 
@@ -148,7 +150,9 @@ constructor(
     // Render edges between all nodes
     edges.forEach { edge ->
       val (source, target) = bindingGraph.network().incidentNodes(edge)
-      addEdge(edge, source, target)
+      if (globalNodeIds.containsKey(source) && globalNodeIds.containsKey(target)) {
+        addEdge(edge, source, target)
+      }
     }
   }
 
@@ -213,9 +217,6 @@ constructor(
   }
 
   private fun DotGraphBuilder.addEdge(edge: Edge, source: Node, target: Node) {
-    if (!globalNodeIds.containsKey(source)) return
-    if (!globalNodeIds.containsKey(target)) return
-
     when (edge) {
       is DependencyEdge -> {
         if (!edge.isEntryPoint) {
