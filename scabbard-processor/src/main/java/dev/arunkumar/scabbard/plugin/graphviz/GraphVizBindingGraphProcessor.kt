@@ -28,16 +28,11 @@ class GraphVizBindingGraphProcessor
 constructor(
   override val bindingGraph: BindingGraph,
   private val scabbardOptions: ScabbardOptions,
-  private val filer: Filer
+  private val filer: Filer,
+  private val scopeColors: ScopeColors
 ) : BindingGraphProcessor {
 
-  private val scopeColorsCache = mutableMapOf("" to "turquoise")
-
-  private fun scopeColor(scopeName: String): String {
-    return scopeColorsCache.getOrPut(scopeName) { SCOPE_COLORS.random() }
-  }
-
-  private val Binding.color get() = scopeColor(scopeName() ?: "")
+  private val Binding.color get() = scopeColors[scopeName() ?: ""]
   private val Binding.isEntryPoint get() = bindingGraph.entryPointBindings().contains(this)
 
   private fun createOutputFiles(currentComponent: TypeElement): Pair<FileObject, FileObject> {
@@ -187,7 +182,7 @@ constructor(
     subcomponent.id {
       "label" eq subcomponent.label()
       subcomponent.scopes().forEach { scope ->
-        "color" eq scopeColor(scope.name)
+        "color" eq scopeColors[scope.name]
       }
     }
   }
