@@ -33,10 +33,11 @@ constructor(
 
   private val scopeColorsCache = mutableMapOf("" to "turquoise")
 
-  private val Binding.color
-    get() = scopeColorsCache
-      .computeIfAbsent(scopeName() ?: "") { SCOPE_COLORS.random() }
+  private fun scopeColor(scopeName: String): String {
+    return scopeColorsCache.getOrPut(scopeName) { SCOPE_COLORS.random() }
+  }
 
+  private val Binding.color get() = scopeColor(scopeName() ?: "")
   private val Binding.isEntryPoint get() = bindingGraph.entryPointBindings().contains(this)
 
   private fun createOutputFiles(currentComponent: TypeElement): Pair<FileObject, FileObject> {
@@ -67,8 +68,11 @@ constructor(
       .groupBy { it.componentPath() }
       .forEach { (component, componentNodes) ->
         val currentComponent = component.currentComponent()
+        val subcomponents = bindingGraph.subcomponents(currentComponent)
+
         val dotGraphBuilder = buildGraph(
           currentComponent,
+          subcomponents,
           componentNodes.asSequence(),
           allEdges.asSequence() // TODO(arun) why pass global edges here?
         )
@@ -85,6 +89,7 @@ constructor(
 
   private fun buildGraph(
     currentComponent: TypeElement,
+    subcomponents: Sequence<ComponentNode>,
     nodes: Sequence<Node>,
     edges: Sequence<Edge>
   ): DotGraphBuilder = directedGraphBuilder(currentComponent.toString()) {
@@ -131,6 +136,15 @@ constructor(
       addMultiBindings(nodes)
     }
 
+    cluster("Subcomponents") {
+      graphAttributes {
+        "labeljust" eq "l"
+        "shape" eq "folder"
+        "label" eq "Subcomponents"
+      }
+      subcomponents.forEach { subcomponent -> addSubcomponent(subcomponent) }
+    }
+
     // Render edges between all nodes
     edges.forEach { edge ->
       val (source, target) = bindingGraph.network().incidentNodes(edge)
@@ -162,6 +176,15 @@ constructor(
     node.id {
       "style" eq "invis"
       "shape" eq "point"
+    }
+  }
+
+  private fun DotGraphBuilder.addSubcomponent(subcomponent: ComponentNode) {
+    subcomponent.id {
+      "label" eq subcomponent.label()
+      subcomponent.scopes().forEach { scope ->
+        "color" eq scopeColor(scope.name)
+      }
     }
   }
 

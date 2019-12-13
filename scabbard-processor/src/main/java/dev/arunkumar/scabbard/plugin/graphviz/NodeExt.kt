@@ -1,42 +1,61 @@
 package dev.arunkumar.scabbard.plugin.graphviz
 
 import dagger.model.Binding
-import dagger.model.BindingGraph
+import dagger.model.BindingGraph.ComponentNode
+import dagger.model.BindingGraph.Node
 import dagger.model.BindingKind
 
-fun BindingGraph.Node.label(): String = when (this) {
+private const val newLine = "\\n"
+
+private data class MultiBindingData(val isMultiBinding: Boolean, val type: String)
+
+fun Node.label(): String = when (this) {
   is Binding -> {
     var name = key().toString()
     val scopeName = scopeName()
     val isSubComponentCreator = kind() == BindingKind.SUBCOMPONENT_CREATOR
-    val isMultibinding = kind().isMultibinding
-    val newLine = "\\n"
 
-    val isDelegate = kind() == BindingKind.DELEGATE
-    if (isDelegate) {
+    val multiBindingData = MultiBindingData(
+      isMultiBinding = kind().isMultibinding,
+      type = when (kind()) {
+        BindingKind.MULTIBOUND_MAP -> "MAP"
+        BindingKind.MULTIBOUND_SET -> "SET"
+        else -> "UNKNOWN"
+      }
+    )
+
+    if (kind() == BindingKind.DELEGATE) {
       name = key().multibindingContributionIdentifier().get()
         .let { it.module().split(".").last() + "." + it.bindingElement() }
     }
 
-    buildString {
-      scopeName?.let {
-        append(scopeName)
-        append(newLine)
-      }
-      append(name)
-      if (isSubComponentCreator) {
-        append(newLine)
-        append("Subcomponent Creator")
-      }
-      if (isMultibinding) {
-        append(newLine)
-        @Suppress("NON_EXHAUSTIVE_WHEN")
-        when (kind()) {
-          BindingKind.MULTIBOUND_MAP -> append("MAP")
-          BindingKind.MULTIBOUND_SET -> append("SET")
-        }
-      }
-    }
+    buildLabel(name, scopeName, isSubComponentCreator, multiBindingData)
+  }
+  is ComponentNode -> {
+    val name = componentPath().currentComponent().qualifiedName.toString()
+    val scopeName = scopes().takeIf { it.isNotEmpty() }?.joinToString(separator = "|") { it.name }
+    buildLabel(name, scopeName)
   }
   else -> componentPath().toString()
+}
+
+private fun buildLabel(
+  name: String,
+  scopeName: String? = null,
+  isSubComponentCreator: Boolean = false,
+  multiBindingData: MultiBindingData? = null
+) = buildString {
+  scopeName?.let {
+    append(scopeName)
+    append(newLine)
+  }
+  append(name)
+  if (isSubComponentCreator) {
+    append(newLine)
+    append("Subcomponent Creator")
+  }
+  if (multiBindingData?.isMultiBinding == true) {
+    append(newLine)
+    append(multiBindingData.type)
+  }
 }
