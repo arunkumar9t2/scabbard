@@ -166,7 +166,7 @@ constructor(
   }
 
   private fun DotGraphBuilder.addMultiBindings(currentComponentNodes: Sequence<Node>) {
-    currentComponentNodes.asSequence()
+    currentComponentNodes
       .filterIsInstance<Binding>()
       .filter { it.kind().isMultibinding }
       .forEach { multiBinding ->
