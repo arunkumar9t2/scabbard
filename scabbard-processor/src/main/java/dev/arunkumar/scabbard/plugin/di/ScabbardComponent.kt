@@ -16,46 +16,46 @@ import javax.lang.model.util.Types
 
 @ProcessorScope
 @Component(
-    modules = [
-        ProcessingEnvModule::class,
-        GraphVizBindingGraphProcessorModule::class
-    ]
+  modules = [
+    ProcessingEnvModule::class,
+    GraphVizBindingGraphProcessorModule::class
+  ]
 )
 interface ScabbardComponent {
 
-    fun bindingGraphProcessor(): BindingGraphProcessor
+  fun bindingGraphProcessor(): BindingGraphProcessor
 
-    @Component.Factory
-    interface Factory {
-        fun create(
-            processingEnvModule: ProcessingEnvModule,
-            @BindsInstance bindingGraph: BindingGraph,
-            @BindsInstance diagnosticReporter: DiagnosticReporter
-        ): ScabbardComponent
-    }
+  @Component.Factory
+  interface Factory {
+    fun create(
+      processingEnvModule: ProcessingEnvModule,
+      @BindsInstance bindingGraph: BindingGraph,
+      @BindsInstance diagnosticReporter: DiagnosticReporter
+    ): ScabbardComponent
+  }
 }
 
 @Module
 class ProcessingEnvModule(
-    private val filer: Filer,
-    private val types: Types,
-    private val elements: Elements,
-    private val options: Map<String, String>
+  private val filer: Filer,
+  private val types: Types,
+  private val elements: Elements,
+  private val options: Map<String, String>
 ) {
-    @ProcessorScope
-    @Provides
-    fun filer(): Filer = filer
+  @ProcessorScope
+  @Provides
+  fun filer(): Filer = filer
 
-    @ProcessorScope
-    @Provides
-    fun types(): Types = types
+  @ProcessorScope
+  @Provides
+  fun types(): Types = types
 
-    @ProcessorScope
-    @Provides
-    fun elements(): Elements = elements
+  @ProcessorScope
+  @Provides
+  fun elements(): Elements = elements
 
-    @ProcessorScope
-    @Provides
-    fun scabbardOptions(): ScabbardOptions = parseOptions(options)
+  @ProcessorScope
+  @Provides
+  fun scabbardOptions(): ScabbardOptions = parseOptions(options)
 }
 

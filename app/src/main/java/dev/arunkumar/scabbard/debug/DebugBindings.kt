@@ -16,8 +16,8 @@ class SimpleSingleton @Inject constructor()
 class ComplexSingleton
 @Inject
 constructor(
-    private val unScopedBinding: UnScopedBinding,
-    private val simpleSingleton: SimpleSingleton
+  private val unScopedBinding: UnScopedBinding,
+  private val simpleSingleton: SimpleSingleton
 )
 
 // Empty Entry Point
@@ -27,10 +27,10 @@ class ProvisionBinding
 
 @Module
 object ProvisionModule {
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun providesProvisionBinding() = ProvisionBinding()
+  @Provides
+  @Singleton
+  @JvmStatic
+  fun providesProvisionBinding() = ProvisionBinding()
 }
 
 
@@ -42,11 +42,11 @@ class ComplexMultiBindingType
 
 @Module
 abstract class MultiBindingsProvisionModule {
-    @Binds
-    @IntoSet
-    abstract fun simpleMultiBindingType(simpleMultiBindingType: SimpleMultiBindingType): MultiBindingType
+  @Binds
+  @IntoSet
+  abstract fun simpleMultiBindingType(simpleMultiBindingType: SimpleMultiBindingType): MultiBindingType
 
-    @Binds
-    @IntoSet
-    abstract fun complexMultiBindingType(complexMultiBindingType: ComplexMultiBindingType): MultiBindingType
+  @Binds
+  @IntoSet
+  abstract fun complexMultiBindingType(complexMultiBindingType: ComplexMultiBindingType): MultiBindingType
 }

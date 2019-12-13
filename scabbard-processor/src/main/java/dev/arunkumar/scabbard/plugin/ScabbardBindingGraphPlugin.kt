@@ -13,37 +13,37 @@ import javax.lang.model.util.Types
 
 @AutoService(BindingGraphPlugin::class)
 class ScabbardBindingGraphPlugin : BindingGraphPlugin {
-    private lateinit var filer: Filer
-    private lateinit var types: Types
-    private lateinit var elements: Elements
-    private lateinit var options: Map<String, String>
+  private lateinit var filer: Filer
+  private lateinit var types: Types
+  private lateinit var elements: Elements
+  private lateinit var options: Map<String, String>
 
-    override fun pluginName() = "Scabbard Dagger Plugin"
+  override fun pluginName() = "Scabbard Dagger Plugin"
 
-    override fun supportedOptions() = mutableSetOf(SINGLE_GRAPH)
+  override fun supportedOptions() = mutableSetOf(SINGLE_GRAPH)
 
-    override fun initFiler(filer: Filer) {
-        this.filer = filer
-    }
+  override fun initFiler(filer: Filer) {
+    this.filer = filer
+  }
 
-    override fun initTypes(types: Types) {
-        this.types = types
-    }
+  override fun initTypes(types: Types) {
+    this.types = types
+  }
 
-    override fun initElements(elements: Elements) {
-        this.elements = elements
-    }
+  override fun initElements(elements: Elements) {
+    this.elements = elements
+  }
 
-    override fun initOptions(options: Map<String, String>) {
-        this.options = options
-    }
+  override fun initOptions(options: Map<String, String>) {
+    this.options = options
+  }
 
-    override fun visitGraph(bindingGraph: BindingGraph, diagnosticReporter: DiagnosticReporter) {
-        val processingEnvModule = ProcessingEnvModule(filer, types, elements, options)
-        DaggerScabbardComponent.factory()
-            .create(processingEnvModule, bindingGraph, diagnosticReporter)
-            .bindingGraphProcessor()
-            .process()
-    }
+  override fun visitGraph(bindingGraph: BindingGraph, diagnosticReporter: DiagnosticReporter) {
+    val processingEnvModule = ProcessingEnvModule(filer, types, elements, options)
+    DaggerScabbardComponent.factory()
+      .create(processingEnvModule, bindingGraph, diagnosticReporter)
+      .bindingGraphProcessor()
+      .process()
+  }
 }
 

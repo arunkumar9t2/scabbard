@@ -75,264 +75,263 @@ import static java.util.stream.Collectors.groupingBy;
  */
 @AutoService(BindingGraphPlugin.class)
 public final class BindingGraphVisualizer implements BindingGraphPlugin {
-    private Filer filer;
+  /**
+   * Graphviz color names to use for binding nodes within each component.
+   */
+  private static final ImmutableList<String> COMPONENT_COLORS =
+      ImmutableList.of(
+          "/set312/1",
+          "/set312/2",
+          "/set312/3",
+          "/set312/4",
+          "/set312/5",
+          "/set312/6",
+          "/set312/7",
+          "/set312/8",
+          "/set312/9",
+          "/set312/10",
+          "/set312/11",
+          "/set312/12");
+  private Filer filer;
+
+  private static String quote(String string) {
+    return '"' + string.replaceAll("\"", quoteReplacement("\\\"")) + '"';
+  }
+
+  @Override
+  public void initFiler(Filer filer) {
+    this.filer = filer;
+  }
+
+  @Override
+  public void visitGraph(BindingGraph bindingGraph, DiagnosticReporter diagnosticReporter) {
+    TypeElement componentElement = bindingGraph.rootComponentNode().componentPath().currentComponent();
+    DotGraph graph = new NodesGraph(bindingGraph).graph();
+    ClassName componentName = ClassName.get(componentElement);
+    try {
+      final FileObject png = filer.createResource(
+          StandardLocation.CLASS_OUTPUT,
+          componentName.packageName(),
+          Joiner.on('_').join(componentName.simpleNames()) + ".png",
+          componentElement
+      );
+
+      final FileObject dot = filer.createResource(
+          StandardLocation.CLASS_OUTPUT,
+          componentName.packageName(),
+          Joiner.on('_').join(componentName.simpleNames()) + ".dot",
+          componentElement
+      );
+
+      try (final StringWriter stringWriter = new StringWriter()) {
+        try (PrintWriter writer = new PrintWriter(stringWriter)) {
+          graph.write(0, writer);
+        }
+        Graphviz.fromString(stringWriter.toString())
+            .scale(1.2)
+            .render(Format.PNG)
+            .toOutputStream(png.openOutputStream());
+
+        Graphviz.fromString(stringWriter.toString())
+            .scale(1.2)
+            .render(Format.DOT)
+            .toOutputStream(dot.openOutputStream());
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  private abstract static class Indented {
+
+    abstract void write(int level, PrintWriter writer);
+
+    @CanIgnoreReturnValue
+    PrintWriter indent(int level, PrintWriter writer) {
+      writer.print(Strings.repeat(" ", level * 2));
+      return writer;
+    }
+  }
+
+  static class DotGraph extends Indented {
+    private final String header;
+    private final List<Indented> elements = new ArrayList<>();
+
+    DotGraph(String header) {
+      this.header = header;
+    }
+
+    @CanIgnoreReturnValue
+    DotGraph add(Indented element) {
+      elements.add(element);
+      return this;
+    }
 
     @Override
-    public void initFiler(Filer filer) {
-        this.filer = filer;
+    void write(int level, PrintWriter writer) {
+      indent(level, writer);
+      writer.println(header + " {");
+      for (Indented element : elements) {
+        element.write(level + 1, writer);
+      }
+      indent(level, writer);
+      writer.println("}");
+    }
+  }
+
+  static class DotStatement<S extends DotStatement<S>> extends Indented {
+    private final String base;
+    private final Map<String, Object> attributes = new LinkedHashMap<>();
+
+    DotStatement(String base) {
+      this.base = base;
     }
 
-    /**
-     * Graphviz color names to use for binding nodes within each component.
-     */
-    private static final ImmutableList<String> COMPONENT_COLORS =
-            ImmutableList.of(
-                    "/set312/1",
-                    "/set312/2",
-                    "/set312/3",
-                    "/set312/4",
-                    "/set312/5",
-                    "/set312/6",
-                    "/set312/7",
-                    "/set312/8",
-                    "/set312/9",
-                    "/set312/10",
-                    "/set312/11",
-                    "/set312/12");
+    @SuppressWarnings("unchecked")
+    @CanIgnoreReturnValue
+    S addAttribute(String name, Object value) {
+      attributes.put(name, value);
+      return (S) this;
+    }
+
+    @CanIgnoreReturnValue
+    S addAttributeFormat(String name, String format, Object... args) {
+      return addAttribute(name, String.format(format, args));
+    }
 
     @Override
-    public void visitGraph(BindingGraph bindingGraph, DiagnosticReporter diagnosticReporter) {
-        TypeElement componentElement = bindingGraph.rootComponentNode().componentPath().currentComponent();
-        DotGraph graph = new NodesGraph(bindingGraph).graph();
-        ClassName componentName = ClassName.get(componentElement);
-        try {
-            final FileObject png = filer.createResource(
-                    StandardLocation.CLASS_OUTPUT,
-                    componentName.packageName(),
-                    Joiner.on('_').join(componentName.simpleNames()) + ".png",
-                    componentElement
-            );
+    void write(int level, PrintWriter writer) {
+      indent(level, writer);
+      writer.print(base);
+      if (!attributes.isEmpty()) {
+        writer.print(
+            attributes
+                .entrySet()
+                .stream()
+                .map(
+                    entry ->
+                        String.format("%s=%s", entry.getKey(), quote(entry.getValue().toString())))
+                .collect(Collectors.joining(", ", " [", "]")));
+      }
+      writer.println();
+    }
+  }
 
-            final FileObject dot = filer.createResource(
-                    StandardLocation.CLASS_OUTPUT,
-                    componentName.packageName(),
-                    Joiner.on('_').join(componentName.simpleNames()) + ".dot",
-                    componentElement
-            );
+  static class DotNode extends DotStatement<DotNode> {
+    DotNode(Object nodeName) {
+      super(quote(nodeName.toString()));
+    }
+  }
 
-            try (final StringWriter stringWriter = new StringWriter()) {
-                try (PrintWriter writer = new PrintWriter(stringWriter)) {
-                    graph.write(0, writer);
-                }
-                Graphviz.fromString(stringWriter.toString())
-                        .scale(1.2)
-                        .render(Format.PNG)
-                        .toOutputStream(png.openOutputStream());
+  static class DotEdge extends DotStatement<DotEdge> {
+    DotEdge(Object leftNode, Object rightNode) {
+      super(quote(leftNode.toString()) + " -> " + quote(rightNode.toString()));
+    }
+  }
 
-                Graphviz.fromString(stringWriter.toString())
-                        .scale(1.2)
-                        .render(Format.DOT)
-                        .toOutputStream(dot.openOutputStream());
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+  static class NodesGraph {
+    private final DotGraph graph =
+        new DotGraph("digraph")
+            .add(
+                new DotStatement<>("graph")
+                    .addAttribute("rankdir", "LR")
+                    .addAttribute("labeljust", "l")
+                    .addAttribute("compound", true));
+
+    private final BindingGraph bindingGraph;
+    private final Map<Node, UUID> nodeIds = new HashMap<>();
+
+    NodesGraph(BindingGraph bindingGraph) {
+      this.bindingGraph = bindingGraph;
     }
 
-    private abstract static class Indented {
-
-        abstract void write(int level, PrintWriter writer);
-
-        @CanIgnoreReturnValue
-        PrintWriter indent(int level, PrintWriter writer) {
-            writer.print(Strings.repeat(" ", level * 2));
-            return writer;
-        }
+    private static String clusterName(ComponentPath owningComponentPath) {
+      return "cluster" + owningComponentPath;
     }
 
-    static class DotGraph extends Indented {
-        private final String header;
-        private final List<Indented> elements = new ArrayList<>();
-
-        DotGraph(String header) {
-            this.header = header;
+    DotGraph graph() {
+      if (nodeIds.isEmpty()) {
+        Iterator<String> colors = Iterators.cycle(COMPONENT_COLORS);
+        bindingGraph.network().nodes().stream()
+            .collect(groupingBy(Node::componentPath))
+            .forEach(
+                (component, networkNodes) -> {
+                  DotGraph subgraph = subgraph(component);
+                  subgraph.add(
+                      new DotStatement<>("node")
+                          .addAttribute("style", "filled")
+                          .addAttribute("shape", "box")
+                          .addAttribute("fillcolor", colors.next()));
+                  subgraph.add(new DotStatement<>("graph").addAttribute("label", component));
+                  for (Node node : networkNodes) {
+                    subgraph.add(dotNode(node));
+                  }
+                });
+        for (Edge edge : bindingGraph.network().edges()) {
+          dotEdge(edge).ifPresent(graph::add);
         }
-
-        @CanIgnoreReturnValue
-        DotGraph add(Indented element) {
-            elements.add(element);
-            return this;
-        }
-
-        @Override
-        void write(int level, PrintWriter writer) {
-            indent(level, writer);
-            writer.println(header + " {");
-            for (Indented element : elements) {
-                element.write(level + 1, writer);
-            }
-            indent(level, writer);
-            writer.println("}");
-        }
+      }
+      return graph;
     }
 
-    static class DotStatement<S extends DotStatement<S>> extends Indented {
-        private final String base;
-        private final Map<String, Object> attributes = new LinkedHashMap<>();
-
-        DotStatement(String base) {
-            this.base = base;
-        }
-
-        @SuppressWarnings("unchecked")
-        @CanIgnoreReturnValue
-        S addAttribute(String name, Object value) {
-            attributes.put(name, value);
-            return (S) this;
-        }
-
-        @CanIgnoreReturnValue
-        S addAttributeFormat(String name, String format, Object... args) {
-            return addAttribute(name, String.format(format, args));
-        }
-
-        @Override
-        void write(int level, PrintWriter writer) {
-            indent(level, writer);
-            writer.print(base);
-            if (!attributes.isEmpty()) {
-                writer.print(
-                        attributes
-                                .entrySet()
-                                .stream()
-                                .map(
-                                        entry ->
-                                                String.format("%s=%s", entry.getKey(), quote(entry.getValue().toString())))
-                                .collect(Collectors.joining(", ", " [", "]")));
-            }
-            writer.println();
-        }
+    DotGraph subgraph(ComponentPath component) {
+      DotGraph subgraph = new DotGraph("subgraph " + quote(clusterName(component)));
+      graph.add(subgraph);
+      return subgraph;
     }
 
-    private static String quote(String string) {
-        return '"' + string.replaceAll("\"", quoteReplacement("\\\"")) + '"';
+    UUID nodeId(Node node) {
+      return nodeIds.computeIfAbsent(node, n -> randomUUID());
     }
 
-    static class DotNode extends DotStatement<DotNode> {
-        DotNode(Object nodeName) {
-            super(quote(nodeName.toString()));
+    Optional<DotEdge> dotEdge(Edge edge) {
+      EndpointPair<Node> incidentNodes = bindingGraph.network().incidentNodes(edge);
+      DotEdge dotEdge = new DotEdge(nodeId(incidentNodes.source()), nodeId(incidentNodes.target()));
+      if (edge instanceof DependencyEdge) {
+        if (((DependencyEdge) edge).isEntryPoint()) {
+          return Optional.empty();
         }
+      } else if (edge instanceof ChildFactoryMethodEdge) {
+        dotEdge.addAttribute("style", "dashed");
+        dotEdge.addAttribute("lhead", clusterName(incidentNodes.target().componentPath()));
+        dotEdge.addAttribute("ltail", clusterName(incidentNodes.source().componentPath()));
+        dotEdge.addAttribute("taillabel", ((ChildFactoryMethodEdge) edge).factoryMethod());
+      } else if (edge instanceof SubcomponentCreatorBindingEdge) {
+        dotEdge.addAttribute("style", "dashed");
+        dotEdge.addAttribute("lhead", clusterName(incidentNodes.target().componentPath()));
+        dotEdge.addAttribute("taillabel", "subcomponent");
+      }
+      return Optional.of(dotEdge);
     }
 
-    static class DotEdge extends DotStatement<DotEdge> {
-        DotEdge(Object leftNode, Object rightNode) {
-            super(quote(leftNode.toString()) + " -> " + quote(rightNode.toString()));
+    DotNode dotNode(Node node) {
+      DotNode dotNode = new DotNode(nodeId(node));
+      if (node instanceof MaybeBinding) {
+        dotNode.addAttribute("tooltip", "");
+        if (bindingGraph.entryPointBindings().contains(node)) {
+          dotNode.addAttribute("penwidth", 3);
         }
+        if (node instanceof Binding) {
+          dotNode.addAttribute("label", label((Binding) node));
+        }
+        if (node instanceof MissingBinding) {
+          dotNode.addAttributeFormat(
+              "label", "missing binding for %s", ((MissingBinding) node).key());
+        }
+      } else {
+        dotNode.addAttribute("style", "invis").addAttribute("shape", "point");
+      }
+      return dotNode;
     }
 
-    static class NodesGraph {
-        private final DotGraph graph =
-                new DotGraph("digraph")
-                        .add(
-                                new DotStatement<>("graph")
-                                        .addAttribute("rankdir", "LR")
-                                        .addAttribute("labeljust", "l")
-                                        .addAttribute("compound", true));
-
-        private final BindingGraph bindingGraph;
-        private final Map<Node, UUID> nodeIds = new HashMap<>();
-
-        NodesGraph(BindingGraph bindingGraph) {
-            this.bindingGraph = bindingGraph;
-        }
-
-        DotGraph graph() {
-            if (nodeIds.isEmpty()) {
-                Iterator<String> colors = Iterators.cycle(COMPONENT_COLORS);
-                bindingGraph.network().nodes().stream()
-                        .collect(groupingBy(Node::componentPath))
-                        .forEach(
-                                (component, networkNodes) -> {
-                                    DotGraph subgraph = subgraph(component);
-                                    subgraph.add(
-                                            new DotStatement<>("node")
-                                                    .addAttribute("style", "filled")
-                                                    .addAttribute("shape", "box")
-                                                    .addAttribute("fillcolor", colors.next()));
-                                    subgraph.add(new DotStatement<>("graph").addAttribute("label", component));
-                                    for (Node node : networkNodes) {
-                                        subgraph.add(dotNode(node));
-                                    }
-                                });
-                for (Edge edge : bindingGraph.network().edges()) {
-                    dotEdge(edge).ifPresent(graph::add);
-                }
-            }
-            return graph;
-        }
-
-        DotGraph subgraph(ComponentPath component) {
-            DotGraph subgraph = new DotGraph("subgraph " + quote(clusterName(component)));
-            graph.add(subgraph);
-            return subgraph;
-        }
-
-        UUID nodeId(Node node) {
-            return nodeIds.computeIfAbsent(node, n -> randomUUID());
-        }
-
-        Optional<DotEdge> dotEdge(Edge edge) {
-            EndpointPair<Node> incidentNodes = bindingGraph.network().incidentNodes(edge);
-            DotEdge dotEdge = new DotEdge(nodeId(incidentNodes.source()), nodeId(incidentNodes.target()));
-            if (edge instanceof DependencyEdge) {
-                if (((DependencyEdge) edge).isEntryPoint()) {
-                    return Optional.empty();
-                }
-            } else if (edge instanceof ChildFactoryMethodEdge) {
-                dotEdge.addAttribute("style", "dashed");
-                dotEdge.addAttribute("lhead", clusterName(incidentNodes.target().componentPath()));
-                dotEdge.addAttribute("ltail", clusterName(incidentNodes.source().componentPath()));
-                dotEdge.addAttribute("taillabel", ((ChildFactoryMethodEdge) edge).factoryMethod());
-            } else if (edge instanceof SubcomponentCreatorBindingEdge) {
-                dotEdge.addAttribute("style", "dashed");
-                dotEdge.addAttribute("lhead", clusterName(incidentNodes.target().componentPath()));
-                dotEdge.addAttribute("taillabel", "subcomponent");
-            }
-            return Optional.of(dotEdge);
-        }
-
-        DotNode dotNode(Node node) {
-            DotNode dotNode = new DotNode(nodeId(node));
-            if (node instanceof MaybeBinding) {
-                dotNode.addAttribute("tooltip", "");
-                if (bindingGraph.entryPointBindings().contains(node)) {
-                    dotNode.addAttribute("penwidth", 3);
-                }
-                if (node instanceof Binding) {
-                    dotNode.addAttribute("label", label((Binding) node));
-                }
-                if (node instanceof MissingBinding) {
-                    dotNode.addAttributeFormat(
-                            "label", "missing binding for %s", ((MissingBinding) node).key());
-                }
-            } else {
-                dotNode.addAttribute("style", "invis").addAttribute("shape", "point");
-            }
-            return dotNode;
-        }
-
-        private String label(Binding binding) {
-            if (binding.kind().equals(BindingKind.MEMBERS_INJECTION)) {
-                return String.format("inject(%s)", binding.key());
-            } else if (binding.isProduction()) {
-                return String.format("@Produces %s", binding.key());
-            } else {
-                return binding.key().toString();
-            }
-        }
-
-        private static String clusterName(ComponentPath owningComponentPath) {
-            return "cluster" + owningComponentPath;
-        }
+    private String label(Binding binding) {
+      if (binding.kind().equals(BindingKind.MEMBERS_INJECTION)) {
+        return String.format("inject(%s)", binding.key());
+      } else if (binding.isProduction()) {
+        return String.format("@Produces %s", binding.key());
+      } else {
+        return binding.key().toString();
+      }
     }
+  }
 }

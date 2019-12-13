@@ -6,8 +6,8 @@ import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 
 @Module
 interface GraphVizBindingGraphProcessorModule {
-    @Binds
-    fun bindingGraphProcessor(
-        graphVizBindingGraphProcessor: GraphVizBindingGraphProcessor
-    ): BindingGraphProcessor
+  @Binds
+  fun bindingGraphProcessor(
+    graphVizBindingGraphProcessor: GraphVizBindingGraphProcessor
+  ): BindingGraphProcessor
 }

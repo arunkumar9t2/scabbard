@@ -12,24 +12,24 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [
-        ProvisionModule::class,
-        MultiBindingsProvisionModule::class
-    ]
+  modules = [
+    ProvisionModule::class,
+    MultiBindingsProvisionModule::class
+  ]
 )
 interface AppComponent {
 
-    // Bindings
-    fun mainActivitySubComponentFactory(): MainActivitySubComponent.Factory
+  // Bindings
+  fun mainActivitySubComponentFactory(): MainActivitySubComponent.Factory
 
-    // Injection targets
-    fun inject(app: App)
+  // Injection targets
+  fun inject(app: App)
 
-    fun inject(dummyInjectionTarget: DummyInjectionTarget)
+  fun inject(dummyInjectionTarget: DummyInjectionTarget)
 
-    @Component.Factory
-    interface Factory {
-        fun build(@BindsInstance application: Application): AppComponent
-    }
+  @Component.Factory
+  interface Factory {
+    fun build(@BindsInstance application: Application): AppComponent
+  }
 }
 
