@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.plugin.graphviz
+package dev.arunkumar.scabbard.plugin.parser
 
 import dagger.model.Binding
 import dagger.model.BindingGraph.ComponentNode
@@ -9,7 +9,7 @@ private const val newLine = "\\n"
 
 private data class MultiBindingData(val isMultiBinding: Boolean, val type: String)
 
-fun Node.label(): String = when (this) {
+internal fun Node.label(): String = when (this) {
   is Binding -> {
     var name = key().toString()
     val scopeName = scopeName()
@@ -29,7 +29,12 @@ fun Node.label(): String = when (this) {
         .let { it.module().split(".").last() + "." + it.bindingElement() }
     }
 
-    buildLabel(name, scopeName, isSubComponentCreator, multiBindingData)
+    buildLabel(
+      name,
+      scopeName,
+      isSubComponentCreator,
+      multiBindingData
+    )
   }
   is ComponentNode -> {
     val name = componentPath().currentComponent().qualifiedName.toString()

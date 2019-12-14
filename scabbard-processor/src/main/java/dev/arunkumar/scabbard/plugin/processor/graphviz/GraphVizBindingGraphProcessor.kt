@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.plugin.graphviz
+package dev.arunkumar.scabbard.plugin.processor.graphviz
 
 import com.squareup.javapoet.ClassName
 import dagger.model.Binding
@@ -10,6 +10,7 @@ import dev.arunkumar.dot.dsl.directedGraphBuilder
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
+import dev.arunkumar.scabbard.plugin.parser.*
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
 import dev.arunkumar.scabbard.plugin.util.tryCatchLogging

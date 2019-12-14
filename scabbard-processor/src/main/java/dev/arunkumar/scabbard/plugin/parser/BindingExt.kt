@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.plugin.graphviz
+package dev.arunkumar.scabbard.plugin.parser
 
 import dagger.model.Binding
 

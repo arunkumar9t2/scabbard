@@ -7,7 +7,7 @@ import dagger.Provides
 import dagger.model.BindingGraph
 import dagger.spi.DiagnosticReporter
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
-import dev.arunkumar.scabbard.plugin.graphviz.GraphVizBindingGraphProcessorModule
+import dev.arunkumar.scabbard.plugin.processor.graphviz.GraphVizBindingGraphProcessorModule
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.options.parseOptions
 import javax.annotation.processing.Filer

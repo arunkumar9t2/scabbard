@@ -5,6 +5,6 @@ inline fun tryCatchLogging(crossinline block: () -> Unit) {
     block()
   } catch (e: Exception) {
     e.printStackTrace()
-    throw RuntimeException("Scabbard compilation failed")
+    throw RuntimeException("Scabbard processor failed")
   }
 }
