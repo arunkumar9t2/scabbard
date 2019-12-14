@@ -15,6 +15,7 @@ allprojects {
         google()
         jcenter()
     }
+    group 'dev.arunkumar'
 }
 
 task clean(type: Delete) {

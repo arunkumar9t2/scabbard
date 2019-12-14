@@ -1,3 +1,4 @@
 include ':app'
 include ':scabbard-processor'
 include ':dot-dsl'
+include ':scabbard-idea-plugin'
