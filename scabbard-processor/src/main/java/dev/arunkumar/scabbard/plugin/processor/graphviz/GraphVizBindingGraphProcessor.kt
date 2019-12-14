@@ -51,10 +51,7 @@ constructor(
   }
 
   private val globalNodeIds = mutableMapOf<Node, String>()
-  private val Node.id
-    get() = globalNodeIds.computeIfAbsent(this) {
-      UUID.randomUUID().toString()
-    }
+  private val Node.id get() = globalNodeIds.getOrPut(this) { UUID.randomUUID().toString() }
 
   override fun process() = tryCatchLogging {
     val network = bindingGraph.network()
