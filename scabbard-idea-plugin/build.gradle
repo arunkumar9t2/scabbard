@@ -1,10 +1,10 @@
 plugins {
-    id 'java'
     id 'org.jetbrains.intellij' version '0.4.15'
     id 'org.jetbrains.kotlin.jvm'
 }
 
-sourceCompatibility = 1.8
+targetCompatibility = "1.8"
+sourceCompatibility = "1.8"
 
 repositories {
     mavenCentral()
@@ -24,7 +24,9 @@ compileTestKotlin {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    plugins 'java'
+    plugins = [
+            "Kotlin", "IntelliLang", "java"
+    ]
     version '2019.3'
     pluginName 'Scabbard - Dagger 2 Visualizer'
 }
