@@ -4,8 +4,6 @@ import dagger.model.Binding
 import dagger.model.BindingGraph.ComponentNode
 import dagger.model.BindingGraph.Node
 import dagger.model.BindingKind
-import java.io.PrintWriter
-import java.io.StringWriter
 
 private const val newLine = "\\n"
 
@@ -40,7 +38,7 @@ internal fun Node.label(): String = when (this) {
       )
     } catch (e: Exception) {
       e.printStackTrace()
-      "Errored ${StringWriter().also { e.printStackTrace(PrintWriter(it)) }}"
+      "Errored $this"
     }
   }
   is ComponentNode -> {
