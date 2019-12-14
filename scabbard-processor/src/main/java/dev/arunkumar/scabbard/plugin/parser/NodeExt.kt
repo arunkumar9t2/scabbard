@@ -4,6 +4,8 @@ import dagger.model.Binding
 import dagger.model.BindingGraph.ComponentNode
 import dagger.model.BindingGraph.Node
 import dagger.model.BindingKind
+import java.io.PrintWriter
+import java.io.StringWriter
 
 private const val newLine = "\\n"
 
@@ -11,30 +13,35 @@ private data class MultiBindingData(val isMultiBinding: Boolean, val type: Strin
 
 internal fun Node.label(): String = when (this) {
   is Binding -> {
-    var name = key().toString()
-    val scopeName = scopeName()
-    val isSubComponentCreator = kind() == BindingKind.SUBCOMPONENT_CREATOR
+    try {
+      var name = key().toString()
+      val scopeName = scopeName()
+      val isSubComponentCreator = kind() == BindingKind.SUBCOMPONENT_CREATOR
 
-    val multiBindingData = MultiBindingData(
-      isMultiBinding = kind().isMultibinding,
-      type = when (kind()) {
-        BindingKind.MULTIBOUND_MAP -> "MAP"
-        BindingKind.MULTIBOUND_SET -> "SET"
-        else -> "UNKNOWN"
+      val multiBindingData = MultiBindingData(
+        isMultiBinding = kind().isMultibinding,
+        type = when (kind()) {
+          BindingKind.MULTIBOUND_MAP -> "MAP"
+          BindingKind.MULTIBOUND_SET -> "SET"
+          else -> "UNKNOWN"
+        }
+      )
+
+      if (kind() == BindingKind.DELEGATE) {
+        name = key().multibindingContributionIdentifier().get()
+          .let { it.module().split(".").last() + "." + it.bindingElement() }
       }
-    )
 
-    if (kind() == BindingKind.DELEGATE) {
-      name = key().multibindingContributionIdentifier().get()
-        .let { it.module().split(".").last() + "." + it.bindingElement() }
+      buildLabel(
+        name,
+        scopeName,
+        isSubComponentCreator,
+        multiBindingData
+      )
+    } catch (e: Exception) {
+      e.printStackTrace()
+      "Errored ${StringWriter().also { e.printStackTrace(PrintWriter(it)) }}"
     }
-
-    buildLabel(
-      name,
-      scopeName,
-      isSubComponentCreator,
-      multiBindingData
-    )
   }
   is ComponentNode -> {
     val name = componentPath().currentComponent().qualifiedName.toString()
