@@ -15,7 +15,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <codeInsight.lineMarkerProvider
-            implementationClass="dev.arunkumar.scabbard.intellij.JavaComponentToDaggerGraphLineMarker"
+            implementationClass="dev.arunkumar.scabbard.intellij.KotlinComponentToDaggerGraphLineMarker"
             language="java" />
     </extensions>
 
