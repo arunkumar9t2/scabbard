@@ -103,22 +103,18 @@ constructor(
     }
 
     cluster("Entry Points") {
-
       graphAttributes {
         "labeljust" eq "l"
         "label" eq "Entry Points"
       }
-
       addEntryPoints(nodes)
     }
 
     cluster("Dependency Graph") {
-
       graphAttributes {
         "labeljust" eq "l"
         "label" eq "Dependency Graph"
       }
-
       // Add dependency graph
       nodes.forEach { node ->
         when (node) {
