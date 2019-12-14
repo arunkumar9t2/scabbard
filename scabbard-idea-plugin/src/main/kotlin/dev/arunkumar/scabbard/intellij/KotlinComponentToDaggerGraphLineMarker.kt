@@ -74,8 +74,8 @@ class KotlinComponentToDaggerGraphLineMarker : LineMarkerProvider {
   }
 
   private fun hasDaggerComponentAnnotations(ktClass: KtClassOrObject): Boolean {
-    return (ktClass.findAnnotation(FqName(DAGGER_COMPONENT)) != null
-        || ktClass.findAnnotation(FqName(DAGGER_SUBCOMPONENT)) != null)
+    return ktClass.findAnnotation(FqName(DAGGER_COMPONENT)) != null
+        || ktClass.findAnnotation(FqName(DAGGER_SUBCOMPONENT)) != null
   }
 
   private fun LeafPsiElement.getClassOrInterface(): KtClassOrObject? {
