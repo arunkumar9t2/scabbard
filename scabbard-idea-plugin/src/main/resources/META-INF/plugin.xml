@@ -1,0 +1,28 @@
+<idea-plugin>
+    <name>Scabbard - Dagger 2 Visualizer</name>
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>org.jetbrains.kotlin</depends>
+
+    <description><![CDATA[
+    Intellij plugin that integrates with Scabbard(https://github.com/arunkumar9t2/scabbard) to
+    visualize Dagger graphs
+    <br>
+    ]]></description>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <codeInsight.lineMarkerProvider
+            implementationClass="dev.arunkumar.scabbard.intellij.KotlinComponentToDaggerGraphLineMarker"
+            language="kotlin" />
+        <codeInsight.lineMarkerProvider
+            implementationClass="dev.arunkumar.scabbard.intellij.JavaComponentToDaggerGraphLineMarker"
+            language="JAVA" />
+    </extensions>
+
+    <id>dev.arunkumar.scabbard.idea-plugin</id>
+    <vendor email="hi@arunkumar.dev" url="http://arunkumar.dev">Arunkumar</vendor>
+</idea-plugin>

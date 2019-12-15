@@ -5,6 +5,7 @@ import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.*
 import dagger.model.BindingKind.DELEGATE
+import dagger.model.ComponentPath
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.dot.dsl.directedGraphBuilder
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
@@ -38,7 +39,7 @@ constructor(
 
   private fun createOutputFiles(currentComponent: TypeElement): Pair<FileObject, FileObject> {
     val componentName = ClassName.get(currentComponent)
-    val fileName = componentName.simpleNames().joinToString("_")
+    val fileName = componentName.packageName() + '.' + componentName.simpleNames().joinToString(".")
     return filer.createResource(
       CLASS_OUTPUT,
       componentName.toString(),
@@ -66,7 +67,7 @@ constructor(
         val subcomponents = bindingGraph.subcomponents(currentComponent)
 
         val dotGraphBuilder = buildGraph(
-          currentComponent,
+          component,
           subcomponents,
           componentNodes.asSequence(),
           allEdges.asSequence() // TODO(arun) why pass global edges here?
@@ -83,7 +84,7 @@ constructor(
   }
 
   private fun buildGraph(
-    currentComponent: TypeElement,
+    currentComponent: ComponentPath,
     subcomponents: Sequence<ComponentNode>,
     nodes: Sequence<Node>,
     edges: Sequence<Edge>
@@ -213,7 +214,7 @@ constructor(
             if ((source as? Binding)?.kind() == DELEGATE) {
               // Delegate edges i.e usually using @Binds
               "style" eq "dotted"
-              "label" eq "implements"
+              "label" eq "delegates"
             }
           }
         }
