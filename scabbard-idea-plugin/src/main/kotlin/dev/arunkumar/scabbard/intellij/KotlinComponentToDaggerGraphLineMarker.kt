@@ -19,7 +19,6 @@ import org.jetbrains.kotlin.lexer.KtTokens.*
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClassOrObject
 import org.jetbrains.kotlin.psi.KtFile
-import java.io.File.separator
 
 class KotlinComponentToDaggerGraphLineMarker : LineMarkerProvider {
 
@@ -28,24 +27,21 @@ class KotlinComponentToDaggerGraphLineMarker : LineMarkerProvider {
     when (element) {
       is LeafPsiElement -> {
         element.getClassOrInterface()?.let { ktClass ->
-          if (hasDaggerComponentAnnotations(ktClass)) {
+
+          if (ktClass.hasDaggerComponentAnnotations()) {
             val componentName = ktClass.name
 
             (ktClass.containingFile as? KtFile)?.packageFqName?.asString()?.let { packageName ->
-              val fileNameToFind = "$componentName.png"
-              val directoryShouldEndWith =
-                packageName.replace(".", separator) + separator + ktClass.name
-
+              val fileNameToFind = "$packageName.$componentName.png"
               /*val scope: GlobalSearchScope = when {
                 element.module != null -> moduleWithDependenciesAndLibrariesScope(element.module!!)
                 else -> allScope(project)
               }*/
 
-              // TODO(arun) Need to optimize this
+              // TODO(arun) Need to optimize this - try to scope it to the module where scabbard is applied
               val scope = allScope(element.project)
 
               FilenameIndex.getFilesByName(project, fileNameToFind, scope)
-                .filter { it.containingDirectory.toString().endsWith(directoryShouldEndWith) }
                 .takeIf { it.isNotEmpty() }
                 ?.first()
                 ?.let { graphFile ->
@@ -73,9 +69,9 @@ class KotlinComponentToDaggerGraphLineMarker : LineMarkerProvider {
     }
   }
 
-  private fun hasDaggerComponentAnnotations(ktClass: KtClassOrObject): Boolean {
-    return ktClass.findAnnotation(FqName(DAGGER_COMPONENT)) != null
-        || ktClass.findAnnotation(FqName(DAGGER_SUBCOMPONENT)) != null
+  private fun KtClassOrObject.hasDaggerComponentAnnotations(): Boolean {
+    return findAnnotation(FqName(DAGGER_COMPONENT)) != null
+        || findAnnotation(FqName(DAGGER_SUBCOMPONENT)) != null
   }
 
   private fun LeafPsiElement.getClassOrInterface(): KtClassOrObject? {
