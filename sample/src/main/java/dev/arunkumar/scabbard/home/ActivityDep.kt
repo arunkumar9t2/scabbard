@@ -4,4 +4,4 @@ import dev.arunkumar.scabbard.di.ActivityScope
 import javax.inject.Inject
 
 @ActivityScope
-class ActivityScopeDependency @Inject constructor()
+class ActivityDep @Inject constructor()

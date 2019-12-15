@@ -1,6 +1,6 @@
 package dev.arunkumar.scabbard
 
-import android.app.Application
+import dagger.android.support.DaggerApplication
 import dev.arunkumar.scabbard.debug.ComplexSingleton
 import dev.arunkumar.scabbard.debug.DelegateBinding
 import dev.arunkumar.scabbard.debug.MultiBindingType
@@ -8,8 +8,8 @@ import dev.arunkumar.scabbard.debug.ProvisionBinding
 import dev.arunkumar.scabbard.di.DaggerAppComponent
 import javax.inject.Inject
 
-class App : Application() {
-  val appComponent by lazy { DaggerAppComponent.factory().build(this) }
+class App : DaggerApplication() {
+  private val appComponent by lazy { DaggerAppComponent.factory().build(this) }
 
   @Inject
   lateinit var complexSingleton: ComplexSingleton
@@ -21,10 +21,10 @@ class App : Application() {
   @Inject
   lateinit var delegateBinding: DelegateBinding
 
+  override fun applicationInjector() = appComponent
+
   override fun onCreate() {
     appComponent.inject(this)
     super.onCreate()
   }
 }
-
-fun Application.appComponent() = (this as App).appComponent

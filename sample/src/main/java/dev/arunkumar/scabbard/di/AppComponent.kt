@@ -3,12 +3,14 @@ package dev.arunkumar.scabbard.di
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjectionModule
 import dev.arunkumar.scabbard.App
 import dev.arunkumar.scabbard.debug.DelegateBindingModule
 import dev.arunkumar.scabbard.debug.DummyInjectionTarget
 import dev.arunkumar.scabbard.debug.MultiBindingsProvisionModule
 import dev.arunkumar.scabbard.debug.ProvisionModule
-import dev.arunkumar.scabbard.home.MainActivitySubComponent
+import dev.arunkumar.scabbard.home.HomeActivity
 import javax.inject.Singleton
 
 @Singleton
@@ -16,16 +18,14 @@ import javax.inject.Singleton
   modules = [
     ProvisionModule::class,
     DelegateBindingModule::class,
-    MultiBindingsProvisionModule::class
+    MultiBindingsProvisionModule::class,
+    AndroidSupportInjectionModule::class,
+
+    // Activities
+    HomeActivity.Builder::class
   ]
 )
-interface AppComponent {
-
-  // Bindings
-  fun mainActivitySubComponentFactory(): MainActivitySubComponent.Factory
-
-  // Injection targets
-  fun inject(app: App)
+interface AppComponent : AndroidInjector<App> {
 
   fun inject(dummyInjectionTarget: DummyInjectionTarget)
 
