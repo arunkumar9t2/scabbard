@@ -213,7 +213,7 @@ constructor(
             if ((source as? Binding)?.kind() == DELEGATE) {
               // Delegate edges i.e usually using @Binds
               "style" eq "dotted"
-              "label" eq "implements"
+              "label" eq "delegates"
             }
           }
         }
