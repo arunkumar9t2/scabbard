@@ -39,7 +39,7 @@ constructor(
 
   private fun createOutputFiles(currentComponent: TypeElement): Pair<FileObject, FileObject> {
     val componentName = ClassName.get(currentComponent)
-    val fileName = componentName.packageName() + '.' + componentName.simpleNames().joinToString("_")
+    val fileName = componentName.packageName() + '.' + componentName.simpleNames().joinToString(".")
     return filer.createResource(
       CLASS_OUTPUT,
       componentName.toString(),
