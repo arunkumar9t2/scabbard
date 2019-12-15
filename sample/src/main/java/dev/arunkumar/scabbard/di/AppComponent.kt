@@ -11,6 +11,7 @@ import dev.arunkumar.scabbard.debug.DummyInjectionTarget
 import dev.arunkumar.scabbard.debug.MultiBindingsProvisionModule
 import dev.arunkumar.scabbard.debug.ProvisionModule
 import dev.arunkumar.scabbard.home.HomeActivity
+import dev.arunkumar.scabbard.home.simple.SimpleSubcomponent
 import javax.inject.Singleton
 
 @Singleton
@@ -28,6 +29,8 @@ import javax.inject.Singleton
 interface AppComponent : AndroidInjector<App> {
 
   fun inject(dummyInjectionTarget: DummyInjectionTarget)
+
+  fun simpleSubcomponentFactory(): SimpleSubcomponent.Factory
 
   @Component.Factory
   interface Factory {

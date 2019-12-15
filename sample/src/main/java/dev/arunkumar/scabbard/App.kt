@@ -9,7 +9,7 @@ import dev.arunkumar.scabbard.di.DaggerAppComponent
 import javax.inject.Inject
 
 class App : DaggerApplication() {
-  private val appComponent by lazy { DaggerAppComponent.factory().build(this) }
+  val appComponent by lazy { DaggerAppComponent.factory().build(this) }
 
   @Inject
   lateinit var complexSingleton: ComplexSingleton

@@ -8,7 +8,8 @@ import dagger.android.support.DaggerAppCompatActivity
 import dev.arunkumar.scabbard.R
 import dev.arunkumar.scabbard.debug.ComplexSingleton
 import dev.arunkumar.scabbard.debug.SimpleSingleton
-import dev.arunkumar.scabbard.di.ActivityScope
+import dev.arunkumar.scabbard.di.appComponent
+import dev.arunkumar.scabbard.di.scope.ActivityScope
 import javax.inject.Inject
 
 class HomeActivity : DaggerAppCompatActivity() {
@@ -22,9 +23,13 @@ class HomeActivity : DaggerAppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+
     supportFragmentManager.commit {
       replace(R.id.fragmentContainer, HomeFragment())
     }
+
+    // Setup simple subcomponent
+    application.appComponent.simpleSubcomponentFactory().create()
   }
 
   @Module
