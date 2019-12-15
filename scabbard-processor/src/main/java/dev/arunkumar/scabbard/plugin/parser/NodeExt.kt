@@ -3,7 +3,7 @@ package dev.arunkumar.scabbard.plugin.parser
 import dagger.model.Binding
 import dagger.model.BindingGraph.ComponentNode
 import dagger.model.BindingGraph.Node
-import dagger.model.BindingKind
+import dagger.model.BindingKind.*
 
 private const val newLine = "\\n"
 
@@ -14,20 +14,19 @@ internal fun Node.label(): String = when (this) {
     try {
       var name = key().toString()
       val scopeName = scopeName()
-      val isSubComponentCreator = kind() == BindingKind.SUBCOMPONENT_CREATOR
+      val isSubComponentCreator = kind() == SUBCOMPONENT_CREATOR
 
       val multiBindingData = MultiBindingData(
         isMultiBinding = kind().isMultibinding,
         type = when (kind()) {
-          BindingKind.MULTIBOUND_MAP -> "MAP"
-          BindingKind.MULTIBOUND_SET -> "SET"
+          MULTIBOUND_MAP -> "MAP"
+          MULTIBOUND_SET -> "SET"
           else -> "UNKNOWN"
         }
       )
 
-      if (kind() == BindingKind.DELEGATE) {
-        name = key().multibindingContributionIdentifier().get()
-          .let { it.module().split(".").last() + "." + it.bindingElement() }
+      key().multibindingContributionIdentifier().ifPresent { identifier ->
+        name = identifier.let { it.module().split(".").last() + "." + it.bindingElement() }
       }
 
       buildLabel(

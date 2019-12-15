@@ -7,6 +7,9 @@ import dagger.multibindings.IntoSet
 import javax.inject.Inject
 import javax.inject.Singleton
 
+// Empty Entry Point
+class DummyInjectionTarget
+
 class UnScopedBinding @Inject constructor()
 
 @Singleton
@@ -20,8 +23,6 @@ constructor(
   private val simpleSingleton: SimpleSingleton
 )
 
-// Empty Entry Point
-class DummyInjectionTarget
 
 class ProvisionBinding
 
@@ -36,7 +37,9 @@ object ProvisionModule {
 
 interface MultiBindingType
 
-class SimpleMultiBindingType @Inject constructor() : MultiBindingType
+class SimpleMultiBindingType
+@Inject constructor() : MultiBindingType
+
 class ComplexMultiBindingType
 @Inject constructor(val provisionBinding: ProvisionBinding) : MultiBindingType
 
@@ -49,4 +52,16 @@ abstract class MultiBindingsProvisionModule {
   @Binds
   @IntoSet
   abstract fun complexMultiBindingType(complexMultiBindingType: ComplexMultiBindingType): MultiBindingType
+}
+
+interface DelegateBinding
+
+class DefaultDelegateBinding
+@Inject
+constructor(val unScopedBinding: UnScopedBinding) : DelegateBinding
+
+@Module
+abstract class DelegateBindingModule {
+  @Binds
+  abstract fun bindsDelegateBinding(defaultDelegateBinding: DefaultDelegateBinding): DelegateBinding
 }
