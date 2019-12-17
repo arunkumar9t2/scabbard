@@ -9,8 +9,7 @@ import javax.inject.Named
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
-// Empty Entry Point
-class DummyInjectionTarget
+class MemberInjectionTarget
 
 class UnScopedBinding @Inject constructor()
 

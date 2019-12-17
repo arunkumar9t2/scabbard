@@ -27,7 +27,7 @@ import javax.inject.Singleton
 )
 interface AppComponent : AndroidInjector<App> {
 
-  fun inject(dummyInjectionTarget: DummyInjectionTarget)
+  fun inject(memberInjectionTarget: MemberInjectionTarget)
 
   fun simpleSubcomponentFactory(): SimpleSubcomponent.Factory
 
