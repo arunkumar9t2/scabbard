@@ -5,6 +5,7 @@ import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.*
 import dagger.model.BindingKind.DELEGATE
+import dagger.model.BindingKind.MEMBERS_INJECTION
 import dagger.model.ComponentPath
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.dot.dsl.directedGraphBuilder
@@ -150,9 +151,13 @@ constructor(
     .filterIsInstance<Binding>()
     .filter { it.isEntryPoint }
     .forEach { node ->
+      val label = when (node.kind()) {
+        MEMBERS_INJECTION -> "inject ( ${node.label()} )"
+        else -> node.label()
+      }
       node.id {
         "shape" eq "component"
-        "label" eq node.label()
+        "label" eq label
         "penwidth" eq 2
       }
     }
