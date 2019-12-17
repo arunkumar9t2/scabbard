@@ -17,6 +17,7 @@ import javax.inject.Singleton
     ProvisionModule::class,
     NamedProvisionModule::class,
     DelegateBindingModule::class,
+    QualifiedProvisionModule::class,
     MultiBindingsProvisionModule::class,
     AndroidSupportInjectionModule::class,
 

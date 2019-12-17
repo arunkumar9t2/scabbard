@@ -21,6 +21,9 @@ class App : DaggerApplication() {
   @Inject
   @field:Named("named")
   lateinit var namedBinding: NamedBinding
+  @Inject
+  @field:SimpleQualifier
+  lateinit var qualifiedBinding: QualifiedBinding
 
   override fun applicationInjector() = appComponent
 

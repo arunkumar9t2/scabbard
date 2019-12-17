@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.multibindings.IntoSet
 import javax.inject.Inject
 import javax.inject.Named
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 // Empty Entry Point
@@ -34,11 +35,9 @@ object ProvisionModule {
   fun providesProvisionBinding() = ProvisionBinding()
 }
 
-
 interface MultiBindingType
 
-class SimpleMultiBindingType
-@Inject constructor() : MultiBindingType
+class SimpleMultiBindingType @Inject constructor() : MultiBindingType
 
 class ComplexMultiBindingType
 @Inject constructor(val provisionBinding: ProvisionBinding) : MultiBindingType
@@ -75,4 +74,18 @@ object NamedProvisionModule {
   @Singleton
   @JvmStatic
   fun providesNamedBinding() = NamedBinding()
+}
+
+@Qualifier
+@Retention
+annotation class SimpleQualifier
+
+class QualifiedBinding
+
+@Module
+object QualifiedProvisionModule {
+  @SimpleQualifier
+  @Provides
+  @JvmStatic
+  fun providesQualifiedBinding() = QualifiedBinding()
 }
