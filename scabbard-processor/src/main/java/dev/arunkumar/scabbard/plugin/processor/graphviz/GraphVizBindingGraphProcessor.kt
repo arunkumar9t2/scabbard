@@ -176,6 +176,7 @@ constructor(
   private fun DotGraphBuilder.addSubcomponent(subcomponent: ComponentNode) {
     subcomponent.id {
       "label" eq subcomponent.label()
+      // TODO(arun) will multiple scopes be present? If yes, can it be visualized?
       subcomponent.scopes().forEach { scope ->
         "color" eq scopeColors[scope.name]
       }
