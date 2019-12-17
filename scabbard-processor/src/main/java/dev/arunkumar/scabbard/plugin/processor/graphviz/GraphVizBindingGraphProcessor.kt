@@ -93,7 +93,7 @@ constructor(
       "rankdir" eq "LR"
       "labeljust" eq "l"
       "label" eq currentComponent.toString()
-      "pad" eq 0.5
+      "pad" eq 0.2
       "compound" eq true
     }
 

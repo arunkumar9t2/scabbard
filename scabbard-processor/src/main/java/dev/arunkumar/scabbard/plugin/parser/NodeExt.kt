@@ -12,7 +12,7 @@ private data class MultiBindingData(val isMultiBinding: Boolean, val type: Strin
 internal fun Node.label(): String = when (this) {
   is Binding -> {
     try {
-      var name = key().toString()
+      var name = key().toString().replace(" ", newLine)
       val scopeName = scopeName()
       val isSubComponentCreator = kind() == SUBCOMPONENT_CREATOR
 

@@ -6,10 +6,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import dev.arunkumar.scabbard.App
-import dev.arunkumar.scabbard.debug.DelegateBindingModule
-import dev.arunkumar.scabbard.debug.DummyInjectionTarget
-import dev.arunkumar.scabbard.debug.MultiBindingsProvisionModule
-import dev.arunkumar.scabbard.debug.ProvisionModule
+import dev.arunkumar.scabbard.debug.*
 import dev.arunkumar.scabbard.home.HomeActivity
 import dev.arunkumar.scabbard.home.simple.SimpleSubcomponent
 import javax.inject.Singleton
@@ -18,6 +15,7 @@ import javax.inject.Singleton
 @Component(
   modules = [
     ProvisionModule::class,
+    NamedProvisionModule::class,
     DelegateBindingModule::class,
     MultiBindingsProvisionModule::class,
     AndroidSupportInjectionModule::class,

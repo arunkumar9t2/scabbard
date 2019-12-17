@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
 import javax.inject.Inject
+import javax.inject.Named
 import javax.inject.Singleton
 
 // Empty Entry Point
@@ -22,7 +23,6 @@ constructor(
   private val unScopedBinding: UnScopedBinding,
   private val simpleSingleton: SimpleSingleton
 )
-
 
 class ProvisionBinding
 
@@ -64,4 +64,15 @@ constructor(val unScopedBinding: UnScopedBinding) : DelegateBinding
 abstract class DelegateBindingModule {
   @Binds
   abstract fun bindsDelegateBinding(defaultDelegateBinding: DefaultDelegateBinding): DelegateBinding
+}
+
+class NamedBinding
+
+@Module
+object NamedProvisionModule {
+  @Provides
+  @Named("named")
+  @Singleton
+  @JvmStatic
+  fun providesNamedBinding() = NamedBinding()
 }
