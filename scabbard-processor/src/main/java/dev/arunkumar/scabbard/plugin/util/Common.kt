@@ -10,9 +10,7 @@ import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 inline fun processingBlock(
   scabbardOptions: ScabbardOptions = ScabbardOptions(),
   crossinline block: () -> Unit
-) = scabbardOptions.exceptionHandler {
-  block()
-}
+) = scabbardOptions.exceptionHandler(block)
 
 /**
  * Wraps the given [block] in a `try catch` block and handles exception based on [ScabbardOptions.failOnError]

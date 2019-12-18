@@ -138,7 +138,7 @@ public final class BindingGraphVisualizer implements BindingGraphPlugin {
             .toOutputStream(dot.openOutputStream());
       }
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      //throw new RuntimeException(e);
     }
   }
 
