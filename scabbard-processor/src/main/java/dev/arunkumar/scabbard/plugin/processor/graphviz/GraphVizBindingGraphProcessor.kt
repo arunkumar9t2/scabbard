@@ -106,7 +106,8 @@ constructor(
       // Add dependency graph
       nodes.forEach { node ->
         when (node) {
-          is Binding -> addDependencyNode(node)
+          is Binding -> addDependencyBinding(node)
+          is MissingBinding -> addMissingBinding(node)
           is ComponentNode -> addComponentNode(node)
         }
       }
@@ -148,12 +149,19 @@ constructor(
       }
     }
 
-  private fun DotGraphBuilder.addDependencyNode(node: Binding) {
-    if (node.isEntryPoint) return // Entry points are rendered in another cluster
-    if (node.kind().isMultibinding) return // Multi binding rendered as another cluster
-    node.id {
-      "label" eq node.label()
-      "color" eq node.color
+  private fun DotGraphBuilder.addDependencyBinding(binding: Binding) {
+    if (binding.isEntryPoint) return // Entry points are rendered in another cluster
+    if (binding.kind().isMultibinding) return // Multi binding rendered as another cluster
+    binding.id {
+      "label" eq binding.label()
+      "color" eq binding.color
+    }
+  }
+
+  private fun DotGraphBuilder.addMissingBinding(missingBinding: MissingBinding) {
+    missingBinding.id {
+      "label" eq missingBinding.key().toString() // TODO(arun) Update label calculation for MissingBinding
+      "color" eq "firebrick1"
     }
   }
 
@@ -193,7 +201,7 @@ constructor(
           }
           bindingGraph
             .requestedBindings(multiBinding)
-            .forEach { binding -> addDependencyNode(binding) }
+            .forEach { binding -> addDependencyBinding(binding) }
         }
       }
   }
@@ -207,6 +215,14 @@ constructor(
               // Delegate edges i.e usually using @Binds
               "style" eq "dotted"
               "label" eq "delegates"
+            }
+
+            // Handle missing binding
+            if (source is MissingBinding || target is MissingBinding) {
+              "style" eq "dashed"
+              "arrowType" eq "empty"
+              val labelLocation = if (source is MissingBinding) "taillabel" else "headlabel"
+              labelLocation eq "Missing binding"
             }
           }
         }
