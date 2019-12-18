@@ -14,12 +14,12 @@ import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.parser.*
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
-import dev.arunkumar.scabbard.plugin.util.tryCatchLogging
+import dev.arunkumar.scabbard.plugin.util.exceptionHandler
+import dev.arunkumar.scabbard.plugin.util.processingBlock
 import dev.arunkumar.scabbard.plugin.writer.OutputWriter
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
 import java.util.*
-import javax.annotation.processing.Filer
 import javax.inject.Inject
 
 @ProcessorScope
@@ -28,7 +28,6 @@ class GraphVizBindingGraphProcessor
 constructor(
   override val bindingGraph: BindingGraph,
   private val scabbardOptions: ScabbardOptions,
-  private val filer: Filer,
   private val scopeColors: ScopeColors,
   private val outputWriter: OutputWriter
 ) : BindingGraphProcessor {
@@ -39,7 +38,7 @@ constructor(
   private val globalNodeIds = mutableMapOf<Node, String>()
   private val Node.id get() = globalNodeIds.getOrPut(this) { UUID.randomUUID().toString() }
 
-  override fun process() = tryCatchLogging {
+  override fun process() = processingBlock(scabbardOptions) {
     val network = bindingGraph.network()
     val nodes = network.nodes()
     val allEdges = network.edges()
@@ -52,19 +51,22 @@ constructor(
         val subcomponents = bindingGraph.subcomponents(currentComponent)
 
         val dotGraphBuilder = buildGraph(
-          component,
-          subcomponents,
-          componentNodes.asSequence(),
-          allEdges.asSequence() // TODO(arun) why pass global edges here?
+          currentComponent = component,
+          subcomponents = subcomponents,
+          nodes = componentNodes.asSequence(),
+          edges = allEdges.asSequence() // TODO(arun) why pass global edges here?
         )
-        val (outputFile, dotFile) = outputWriter.createOutputFiles(currentComponent)
-        val dotOutput = dotGraphBuilder.dotGraph.toString()
 
-        Graphviz.fromString(dotOutput)
-          .scale(1.2)
-          .render(Format.PNG)
-          .toOutputStream(outputFile.openOutputStream())
-        dotFile.openOutputStream().write(dotOutput.toByteArray())
+        scabbardOptions.exceptionHandler {
+          val (outputFile, dotFile) = outputWriter.createOutputFiles(currentComponent)
+          val dotOutput = dotGraphBuilder.dotGraph.toString()
+
+          Graphviz.fromString(dotOutput)
+            .scale(1.2)
+            .render(Format.PNG)
+            .toOutputStream(outputFile.openOutputStream())
+          dotFile.openOutputStream().write(dotOutput.toByteArray())
+        }
       }
   }
 

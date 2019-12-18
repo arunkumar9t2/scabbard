@@ -29,7 +29,8 @@ android {
 
 kapt {
     arguments {
-        // arg('scabbard.singleGraph', 'true')
+        //arg('scabbard.singleGraph', 'true')
+        //arg('scabbard.failOnError', 'true')
     }
 }
 

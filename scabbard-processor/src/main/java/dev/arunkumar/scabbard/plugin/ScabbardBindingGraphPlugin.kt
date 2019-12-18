@@ -6,7 +6,7 @@ import dagger.spi.BindingGraphPlugin
 import dagger.spi.DiagnosticReporter
 import dev.arunkumar.scabbard.plugin.di.DaggerScabbardComponent
 import dev.arunkumar.scabbard.plugin.di.ProcessingEnvModule
-import dev.arunkumar.scabbard.plugin.options.SINGLE_GRAPH
+import dev.arunkumar.scabbard.plugin.options.SUPPORTED_OPTIONS
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
@@ -20,7 +20,7 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
 
   override fun pluginName() = "Scabbard Dagger Plugin"
 
-  override fun supportedOptions() = mutableSetOf(SINGLE_GRAPH)
+  override fun supportedOptions() = SUPPORTED_OPTIONS
 
   override fun initFiler(filer: Filer) {
     this.filer = filer
