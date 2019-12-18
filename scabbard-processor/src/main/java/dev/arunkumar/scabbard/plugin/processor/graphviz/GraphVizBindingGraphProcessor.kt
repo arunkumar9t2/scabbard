@@ -1,6 +1,5 @@
 package dev.arunkumar.scabbard.plugin.processor.graphviz
 
-import com.squareup.javapoet.ClassName
 import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.*
@@ -16,14 +15,12 @@ import dev.arunkumar.scabbard.plugin.parser.*
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
 import dev.arunkumar.scabbard.plugin.util.tryCatchLogging
+import dev.arunkumar.scabbard.plugin.writer.OutputWriter
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
 import java.util.*
 import javax.annotation.processing.Filer
 import javax.inject.Inject
-import javax.lang.model.element.TypeElement
-import javax.tools.FileObject
-import javax.tools.StandardLocation.CLASS_OUTPUT
 
 @ProcessorScope
 class GraphVizBindingGraphProcessor
@@ -32,25 +29,12 @@ constructor(
   override val bindingGraph: BindingGraph,
   private val scabbardOptions: ScabbardOptions,
   private val filer: Filer,
-  private val scopeColors: ScopeColors
+  private val scopeColors: ScopeColors,
+  private val outputWriter: OutputWriter
 ) : BindingGraphProcessor {
 
   private val Binding.color get() = scopeColors[scopeName() ?: ""]
   private val Binding.isEntryPoint get() = bindingGraph.entryPointBindings().contains(this)
-
-  private fun createOutputFiles(currentComponent: TypeElement): Pair<FileObject, FileObject> {
-    val componentName = ClassName.get(currentComponent)
-    val fileName = componentName.packageName() + '.' + componentName.simpleNames().joinToString(".")
-    return filer.createResource(
-      CLASS_OUTPUT,
-      componentName.toString(),
-      "$fileName.png"
-    ) to filer.createResource(
-      CLASS_OUTPUT,
-      componentName.toString(),
-      "$fileName.dot"
-    )
-  }
 
   private val globalNodeIds = mutableMapOf<Node, String>()
   private val Node.id get() = globalNodeIds.getOrPut(this) { UUID.randomUUID().toString() }
@@ -73,7 +57,7 @@ constructor(
           componentNodes.asSequence(),
           allEdges.asSequence() // TODO(arun) why pass global edges here?
         )
-        val (outputFile, dotFile) = createOutputFiles(currentComponent)
+        val (outputFile, dotFile) = outputWriter.createOutputFiles(currentComponent)
         val dotOutput = dotGraphBuilder.dotGraph.toString()
 
         Graphviz.fromString(dotOutput)
