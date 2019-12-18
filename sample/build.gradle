@@ -28,6 +28,10 @@ android {
     }
 }
 
+scabbard {
+    enabled true
+}
+
 kapt {
     arguments {
         //arg('scabbard.singleGraph', 'true')
@@ -62,6 +66,4 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
 
     testImplementation "junit:junit:${versions.junit}"
-
-    kapt "dev.arunkumar:scabbard-processor:0.1.0"
 }
