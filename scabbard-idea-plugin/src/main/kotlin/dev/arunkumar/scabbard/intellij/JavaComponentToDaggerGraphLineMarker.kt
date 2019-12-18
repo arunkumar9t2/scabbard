@@ -37,7 +37,7 @@ class JavaComponentToDaggerGraphLineMarker : LineMarkerProvider {
       (parent as? PsiClassImpl)
         ?.modifierList
         ?.annotations
-        ?.first { it.qualifiedName == DAGGER_SUBCOMPONENT }
+        ?.first { it.qualifiedName == annotationName }
     }
   }
 }
