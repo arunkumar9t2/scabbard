@@ -7,6 +7,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:${versions.agp}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath "dev.arunkumar:scabbard-gradle-plugin:${publishVersion}"
     }
 }
 
@@ -15,8 +16,8 @@ allprojects {
         google()
         jcenter()
     }
-    group 'dev.arunkumar.scabbard'
-    version '0.1.0'
+    group groupId
+    version publishVersion
 }
 
 task clean(type: Delete) {

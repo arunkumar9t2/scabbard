@@ -1,4 +1,10 @@
 include ':sample'
-include ':scabbard-processor'
 include ':dot-dsl'
+include ':scabbard-processor'
 include ':scabbard-idea-plugin'
+
+includeBuild('scabbard-gradle-plugin') {
+    dependencySubstitution {
+        substitute module('dev.arunkumar:scabbard-gradle-plugin') with project(':')
+    }
+}
