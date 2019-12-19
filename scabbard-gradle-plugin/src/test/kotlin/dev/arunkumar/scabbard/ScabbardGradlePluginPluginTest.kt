@@ -4,16 +4,15 @@
 package dev.arunkumar.scabbard
 
 import org.gradle.testfixtures.ProjectBuilder
-import kotlin.test.Test
-import kotlin.test.assertNotNull
+import org.junit.Test
 
 /**
  * A simple unit test for the 'dev.arunkumar.scabbard.greeting' plugin.
  */
 class ScabbardGradlePluginPluginTest {
-    @Test fun `plugin registers task`() {
-        val project = ProjectBuilder.builder().build()
-        project.plugins.apply("dev.arunkumar.scabbard.greeting")
-        assertNotNull(project.tasks.findByName("greeting"))
-    }
+  @Test
+  fun `plugin registers task`() {
+    val project = ProjectBuilder.builder().build()
+    project.plugins.apply("scabbard-gradle-plugin")
+  }
 }
