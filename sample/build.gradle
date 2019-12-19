@@ -34,14 +34,6 @@ scabbard {
     failOnError false
 }
 
-kapt {
-    arguments {
-        //arg('scabbard.singleGraph', 'true')
-        //arg('scabbard.failOnError', 'true')
-        //arg('dagger.fullBindingGraphValidation', 'ERROR')
-    }
-}
-
 // This block only exists to switch to local module instead of published module for local development
 configurations.configureEach {
     resolutionStrategy {
