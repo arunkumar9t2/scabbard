@@ -10,25 +10,24 @@ import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 
+internal const val SINGLE_GRAPH = "$SCABBARD.singleGraph"
+internal const val FAIL_ON_ERROR = "$SCABBARD.failOnError"
+
 class ScabbardPropertiesDelegate(
   private val project: Project,
   private val scabbardExtension: ScabbardExtension
 ) {
-
-  private val singleGraph = "$SCABBARD.singleGraph"
-  private val failOnError = "$SCABBARD.failOnError"
-
   fun delegate() {
     scabbardExtension.ifEnabled {
-      project.afterEvaluate {
+      project.run {
         when {
           isKotlinProject -> {
             val kaptExtension = extensions.findByType<KaptExtension>()
             if (kaptExtension != null) {
               kaptExtension.apply {
                 arguments {
-                  arg(singleGraph, scabbardExtension.singleGraph)
-                  arg(failOnError, scabbardExtension.failOnError)
+                  arg(SINGLE_GRAPH, scabbardExtension.singleGraph)
+                  arg(FAIL_ON_ERROR, scabbardExtension.failOnError)
                 }
               }
             } else {
@@ -38,8 +37,8 @@ class ScabbardPropertiesDelegate(
           hasJavaAnnotationProcessorConfig -> {
             tasks.withType<JavaCompile>().configureEach {
               options.compilerArgs.apply {
-                add("-A$singleGraph=${scabbardExtension.singleGraph}")
-                add("-A$failOnError=${scabbardExtension.failOnError}")
+                add("-A$SINGLE_GRAPH=${scabbardExtension.singleGraph}")
+                add("-A$FAIL_ON_ERROR=${scabbardExtension.failOnError}")
               }
             }
           }
