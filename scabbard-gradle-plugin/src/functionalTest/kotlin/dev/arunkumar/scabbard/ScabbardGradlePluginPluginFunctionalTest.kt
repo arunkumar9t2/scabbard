@@ -4,9 +4,9 @@
 package dev.arunkumar.scabbard
 
 import org.gradle.testkit.runner.GradleRunner
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.io.File
-import kotlin.test.assertTrue
 
 /**
  * A simple functional test for the 'dev.arunkumar.scabbard.greeting' plugin.
