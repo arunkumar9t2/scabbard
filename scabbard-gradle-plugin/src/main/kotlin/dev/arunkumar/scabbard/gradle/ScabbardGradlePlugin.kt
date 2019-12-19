@@ -7,6 +7,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.create
 
 const val SCABBARD = "scabbard"
+const val PLUGIN_ID = "scabbard-gradle-plugin"
 
 @Suppress("unused")
 class ScabbardGradlePlugin : Plugin<Project> {

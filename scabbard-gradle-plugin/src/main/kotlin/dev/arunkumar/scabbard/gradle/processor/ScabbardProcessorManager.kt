@@ -7,8 +7,8 @@ import dev.arunkumar.scabbard.gradle.projectmeta.isKotlinProject
 import org.gradle.api.Project
 
 //TODO(arun) Can this be provided via resources?
-private const val SCABBARD_PROCESSOR = "dev.arunkumar:scabbard-processor:0.1.0"
-private const val KAPT = "kapt"
+const val SCABBARD_PROCESSOR = "dev.arunkumar:scabbard-processor:0.1.0"
+const val KAPT = "kapt"
 
 class ScabbardProcessorManager(
   private val project: Project,
