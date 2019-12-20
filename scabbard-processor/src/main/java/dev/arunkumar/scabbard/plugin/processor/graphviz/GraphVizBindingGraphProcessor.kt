@@ -1,5 +1,7 @@
 package dev.arunkumar.scabbard.plugin.processor.graphviz
 
+import dagger.Binds
+import dagger.Module
 import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.*
@@ -11,12 +13,12 @@ import dev.arunkumar.dot.dsl.directedGraphBuilder
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
+import dev.arunkumar.scabbard.plugin.output.OutputManager
 import dev.arunkumar.scabbard.plugin.parser.*
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
 import dev.arunkumar.scabbard.plugin.util.exceptionHandler
 import dev.arunkumar.scabbard.plugin.util.processingBlock
-import dev.arunkumar.scabbard.plugin.writer.OutputWriter
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
 import java.util.*
@@ -29,8 +31,16 @@ constructor(
   override val bindingGraph: BindingGraph,
   private val scabbardOptions: ScabbardOptions,
   private val scopeColors: ScopeColors,
-  private val outputWriter: OutputWriter
+  private val outputManager: OutputManager
 ) : BindingGraphProcessor {
+
+  @Module
+  interface Builder {
+    @Binds
+    fun bindingGraphProcessor(
+      graphVizBindingGraphProcessor: GraphVizBindingGraphProcessor
+    ): BindingGraphProcessor
+  }
 
   private val Binding.color get() = scopeColors[scopeName() ?: ""]
   private val Binding.isEntryPoint get() = bindingGraph.entryPointBindings().contains(this)
@@ -58,7 +68,7 @@ constructor(
         )
 
         scabbardOptions.exceptionHandler {
-          val (outputFile, dotFile) = outputWriter.createOutputFiles(currentComponent)
+          val (outputFile, dotFile) = outputManager.createOutputFiles(currentComponent)
           val dotOutput = dotGraphBuilder.dotGraph.toString()
 
           Graphviz.fromString(dotOutput)

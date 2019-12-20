@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.plugin.writer
+package dev.arunkumar.scabbard.plugin.output
 
 import javax.tools.FileObject
 

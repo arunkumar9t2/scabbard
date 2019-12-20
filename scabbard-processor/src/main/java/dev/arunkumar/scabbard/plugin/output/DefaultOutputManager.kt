@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.plugin.writer
+package dev.arunkumar.scabbard.plugin.output
 
 import com.squareup.javapoet.ClassName
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
@@ -9,12 +9,12 @@ import javax.lang.model.element.TypeElement
 import javax.tools.StandardLocation.CLASS_OUTPUT
 
 @ProcessorScope
-class DefaultOutputWriter
+class DefaultOutputManager
 @Inject
 constructor(
   override val filer: Filer,
   private val scabbardOptions: ScabbardOptions
-) : FilerOutputWriter {
+) : FilerOutputManager {
 
   override fun createOutputFiles(currentComponent: TypeElement): OutputFiles {
     val componentName = ClassName.get(currentComponent)
@@ -30,6 +30,9 @@ constructor(
       componentName.toString(),
       "$fileName.dot"
     )
-    return OutputFiles(graphOutput, dotOutput)
+    return OutputFiles(
+      graphOutput,
+      dotOutput
+    )
   }
 }
