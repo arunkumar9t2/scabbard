@@ -1,7 +1,8 @@
 package dev.arunkumar.scabbard.gradle.propertiesdelegate
 
-import dev.arunkumar.scabbard.gradle.PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.common.ProjectTest
+import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.FAIL_ON_ERROR
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
@@ -13,14 +14,16 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
 
   @Test
   fun `when kapt is present is assert extension properties are delegated to kapt`() {
-    prepareScabbardExtension {
-      failOnError = true
-    }
     project.plugins.apply {
       apply("kotlin")
       apply("kotlin-kapt")
       apply(PLUGIN_ID)
     }
+
+    ScabbardPropertiesDelegate(project, prepareScabbardExtension {
+      failOnError = true
+    }).delegate()
+
     project.extensions.findByType<KaptExtension>()?.apply {
       val options = getAdditionalArguments(project, null, null)
       assertTrue(
@@ -32,13 +35,15 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
 
   @Test
   fun `when pure java module assert extension properties are delegated to JavaCompile tasks`() {
-    prepareScabbardExtension {
-      failOnError = true
-    }
     project.plugins.apply {
       apply("java")
       apply(PLUGIN_ID)
     }
+
+    ScabbardPropertiesDelegate(project, prepareScabbardExtension {
+      failOnError = true
+    }).delegate()
+
     project.extensions.findByType<KaptExtension>()?.apply {
       val options = getAdditionalArguments(project, null, null)
       assertTrue(options.containsKey(FAIL_ON_ERROR) && options.containsValue("true"))

@@ -14,6 +14,7 @@ class ScabbardProcessorManager(
   private val project: Project,
   private val scabbardExtension: ScabbardExtension
 ) {
+
   fun manage() {
     @Suppress("ControlFlowWithEmptyBody")
     if (scabbardExtension.enabled) {

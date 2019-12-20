@@ -1,7 +1,7 @@
 package dev.arunkumar.scabbard.gradle.propertiesdelegate
 
-import dev.arunkumar.scabbard.gradle.SCABBARD
 import dev.arunkumar.scabbard.gradle.ScabbardExtension
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD
 import dev.arunkumar.scabbard.gradle.projectmeta.hasJavaAnnotationProcessorConfig
 import dev.arunkumar.scabbard.gradle.projectmeta.isKotlinProject
 import org.gradle.api.Project
@@ -10,13 +10,16 @@ import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 
-internal const val SINGLE_GRAPH = "$SCABBARD.singleGraph"
-internal const val FAIL_ON_ERROR = "$SCABBARD.failOnError"
-
 class ScabbardPropertiesDelegate(
   private val project: Project,
   private val scabbardExtension: ScabbardExtension
 ) {
+
+  companion object {
+    internal const val SINGLE_GRAPH = "$SCABBARD.singleGraph"
+    internal const val FAIL_ON_ERROR = "$SCABBARD.failOnError"
+  }
+
   fun delegate() {
     scabbardExtension.ifEnabled {
       project.run {
