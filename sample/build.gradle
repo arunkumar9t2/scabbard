@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'scabbard-gradle-plugin'
 
 android {
     compileSdkVersion 29
@@ -27,11 +28,18 @@ android {
     }
 }
 
-kapt {
-    arguments {
-        //arg('scabbard.singleGraph', 'true')
-        //arg('scabbard.failOnError', 'true')
-        //arg('dagger.fullBindingGraphValidation', 'ERROR')
+scabbard {
+    enabled true
+    singleGraph false
+    failOnError false
+}
+
+// This block only exists to switch to local module instead of published module for local development
+configurations.configureEach {
+    resolutionStrategy {
+        dependencySubstitution {
+            substitute module('dev.arunkumar:scabbard-processor') with project(':scabbard-processor')
+        }
     }
 }
 
@@ -52,6 +60,4 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
 
     testImplementation "junit:junit:${versions.junit}"
-
-    kapt project(':scabbard-processor')
 }

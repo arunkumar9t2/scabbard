@@ -9,6 +9,8 @@ local.properties
 .idea/modules.xml
 .idea/vcs.xml
 .idea/workspace.xml
+/.idea/jarRepositories.xml
+.idea/shelf
 .DS_Store
 /build
 /captures
@@ -44,3 +46,14 @@ _sandbox
 .classpath
 .settings/
 .settings.json
+.idea/modules/app/
+.idea/shelf/
+.vscode/
+dot-dsl/src/test/java/
+sample/libs/
+sample/src/androidTest/
+sample/src/test/
+scabbard-gradle-plugin/src/main/resources/
+scabbard-gradle-plugin/src/test/resources/
+scabbard-processor/src/main/resources/
+scabbard-processor/src/test/
