@@ -1,7 +1,7 @@
-include ':sample'
 include ':dot-dsl'
 include ':scabbard-processor'
 include ':scabbard-idea-plugin'
+include ':scabbard-sample'
 
 includeBuild('scabbard-gradle-plugin') {
     dependencySubstitution {
