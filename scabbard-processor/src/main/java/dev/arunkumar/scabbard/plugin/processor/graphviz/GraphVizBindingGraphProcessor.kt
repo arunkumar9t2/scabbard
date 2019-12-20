@@ -9,7 +9,7 @@ import dagger.model.BindingKind.DELEGATE
 import dagger.model.BindingKind.MEMBERS_INJECTION
 import dagger.model.ComponentPath
 import dev.arunkumar.dot.dsl.DotGraphBuilder
-import dev.arunkumar.dot.dsl.directedGraphBuilder
+import dev.arunkumar.dot.dsl.directedGraph
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
@@ -47,6 +47,7 @@ constructor(
 
   private val globalNodeIds = mutableMapOf<Node, String>()
   private val Node.id get() = globalNodeIds.getOrPut(this) { UUID.randomUUID().toString() }
+  private val Node.label get() = calculateLabel(scabbardOptions)
 
   override fun process() = processingBlock(scabbardOptions) {
     val network = bindingGraph.network()
@@ -54,52 +55,72 @@ constructor(
     val allEdges = network.edges()
     nodes.asSequence()
       .groupBy { it.componentPath() }
-      .forEach { (component, componentNodes) ->
+      .forEach { (componentPath, componentNodes) ->
         globalNodeIds.clear()
 
-        val currentComponent = component.currentComponent()
+        val currentComponent = componentPath.currentComponent()
         val subcomponents = bindingGraph.subcomponents(currentComponent)
 
-        val dotGraphBuilder = buildGraph(
-          currentComponent = component,
+        val baseGraphBuilder = baseDotGraphBuilder(currentComponentPath = componentPath)
+
+        baseGraphBuilder.renderScabbardGraph(
           subcomponents = subcomponents,
           nodes = componentNodes.asSequence(),
           edges = allEdges.asSequence() // TODO(arun) why pass global edges here?
         )
 
+        val dotGraph = baseGraphBuilder.dotGraph
+
         scabbardOptions.exceptionHandler {
           val (outputFile, dotFile) = outputManager.createOutputFiles(currentComponent)
-          val dotOutput = dotGraphBuilder.dotGraph.toString()
+          val dotOutput = dotGraph.toString()
 
           Graphviz.fromString(dotOutput)
-            .scale(1.2)
             .render(Format.PNG)
             .toOutputStream(outputFile.openOutputStream())
+
           dotFile.openOutputStream().write(dotOutput.toByteArray())
         }
       }
   }
 
-  private fun buildGraph(
-    currentComponent: ComponentPath,
+  private fun baseDotGraphBuilder(currentComponentPath: ComponentPath) =
+    directedGraph(currentComponentPath.toString()) {
+      graphAttributes {
+        "rankdir" eq "LR"
+        "labeljust" eq "l"
+        "label" eq currentComponentPath.toString()
+        "pad" eq 0.2
+        "compound" eq true
+      }
+      nodeAttributes {
+        "shape" eq "rectangle"
+        "style" eq "filled"
+        "color" eq "turquoise"
+      }
+    }
+
+  private fun DotGraphBuilder.renderScabbardGraph(
     subcomponents: Sequence<ComponentNode>,
     nodes: Sequence<Node>,
     edges: Sequence<Edge>
-  ): DotGraphBuilder = directedGraphBuilder(currentComponent.toString()) {
-    graphAttributes {
-      "rankdir" eq "LR"
-      "labeljust" eq "l"
-      "label" eq currentComponent.toString()
-      "pad" eq 0.2
-      "compound" eq true
-    }
+  ) {
+    entryPointsCluster(nodes)
 
-    nodeAttributes {
-      "shape" eq "rectangle"
-      "style" eq "filled"
-      "color" eq "turquoise"
-    }
+    dependencyGraphCluster(nodes)
 
+    subcomponentsCluster(subcomponents)
+
+    // Render edges between all nodes
+    edges.forEach { edge ->
+      val (source, target) = bindingGraph.network().incidentNodes(edge)
+      if (globalNodeIds.containsKey(source) && globalNodeIds.containsKey(target)) {
+        addEdge(edge, source, target)
+      }
+    }
+  }
+
+  private fun DotGraphBuilder.entryPointsCluster(nodes: Sequence<Node>) {
     cluster("Entry Points") {
       graphAttributes {
         "labeljust" eq "l"
@@ -107,7 +128,24 @@ constructor(
       }
       addEntryPoints(nodes)
     }
+  }
 
+  private fun DotGraphBuilder.addEntryPoints(nodes: Sequence<Node>) = nodes
+    .filterIsInstance<Binding>()
+    .filter { it.isEntryPoint }
+    .forEach { node ->
+      val label = when (node.kind()) {
+        MEMBERS_INJECTION -> "inject ( ${node.label} )"
+        else -> node.label
+      }
+      node.id {
+        "shape" eq "component"
+        "label" eq label
+        "penwidth" eq 2
+      }
+    }
+
+  private fun DotGraphBuilder.dependencyGraphCluster(nodes: Sequence<Node>) {
     cluster("Dependency Graph") {
       graphAttributes {
         "labeljust" eq "l"
@@ -125,45 +163,13 @@ constructor(
       // Add multi bindings
       addMultiBindings(nodes)
     }
-
-    cluster("Subcomponents") {
-      graphAttributes {
-        "labeljust" eq "l"
-        "shape" eq "folder"
-        "label" eq "Subcomponents"
-      }
-      subcomponents.forEach { subcomponent -> addSubcomponent(subcomponent) }
-    }
-
-    // Render edges between all nodes
-    edges.forEach { edge ->
-      val (source, target) = bindingGraph.network().incidentNodes(edge)
-      if (globalNodeIds.containsKey(source) && globalNodeIds.containsKey(target)) {
-        addEdge(edge, source, target)
-      }
-    }
   }
-
-  private fun DotGraphBuilder.addEntryPoints(nodes: Sequence<Node>) = nodes
-    .filterIsInstance<Binding>()
-    .filter { it.isEntryPoint }
-    .forEach { node ->
-      val label = when (node.kind()) {
-        MEMBERS_INJECTION -> "inject ( ${node.label()} )"
-        else -> node.label()
-      }
-      node.id {
-        "shape" eq "component"
-        "label" eq label
-        "penwidth" eq 2
-      }
-    }
 
   private fun DotGraphBuilder.addDependencyBinding(binding: Binding) {
     if (binding.isEntryPoint) return // Entry points are rendered in another cluster
     if (binding.kind().isMultibinding) return // Multi binding rendered as another cluster
     binding.id {
-      "label" eq binding.label()
+      "label" eq binding.label
       "color" eq binding.color
     }
   }
@@ -182,9 +188,20 @@ constructor(
     }
   }
 
+  private fun DotGraphBuilder.subcomponentsCluster(subcomponents: Sequence<ComponentNode>) {
+    cluster("Subcomponents") {
+      graphAttributes {
+        "labeljust" eq "l"
+        "shape" eq "folder"
+        "label" eq "Subcomponents"
+      }
+      subcomponents.forEach { subcomponent -> addSubcomponent(subcomponent) }
+    }
+  }
+
   private fun DotGraphBuilder.addSubcomponent(subcomponent: ComponentNode) {
     subcomponent.id {
-      "label" eq subcomponent.label()
+      "label" eq subcomponent.label
       // TODO(arun) will multiple scopes be present? If yes, can it be visualized?
       subcomponent.scopes().forEach { scope ->
         "color" eq scopeColors[scope.name]
@@ -206,7 +223,7 @@ constructor(
           }
           multiBinding.id {
             "shape" eq "tab"
-            "label" eq multiBinding.label()
+            "label" eq multiBinding.label
             "color" eq multiBinding.color
           }
           bindingGraph

@@ -4,12 +4,13 @@ import dagger.model.Binding
 import dagger.model.BindingGraph.ComponentNode
 import dagger.model.BindingGraph.Node
 import dagger.model.BindingKind.*
+import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 
 private const val newLine = "\\n"
 
 private data class MultiBindingData(val isMultiBinding: Boolean, val type: String)
 
-internal fun Node.label(): String = when (this) {
+internal fun Node.calculateLabel(scabbardOptions: ScabbardOptions): String = when (this) {
   is Binding -> {
     try {
       var name = key().toString().replace(" ", newLine)
