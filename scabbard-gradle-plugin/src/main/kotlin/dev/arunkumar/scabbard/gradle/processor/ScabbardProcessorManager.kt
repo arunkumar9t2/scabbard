@@ -2,11 +2,12 @@ package dev.arunkumar.scabbard.gradle.processor
 
 import dev.arunkumar.scabbard.gradle.DefaultScabbardSpec
 import dev.arunkumar.scabbard.gradle.projectmeta.ANNOTATION_PROCESSOR
+import dev.arunkumar.scabbard.gradle.projectmeta.VersionCalculator
 import dev.arunkumar.scabbard.gradle.projectmeta.hasJavaAnnotationProcessorConfig
 import dev.arunkumar.scabbard.gradle.projectmeta.isKotlinProject
 
 //TODO(arun) Can this be provided via resources?
-const val SCABBARD_PROCESSOR = "dev.arunkumar:scabbard-processor:0.1.0"
+const val SCABBARD_PROCESSOR = "dev.arunkumar:scabbard-processor:%s"
 const val KAPT = "kapt"
 
 class ScabbardProcessorManager(private val scabbardSpec: DefaultScabbardSpec) {
@@ -16,6 +17,9 @@ class ScabbardProcessorManager(private val scabbardSpec: DefaultScabbardSpec) {
   fun manage() {
     @Suppress("ControlFlowWithEmptyBody")
     if (scabbardSpec.isScabbardEnabled) {
+      val scabbardVersion = VersionCalculator(project).calculate()
+      val scabbardDependency = SCABBARD_PROCESSOR.format(scabbardVersion)
+      project.logger.info("Applying scabbard dependency: $scabbardDependency")
       when {
         project.isKotlinProject -> project.dependencies.add(KAPT, SCABBARD_PROCESSOR)
         project.hasJavaAnnotationProcessorConfig -> project.dependencies.add(
