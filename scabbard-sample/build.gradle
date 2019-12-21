@@ -28,15 +28,10 @@ android {
     }
 }
 
-kapt {
-    arguments {
-        arg("dagger.fullBindingGraphValidation=ERROR")
-    }
-}
-
 scabbard {
     enabled true
     failOnError false
+    fullBindingGraphValidation true
 }
 
 // This block only exists to switch to local module instead of published module for local development

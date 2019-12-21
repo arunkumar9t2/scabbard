@@ -13,6 +13,8 @@ class ScabbardPropertiesDelegate(private val scabbardSpec: DefaultScabbardSpec) 
 
   companion object {
     internal const val FAIL_ON_ERROR = "$SCABBARD.failOnError"
+    internal const val DAGGER_FULL_BINDING_GRAPH_VALIDATION =
+      "dagger.fullBindingGraphValidation=WARNING"
   }
 
   private val project get() = scabbardSpec.project
@@ -27,6 +29,10 @@ class ScabbardPropertiesDelegate(private val scabbardSpec: DefaultScabbardSpec) 
               kaptExtension.apply {
                 arguments {
                   arg(FAIL_ON_ERROR, scabbardSpec.failOnError)
+
+                  if (scabbardSpec.fullGraphValidation) {
+                    arg(DAGGER_FULL_BINDING_GRAPH_VALIDATION)
+                  }
                 }
               }
             } else {
@@ -37,6 +43,10 @@ class ScabbardPropertiesDelegate(private val scabbardSpec: DefaultScabbardSpec) 
             tasks.withType<JavaCompile>().configureEach {
               options.compilerArgs.apply {
                 add("-A$FAIL_ON_ERROR=${scabbardSpec.failOnError}")
+
+                if (scabbardSpec.fullGraphValidation) {
+                  add("-A$DAGGER_FULL_BINDING_GRAPH_VALIDATION")
+                }
               }
             }
           }
