@@ -55,7 +55,7 @@ constructor(
     val allEdges = network.edges()
     nodes.asSequence()
       .groupBy { it.componentPath() }
-      .forEach { (componentPath, componentNodes) ->
+      .map { (componentPath, componentNodes) ->
         globalNodeIds.clear()
 
         val currentComponent = componentPath.currentComponent()
@@ -68,9 +68,8 @@ constructor(
           nodes = componentNodes.asSequence(),
           edges = allEdges.asSequence() // TODO(arun) why pass global edges here?
         )
-
-        val dotGraph = baseGraphBuilder.dotGraph
-
+        return@map currentComponent to baseGraphBuilder.dotGraph
+      }.forEach { (currentComponent, dotGraph) ->
         scabbardOptions.exceptionHandler {
           val (outputFile, dotFile) = outputManager.createOutputFiles(currentComponent)
           val dotOutput = dotGraph.toString()
