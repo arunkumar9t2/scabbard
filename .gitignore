@@ -49,11 +49,3 @@ _sandbox
 .idea/modules/app/
 .idea/shelf/
 .vscode/
-dot-dsl/src/test/java/
-sample/libs/
-sample/src/androidTest/
-sample/src/test/
-scabbard-gradle-plugin/src/main/resources/
-scabbard-gradle-plugin/src/test/resources/
-scabbard-processor/src/main/resources/
-scabbard-processor/src/test/
