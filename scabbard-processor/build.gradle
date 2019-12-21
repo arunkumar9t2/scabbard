@@ -24,6 +24,9 @@ sourceSets {
 dependencies {
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "com.google.testing.compile:compile-testing:${versions.compileTesting}"
+    testCompileOnly "com.google.auto.service:auto-service:${versions.autoService}"
+    kaptTest "com.google.auto.service:auto-service:${versions.autoService}"
+    kaptTest "com.google.dagger:dagger-compiler:${versions.dagger}"
 
     implementation project(path: ':dot-dsl')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
