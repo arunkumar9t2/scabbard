@@ -1,23 +1,21 @@
 package dev.arunkumar.scabbard.gradle.processor
 
-import dev.arunkumar.scabbard.gradle.ScabbardExtension
+import dev.arunkumar.scabbard.gradle.DefaultScabbardSpec
 import dev.arunkumar.scabbard.gradle.projectmeta.ANNOTATION_PROCESSOR
 import dev.arunkumar.scabbard.gradle.projectmeta.hasJavaAnnotationProcessorConfig
 import dev.arunkumar.scabbard.gradle.projectmeta.isKotlinProject
-import org.gradle.api.Project
 
 //TODO(arun) Can this be provided via resources?
 const val SCABBARD_PROCESSOR = "dev.arunkumar:scabbard-processor:0.1.0"
 const val KAPT = "kapt"
 
-class ScabbardProcessorManager(
-  private val project: Project,
-  private val scabbardExtension: ScabbardExtension
-) {
+class ScabbardProcessorManager(private val scabbardSpec: DefaultScabbardSpec) {
+
+  private val project get() = scabbardSpec.project
 
   fun manage() {
     @Suppress("ControlFlowWithEmptyBody")
-    if (scabbardExtension.enabled) {
+    if (scabbardSpec.isScabbardEnabled) {
       when {
         project.isKotlinProject -> project.dependencies.add(KAPT, SCABBARD_PROCESSOR)
         project.hasJavaAnnotationProcessorConfig -> project.dependencies.add(

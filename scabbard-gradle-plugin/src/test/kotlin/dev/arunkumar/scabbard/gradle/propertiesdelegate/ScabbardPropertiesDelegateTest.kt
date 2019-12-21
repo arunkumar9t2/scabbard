@@ -20,7 +20,7 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
       apply(PLUGIN_ID)
     }
 
-    ScabbardPropertiesDelegate(project, prepareScabbardExtension {
+    ScabbardPropertiesDelegate(prepareScabbardExtension {
       failOnError = true
     }).delegate()
 
@@ -40,7 +40,7 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
       apply(PLUGIN_ID)
     }
 
-    ScabbardPropertiesDelegate(project, prepareScabbardExtension {
+    ScabbardPropertiesDelegate(prepareScabbardExtension {
       failOnError = true
     }).delegate()
 

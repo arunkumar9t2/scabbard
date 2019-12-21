@@ -30,7 +30,6 @@ android {
 
 scabbard {
     enabled true
-    singleGraph false
     failOnError false
 }
 

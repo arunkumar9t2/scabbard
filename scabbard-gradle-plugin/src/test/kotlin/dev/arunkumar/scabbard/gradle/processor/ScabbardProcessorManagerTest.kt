@@ -36,7 +36,7 @@ class ScabbardProcessorManagerTest : ProjectTest() {
       apply("kotlin-kapt")
       apply(PLUGIN_ID)
     }
-    ScabbardProcessorManager(project, prepareScabbardExtension()).manage()
+    ScabbardProcessorManager(prepareScabbardExtension()).manage()
     assertTrue("Scabbard applied", project.hasScabbard())
   }
 
@@ -47,9 +47,9 @@ class ScabbardProcessorManagerTest : ProjectTest() {
       apply("kotlin-kapt")
       apply(PLUGIN_ID)
     }
-    prepareScabbardExtension {
-      enabled = false
-    }
+    ScabbardProcessorManager(prepareScabbardExtension {
+      isScabbardEnabled = false
+    }).manage()
     assertTrue("Scabbard is not applied", !project.hasScabbard())
   }
 
@@ -59,7 +59,7 @@ class ScabbardProcessorManagerTest : ProjectTest() {
       apply("java")
       apply(PLUGIN_ID)
     }
-    ScabbardProcessorManager(project, prepareScabbardExtension()).manage()
+    ScabbardProcessorManager(prepareScabbardExtension()).manage()
     assertTrue("Scabbard applied", project.hasScabbard(isKoltin = false))
   }
 
@@ -69,9 +69,9 @@ class ScabbardProcessorManagerTest : ProjectTest() {
       apply("java")
       apply(PLUGIN_ID)
     }
-    prepareScabbardExtension {
-      enabled = false
-    }
+    ScabbardProcessorManager(prepareScabbardExtension {
+      isScabbardEnabled = false
+    }).manage()
     assertTrue("Scabbard is not applied", !project.hasScabbard(isKoltin = false))
   }
 
@@ -83,9 +83,9 @@ class ScabbardProcessorManagerTest : ProjectTest() {
       apply("kotlin-kapt")
       apply(PLUGIN_ID)
     }
-    prepareScabbardExtension {
-      enabled = false
-    }
+    ScabbardProcessorManager(prepareScabbardExtension {
+      isScabbardEnabled = false
+    }).manage()
     assertTrue("Scabbard is not applied", !project.hasScabbard(isKoltin = false))
   }
 }
