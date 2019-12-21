@@ -28,6 +28,12 @@ android {
     }
 }
 
+kapt {
+    arguments {
+        arg("dagger.fullBindingGraphValidation=ERROR")
+    }
+}
+
 scabbard {
     enabled true
     failOnError false

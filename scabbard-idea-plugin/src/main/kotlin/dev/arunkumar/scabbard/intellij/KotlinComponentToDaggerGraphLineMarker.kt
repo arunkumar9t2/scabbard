@@ -5,6 +5,7 @@ import com.intellij.codeInsight.daemon.LineMarkerProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_COMPONENT
+import dev.arunkumar.scabbard.intellij.utill.DAGGER_MODULE
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_SUBCOMPONENT
 import dev.arunkumar.scabbard.intellij.utill.prepareLineMarkerOpenerForFileName
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -16,14 +17,31 @@ import org.jetbrains.kotlin.psi.KtFile
 
 class KotlinComponentToDaggerGraphLineMarker : LineMarkerProvider {
 
+  private fun KtClassOrObject.hasDaggerComponentAnnotations(): Boolean {
+    return findAnnotation(FqName(DAGGER_COMPONENT)) != null
+        || findAnnotation(FqName(DAGGER_SUBCOMPONENT)) != null
+        || findAnnotation(FqName(DAGGER_MODULE)) != null
+  }
+
+  private fun LeafPsiElement.getClassOrInterface(): KtClassOrObject? {
+    val isAClassType = (text == CLASS_KEYWORD.value
+        || text == OBJECT_KEYWORD.value
+        || text == INTERFACE_KEYWORD.value)
+    if (elementType is KtKeywordToken && isAClassType) {
+      val classOrObjectCandidate = parent
+      if (classOrObjectCandidate is KtClassOrObject) {
+        return classOrObjectCandidate
+      }
+    }
+    return null
+  }
+
   override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
     when (element) {
       is LeafPsiElement -> {
         element.getClassOrInterface()?.let { ktClass ->
-
           if (ktClass.hasDaggerComponentAnnotations()) {
             val componentName = ktClass.name
-
             (ktClass.containingFile as? KtFile)?.packageFqName?.asString()?.let { packageName ->
               val fileNameToFind = "$packageName.$componentName.png"
               return prepareLineMarkerOpenerForFileName(
@@ -38,24 +56,5 @@ class KotlinComponentToDaggerGraphLineMarker : LineMarkerProvider {
       }
       else -> return null
     }
-  }
-
-  private fun KtClassOrObject.hasDaggerComponentAnnotations(): Boolean {
-    return findAnnotation(FqName(DAGGER_COMPONENT)) != null
-        || findAnnotation(FqName(DAGGER_SUBCOMPONENT)) != null
-  }
-
-  private fun LeafPsiElement.getClassOrInterface(): KtClassOrObject? {
-    if (elementType is KtKeywordToken && (
-          text == CLASS_KEYWORD.value
-              || text == OBJECT_KEYWORD.value // TODO(arun) do we need object?
-              || text == INTERFACE_KEYWORD.value)
-    ) {
-      val maybeKtClassOrObject = parent
-      if (maybeKtClassOrObject is KtClassOrObject) {
-        return maybeKtClassOrObject
-      }
-    }
-    return null
   }
 }
