@@ -22,7 +22,8 @@ sourceSets {
 }
 
 dependencies {
-    testImplementation("junit:junit:4.12")
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "com.google.testing.compile:compile-testing:${versions.compileTesting}"
 
     implementation project(path: ':dot-dsl')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"

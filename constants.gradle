@@ -1,7 +1,7 @@
 ext {
     versions = [
-            'agp'        : '3.6.0-rc01',
-            'androidx'   : [
+            'agp'           : '3.6.0-rc01',
+            'androidx'      : [
                     'appcompat'       : '1.1.0',
                     'core'            : '1.1.0',
                     'fragment'        : [
@@ -9,13 +9,14 @@ ext {
                     ],
                     'constraintLayout': '1.1.3'
             ],
-            'kotlin'     : '1.3.61',
-            'graphviz'   : '0.12.1',
-            'dagger'     : '2.25.3',
-            'autoService': '1.0-rc6',
-            'guava'      : '24.1-jre',
-            'junit'      : '4.12',
-            'truth'      : '1.0'
+            'kotlin'        : '1.3.61',
+            'graphviz'      : '0.12.1',
+            'dagger'        : '2.25.3',
+            'autoService'   : '1.0-rc6',
+            'guava'         : '24.1-jre',
+            'junit'         : '4.12',
+            'truth'         : '1.0',
+            'compileTesting': '0.18'
     ]
 
     groupId = 'dev.arunkumar'

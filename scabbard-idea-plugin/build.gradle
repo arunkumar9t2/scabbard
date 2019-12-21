@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-    testImplementation("junit:junit:4.12")
+    testImplementation "junit:junit:${versions.junit}"
 }
 
 compileKotlin {
