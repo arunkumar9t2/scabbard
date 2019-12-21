@@ -2,7 +2,6 @@ package dev.arunkumar.scabbard.plugin
 
 import com.google.common.truth.Truth.assertThat
 import dagger.Component
-import guru.nidi.graphviz.attribute.Label
 import guru.nidi.graphviz.model.MutableGraph
 import org.junit.Before
 import org.junit.Test
@@ -24,11 +23,13 @@ class DependencyGraphTest {
     fun nodeB(): NodeB
   }
 
-  lateinit var generatedGraph: MutableGraph
+  private lateinit var generatedGraph: MutableGraph
+  private lateinit var generatedText: String
 
   @Before
   fun setup() {
     generatedGraph = SimpleComponent::class.java.parsedGraph()
+    generatedText = SimpleComponent::class.java.generatedDotFile().readText()
   }
 
   @Test
@@ -42,14 +43,9 @@ class DependencyGraphTest {
     val dependencyGraph = generatedGraph.graphs().firstOrNull() { it.name() == "Dependency Graph" }
     val dependencyGraphNodes = dependencyGraph!!.nodes()
     assertThat(dependencyGraphNodes).hasSize(2)
-
-    // The first once is usually the component node
-    val componentNode = dependencyGraphNodes.first()
-    assertThat(componentNode.attrs()["shape"]).isEqualTo("point")
-    assertThat(componentNode.attrs()["style"]).isEqualTo("invis")
-
-    val nodeB = dependencyGraphNodes.toList()[1]
-    assertThat(nodeB.attrs()["label"]).isEqualTo(Label.of(NodeA::class.java.name))
-    assertThat(nodeB.attrs()["color"]).isEqualTo("turquoise")
+    assertThat(generatedText).contains(" graph [labeljust=\"l\", label=\"Dependency Graph\"]")
+    assertThat(generatedText).contains("[style=\"invis\", shape=\"point\"]") // component node
+    // Label and default color
+    assertThat(generatedText).contains("[label=\"dev.arunkumar.scabbard.plugin.DependencyGraphTest.NodeA\", color=\"turquoise\"]")
   }
 }
