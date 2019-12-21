@@ -1,7 +1,11 @@
 package dev.arunkumar.scabbard.plugin
 
+import guru.nidi.graphviz.model.MutableGraph
+import guru.nidi.graphviz.parse.Parser
 import java.io.File
 import java.nio.file.Paths
+
+fun Class<*>.parsedGraph(): MutableGraph = Parser().read(generatedDotFile().readText())
 
 fun Class<*>.generatedDotFile(): File {
   //TODO(arun) The proper way would be to use Resources.getResource() but that does not seem to work
