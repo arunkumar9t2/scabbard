@@ -7,8 +7,8 @@
     <depends>org.jetbrains.kotlin</depends>
 
     <description><![CDATA[
-    Intellij plugin that integrates with Scabbard(https://github.com/arunkumar9t2/scabbard) to
-    visualize Dagger graphs
+    Intellij plugin that integrates with Scabbard(https://github.com/arunkumar9t2/scabbard) and adds
+    gutter icons to quickly open generated graph images for Dagger components.
     <br>
     ]]></description>
 
