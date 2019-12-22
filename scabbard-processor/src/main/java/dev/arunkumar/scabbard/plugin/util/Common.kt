@@ -33,6 +33,7 @@ inline fun ScabbardOptions.handleException(exception: Exception) {
   if (failOnError) {
     throw RuntimeException("Scabbard processor failed")
   } else {
-    exception.printStackTrace()
+    // Soon Timber this
+    System.err.println(exception.message)
   }
 }
