@@ -1,8 +1,6 @@
 <idea-plugin>
     <name>Scabbard - Dagger 2 Visualizer</name>
-    <actions>
-        <!-- Add your actions here -->
-    </actions>
+    <actions></actions>
 
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.java</depends>
