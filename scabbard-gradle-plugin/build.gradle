@@ -5,6 +5,9 @@ plugins {
 
 apply from: '../constants.gradle'
 
+group groupId
+version publishVersion
+
 repositories {
     jcenter()
 }
