@@ -1,6 +1,6 @@
 <idea-plugin>
     <name>Scabbard - Dagger 2 Visualizer</name>
-    <actions></actions>
+    <category>Custom Languages</category>
 
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.java</depends>
@@ -22,5 +22,7 @@
     </extensions>
 
     <id>dev.arunkumar.scabbard.idea-plugin</id>
+
+    <idea-version since-build="145" />
     <vendor email="hi@arunkumar.dev" url="http://arunkumar.dev">Arunkumar</vendor>
 </idea-plugin>
