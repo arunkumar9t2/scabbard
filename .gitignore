@@ -33,6 +33,8 @@ keystore.properties
 # Values file
 values.properties
 
+local.properties
+
 # Windows thumbnail db
 # Idea non-crucial project fileS
 *.iws

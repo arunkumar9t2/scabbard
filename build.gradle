@@ -11,6 +11,8 @@ buildscript {
     }
 }
 
+apply from: "gradle/local-properties.gradle"
+
 allprojects {
     repositories {
         google()
