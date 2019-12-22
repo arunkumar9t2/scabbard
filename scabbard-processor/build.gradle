@@ -1,8 +1,18 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.9.2'
+    }
+}
+
 plugins {
     id "java-library"
     id "org.jetbrains.kotlin.jvm"
     id "kotlin-kapt"
 }
+apply plugin: 'com.novoda.bintray-release'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -41,4 +51,15 @@ dependencies {
     kapt "com.google.auto.service:auto-service:${versions.autoService}"
 
     implementation "com.google.guava:guava:${versions.guava}"
+}
+
+def publishGroup = groupId
+def versionToPublish = publishVersion
+publish {
+    userOrg = "arunkumar9t2"
+    groupId = publishGroup
+    artifactId = project.name
+    publishVersion = versionToPublish
+    desc = 'Visualize Dagger 2 dependency graphs with ease'
+    website = 'https://github.com/arunkumar9t2/scabbard'
 }
