@@ -21,10 +21,10 @@ class ScabbardProcessorManager(private val scabbardSpec: DefaultScabbardSpec) {
       val scabbardDependency = SCABBARD_PROCESSOR.format(scabbardVersion)
       project.logger.info("Applying scabbard dependency: $scabbardDependency")
       when {
-        project.isKotlinProject -> project.dependencies.add(KAPT, SCABBARD_PROCESSOR)
+        project.isKotlinProject -> project.dependencies.add(KAPT, scabbardDependency)
         project.hasJavaAnnotationProcessorConfig -> project.dependencies.add(
           ANNOTATION_PROCESSOR,
-          SCABBARD_PROCESSOR
+          scabbardDependency
         )
         else -> project.logger.error("Neither $ANNOTATION_PROCESSOR or $KAPT was found in project")
       }
