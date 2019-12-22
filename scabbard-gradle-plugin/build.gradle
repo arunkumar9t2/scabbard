@@ -55,7 +55,7 @@ check {
 }
 
 pluginBundle {
-    website = 'https://github.com/arunkumar9t2/scabbard'
-    vcsUrl = 'https://github.com/arunkumar9t2/scabbard'
+    website = project.findProperty("website")
+    vcsUrl = project.findProperty("website")
     tags = ['dagger 2', 'dependency injection', 'visualize dependency graph']
 }

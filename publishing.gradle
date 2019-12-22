@@ -1,0 +1,11 @@
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = "arunkumar9t2"
+    groupId = project.findProperty("groupId")
+    artifactId = project.name
+    publishVersion = project.findProperty("publishVersion")
+    desc = project.description
+    website = project.findProperty("website")
+    bintrayUser = project.findProperty("bintray.user")
+    bintrayKey = project.findProperty("bintray.apikey")
+}

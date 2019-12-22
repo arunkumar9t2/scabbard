@@ -1,18 +1,10 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.novoda:bintray-release:0.9.2'
-    }
-}
-
 plugins {
     id "java-library"
     id "org.jetbrains.kotlin.jvm"
     id "kotlin-kapt"
 }
-apply plugin: 'com.novoda.bintray-release'
+description = 'Visualize Dagger 2 dependency graphs with ease'
+apply from: "$rootProject.rootDir/publishing.gradle"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -25,6 +17,11 @@ repositories {
 
 sourceSets {
     main {
+        java {
+            srcDirs 'build/generated/source/kapt'
+        }
+    }
+    test {
         java {
             srcDirs 'build/generated/source/kapt'
         }
@@ -51,17 +48,4 @@ dependencies {
     kapt "com.google.auto.service:auto-service:${versions.autoService}"
 
     implementation "com.google.guava:guava:${versions.guava}"
-}
-
-def publishGroup = groupId
-def versionToPublish = publishVersion
-publish {
-    userOrg = "arunkumar9t2"
-    groupId = project.findProperty("groupId")
-    artifactId = project.name
-    publishVersion = project.findProperty("publishVersion")
-    desc = 'Visualize Dagger 2 dependency graphs with ease'
-    website = 'https://github.com/arunkumar9t2/scabbard'
-    bintrayUser = project.findProperty("bintray.user")
-    bintrayKey = project.findProperty("bintray.apikey")
 }

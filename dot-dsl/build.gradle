@@ -2,6 +2,8 @@ plugins {
     id "java-library"
     id "org.jetbrains.kotlin.jvm"
 }
+description = 'Build dot files easily with Kotlin'
+apply from: "$rootProject.rootDir/publishing.gradle"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
