@@ -27,6 +27,6 @@ class VersionCalculator(private val project: Project) {
     //.also { project.logger.quiet("versionFromRootProject:$it") }
     val versionFromCurrentProject = versionFromConfigurations(currentProjectConfigs)
     //.also { project.logger.quiet("versionFromCurrentProject:$it") }
-    return versionFromCurrentProject ?: versionFromRootProject ?: "0.1.0" // <- worst case
+    return versionFromCurrentProject ?: versionFromRootProject ?: "0.0.1" // <- worst case
   }
 }

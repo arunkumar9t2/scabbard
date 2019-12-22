@@ -20,5 +20,5 @@ ext {
     ]
 
     groupId = 'dev.arunkumar'
-    publishVersion = '0.1.0'
+    publishVersion = '0.0.1'
 }
