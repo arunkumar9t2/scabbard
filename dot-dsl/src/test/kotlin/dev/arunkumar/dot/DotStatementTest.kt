@@ -12,7 +12,7 @@ class DotStatementTest {
   @Test
   fun `test base is rendered correctly when there are no attributes`() {
     val statement = dotStatement()
-    assertThat(statement.toString()).contains("graph\r\n")
+    assertThat(statement.toString()).contains("graph$NEWLN")
   }
 
   @Test
@@ -22,7 +22,7 @@ class DotStatementTest {
       "color" eq "yellow"
       "compound" eq true
     }
-    assertThat(statement.toString()).contains("graph [label=\"dot\", color=\"yellow\", compound=\"true\"]\r\n")
+    assertThat(statement.toString()).contains("graph [label=\"dot\", color=\"yellow\", compound=\"true\"]$NEWLN")
   }
 
   @Test
@@ -30,13 +30,13 @@ class DotStatementTest {
     val statement = dotStatement().apply {
       addAttribute("label", "dot")
     }
-    assertThat(statement.toString()).contains("graph [label=\"dot\"]\r\n")
+    assertThat(statement.toString()).contains("graph [label=\"dot\"]$NEWLN")
   }
 
   @Test
   fun `test node name is wrapped with quotes`() {
     val node = node()
-    assertThat(node.toString()).contains("\"dot\"\r\n")
+    assertThat(node.toString()).contains("\"dot\"$NEWLN")
   }
 
   @Test
@@ -44,6 +44,6 @@ class DotStatementTest {
     val node = node().apply {
       addAttribute("label", "dot")
     }
-    assertThat(node.toString()).contains("\"dot\" [label=\"dot\"]\r\n")
+    assertThat(node.toString()).contains("\"dot\" [label=\"dot\"]$NEWLN")
   }
 }

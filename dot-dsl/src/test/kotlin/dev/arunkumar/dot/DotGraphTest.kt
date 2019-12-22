@@ -11,7 +11,7 @@ class DotGraphTest {
   @Test
   fun `test empty dot graph is rendered correctly`() {
     val dotGraph = dotGraph()
-    assertThat(dotGraph.toString()).contains("graph {\r\n}\r\n")
+    assertThat(dotGraph.toString()).contains("graph {$NEWLN}$NEWLN")
   }
 
   @Test
@@ -22,11 +22,11 @@ class DotGraphTest {
       DotEdge("some node", "another node").let(::add)
     }
     assertThat(dotGraph.toString()).contains(
-      "graph {\r\n" +
-          "  graph\r\n" +
-          "  \"some node\"\r\n" +
-          "  \"some node\" -- \"another node\"\r\n" +
-          "}\r\n"
+      "graph {$NEWLN" +
+          "  graph$NEWLN" +
+          "  \"some node\"$NEWLN" +
+          "  \"some node\" -- \"another node\"$NEWLN" +
+          "}$NEWLN"
     )
   }
 
@@ -37,10 +37,10 @@ class DotGraphTest {
     }
     val output = StringWriter().also { dotGraph.write(0, PrintWriter(it)) }.toString()
     assertThat(output).contains(
-      "graph {\r\n" +
-          "  subgraph \"some graph\" {\r\n" +
-          "  }\r\n" +
-          "}\r\n"
+      "graph {$NEWLN" +
+          "  subgraph \"some graph\" {$NEWLN" +
+          "  }$NEWLN" +
+          "}$NEWLN"
     )
   }
 }
