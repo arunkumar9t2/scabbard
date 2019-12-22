@@ -42,5 +42,4 @@ patchPluginXml {
 
 publishPlugin {
     token intellijPublishToken
-    channels 'beta'
 }

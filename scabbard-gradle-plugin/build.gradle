@@ -26,7 +26,7 @@ dependencies {
 gradlePlugin {
     plugins {
         scabbardPlugin {
-            id = 'scabbard-gradle-plugin'
+            id = scabbardGradlePlugin
             displayName = 'Scabbard - Dagger 2 Visualizer'
             description = 'Gradle plugin to visualize Dagger 2 dependency graph'
             implementationClass = 'dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin'
