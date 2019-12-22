@@ -13,7 +13,7 @@ jobs:
           java-version: 1.8
 
       - name: Set gradle permissions
-        run: sudo chmod +x android-app/gradlew
+        run: sudo chmod +x ./gradlew
       - name: Download dependencies
         run: |
           ./gradlew dependencies
