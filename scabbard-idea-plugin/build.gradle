@@ -41,5 +41,5 @@ patchPluginXml {
 }
 
 publishPlugin {
-    token intellijPublishToken
+    token project.findProperty("intellijPublishToken")
 }

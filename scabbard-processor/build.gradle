@@ -57,9 +57,11 @@ def publishGroup = groupId
 def versionToPublish = publishVersion
 publish {
     userOrg = "arunkumar9t2"
-    groupId = publishGroup
+    groupId = project.findProperty("groupId")
     artifactId = project.name
-    publishVersion = versionToPublish
+    publishVersion = project.findProperty("publishVersion")
     desc = 'Visualize Dagger 2 dependency graphs with ease'
     website = 'https://github.com/arunkumar9t2/scabbard'
+    bintrayUser = project.findProperty("bintray.user")
+    bintrayKey = project.findProperty("bintray.apikey")
 }
