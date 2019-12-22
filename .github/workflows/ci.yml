@@ -12,6 +12,9 @@ jobs:
         with:
           java-version: 1.8
 
+      - name: Install GraphViz
+        run: sudo apt-get install graphviz
+
       - name: Set gradle permissions
         run: sudo chmod +x ./gradlew
       - name: Download dependencies
