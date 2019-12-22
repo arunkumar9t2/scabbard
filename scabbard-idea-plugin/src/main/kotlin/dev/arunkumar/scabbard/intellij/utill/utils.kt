@@ -17,7 +17,7 @@ fun prepareLineMarkerOpenerForFileName(
 ): LineMarkerInfo<PsiElement>? {
   // TODO(arun) Need to optimize this - try to scope it to the module where scabbard is applied
   val scope = GlobalSearchScope.allScope(element.project)
-  FilenameIndex.getFilesByName(element.project, fileName, scope)
+  FilenameIndex.getFilesByName(element.project, fileName.replace("$", "."), scope)
     .takeIf { it.isNotEmpty() }
     ?.first()
     ?.let { graphFile ->

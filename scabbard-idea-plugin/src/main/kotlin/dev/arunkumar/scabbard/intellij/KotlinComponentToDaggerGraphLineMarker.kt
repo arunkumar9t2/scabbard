@@ -8,12 +8,12 @@ import dev.arunkumar.scabbard.intellij.utill.DAGGER_COMPONENT
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_MODULE
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_SUBCOMPONENT
 import dev.arunkumar.scabbard.intellij.utill.prepareLineMarkerOpenerForFileName
+import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtKeywordToken
 import org.jetbrains.kotlin.lexer.KtTokens.*
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClassOrObject
-import org.jetbrains.kotlin.psi.KtFile
 
 class KotlinComponentToDaggerGraphLineMarker : LineMarkerProvider {
 
@@ -42,14 +42,13 @@ class KotlinComponentToDaggerGraphLineMarker : LineMarkerProvider {
         element.getClassOrInterface()?.let { ktClass ->
           if (ktClass.hasDaggerComponentAnnotations()) {
             val componentName = ktClass.name
-            (ktClass.containingFile as? KtFile)?.packageFqName?.asString()?.let { packageName ->
-              val fileNameToFind = "$packageName.$componentName.png"
-              return prepareLineMarkerOpenerForFileName(
-                element,
-                componentName!!,
-                fileNameToFind
-              )
-            }
+            val qualifiedName = ktClass.getKotlinFqName().toString()
+            val fileNameToFind = "$qualifiedName.png"
+            return prepareLineMarkerOpenerForFileName(
+              element,
+              componentName!!,
+              fileNameToFind
+            )
           }
         }
         return null
