@@ -24,11 +24,13 @@ compileTestKotlin {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
+    updateSinceUntilBuild false
     plugins = [
             "Kotlin", "IntelliLang", "java"
     ]
-    version '2019.3'
+    version '2019.2'
     pluginName 'Scabbard - Dagger 2 Visualizer'
+    //intellij.alternativeIdePath "C:\\Users\\arunk\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-2\\192.6071332"
 }
 
 patchPluginXml {
