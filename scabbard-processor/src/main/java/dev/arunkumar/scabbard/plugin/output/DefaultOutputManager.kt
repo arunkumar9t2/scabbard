@@ -19,7 +19,8 @@ constructor(
   override fun createOutputFiles(currentComponent: TypeElement): OutputFiles {
     val componentName = ClassName.get(currentComponent)
     val packageName = componentName.packageName()
-    val fileName = packageName + '.' + componentName.simpleNames().joinToString(".")
+    val componentSimpleNames = componentName.simpleNames().joinToString(".")
+    val fileName = "$packageName.$componentSimpleNames".replace("$", ".")
     val graphOutput = filer.createResource(
       CLASS_OUTPUT,
       componentName.toString(),
