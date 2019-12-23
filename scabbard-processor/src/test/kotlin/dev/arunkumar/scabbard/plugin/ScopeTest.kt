@@ -1,14 +1,14 @@
 package dev.arunkumar.scabbard.plugin
 
+import com.google.common.truth.Truth.assertThat
 import dagger.Component
 import dagger.Subcomponent
-import guru.nidi.graphviz.model.MutableGraph
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import javax.inject.Inject
-import javax.inject.Qualifier
+import javax.inject.Scope
 import javax.inject.Singleton
 
 @RunWith(JUnit4::class)
@@ -25,7 +25,7 @@ class ScopeTest {
     fun subComponentFactory(): SimpleSubComponent.Factory
   }
 
-  @Qualifier
+  @Scope
   annotation class SubScope
 
   @SubScope
@@ -49,18 +49,24 @@ class ScopeTest {
     }
   }
 
-  private lateinit var generatedGraph: MutableGraph
-  private lateinit var generatedText: String
-
+  private lateinit var simpleComponent: String
+  private lateinit var simpleSubcomponent: String
 
   @Before
   fun setup() {
-    generatedGraph = SimpleComponent::class.java.parsedGraph()
-    generatedText = SimpleComponent::class.java.generatedDotFile().readText()
+    simpleComponent = SimpleComponent::class.java.generatedDotFile().readText()
+    simpleSubcomponent = SimpleSubComponent::class.java.generatedDotFile().readText()
   }
 
   @Test
   fun `test nodes present in a scope have different but consistent colors set`() {
-    // TODO
+    assertThat(simpleSubcomponent)
+      .contains("[label=\"@SubScope\\ndev.arunkumar.scabbard.plugin.ScopeTest.AnotherSubcomponentNode\", color=\"aquamarine\"]")
+  }
+
+  @Test
+  fun `test root component links to all subcomponents and subcomponents have colors set on them`() {
+    assertThat(simpleComponent)
+      .contains("[label=\"@SubScope\\ndev.arunkumar.scabbard.plugin.ScopeTest.SimpleSubComponent\", color=\"aquamarine\"]")
   }
 }
