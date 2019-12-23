@@ -3,9 +3,9 @@ package dev.arunkumar.scabbard.intellij
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.LineMarkerProvider
 import com.intellij.psi.PsiAnnotation
+import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
-import com.intellij.psi.impl.source.PsiClassImpl
-import com.intellij.psi.impl.source.PsiModifierListImpl
+import com.intellij.psi.PsiModifierList
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_COMPONENT
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_MODULE
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_SUBCOMPONENT
@@ -21,8 +21,8 @@ class JavaComponentToDaggerGraphLineMarker : LineMarkerProvider {
   }
 
   private fun PsiElement.findAnnotation(annotationName: String): PsiAnnotation? {
-    return takeIf { this is PsiModifierListImpl }?.run {
-      (parent as? PsiClassImpl)
+    return takeIf { this is PsiModifierList }?.run {
+      (parent as? PsiClass)
         ?.modifierList
         ?.annotations
         ?.firstOrNull { it.qualifiedName == annotationName }
@@ -31,12 +31,12 @@ class JavaComponentToDaggerGraphLineMarker : LineMarkerProvider {
 
   override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
     if (element.hasDaggerAnnotations()) {
-      val psiClassImpl = (element as PsiModifierListImpl).parent as? PsiClassImpl
-      val qualifiedName = psiClassImpl?.qualifiedName
+      val psiClass = (element as PsiModifierList).parent as? PsiClass
+      val qualifiedName = psiClass?.qualifiedName
       qualifiedName?.let {
         return prepareLineMarkerOpenerForFileName(
           element = element,
-          componentName = psiClassImpl.name!!,
+          componentName = psiClass.name!!,
           fileName = "$qualifiedName.png"
         )
       }
