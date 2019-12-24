@@ -1,4 +1,29 @@
+apply plugin: 'maven-publish'
 apply plugin: 'com.novoda.bintray-release'
+
+afterEvaluate {
+    publishing.publications.getByName("maven") {
+        pom {
+            name = project.name
+            description = project.description
+            url = website
+
+            developers {
+                developer {
+                    id = "arunkumar9t2"
+                    name = "Arunkumar"
+                    email = "hi@arunkumar.dev"
+                }
+            }
+            scm {
+                connection = "${website}.git"
+                developerConnection = "${website}.git"
+                url = website
+            }
+        }
+    }
+}
+
 publish {
     userOrg = "arunkumar9t2"
     groupId = project.findProperty("groupId")
@@ -8,4 +33,6 @@ publish {
     website = project.findProperty("website")
     bintrayUser = project.findProperty("bintray.user")
     bintrayKey = project.findProperty("bintray.apikey")
+    autoPublish = false
+    dryRun = false
 }

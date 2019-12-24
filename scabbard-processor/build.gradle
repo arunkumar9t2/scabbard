@@ -4,7 +4,7 @@ plugins {
     id "kotlin-kapt"
 }
 description = 'Visualize Dagger 2 dependency graphs with ease'
-apply from: "$rootProject.rootDir/publishing.gradle"
+apply from: "../publishing.gradle"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
