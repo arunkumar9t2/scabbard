@@ -22,7 +22,7 @@ open class DefaultScabbardSpec(val project: Project) : ScabbardSpec {
     isScabbardEnabled = enabled
   }
 
-  var failOnError = true
+  var failOnError = false
   override fun failOnError(failOnError: Boolean) {
     this.failOnError = failOnError
   }
