@@ -1,0 +1,25 @@
+apply plugin: 'java-library'
+apply plugin: 'application'
+apply plugin: scabbardGradlePlugin
+
+application {
+    mainClassName = "dev.arunkumar.scabbard.javasample.ScabbardSample"
+}
+
+scabbard {
+    enabled true
+    failOnError false
+    fullBindingGraphValidation true
+}
+
+apply from: "../gradle/scabbard-local-processor.gradle"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${versions.dagger}"
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"

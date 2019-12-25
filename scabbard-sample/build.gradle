@@ -34,14 +34,7 @@ scabbard {
     fullBindingGraphValidation true
 }
 
-// This block only exists to switch to local module instead of published module for local development
-configurations.configureEach {
-    resolutionStrategy {
-        dependencySubstitution {
-            substitute module('dev.arunkumar:scabbard-processor') with project(':scabbard-processor')
-        }
-    }
-}
+apply from: "../gradle/scabbard-local-processor.gradle"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

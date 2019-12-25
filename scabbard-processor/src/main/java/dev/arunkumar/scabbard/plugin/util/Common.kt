@@ -32,7 +32,7 @@ inline fun ScabbardOptions.exceptionHandler(block: () -> Unit) {
 @Suppress("NOTHING_TO_INLINE")
 inline fun ScabbardOptions.handleException(exception: Exception) {
   if (failOnError) {
-    throw RuntimeException("Scabbard processor failed")
+    throw RuntimeException("Scabbard processor failed", exception)
   } else {
     if (exception !is FilerException) {
       // Soon Timber this
