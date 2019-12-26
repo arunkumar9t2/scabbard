@@ -31,3 +31,7 @@ scabbard {
 ```
 
 Enables Dagger's [full binding graph validation](https://dagger.dev/compiler-options.html#full-binding-graph-validation) which validates the entire graph including all bindings in every `@Component`, `@Subcomponent` and `@Module`. This enables highlighting missing bindings which can be used to understand errors. Additionally since `@Module` itself is seen a graph, graphs will be generated for bindings in a `@Module`.
+
+### Mult-module projects
+
+While in most cases, applying on `app` module is sufficient, depending on your project structure, you might need to apply Scabbard gradle plugin wherever Dagger compiler is applied.
