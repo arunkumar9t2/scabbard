@@ -4,6 +4,9 @@ import com.google.common.collect.Iterators
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import javax.inject.Inject
 
+/**
+ * Class to cache and assign colors to Dagger scopes. The colors are assigned in cyclic order.
+ */
 @ProcessorScope
 class ScopeColors @Inject constructor() {
 
@@ -23,9 +26,9 @@ class ScopeColors @Inject constructor() {
       "deepskyblue",
       "skyblue1",
       "salmon1",
-      "firebrick1",
       "green1",
       "seagreen1",
+      "thistle",
       "yellow1",
       "yellowgreen"
     )
