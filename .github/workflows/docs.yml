@@ -1,0 +1,33 @@
+name: Publish docs workflow
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'docs/*'
+      - 'mkdocs.yml'
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.x'
+      - name: Install MkDocs
+        run: |
+          pip install mkdocs
+          pip install mkdocs-material
+
+      - name: Setup git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Setting up git"
+          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}.git
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+
+      - name: Publish to gh-pages
+        run: mkdocs gh-deploy
