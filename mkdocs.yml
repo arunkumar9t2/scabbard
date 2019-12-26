@@ -9,6 +9,7 @@ repo_url: "https://github.com/arunkumar9t2/scabbard"
 
 nav:
   - Overview: overview.md
+  - Configuration: configuration.md
   - Faq: faq.md
 theme:
   name: "material"

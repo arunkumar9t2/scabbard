@@ -6,7 +6,7 @@ Visualize and understand your Dagger 2 dependency graph.
 
 ## Features
 
-* **Visualize** entry points, dependency graph, component relationships and scopes in `@Components` and `@Subcomponents`.
+* **Visualize** entry points, dependency graph, component relationships and scopes in your [Dagger 2](https://github.com/google/dagger) setup.
 
 * **Minimal setup** - Scabbard's Gradle plugin prepares your project for graph generation and provides ability to customize graph generation behavior.
 
@@ -97,6 +97,7 @@ Scabbard at its core is just an annotation processor. You could add `dev.arunkum
 
 ## Resources
 
+* [Configuration](configuration.md)
 * [FAQ](faq.md)
 
 ## License
