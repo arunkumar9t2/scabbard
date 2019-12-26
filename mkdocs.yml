@@ -1,0 +1,42 @@
+site_name: Scabbard
+site_description: "A tool to visualize Dagger 2 dependency graph"
+site_author: "2019 Arunkumar"
+site_url: "https://github.com/arunkumar9t2/scabbard"
+remote_branch: gh-pages
+
+repo_name: "arunkumar9t2/scabbard"
+repo_url: "https://github.com/arunkumar9t2/scabbard"
+
+nav:
+  - Overview: overview.md
+  - Configuration: configuration.md
+  - Faq: faq.md
+theme:
+  name: "material"
+  palette:
+    primary: "orange"
+    accent: "teal"
+  font:
+    text: "Roboto"
+    code: "Roboto Mono"
+
+extra:
+  social:
+    - type: "github"
+      link: "https://github.com/arunkumar9t2/scabbard"
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+
+# Styling
+extra_css:
+  - "css/site.css"

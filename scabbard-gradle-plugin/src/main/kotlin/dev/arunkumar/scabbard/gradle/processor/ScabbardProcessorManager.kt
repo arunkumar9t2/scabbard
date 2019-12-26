@@ -10,6 +10,10 @@ import dev.arunkumar.scabbard.gradle.projectmeta.isKotlinProject
 const val SCABBARD_PROCESSOR = "dev.arunkumar:scabbard-processor:%s"
 const val KAPT = "kapt"
 
+/**
+ * Responsible for applying Scabbard processor dependency based of project metadata. For example,
+ * `kapt` for Kotlin projects and `annotationProcessor` for pure Java projects.
+ */
 class ScabbardProcessorManager(private val scabbardSpec: DefaultScabbardSpec) {
 
   private val project get() = scabbardSpec.project

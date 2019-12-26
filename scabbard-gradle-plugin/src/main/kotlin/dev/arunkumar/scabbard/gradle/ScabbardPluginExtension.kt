@@ -7,6 +7,9 @@ import org.gradle.api.Project
 import org.gradle.util.Configurable
 import org.gradle.util.ConfigureUtil.configure
 
+/**
+ * Scabbard plugin extension that configures the project.
+ */
 open class ScabbardPluginExtension(
   private val project: Project
 ) : Configurable<ScabbardPluginExtension> {
