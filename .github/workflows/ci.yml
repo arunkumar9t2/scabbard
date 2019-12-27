@@ -16,7 +16,11 @@ jobs:
         run: sudo apt-get install graphviz
 
       - name: Set gradle permissions
-        run: sudo chmod +x ./gradlew
+        run: |
+          sudo chmod +x ./gradlew
+          cd scabbard-gradle-plugin
+          sudo chmod +x ./gradlew
+
       - name: Download dependencies
         run: |
           ./gradlew dependencies
