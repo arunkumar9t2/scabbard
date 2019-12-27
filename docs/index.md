@@ -20,7 +20,7 @@ Visualize and understand your Dagger 2 dependency graph.
 
 #### GraphViz
 
-Scabbard uses [GraphViz](https://www.graphviz.org/) to generate graphs and hence requires `dot` command to be available it to work.
+Scabbard uses [GraphViz](https://www.graphviz.org/) to generate graphs and hence requires `dot` command to be available for it to work.
 
 ##### Installation instructions
 
