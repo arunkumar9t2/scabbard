@@ -14,7 +14,7 @@ class ScabbardGradlePlugin : Plugin<Project> {
   }
 
   companion object {
-    const val SCABBARD = "scabbard"
-    const val PLUGIN_ID = "scabbard-gradle-plugin"
+    internal const val SCABBARD = "scabbard"
+    internal const val SCABBARD_PLUGIN_ID = "scabbard.gradle"
   }
 }

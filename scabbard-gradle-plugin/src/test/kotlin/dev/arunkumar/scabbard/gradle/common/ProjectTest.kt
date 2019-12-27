@@ -9,7 +9,7 @@ import org.junit.Before
 abstract class ProjectTest {
   lateinit var project: Project
 
-  protected fun prepareScabbardExtension(block: DefaultScabbardSpec.() -> Unit = {}): DefaultScabbardSpec {
+  internal fun prepareScabbardExtension(block: DefaultScabbardSpec.() -> Unit = {}): DefaultScabbardSpec {
     return DefaultScabbardSpec(project).apply(block)
   }
 

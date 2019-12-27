@@ -15,7 +15,7 @@ interface ScabbardSpec {
   fun fullBindingGraphValidation(enabled: Boolean)
 }
 
-open class DefaultScabbardSpec(val project: Project) : ScabbardSpec {
+internal open class DefaultScabbardSpec(val project: Project) : ScabbardSpec {
 
   var isScabbardEnabled = true
   override fun enabled(enabled: Boolean) {

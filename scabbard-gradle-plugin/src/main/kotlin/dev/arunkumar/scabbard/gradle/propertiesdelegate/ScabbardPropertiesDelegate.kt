@@ -9,7 +9,7 @@ import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 
-class ScabbardPropertiesDelegate(private val scabbardSpec: DefaultScabbardSpec) {
+internal class ScabbardPropertiesDelegate(private val scabbardSpec: DefaultScabbardSpec) {
 
   companion object {
     internal const val FAIL_ON_ERROR = "$SCABBARD.failOnError"

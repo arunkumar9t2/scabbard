@@ -4,7 +4,7 @@ import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.ConfigurationContainer
 
-class VersionCalculator(private val project: Project) {
+internal class VersionCalculator(private val project: Project) {
 
   companion object {
     private const val CLASSPATH_CONFIG = "classpath"
@@ -13,7 +13,7 @@ class VersionCalculator(private val project: Project) {
   private fun versionFromConfigurations(configurations: ConfigurationContainer): String? {
     return try {
       configurations.getByName(CLASSPATH_CONFIG)
-        .dependencies.first { it.name == ScabbardGradlePlugin.PLUGIN_ID }
+        .dependencies.first { it.name == ScabbardGradlePlugin.SCABBARD_PLUGIN_ID }
         .version.takeIf { it?.trim()?.isNotEmpty() == true }
     } catch (e: Exception) {
       null
@@ -27,6 +27,6 @@ class VersionCalculator(private val project: Project) {
     //.also { project.logger.quiet("versionFromRootProject:$it") }
     val versionFromCurrentProject = versionFromConfigurations(currentProjectConfigs)
     //.also { project.logger.quiet("versionFromCurrentProject:$it") }
-    return versionFromCurrentProject ?: versionFromRootProject ?: "0.0.1" // <- worst case
+    return versionFromCurrentProject ?: versionFromRootProject ?: "0.1.0" // <- worst case
   }
 }

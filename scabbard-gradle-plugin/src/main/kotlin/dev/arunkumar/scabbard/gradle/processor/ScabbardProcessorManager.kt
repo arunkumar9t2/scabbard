@@ -7,14 +7,14 @@ import dev.arunkumar.scabbard.gradle.projectmeta.hasJavaAnnotationProcessorConfi
 import dev.arunkumar.scabbard.gradle.projectmeta.isKotlinProject
 
 //TODO(arun) Can this be provided via resources?
-const val SCABBARD_PROCESSOR = "dev.arunkumar:scabbard-processor:%s"
-const val KAPT = "kapt"
+internal const val SCABBARD_PROCESSOR_FORMAT = "dev.arunkumar:scabbard-processor:%s"
+internal const val KAPT = "kapt"
 
 /**
  * Responsible for applying Scabbard processor dependency based of project metadata. For example,
  * `kapt` for Kotlin projects and `annotationProcessor` for pure Java projects.
  */
-class ScabbardProcessorManager(private val scabbardSpec: DefaultScabbardSpec) {
+internal class ScabbardProcessorManager(private val scabbardSpec: DefaultScabbardSpec) {
 
   private val project get() = scabbardSpec.project
 
@@ -22,7 +22,7 @@ class ScabbardProcessorManager(private val scabbardSpec: DefaultScabbardSpec) {
     @Suppress("ControlFlowWithEmptyBody")
     if (scabbardSpec.isScabbardEnabled) {
       val scabbardVersion = VersionCalculator(project).calculate()
-      val scabbardDependency = SCABBARD_PROCESSOR.format(scabbardVersion)
+      val scabbardDependency = SCABBARD_PROCESSOR_FORMAT.format(scabbardVersion)
       project.logger.info("Applying scabbard dependency: $scabbardDependency")
       when {
         project.isKotlinProject -> project.dependencies.add(KAPT, scabbardDependency)

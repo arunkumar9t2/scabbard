@@ -1,6 +1,6 @@
 package dev.arunkumar.scabbard.gradle.propertiesdelegate
 
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.common.ProjectTest
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.DAGGER_FULL_BINDING_GRAPH_VALIDATION
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.FAIL_ON_ERROR
@@ -32,7 +32,7 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
     project.plugins.apply {
       apply("kotlin")
       apply("kotlin-kapt")
-      apply(PLUGIN_ID)
+      apply(SCABBARD_PLUGIN_ID)
     }
 
     ScabbardPropertiesDelegate(prepareScabbardExtension {
@@ -51,7 +51,7 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
   fun `for pure java projects assert extension properties are delegated to JavaCompile tasks`() {
     project.plugins.apply {
       apply("java")
-      apply(PLUGIN_ID)
+      apply(SCABBARD_PLUGIN_ID)
     }
 
     ScabbardPropertiesDelegate(prepareScabbardExtension {
@@ -71,7 +71,7 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
     project.plugins.apply {
       apply("kotlin")
       apply("kotlin-kapt")
-      apply(PLUGIN_ID)
+      apply(SCABBARD_PLUGIN_ID)
     }
 
     ScabbardPropertiesDelegate(prepareScabbardExtension {
@@ -88,7 +88,7 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
   fun `for java projects assert fullBindingGraphValidation property is forwarded to kapt and javac`() {
     project.plugins.apply {
       apply("java")
-      apply(PLUGIN_ID)
+      apply(SCABBARD_PLUGIN_ID)
     }
 
     ScabbardPropertiesDelegate(prepareScabbardExtension {

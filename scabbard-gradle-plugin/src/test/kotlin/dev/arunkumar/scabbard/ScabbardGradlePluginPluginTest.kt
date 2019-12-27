@@ -3,6 +3,8 @@
  */
 package dev.arunkumar.scabbard
 
+import com.google.common.truth.Truth
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLUGIN_ID
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Test
 
@@ -11,8 +13,9 @@ import org.junit.Test
  */
 class ScabbardGradlePluginPluginTest {
   @Test
-  fun `plugin registers task`() {
+  fun `project applies plugin`() {
     val project = ProjectBuilder.builder().build()
-    project.plugins.apply("scabbard-gradle-plugin")
+    project.plugins.apply(SCABBARD_PLUGIN_ID)
+    Truth.assertThat(project.plugins.getPlugin(SCABBARD_PLUGIN_ID)).isNotNull()
   }
 }
