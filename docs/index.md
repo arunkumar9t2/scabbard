@@ -45,7 +45,7 @@ dot - graphviz version 2.38.0 (20140413.2041)
 
 Scabbard artifacts are served via `jcenter()`. Please ensure `jcenter()` is added to your root `build.gradle`.
 
-### Gradle Plugin
+### [Gradle Plugin](https://plugins.gradle.org/plugin/scabbard.gradle)
 
 Using the plugins DSL:
 
@@ -85,7 +85,7 @@ scabbard {
 !!! success
     That's it. Now after building the project, Scabbard would have generated `dot` and `png` files for your Dagger components in your `build` folder.
 
-### Android Studio/Idea Plugin
+### [Android Studio/Idea Plugin](https://plugins.jetbrains.com/plugin/13548-scabbard--dagger-2-visualizer/)
 
 Scabbard also ships an IDE plugin to open generated png's directly from your source code via gutter icons. Please install plugins from `File > Preferences/Settings > Plugins > Market Place > Search for "Scabbard" > Install` and Restart.
 
@@ -118,3 +118,7 @@ Scabbard at its core is just an annotation processor. You could add `dev.arunkum
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+## Thanks
+
+Scabbard's icon 🗡 is from Square's [Dagger 1 Intellij plugin](https://github.com/square/dagger-intellij-plugin).
