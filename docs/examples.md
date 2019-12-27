@@ -15,8 +15,6 @@ Please download/open in new tab to zoom contents.
 `MainActivitySubComponent`
 <img src="../images/io_main.png" width="100%">
 
------
-
 ## [Plaid](https://github.com/android/plaid)
 
 `HomeComponent`
@@ -24,5 +22,3 @@ Please download/open in new tab to zoom contents.
 
 `UpvoteStoryServiceComponent`
 <img src="../images/plaid_upvote.png" width="100%">
-
------
