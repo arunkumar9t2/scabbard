@@ -29,7 +29,7 @@ More advanced [examples](https://arunkumar9t2.github.io/scabbard/examples/).
 
 ## Getting Started
 
-For samples, guide and usage instructions please visit the [documentation website](https://arunkumar9t2.github.io/scabbard/).
+For samples, guide and usage instructions please visit the [project website](https://arunkumar9t2.github.io/scabbard/).
 
 ## License
 
