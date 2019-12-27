@@ -1,6 +1,6 @@
 # Scabbard
 
-Visualize and understand your Dagger 2 dependency graph.
+A tool to visualize and understand your Dagger 2 dependency graph.
 <video width="100%" controls>
   <source src="video/ViewComponent.mp4" type="video/mp4">
   Your browser does not support the video tag.
