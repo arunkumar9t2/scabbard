@@ -26,7 +26,7 @@ Please refer to Scabbard cheat sheet.
 
 Yes, there are plans to support more formats. Please 👍 this issue.
 
-## I don't not see gutter icons to view graph.
+## I don't see gutter icons to view graph.
 
 Please wait for Android Studio/IntelliJ indexing to be done for gutter icons to be visible. Even after indexing if the icons are not visible, please file an issue. You could also look for generated `png` file in the `build` folder.
 
