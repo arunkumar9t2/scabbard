@@ -6,28 +6,46 @@ The `scabbard` plugin can be configured in following ways.
 
 ### Enable scabbard processor
 
-```groovy
+```Groovy tab=
 scabbard {
     enabled = true // default true
 }
 ```
 
+```Kotlin tab=
+scabbard.configure(closureOf<ScabbardSpec> {
+    enabled(true) // default true
+})
+```
+
 ### Fail build on any error in Scabbard processor
 
-```groovy
+```Groovy tab=
 scabbard {
     failOnError = true // default false
 }
+```
+
+```Kotlin tab=
+scabbard.configure(closureOf<ScabbardSpec> {
+    failOnError(true) // default false
+})
 ```
 
 By default, Scabbard processor does not fail the build should any error occur. This flag could be used to change that behavior.
 
 ### Enable full binding graph validation
 
-```groovy
+```Groovy tab=
 scabbard {
     fullBindingGraphValidation = true // default false
 }
+```
+
+```Kotlin tab=
+scabbard.configure(closureOf<ScabbardSpec> {
+    fullBindingGraphValidation(true) // default false
+})
 ```
 
 Enables Dagger's [full binding graph validation](https://dagger.dev/compiler-options.html#full-binding-graph-validation) which validates the entire graph including all bindings in every `@Component`, `@Subcomponent` and `@Module`. This enables highlighting missing bindings which can be used to understand errors. Additionally since `@Module` itself is seen a graph, graphs will be generated for bindings in a `@Module`.

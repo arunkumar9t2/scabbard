@@ -33,6 +33,9 @@ plugins:
 
 markdown_extensions:
   - admonition
+  - pymdownx.details
+  - pymdownx.magiclink
+  - pymdownx.superfences
   - codehilite:
       guess_lang: false
   - toc:

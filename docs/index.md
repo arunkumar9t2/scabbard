@@ -49,16 +49,23 @@ Scabbard artifacts are served via `jcenter()`. Please ensure `jcenter()` is adde
 
 Using the plugins DSL:
 
-```groovy
+```Groovy tab=
 plugins {
   // After Java, Kotlin or Android plugins  
   id "scabbard.gradle" version "0.0.1"
 }
 ```
 
+```Kotlin tab=
+plugins {
+  // After Java, Kotlin or Android plugins  
+  id("scabbard.gradle") version "0.0.1"
+}
+```
+
 or if you are using older versions of Gradle:
 
-```groovy
+```Groovy tab=
 buildscript {
   repositories {
     maven {
@@ -74,12 +81,34 @@ buildscript {
 apply plugin: "scabbard.gradle"
 ```
 
+```Kotlin tab=
+buildscript {
+  repositories {
+    maven {
+      url = uri("https://plugins.gradle.org/m2/")
+    }
+  }
+  dependencies {
+    classpath("gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.0.1")
+  }
+}
+
+// After Java, Kotlin or Android plugins
+apply(plugin = "scabbard.gradle")
+```
+
 After applying the plugin, configure the plugin by adding a `scabbard` block:
 
-```groovy
+```Groovy tab=
 scabbard {
     enabled = true
 }
+```
+
+```Kotlin tab=
+scabbard.configure(closureOf<ScabbardSpec> {
+    enabled(true)
+})
 ```
 
 !!! success
@@ -87,7 +116,7 @@ scabbard {
 
 ### [Android Studio/Idea Plugin](https://plugins.jetbrains.com/plugin/13548-scabbard--dagger-2-visualizer/)
 
-Scabbard also ships an IDE plugin to open generated png's directly from your source code via gutter icons. Please install plugins from `File > Preferences/Settings > Plugins > Market Place > Search for "Scabbard" > Install` and Restart.
+Scabbard also ships an IDE plugin to open generated `png`'s directly from your source code via gutter icons. Please install plugins from `File > Preferences/Settings > Plugins > Market Place > Search for "Scabbard" > Install` and Restart.
 
 Alternatively you could download the plugin `jar` file directly from [releases](https://github.com/arunkumar9t2/scabbard/releases) and install via `File > Preferences/Settings > Plugins > Gear Icon > Install from Disk and point to jar file`.
 
