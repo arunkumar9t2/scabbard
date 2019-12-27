@@ -8,7 +8,7 @@ repo_name: "arunkumar9t2/scabbard"
 repo_url: "https://github.com/arunkumar9t2/scabbard"
 
 nav:
-  - Overview: overview.md
+  - Overview: index.md
   - Configuration: configuration.md
   - Faq: faq.md
 theme:

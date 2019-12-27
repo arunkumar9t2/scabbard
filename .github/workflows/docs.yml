@@ -30,4 +30,4 @@ jobs:
           git config --global user.name "GitHub Action"
 
       - name: Publish to gh-pages
-        run: mkdocs gh-deploy
+        run: mkdocs gh-deploy -v
