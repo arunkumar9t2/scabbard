@@ -1,4 +1,4 @@
-name: Build Workflow
+name: Build workflow
 
 on: [push, pull_request]
 
@@ -21,10 +21,20 @@ jobs:
         run: |
           ./gradlew dependencies
 
-      - name: Build project
+      - name: Build scabbard project
         run: |
           ./gradlew assemble
 
-      - name: Test project
+      - name: Build scabbard gradle plugin
         run: |
+          cd scabbard-gradle-plugin
+          ./gradlew assemble
+
+      - name: Test scabbard project
+        run: |
+          ./gradlew check
+
+      - name: Test scabbard gradle plugin
+        run: |
+          cd scabbard-gradle-plugin
           ./gradlew check
