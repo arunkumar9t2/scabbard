@@ -11,9 +11,9 @@ width="210" hspace="10" vspace="10">
 [![Download](https://api.bintray.com/packages/arunkumar9t2/maven/scabbard-processor/images/download.svg) ](https://bintray.com/arunkumar9t2/maven/scabbard-processor/_latestVersion)![GitHub Workflow Status](https://img.shields.io/github/workflow/status/arunkumar9t2/scabbard/Build%20Workflow)
 [![Website](https://img.shields.io/badge/documentation-%20-brightgreen.svg)](https://arunkumar9t2.github.io/scabbard/)
 
-
-![https://thumbs.gfycat.com/ThankfulConfusedKillifish-small.gif](https://thumbs.gfycat.com/ThankfulConfusedKillifish-small.gif)
-
+<p align="center">
+<img src="https://thumbs.gfycat.com/ThankfulConfusedKillifish-small.gif">
+</p>
 
 More advanced [examples](https://arunkumar9t2.github.io/scabbard/examples/).
 
