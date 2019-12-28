@@ -7,6 +7,8 @@ remote_branch: gh-pages
 repo_name: "arunkumar9t2/scabbard"
 repo_url: "https://github.com/arunkumar9t2/scabbard"
 
+copyright: "Copyright &copy; 2020 Arunkumar"
+
 nav:
   - Overview: index.md
   - Configuration: configuration.md
@@ -27,6 +29,8 @@ extra:
   social:
     - type: "github"
       link: "https://github.com/arunkumar9t2/scabbard"
+    - type: "twitter"
+      link: "https://twitter.com/arunkumar_9t2"
 
 plugins:
   - search
