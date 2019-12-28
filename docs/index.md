@@ -52,14 +52,14 @@ Using the plugins DSL:
 ```Groovy tab=
 plugins {
   // After Java, Kotlin or Android plugins  
-  id "scabbard.gradle" version "0.0.1"
+  id "scabbard.gradle" version "0.1.0"
 }
 ```
 
 ```Kotlin tab=
 plugins {
   // After Java, Kotlin or Android plugins  
-  id("scabbard.gradle") version "0.0.1"
+  id("scabbard.gradle") version "0.1.0"
 }
 ```
 
@@ -73,7 +73,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.0.1"
+    classpath "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.1.0"
   }
 }
 
@@ -89,7 +89,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath("gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.0.1")
+    classpath("gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.1.0")
   }
 }
 
@@ -125,7 +125,7 @@ Alternatively you could download the plugin `zip` file directly from [releases](
 
 ### Other build systems
 
-Scabbard at its core is just an annotation processor. You could add `dev.arunkumar:scabbard-processor:0.0.1` to your build system's annotation processor config to get it working.
+Scabbard at its core is just an annotation processor. You could add `dev.arunkumar:scabbard-processor:0.1.0` to your build system's annotation processor config to get it working.
 
 ## Resources
 
