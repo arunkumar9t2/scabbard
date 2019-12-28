@@ -118,7 +118,7 @@ scabbard.configure(closureOf<ScabbardSpec> {
 
 Scabbard also ships an IDE plugin to open generated `png`'s directly from your source code via gutter icons. Please install plugins from `File > Preferences/Settings > Plugins > Market Place > Search for "Scabbard" > Install` and Restart.
 
-Alternatively you could download the plugin `jar` file directly from [releases](https://github.com/arunkumar9t2/scabbard/releases) and install via `File > Preferences/Settings > Plugins > Gear Icon > Install from Disk and point to jar file`.
+Alternatively you could download the plugin `zip` file directly from [releases](https://github.com/arunkumar9t2/scabbard/releases) and install via `File > Preferences/Settings > Plugins > Gear Icon > Install from Disk and point to jar file`.
 
 !!! success
     That's it. The plugin will automatically add an icon 🗡 next to `@Component`, `@Subcomponent` or `@Module` as soon as project is indexed.

@@ -12,9 +12,10 @@ nav:
   - Configuration: configuration.md
   - FAQ: faq.md
   - Examples: examples.md
+  - Cheat Sheet: cheat-sheet.md
 theme:
   name: "material"
-  logo: 'images/scabbard-icon.png'
+  logo: "images/scabbard-icon.png"
   palette:
     primary: "orange"
     accent: "teal"
