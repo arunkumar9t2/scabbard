@@ -8,7 +8,7 @@ The `scabbard` plugin can be configured in following ways.
 
 ```Groovy tab=
 scabbard {
-    enabled = true // default true
+    enabled true // default true
 }
 ```
 
@@ -22,7 +22,7 @@ scabbard.configure(closureOf<ScabbardSpec> {
 
 ```Groovy tab=
 scabbard {
-    failOnError = true // default false
+    failOnError true // default false
 }
 ```
 
@@ -38,7 +38,7 @@ By default, Scabbard processor does not fail the build should any error occur. T
 
 ```Groovy tab=
 scabbard {
-    fullBindingGraphValidation = true // default false
+    fullBindingGraphValidation true // default false
 }
 ```
 
