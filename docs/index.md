@@ -101,7 +101,7 @@ After applying the plugin, configure the plugin by adding a `scabbard` block:
 
 ```Groovy tab=
 scabbard {
-    enabled = true
+    enabled true
 }
 ```
 
