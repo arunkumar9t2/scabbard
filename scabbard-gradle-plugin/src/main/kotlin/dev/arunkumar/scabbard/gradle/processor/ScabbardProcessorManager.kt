@@ -30,7 +30,7 @@ internal class ScabbardProcessorManager(private val scabbardSpec: DefaultScabbar
           ANNOTATION_PROCESSOR,
           scabbardDependency
         )
-        else -> project.logger.error("Neither $ANNOTATION_PROCESSOR or $KAPT was found in project")
+        else -> project.logger.debug("Neither $ANNOTATION_PROCESSOR or $KAPT was found in project")
       }
     } else {
       //TODO(arun) Manually remove the dependency? It is possible for the dep to be added without plugin
