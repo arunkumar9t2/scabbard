@@ -114,6 +114,9 @@ scabbard.configure(closureOf<ScabbardSpec> {
 !!! success
     That's it. Now after building the project, Scabbard would have generated `dot` and `png` files for your Dagger components in your `build` folder.
 
+!!! todo
+    There are some improvements planned for improving plugin configuration syntax from **Kotlin**. Please see [#15](https://github.com/arunkumar9t2/scabbard/issues/15) for more details.
+
 ### [Android Studio/Idea Plugin](https://plugins.jetbrains.com/plugin/13548-scabbard--dagger-2-visualizer/)
 
 Scabbard also ships an IDE plugin to open generated `png`'s directly from your source code via gutter icons. Please install plugins from `File > Preferences/Settings > Plugins > Market Place > Search for "Scabbard" > Install` and Restart.
