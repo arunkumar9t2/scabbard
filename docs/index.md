@@ -1,6 +1,12 @@
 # Scabbard
 
+<p align="center">
+<img src="images/scabbard-icon.png" 
+width="190" hspace="10" vspace="10">
+</p>
+
 A tool to visualize and understand your Dagger 2 dependency graph.
+<br>
 <video width="100%" controls>
   <source src="video/ViewComponent.mp4" type="video/mp4">
   Your browser does not support the video tag.
@@ -134,6 +140,7 @@ Scabbard at its core is just an annotation processor. You could add `dev.arunkum
 
 * [Configuration](configuration.md)
 * [FAQ](faq.md)
+* [Cheat Sheet](cheat-sheet.md)
 
 ## License
 
