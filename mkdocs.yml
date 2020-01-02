@@ -47,6 +47,7 @@ markdown_extensions:
   - toc:
       permalink: true
 
+
 # Customization
 extra_css:
   - "css/site.css"

@@ -25,9 +25,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Setting up git"
-          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}.git
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git remote rm origin
+          git remote add origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}.git
 
       - name: Publish to gh-pages
-        run: mkdocs gh-deploy -v
+        run: mkdocs gh-deploy -v --config-file "${GITHUB_WORKSPACE}/mkdocs.yml" --force
