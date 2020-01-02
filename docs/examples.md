@@ -22,3 +22,8 @@ Please download/open in new tab to zoom contents.
 
 `UpvoteStoryServiceComponent`
 <img src="../images/plaid_upvote.png" width="100%">
+
+## [Santa Tracker](https://github.com/google/santa-tracker-android)
+
+`AppComponent`
+<img src="../images/santatracker_appcomponent.png" width="100%">
