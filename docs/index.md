@@ -141,6 +141,7 @@ Scabbard at its core is just an annotation processor. You could add `dev.arunkum
 * [Configuration](configuration.md)
 * [FAQ](faq.md)
 * [Cheat Sheet](cheat-sheet.md)
+* [Contributing](contributing.md)
 
 ## License
 

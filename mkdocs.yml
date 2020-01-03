@@ -15,6 +15,7 @@ nav:
   - FAQ: faq.md
   - Examples: examples.md
   - Cheat Sheet: cheat-sheet.md
+  - Contributing: contributing.md
 theme:
   name: "material"
   logo: "images/scabbard-icon.png"
