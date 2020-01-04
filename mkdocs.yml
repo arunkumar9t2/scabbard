@@ -45,6 +45,7 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.magiclink
   - pymdownx.superfences
+  - pymdownx.highlight
   - codehilite:
       guess_lang: false
   - toc:

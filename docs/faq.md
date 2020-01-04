@@ -16,8 +16,6 @@ There should be no impact since Scabbard only runs during compilation and genera
 
 2. Currently there are no benchmark available and more work is expected to be done in performance area.
 
-3. Scabbard processor is a plugin to Dagger via Dagger SPI and it is non incremental. There are some ideas to workaround this, please see #.
-
 ## How can I understand the generated graph?
 
 Please refer to Scabbard [cheat sheet](cheat-sheet.md).

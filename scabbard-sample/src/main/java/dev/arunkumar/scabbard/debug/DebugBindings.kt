@@ -30,7 +30,6 @@ class ProvisionBinding
 object ProvisionModule {
   @Provides
   @Singleton
-  @JvmStatic
   fun providesProvisionBinding() = ProvisionBinding()
 }
 
