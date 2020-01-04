@@ -1,6 +1,6 @@
 site_name: Scabbard
 site_description: "A tool to visualize Dagger 2 dependency graph"
-site_author: "2019 Arunkumar"
+site_author: "Arunkumar"
 site_url: "https://github.com/arunkumar9t2/scabbard"
 remote_branch: gh-pages
 
@@ -9,16 +9,10 @@ repo_url: "https://github.com/arunkumar9t2/scabbard"
 
 copyright: "Copyright &copy; 2020 Arunkumar"
 
-nav:
-  - Overview: index.md
-  - Configuration: configuration.md
-  - FAQ: faq.md
-  - Examples: examples.md
-  - Cheat Sheet: cheat-sheet.md
-  - Contributing: contributing.md
 theme:
   name: "material"
   logo: "images/scabbard-icon.png"
+  favicon: "images/scabbard-icon.png"
   palette:
     primary: "orange"
     accent: "teal"
@@ -32,6 +26,14 @@ extra:
       link: "https://github.com/arunkumar9t2/scabbard"
     - type: "twitter"
       link: "https://twitter.com/arunkumar_9t2"
+
+nav:
+  - Overview: index.md
+  - Configuration: configuration.md
+  - FAQ: faq.md
+  - Examples: examples.md
+  - Cheat Sheet: cheat-sheet.md
+  - Contributing: contributing.md
 
 plugins:
   - search
@@ -47,7 +49,6 @@ markdown_extensions:
       guess_lang: false
   - toc:
       permalink: true
-
 
 # Customization
 extra_css:
