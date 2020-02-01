@@ -13,6 +13,7 @@ internal class ScabbardPropertiesDelegate(private val scabbardSpec: DefaultScabb
 
   companion object {
     internal const val FAIL_ON_ERROR = "$SCABBARD.failOnError"
+    internal const val QUALIFIED_NAMES = "$SCABBARD.qualifiedNames"
     internal const val DAGGER_FULL_BINDING_GRAPH_VALIDATION =
       "dagger.fullBindingGraphValidation=WARNING"
   }
@@ -29,6 +30,7 @@ internal class ScabbardPropertiesDelegate(private val scabbardSpec: DefaultScabb
               kaptExtension.apply {
                 arguments {
                   arg(FAIL_ON_ERROR, scabbardSpec.failOnError)
+                  arg(QUALIFIED_NAMES, scabbardSpec.qualifiedNames)
 
                   if (scabbardSpec.fullGraphValidation) {
                     arg(DAGGER_FULL_BINDING_GRAPH_VALIDATION)
@@ -43,6 +45,7 @@ internal class ScabbardPropertiesDelegate(private val scabbardSpec: DefaultScabb
             tasks.withType<JavaCompile>().configureEach {
               options.compilerArgs.apply {
                 add("-A$FAIL_ON_ERROR=${scabbardSpec.failOnError}")
+                add("-A$QUALIFIED_NAMES=${scabbardSpec.qualifiedNames}")
 
                 if (scabbardSpec.fullGraphValidation) {
                   add("-A$DAGGER_FULL_BINDING_GRAPH_VALIDATION")

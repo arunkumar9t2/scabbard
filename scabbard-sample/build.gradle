@@ -32,6 +32,7 @@ scabbard {
     enabled true
     failOnError false
     fullBindingGraphValidation true
+    qualifiedNames true
 }
 
 apply from: "../gradle/scabbard-local-processor.gradle"
