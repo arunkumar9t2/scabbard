@@ -31,7 +31,8 @@ constructor(
   override val bindingGraph: BindingGraph,
   private val scabbardOptions: ScabbardOptions,
   private val scopeColors: ScopeColors,
-  private val outputManager: OutputManager
+  private val outputManager: OutputManager,
+  private val typeNameExtractor: TypeNameExtractor
 ) : BindingGraphProcessor {
 
   @Module
@@ -47,7 +48,7 @@ constructor(
 
   private val globalNodeIds = mutableMapOf<Node, String>()
   private val Node.id get() = globalNodeIds.getOrPut(this) { UUID.randomUUID().toString() }
-  private val Node.label get() = calculateLabel(scabbardOptions)
+  private val Node.label get() = calculateLabel(typeNameExtractor)
 
   override fun process() = processingBlock(scabbardOptions) {
     val network = bindingGraph.network()

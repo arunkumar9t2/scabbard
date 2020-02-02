@@ -4,16 +4,24 @@ import dagger.model.Binding
 import dagger.model.BindingGraph.ComponentNode
 import dagger.model.BindingGraph.Node
 import dagger.model.BindingKind.*
-import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 
 private const val newLine = "\\n"
 
 private data class MultiBindingData(val isMultiBinding: Boolean, val type: String)
 
-internal fun Node.calculateLabel(scabbardOptions: ScabbardOptions): String = when (this) {
+/**
+ * Calculates a node's name.
+ *
+ * @param typeNameExtractor - Uses the instance to calculate the name of the type. Calls [TypeNameExtractor.extractName] to
+ * get the name,
+ */
+internal fun Node.calculateLabel(typeNameExtractor: TypeNameExtractor): String = when (this) {
   is Binding -> {
     try {
-      var name = key().toString().replace(" ", newLine)
+      // Process qualifiers separately
+      val qualifier = ""
+      var name = typeNameExtractor.extractName(key().type())
+
       val scopeName = scopeName()
       val isSubComponentCreator = kind() == SUBCOMPONENT_CREATOR
 

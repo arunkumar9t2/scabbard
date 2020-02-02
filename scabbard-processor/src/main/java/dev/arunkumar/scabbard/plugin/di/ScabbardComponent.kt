@@ -10,6 +10,7 @@ import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.options.parseOptions
 import dev.arunkumar.scabbard.plugin.output.OutputModule
+import dev.arunkumar.scabbard.plugin.parser.TypeNameExtractorModule
 import dev.arunkumar.scabbard.plugin.processor.graphviz.GraphVizBindingGraphProcessor
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
@@ -20,6 +21,7 @@ import javax.lang.model.util.Types
   modules = [
     OutputModule::class,
     ProcessingEnvModule::class,
+    TypeNameExtractorModule::class,
     GraphVizBindingGraphProcessor.Builder::class
   ]
 )
