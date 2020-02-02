@@ -50,11 +50,11 @@ internal fun Node.calculateLabel(typeNameExtractor: TypeNameExtractor): String =
     }
   }
   is ComponentNode -> {
-    val name = componentPath().currentComponent().qualifiedName.toString()
+    val name = typeNameExtractor.extractName(componentPath().currentComponent())
     val scopeName = scopes().takeIf { it.isNotEmpty() }?.joinToString(separator = "|") { it.name }
     buildLabel(name, scopeName)
   }
-  else -> componentPath().toString()
+  else -> toString()
 }
 
 private fun buildLabel(

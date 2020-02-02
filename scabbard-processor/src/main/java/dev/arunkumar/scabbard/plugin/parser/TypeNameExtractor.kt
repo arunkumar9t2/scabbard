@@ -17,13 +17,18 @@ import javax.lang.model.util.SimpleTypeVisitor6
 
 
 /**
- * A extractor to calculate a [typeMirror]'s actual name
+ * A extractor to calculate a [TypeMirror]'s or [TypeElement]'s actual name
  */
 interface TypeNameExtractor {
   /**
    * @return the string representation of the given [typeMirror]
    */
   fun extractName(typeMirror: TypeMirror): String
+
+  /**
+   * @return the string representation of the given [typeElement]
+   */
+  fun extractName(typeElement: TypeElement): String
 }
 
 @Module
@@ -33,11 +38,11 @@ object TypeNameExtractorModule {
   @ProcessorScope
   fun typeNameExtractor(
     scabbardOptions: ScabbardOptions,
-    defaultTypeNameExtractor: DefaultTypeNameExtractor,
+    qualifiedTypeNameExtractor: QualifiedTypeNameExtractor,
     simpleTypeNameExtractor: SimpleTypeNameExtractor
   ): TypeNameExtractor {
     return if (scabbardOptions.qualifiedNames) {
-      defaultTypeNameExtractor
+      qualifiedTypeNameExtractor
     } else {
       simpleTypeNameExtractor
     }
@@ -49,10 +54,9 @@ object TypeNameExtractorModule {
  *
  * Example for [List] the result would be [java.util.List]
  */
-class DefaultTypeNameExtractor @Inject constructor() : TypeNameExtractor {
-  override fun extractName(typeMirror: TypeMirror): String {
-    return typeMirror.toString()
-  }
+class QualifiedTypeNameExtractor @Inject constructor() : TypeNameExtractor {
+  override fun extractName(typeMirror: TypeMirror) = typeMirror.toString()
+  override fun extractName(typeElement: TypeElement) = typeElement.toString()
 }
 
 /**
@@ -60,9 +64,9 @@ class DefaultTypeNameExtractor @Inject constructor() : TypeNameExtractor {
  */
 class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
 
-  override fun extractName(typeMirror: TypeMirror): String {
-    return typeToSimpleNameString(typeMirror)
-  }
+  override fun extractName(typeMirror: TypeMirror) = typeToSimpleNameString(typeMirror)
+
+  override fun extractName(typeElement: TypeElement) = typeElement.simpleName.toString()
 
   /**
    * Recursively each type and in the given [typeMirror] and calculates simple name.
