@@ -127,9 +127,7 @@ class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
       }
 
       override fun defaultAction(typeMirror: TypeMirror, p: Void?): Void? {
-        if (typeMirror.toString() == "?") {
-          builder.append("?")
-        }
+        builder.append(TypeName.get(typeMirror).toString())
         return null
       }
     }, null)
