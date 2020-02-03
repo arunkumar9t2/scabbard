@@ -214,7 +214,7 @@ constructor(
       .filterIsInstance<Binding>()
       .filter { it.kind().isMultibinding }
       .forEach { multiBinding ->
-        val name = multiBinding.key().toString()
+        val name = typeNameExtractor.extractName(multiBinding.key().type())
         cluster(name) {
           graphAttributes {
             "label" eq name
