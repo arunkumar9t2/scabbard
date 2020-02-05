@@ -16,16 +16,8 @@ repositories {
 }
 
 sourceSets {
-    main {
-        java {
-            srcDirs 'build/generated/source/kapt'
-        }
-    }
-    test {
-        java {
-            srcDirs 'build/generated/source/kapt'
-        }
-    }
+    main.java.srcDirs('build/generated/source/kapt/main')
+    test.java.srcDirs('build/generated/source/kapt/test')
 }
 
 dependencies {
@@ -34,6 +26,8 @@ dependencies {
     testCompileOnly "com.google.auto.service:auto-service:${versions.autoService}"
     kaptTest "com.google.auto.service:auto-service:${versions.autoService}"
     kaptTest "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    testImplementation project(path: ":scabbard-processor-tests:common")
 
     implementation project(path: ':dot-dsl')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"

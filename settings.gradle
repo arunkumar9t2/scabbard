@@ -4,6 +4,8 @@ include ':scabbard-idea-plugin'
 include ':scabbard-sample'
 include ':scabbard-sample-java'
 
+include ':scabbard-processor-tests:common'
+
 includeBuild('scabbard-gradle-plugin') {
     dependencySubstitution {
         substitute module('dev.arunkumar:scabbard-gradle-plugin') with project(':')

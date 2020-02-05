@@ -1,0 +1,32 @@
+plugins {
+    id "java-library"
+    id "org.jetbrains.kotlin.jvm"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    jcenter()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/kapt'
+        }
+    }
+    test {
+        java {
+            srcDirs 'build/generated/source/kapt'
+        }
+    }
+}
+
+dependencies {
+    testImplementation "junit:junit:${versions.junit}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+    implementation "guru.nidi:graphviz-java:${versions.graphviz}"
+}
