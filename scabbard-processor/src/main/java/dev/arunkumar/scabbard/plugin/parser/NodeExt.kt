@@ -16,8 +16,9 @@ private const val newLine = "\\n"
 internal fun Node.calculateLabel(typeNameExtractor: TypeNameExtractor): String = when (this) {
   is Binding -> {
     try {
-      // Process qualifiers separately
-      val qualifier = ""
+      val qualifier = key().qualifier().orElse(null)?.let { annotationMirror ->
+        "@" + typeNameExtractor.extractName(annotationMirror.annotationType.asElement().asType())
+      }
       var name = typeNameExtractor.extractName(key().type())
 
       val scopeName = scopeName()
@@ -27,7 +28,7 @@ internal fun Node.calculateLabel(typeNameExtractor: TypeNameExtractor): String =
         name = identifier.let { it.module().split(".").last() + "." + it.bindingElement() }
       }
 
-      buildLabel(name, scopeName, isSubComponentCreator)
+      buildLabel(name, qualifier, scopeName, isSubComponentCreator)
     } catch (e: Exception) {
       e.printStackTrace()
       "Errored $this"
@@ -36,22 +37,28 @@ internal fun Node.calculateLabel(typeNameExtractor: TypeNameExtractor): String =
   is ComponentNode -> {
     val name = typeNameExtractor.extractName(componentPath().currentComponent())
     val scopeName = scopes().takeIf { it.isNotEmpty() }?.joinToString(separator = "|") { it.name }
-    buildLabel(name, scopeName)
+    buildLabel(name = name, scopeName = scopeName)
   }
   else -> toString()
 }
 
 private fun buildLabel(
   name: String,
+  qualifier: String? = null,
   scopeName: String? = null,
   isSubComponentCreator: Boolean = false
 ) = buildString {
+  qualifier?.let {
+    append(qualifier)
+    append(newLine)
+  }
   scopeName?.let {
     append(scopeName)
     append(newLine)
   }
   append(name)
   if (isSubComponentCreator) {
+    append(newLine)
     append(newLine)
     append("Subcomponent Creator")
   }
