@@ -40,7 +40,7 @@ class BindsEdgeTest {
 
 
   @Test
-  fun `assert edge to binding node from supertype to implmentation has correct attributes`() {
+  fun `assert edge to binding node from supertype to implementation has correct attributes`() {
     assertThat(generatedGraph).contains("[label=\"BindsEdgeTest.SuperType\", color=\"turquoise\"]")
     assertThat(generatedGraph).contains("[label=\"BindsEdgeTest.Implementation\", color=\"turquoise\"]")
     assertThat(generatedGraph).contains("[style=\"dotted\", label=\"delegates\"]")
