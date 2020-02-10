@@ -61,12 +61,12 @@ class ScopeTest {
   @Test
   fun `test nodes present in a scope have different but consistent colors set`() {
     assertThat(simpleSubcomponent)
-      .contains("[label=\"@SubScope\\ndev.arunkumar.scabbard.plugin.ScopeTest.AnotherSubcomponentNode\", color=\"aquamarine\"]")
+      .contains("[label=\"@SubScope\\nScopeTest.AnotherSubcomponentNode\", color=\"aquamarine\"]")
   }
 
   @Test
   fun `test root component links to all subcomponents and subcomponents have colors set on them`() {
     assertThat(simpleComponent)
-      .contains("[label=\"@SubScope\\ndev.arunkumar.scabbard.plugin.ScopeTest.SimpleSubComponent\", color=\"aquamarine\"]")
+      .contains("[label=\"@SubScope\\nScopeTest.SimpleSubComponent\", color=\"aquamarine\"]")
   }
 }

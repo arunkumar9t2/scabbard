@@ -4,6 +4,7 @@ import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLU
 import dev.arunkumar.scabbard.gradle.common.ProjectTest
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.DAGGER_FULL_BINDING_GRAPH_VALIDATION
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.FAIL_ON_ERROR
+import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.QUALIFIED_NAMES
 import org.gradle.api.Project
 import org.gradle.api.tasks.compile.CompileOptions
 import org.gradle.api.tasks.compile.JavaCompile
@@ -28,7 +29,7 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
   }
 
   @Test
-  fun `when kapt is present is assert extension properties are delegated to kapt`() {
+  fun `when kapt is present assert extension properties are delegated to kapt`() {
     project.plugins.apply {
       apply("kotlin")
       apply("kotlin-kapt")
@@ -37,12 +38,17 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
 
     ScabbardPropertiesDelegate(prepareScabbardExtension {
       failOnError = true
+      qualifiedNames = true
     }).delegate()
 
     project.kaptOptions().let { options ->
       assertTrue(
-        "Kapt arguments are added",
+        "Fail on error flag added",
         options.containsKey(FAIL_ON_ERROR) && options.containsValue("true")
+      )
+      assertTrue(
+        "Qualified names flag added",
+        options.containsKey(QUALIFIED_NAMES) && options.containsValue("true")
       )
     }
   }
@@ -56,12 +62,17 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
 
     ScabbardPropertiesDelegate(prepareScabbardExtension {
       failOnError = true
+      qualifiedNames = true
     }).delegate()
 
     project.javacOptions { options ->
       assertTrue(
-        "JavaC Arguments are added",
+        "Fail on error flag  added",
         options.compilerArgs.contains("-A$FAIL_ON_ERROR=true")
+      )
+      assertTrue(
+        "Qualified names flag added",
+        options.compilerArgs.contains("-A$QUALIFIED_NAMES=true")
       )
     }
   }

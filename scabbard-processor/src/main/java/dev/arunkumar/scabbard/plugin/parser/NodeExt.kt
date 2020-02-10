@@ -3,58 +3,57 @@ package dev.arunkumar.scabbard.plugin.parser
 import dagger.model.Binding
 import dagger.model.BindingGraph.ComponentNode
 import dagger.model.BindingGraph.Node
-import dagger.model.BindingKind.*
-import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
+import dagger.model.BindingKind.SUBCOMPONENT_CREATOR
 
 private const val newLine = "\\n"
 
-private data class MultiBindingData(val isMultiBinding: Boolean, val type: String)
-
-internal fun Node.calculateLabel(scabbardOptions: ScabbardOptions): String = when (this) {
+/**
+ * Calculates a node's name.
+ *
+ * @param typeNameExtractor - Uses the instance to calculate the name of the type. Calls [TypeNameExtractor.extractName] to
+ * get the name.
+ */
+internal fun Node.calculateLabel(typeNameExtractor: TypeNameExtractor): String = when (this) {
   is Binding -> {
     try {
-      var name = key().toString().replace(" ", newLine)
+      val qualifier = key().qualifier()
+        .orElse(null)?.let { annotationMirror ->
+          typeNameExtractor.extractName(annotationMirror)
+        }
+
+      var name = typeNameExtractor.extractName(key().type())
+
       val scopeName = scopeName()
       val isSubComponentCreator = kind() == SUBCOMPONENT_CREATOR
-
-      val multiBindingData = MultiBindingData(
-        isMultiBinding = kind().isMultibinding,
-        type = when (kind()) {
-          MULTIBOUND_MAP -> "MAP"
-          MULTIBOUND_SET -> "SET"
-          else -> "UNKNOWN"
-        }
-      )
 
       key().multibindingContributionIdentifier().ifPresent { identifier ->
         name = identifier.let { it.module().split(".").last() + "." + it.bindingElement() }
       }
 
-      buildLabel(
-        name,
-        scopeName,
-        isSubComponentCreator,
-        multiBindingData
-      )
+      buildLabel(name, qualifier, scopeName, isSubComponentCreator)
     } catch (e: Exception) {
       e.printStackTrace()
       "Errored $this"
     }
   }
   is ComponentNode -> {
-    val name = componentPath().currentComponent().qualifiedName.toString()
+    val name = typeNameExtractor.extractName(componentPath().currentComponent().asType())
     val scopeName = scopes().takeIf { it.isNotEmpty() }?.joinToString(separator = "|") { it.name }
-    buildLabel(name, scopeName)
+    buildLabel(name = name, scopeName = scopeName)
   }
-  else -> componentPath().toString()
+  else -> toString()
 }
 
 private fun buildLabel(
   name: String,
+  qualifier: String? = null,
   scopeName: String? = null,
-  isSubComponentCreator: Boolean = false,
-  multiBindingData: MultiBindingData? = null
+  isSubComponentCreator: Boolean = false
 ) = buildString {
+  qualifier?.let {
+    append(qualifier)
+    append(newLine)
+  }
   scopeName?.let {
     append(scopeName)
     append(newLine)
@@ -62,10 +61,7 @@ private fun buildLabel(
   append(name)
   if (isSubComponentCreator) {
     append(newLine)
-    append("Subcomponent Creator")
-  }
-  if (multiBindingData?.isMultiBinding == true) {
     append(newLine)
-    append(multiBindingData.type)
+    append("Subcomponent Creator")
   }
 }

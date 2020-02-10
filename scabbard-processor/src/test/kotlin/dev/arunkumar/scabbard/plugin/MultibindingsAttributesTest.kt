@@ -60,13 +60,13 @@ class MultibindingsAttributesTest {
       ?.graphs()
       ?.firstOrNull()
 
-    assertThat(multibindingsCluster!!.name()).isEqualTo("java.util.Set<java.lang.String>")
+    assertThat(multibindingsCluster!!.name()).isEqualTo("Set<String>")
     val multibindingsAttrs = multibindingsCluster.graphAttrs()
-    assertThat(multibindingsAttrs["label"]).isEqualTo(Label.of("java.util.Set<java.lang.String>"))
+    assertThat(multibindingsAttrs["label"]).isEqualTo(Label.of("Set<String>"))
     assertThat(multibindingsAttrs["labeljust"]).isEqualTo("c")
     assertThat(multibindingsAttrs["style"]).isEqualTo("rounded")
 
-    assertThat(generatedText).contains("[shape=\"tab\", label=\"java.util.Set<java.lang.String>\\nSET\", color=\"turquoise\"]")
-    assertThat(generatedText).contains("[label=\"dev.arunkumar.scabbard.plugin.MultibindingsAttributesTest.NodeA\", color=\"turquoise\"]")
+    assertThat(generatedText).contains("[shape=\"tab\", label=\"Set<String>\", color=\"turquoise\"]")
+    assertThat(generatedText).contains("[label=\"MultibindingsAttributesTest.NodeA\", color=\"turquoise\"]")
   }
 }

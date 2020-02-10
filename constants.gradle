@@ -13,6 +13,7 @@ ext {
             'graphviz'      : '0.12.1',
             'dagger'        : '2.25.3',
             'autoService'   : '1.0-rc6',
+            'autoCommon'    : '0.10',
             'guava'         : '24.1-jre',
             'junit'         : '4.12',
             'truth'         : '1.0',

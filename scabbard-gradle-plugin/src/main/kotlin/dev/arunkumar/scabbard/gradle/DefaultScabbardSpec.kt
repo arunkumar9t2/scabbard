@@ -9,6 +9,12 @@ interface ScabbardSpec {
   fun failOnError(failOnError: Boolean)
 
   /**
+   * Flag to control if fully qualified names should be used everywhere in the graph. Default value
+   * is `false`
+   */
+  fun qualifiedNames(enabled: Boolean)
+
+  /**
    * Configures Dagger processor to do full graph validation which processes each `@Module`, `@Component`
    * and `@Subcomponent`. This enables visualization of missing bindings and generates graphs for
    * `@Module` too. */
@@ -30,6 +36,11 @@ internal open class DefaultScabbardSpec(val project: Project) : ScabbardSpec {
   var fullGraphValidation = false
   override fun fullBindingGraphValidation(enabled: Boolean) {
     fullGraphValidation = enabled
+  }
+
+  var qualifiedNames = false
+  override fun qualifiedNames(enabled: Boolean) {
+    qualifiedNames = enabled
   }
 
   inline fun ifEnabled(block: () -> Unit) {

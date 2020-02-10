@@ -39,7 +39,7 @@ class RootComponentDefaultAttributesTest {
     assertThat(generatedText)
       .contains("digraph \"dev.arunkumar.scabbard.plugin.RootComponentDefaultAttributesTest.SimpleComponent\" {")
     // Default graph attributes
-    assertThat(generatedText).contains("graph [rankdir=\"LR\", labeljust=\"l\", label=\"dev.arunkumar.scabbard.plugin.RootComponentDefaultAttributesTest.SimpleComponent\", pad=\"0.2\", compound=\"true\"]")
+    assertThat(generatedText).contains("graph [rankdir=\"LR\", labeljust=\"l\", label=\"RootComponentDefaultAttributesTest.SimpleComponent\", pad=\"0.2\", compound=\"true\"]")
     // Default node attributes
     assertThat(generatedText).contains(" node [shape=\"rectangle\", style=\"filled\", color=\"turquoise\"]")
   }

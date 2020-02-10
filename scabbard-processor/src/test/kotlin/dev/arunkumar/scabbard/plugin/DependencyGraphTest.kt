@@ -46,6 +46,6 @@ class DependencyGraphTest {
     assertThat(generatedText).contains(" graph [labeljust=\"l\", label=\"Dependency Graph\"]")
     assertThat(generatedText).contains("[style=\"invis\", shape=\"point\"]") // component node
     // Label and default color
-    assertThat(generatedText).contains("[label=\"dev.arunkumar.scabbard.plugin.DependencyGraphTest.NodeA\", color=\"turquoise\"]")
+    assertThat(generatedText).contains("[label=\"DependencyGraphTest.NodeA\", color=\"turquoise\"]")
   }
 }

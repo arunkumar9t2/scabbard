@@ -45,7 +45,7 @@ class ComponentEntryPointsTest {
     val stringEntryPoint = entryPoints.nodes().first()
     val attrs = stringEntryPoint.attrs()
     assertThat(attrs["shape"].toString()).contains("component")
-    assertThat(attrs["label"]).isEqualTo(Label.of(java.lang.String::class.java.name))
+    assertThat(attrs["label"]).isEqualTo(Label.of("String"))
     assertThat(attrs["penwidth"].toString()).contains("2")
   }
 }

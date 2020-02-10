@@ -3,7 +3,6 @@ package dev.arunkumar.scabbard.plugin
 import com.google.common.truth.Truth.assertThat
 import dagger.Component
 import dagger.Subcomponent
-import guru.nidi.graphviz.model.MutableGraph
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -13,7 +12,7 @@ import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @RunWith(JUnit4::class)
-class SubcomponentCreatorBindingEdgeTest {
+class SubComponentDefaultAttributesTest {
 
   class NodeA @Inject constructor()
   @Singleton
@@ -44,25 +43,15 @@ class SubcomponentCreatorBindingEdgeTest {
     }
   }
 
-  private lateinit var generatedGraph: MutableGraph
   private lateinit var generatedText: String
-
 
   @Before
   fun setup() {
-    generatedGraph = SimpleComponent::class.java.parsedGraph()
-    generatedText = SimpleComponent::class.java.generatedDotFile().readText()
+    generatedText = SimpleSubComponent::class.java.generatedDotFile().readText()
   }
 
   @Test
-  fun `assert edge between component and subcomponent creator is rendered with dashed lines and label`() {
-    assertThat(generatedText).contains(" subgraph \"cluster_Subcomponents\" {")
-    assertThat(generatedText).contains(
-      "[shape=\"component\", " +
-          "label=\"SubcomponentCreatorBindingEdgeTest.SimpleSubComponent.Factory\\n\\nSubcomponent Creator\"," +
-          " penwidth=\"2\"]"
-    )
-    assertThat(generatedText).contains("[style=\"dashed\", xlabel=\"subcomponent\"]")
-    assertThat(generatedText).contains("[label=\"SubcomponentCreatorBindingEdgeTest.NodeA\", color=\"turquoise\"]")
+  fun `test subcomponent hierarchy is set as label`() {
+    assertThat(generatedText).contains("label=\"SubComponentDefaultAttributesTest.SimpleComponent → SubComponentDefaultAttributesTest.SimpleSubComponent\"")
   }
 }
