@@ -15,7 +15,7 @@ import javax.lang.model.util.SimpleTypeVisitor6
 
 
 /**
- * A extractor to calculate a [TypeMirror]'s or [TypeElement]'s actual name
+ * A extractor to calculate a type's name.
  */
 interface TypeNameExtractor {
   /**
@@ -30,7 +30,7 @@ interface TypeNameExtractor {
 
   /**
    * @return the component hierarchy in string representation. For example:
-   * "AppComponent -> SubComponent"
+   * "AppComponent → SubComponent"
    */
   fun extractName(componentPath: ComponentPath): String
 }
@@ -53,7 +53,8 @@ object TypeNameExtractorModule {
 }
 
 /**
- * A [TypeNameExtractor] implementation that returns the fully qualified name of the type.
+ * A [TypeNameExtractor] implementation that returns the fully qualified name of the type. For other
+ * types, the implementation simply calls [toString]
  *
  * Example for [List] the result would be [java.util.List]
  */

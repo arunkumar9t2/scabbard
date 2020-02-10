@@ -11,7 +11,7 @@ private const val newLine = "\\n"
  * Calculates a node's name.
  *
  * @param typeNameExtractor - Uses the instance to calculate the name of the type. Calls [TypeNameExtractor.extractName] to
- * get the name,
+ * get the name.
  */
 internal fun Node.calculateLabel(typeNameExtractor: TypeNameExtractor): String = when (this) {
   is Binding -> {
