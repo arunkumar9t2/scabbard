@@ -16,9 +16,11 @@ private const val newLine = "\\n"
 internal fun Node.calculateLabel(typeNameExtractor: TypeNameExtractor): String = when (this) {
   is Binding -> {
     try {
-      val qualifier = key().qualifier().orElse(null)?.let { annotationMirror ->
-        "@" + typeNameExtractor.extractName(annotationMirror.annotationType.asElement().asType())
-      }
+      val qualifier = key().qualifier()
+        .orElse(null)?.let { annotationMirror ->
+          typeNameExtractor.extractName(annotationMirror)
+        }
+
       var name = typeNameExtractor.extractName(key().type())
 
       val scopeName = scopeName()

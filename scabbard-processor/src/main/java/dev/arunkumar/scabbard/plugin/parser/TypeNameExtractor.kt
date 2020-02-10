@@ -7,10 +7,7 @@ import dagger.Provides
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import javax.inject.Inject
-import javax.lang.model.element.Element
-import javax.lang.model.element.ElementKind
-import javax.lang.model.element.PackageElement
-import javax.lang.model.element.TypeElement
+import javax.lang.model.element.*
 import javax.lang.model.type.*
 import javax.lang.model.type.TypeKind.*
 import javax.lang.model.util.SimpleTypeVisitor6
@@ -29,6 +26,11 @@ interface TypeNameExtractor {
    * @return the string representation of the given [typeElement]
    */
   fun extractName(typeElement: TypeElement): String
+
+  /**
+   * @return the string representation of the given [annotationMirror]
+   */
+  fun extractName(annotationMirror: AnnotationMirror): String
 }
 
 @Module
@@ -41,10 +43,9 @@ object TypeNameExtractorModule {
     qualifiedTypeNameExtractor: QualifiedTypeNameExtractor,
     simpleTypeNameExtractor: SimpleTypeNameExtractor
   ): TypeNameExtractor {
-    return if (scabbardOptions.qualifiedNames) {
-      qualifiedTypeNameExtractor
-    } else {
-      simpleTypeNameExtractor
+    return when {
+      scabbardOptions.qualifiedNames -> qualifiedTypeNameExtractor
+      else -> simpleTypeNameExtractor
     }
   }
 }
@@ -57,6 +58,9 @@ object TypeNameExtractorModule {
 class QualifiedTypeNameExtractor @Inject constructor() : TypeNameExtractor {
   override fun extractName(typeMirror: TypeMirror) = typeMirror.toString()
   override fun extractName(typeElement: TypeElement) = typeElement.toString()
+  override fun extractName(annotationMirror: AnnotationMirror): String {
+    return annotationMirror.toString()
+  }
 }
 
 /**
@@ -67,6 +71,10 @@ class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
   override fun extractName(typeMirror: TypeMirror) = typeToSimpleNameString(typeMirror)
 
   override fun extractName(typeElement: TypeElement) = typeElement.simpleName.toString()
+
+  override fun extractName(annotationMirror: AnnotationMirror): String {
+    return annotationMirror.extractName(typeParser = { type -> extractName(type) })
+  }
 
   /**
    * Recursively each type and in the given [typeMirror] and calculates simple name.

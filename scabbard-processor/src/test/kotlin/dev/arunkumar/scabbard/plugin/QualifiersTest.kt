@@ -8,6 +8,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import javax.inject.Named
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
@@ -18,13 +19,25 @@ class QualifiersTest {
   @MustBeDocumented
   annotation class SimpleQualifier
 
+  @Qualifier
+  @MustBeDocumented
+  annotation class ComplexQualifier(val someStringValue: String)
+
   class Node
 
   @Module
   object QualifiersModule {
     @Provides
     @SimpleQualifier
-    fun providesNode() = Node()
+    fun simpleNode() = Node()
+
+    @Provides
+    @Named("node")
+    fun namedNode() = Node()
+
+    @Provides
+    @ComplexQualifier("simple")
+    fun complexNode() = Node()
   }
 
   @Singleton
@@ -32,6 +45,12 @@ class QualifiersTest {
   interface SimpleComponent {
     @SimpleQualifier
     fun node(): Node
+
+    @Named("node")
+    fun namedNode(): Node
+
+    @ComplexQualifier("simple")
+    fun complexNode(): Node
   }
 
   private lateinit var generatedGraphText: String
@@ -42,7 +61,17 @@ class QualifiersTest {
   }
 
   @Test
-  fun `assert binding has qualifier prefixed about binding name`() {
+  fun `assert binding has qualifier prefixed followed by a new line`() {
     assertThat(generatedGraphText).contains("label=\"@QualifiersTest.SimpleQualifier\\nQualifiersTest.Node\"")
+  }
+
+  @Test
+  fun `assert binding has named qualifier prefixed followed by a new line`() {
+    assertThat(generatedGraphText).contains("label=\"@Named(\\\"node\\\")\\nQualifiersTest.Node\"")
+  }
+
+  @Test
+  fun `assert binding has complex qualifier rendered with values followed by a new line`() {
+    assertThat(generatedGraphText).contains("label=\"@QualifiersTest.ComplexQualifier(someStringValue=\\\"simple\\\")\\nQualifiersTest.Node\"")
   }
 }
