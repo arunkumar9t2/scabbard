@@ -62,7 +62,7 @@ class SubcomponentCreatorBindingEdgeTest {
           "label=\"SubcomponentCreatorBindingEdgeTest.SimpleSubComponent.Factory\\n\\nSubcomponent Creator\"," +
           " penwidth=\"2\"]"
     )
-    assertThat(generatedText).contains("[style=\"dashed\", xlabel=\"subcomponent\"]")
+    assertThat(generatedText).contains("[style=\"dashed\", label=\"subcomponent\"]")
     assertThat(generatedText).contains("[label=\"SubcomponentCreatorBindingEdgeTest.NodeA\", color=\"turquoise\"]")
   }
 }

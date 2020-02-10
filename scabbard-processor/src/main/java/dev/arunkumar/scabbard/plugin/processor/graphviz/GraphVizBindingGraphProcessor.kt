@@ -263,7 +263,7 @@ constructor(
       is SubcomponentCreatorBindingEdge -> {
         (source.id link target.id) {
           "style" eq "dashed"
-          "xlabel" eq "subcomponent"
+          "label" eq "subcomponent"
         }
       }
     }
