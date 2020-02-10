@@ -89,7 +89,7 @@ constructor(
       graphAttributes {
         "rankdir" eq "LR"
         "labeljust" eq "l"
-        "label" eq typeNameExtractor.extractName(currentComponentPath.currentComponent())
+        "label" eq typeNameExtractor.extractName(currentComponentPath)
         "pad" eq 0.2
         "compound" eq true
       }

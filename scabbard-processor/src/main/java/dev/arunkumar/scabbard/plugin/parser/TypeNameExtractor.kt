@@ -4,6 +4,7 @@ import com.squareup.javapoet.ClassName
 import com.squareup.javapoet.TypeName
 import dagger.Module
 import dagger.Provides
+import dagger.model.ComponentPath
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import javax.inject.Inject
@@ -31,6 +32,12 @@ interface TypeNameExtractor {
    * @return the string representation of the given [annotationMirror]
    */
   fun extractName(annotationMirror: AnnotationMirror): String
+
+  /**
+   * @return the component hierarchy in string representation. For example:
+   * "AppComponent -> SubComponent"
+   */
+  fun extractName(componentPath: ComponentPath): String
 }
 
 @Module
@@ -58,9 +65,8 @@ object TypeNameExtractorModule {
 class QualifiedTypeNameExtractor @Inject constructor() : TypeNameExtractor {
   override fun extractName(typeMirror: TypeMirror) = typeMirror.toString()
   override fun extractName(typeElement: TypeElement) = typeElement.toString()
-  override fun extractName(annotationMirror: AnnotationMirror): String {
-    return annotationMirror.toString()
-  }
+  override fun extractName(annotationMirror: AnnotationMirror) = annotationMirror.toString()
+  override fun extractName(componentPath: ComponentPath): String = componentPath.toString()
 }
 
 /**
@@ -75,6 +81,10 @@ class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
   override fun extractName(annotationMirror: AnnotationMirror): String {
     return annotationMirror.extractName(typeParser = { type -> extractName(type) })
   }
+
+  override fun extractName(componentPath: ComponentPath) = componentPath
+    .components()
+    .joinToString(separator = " → ") { extractName(it.asType()) }
 
   /**
    * Recursively each type and in the given [typeMirror] and calculates simple name.
@@ -172,7 +182,7 @@ class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
     return element as PackageElement
   }
 
-  fun box(primitiveType: PrimitiveType): TypeName? {
+  private fun box(primitiveType: PrimitiveType): TypeName? {
     return when (primitiveType.kind) {
       BYTE -> ClassName.get(Byte::class.java)
       SHORT -> ClassName.get(Short::class.java)
