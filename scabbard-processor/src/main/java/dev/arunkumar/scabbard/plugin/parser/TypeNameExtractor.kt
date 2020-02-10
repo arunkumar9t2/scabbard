@@ -24,11 +24,6 @@ interface TypeNameExtractor {
   fun extractName(typeMirror: TypeMirror): String
 
   /**
-   * @return the string representation of the given [typeElement]
-   */
-  fun extractName(typeElement: TypeElement): String
-
-  /**
    * @return the string representation of the given [annotationMirror]
    */
   fun extractName(annotationMirror: AnnotationMirror): String
@@ -64,7 +59,6 @@ object TypeNameExtractorModule {
  */
 class QualifiedTypeNameExtractor @Inject constructor() : TypeNameExtractor {
   override fun extractName(typeMirror: TypeMirror) = typeMirror.toString()
-  override fun extractName(typeElement: TypeElement) = typeElement.toString()
   override fun extractName(annotationMirror: AnnotationMirror) = annotationMirror.toString()
   override fun extractName(componentPath: ComponentPath): String = componentPath.toString()
 }
@@ -75,8 +69,6 @@ class QualifiedTypeNameExtractor @Inject constructor() : TypeNameExtractor {
 class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
 
   override fun extractName(typeMirror: TypeMirror) = typeToSimpleNameString(typeMirror)
-
-  override fun extractName(typeElement: TypeElement) = typeElement.simpleName.toString()
 
   override fun extractName(annotationMirror: AnnotationMirror): String {
     return annotationMirror.extractName(typeParser = { type -> extractName(type) })

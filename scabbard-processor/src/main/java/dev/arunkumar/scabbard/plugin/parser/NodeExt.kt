@@ -37,7 +37,7 @@ internal fun Node.calculateLabel(typeNameExtractor: TypeNameExtractor): String =
     }
   }
   is ComponentNode -> {
-    val name = typeNameExtractor.extractName(componentPath().currentComponent())
+    val name = typeNameExtractor.extractName(componentPath().currentComponent().asType())
     val scopeName = scopes().takeIf { it.isNotEmpty() }?.joinToString(separator = "|") { it.name }
     buildLabel(name = name, scopeName = scopeName)
   }

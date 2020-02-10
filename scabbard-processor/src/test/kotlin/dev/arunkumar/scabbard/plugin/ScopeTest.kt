@@ -67,6 +67,6 @@ class ScopeTest {
   @Test
   fun `test root component links to all subcomponents and subcomponents have colors set on them`() {
     assertThat(simpleComponent)
-      .contains("[label=\"@SubScope\\nSimpleSubComponent\", color=\"aquamarine\"]")
+      .contains("[label=\"@SubScope\\nScopeTest.SimpleSubComponent\", color=\"aquamarine\"]")
   }
 }
