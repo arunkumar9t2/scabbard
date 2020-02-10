@@ -8,6 +8,10 @@ interface ScabbardSpec {
   // fun singleGraph(enabled: Boolean)
   fun failOnError(failOnError: Boolean)
 
+  /**
+   * Flag to control if fully qualified names should be used everywhere in the graph. Default value
+   * is `false`
+   */
   fun qualifiedNames(enabled: Boolean)
 
   /**
