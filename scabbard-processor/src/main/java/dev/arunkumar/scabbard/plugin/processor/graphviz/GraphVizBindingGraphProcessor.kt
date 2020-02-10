@@ -135,7 +135,7 @@ constructor(
     .filter { it.isEntryPoint }
     .forEach { node ->
       val label = when (node.kind()) {
-        MEMBERS_INJECTION -> "inject ( ${node.label} )"
+        MEMBERS_INJECTION -> "inject (${node.label})"
         else -> node.label
       }
       node.id {
