@@ -25,15 +25,19 @@ class KotlinContributesAndroidInjectorLineMarker : LineMarkerProvider {
           // We exclude the method name, to process inner classes first
           val qualifiedPath = element.fqName?.asString()?.split(".$methodName")?.first()
           if (qualifiedPath != null) {
-            // Replace inner class paths with "_" and capitalize the method name to get the full path
-            val generatedImageFileName = "$packageName." + qualifiedPath
+            // Replace inner class paths with "_" and capitalize the method name to get the path
+            val generatedImagePath = "$packageName." + qualifiedPath
               .substring(packageName.length + 1)
               .replace('.', innerClassSeparator) + "_${methodName.capitalize()}"
-            val subcomponentName = element.getReturnTypeReference()?.text + "SubComponent"
+
+            // We could infer the generated subcomponent name by simply getting the return type and
+            // suffixing "SubComponent"
+            val subcomponentName = element.getReturnTypeReference()?.text + "Subcomponent"
+            val generatedImageName = "$generatedImagePath.$subcomponentName"
             return prepareLineMarkerOpenerForFileName(
               element = cInjector,
               componentName = subcomponentName,
-              fileName = "$generatedImageFileName.png"
+              fileName = "$generatedImageName.png"
             )
           }
         }

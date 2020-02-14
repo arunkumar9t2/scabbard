@@ -43,6 +43,6 @@ class HomeActivity : DaggerAppCompatActivity() {
   interface Builder {
     @ActivityScope
     @ContributesAndroidInjector(modules = [HomeFragment.Builder::class])
-    fun mainActivity(): HomeActivity
+    fun homeActivity(): HomeActivity
   }
 }
