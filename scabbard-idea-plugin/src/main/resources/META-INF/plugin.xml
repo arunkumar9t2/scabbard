@@ -17,6 +17,9 @@
             implementationClass="dev.arunkumar.scabbard.intellij.KotlinComponentToDaggerGraphLineMarker"
             language="kotlin" />
         <codeInsight.lineMarkerProvider
+            implementationClass="dev.arunkumar.scabbard.intellij.KotlinContributesAndroidInjectorLineMarker"
+            language="kotlin" />
+        <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.JavaComponentToDaggerGraphLineMarker"
             language="JAVA" />
     </extensions>
