@@ -11,6 +11,8 @@ import dev.arunkumar.scabbard.debug.DaggerDependantComponent
 import dev.arunkumar.scabbard.debug.SimpleSingleton
 import dev.arunkumar.scabbard.di.appComponent
 import dev.arunkumar.scabbard.di.scope.ActivityScope
+import dev.arunkumar.scabbard.home.fragment.HomeFragment
+import dev.arunkumar.scabbard.home.fragment.HomeFragmentBuilder
 import javax.inject.Inject
 
 class HomeActivity : DaggerAppCompatActivity() {
@@ -26,7 +28,10 @@ class HomeActivity : DaggerAppCompatActivity() {
     setContentView(R.layout.activity_main)
 
     supportFragmentManager.commit {
-      replace(R.id.fragmentContainer, HomeFragment())
+      replace(
+        R.id.fragmentContainer,
+        HomeFragment()
+      )
     }
 
     // Setup simple subcomponent
@@ -42,7 +47,7 @@ class HomeActivity : DaggerAppCompatActivity() {
   @Module
   interface Builder {
     @ActivityScope
-    @ContributesAndroidInjector(modules = [HomeFragment.Builder::class])
+    @ContributesAndroidInjector(modules = [HomeFragmentBuilder::class])
     fun homeActivity(): HomeActivity
   }
 }
