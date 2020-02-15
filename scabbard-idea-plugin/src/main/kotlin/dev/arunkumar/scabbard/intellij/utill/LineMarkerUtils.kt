@@ -8,6 +8,7 @@ import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
 import com.intellij.psi.search.FilenameIndex
 import com.intellij.psi.search.GlobalSearchScope
+import com.intellij.psi.search.PsiShortNamesCache
 import com.intellij.util.Function
 
 /**
@@ -41,11 +42,33 @@ fun prepareContributesAndroidInjectorLineMarker(
   // suffixing "SubComponent"
   val subcomponentName = returnTypeSimpleName + "Subcomponent"
   val generatedImageName = "$generatedImagePath.$subcomponentName"
-  return prepareLineMarkerOpenerForFileName(
+  val lineMarker = prepareLineMarkerOpenerForFileName(
     element = contributesAndroidInjectorElement,
     componentName = subcomponentName,
     fileName = "$generatedImageName.png"
   )
+  if (lineMarker != null) {
+    return lineMarker
+  } else {
+    // If Android Project uses packageName suffix then generated subcomponent will have suffix in
+    // its package name which invalidates all the assumptions we made above. To overcome this,
+    // we could get the correct package name by querying IntelliJ class index.
+    val project = contributesAndroidInjectorElement.project
+    PsiShortNamesCache.getInstance(project)
+      .getClassesByName(
+        subcomponentName,
+        GlobalSearchScope.projectScope(project)
+      ).firstOrNull()
+      ?.let { subcomponentClass ->
+        val qualifiedName = subcomponentClass.qualifiedName
+        return prepareLineMarkerOpenerForFileName(
+          contributesAndroidInjectorElement,
+          subcomponentName,
+          "$qualifiedName.png"
+        )
+      }
+  }
+  return null
 }
 
 fun prepareLineMarkerOpenerForFileName(
