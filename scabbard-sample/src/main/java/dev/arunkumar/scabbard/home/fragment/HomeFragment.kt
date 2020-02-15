@@ -1,11 +1,9 @@
-package dev.arunkumar.scabbard.home
+package dev.arunkumar.scabbard.home.fragment
 
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
 import dagger.android.support.DaggerFragment
 import dev.arunkumar.scabbard.debug.SimpleSingleton
 import dev.arunkumar.scabbard.debug.UnScopedBinding
-import dev.arunkumar.scabbard.di.scope.FragmentScope
+import dev.arunkumar.scabbard.home.ActivityDep
 import javax.inject.Inject
 
 class HomeFragment : DaggerFragment() {
@@ -17,11 +15,6 @@ class HomeFragment : DaggerFragment() {
   lateinit var singleton: SimpleSingleton
   @Inject
   lateinit var unScopedBinding: UnScopedBinding
-
-  @Module
-  interface Builder {
-    @FragmentScope
-    @ContributesAndroidInjector
-    fun homeFragment(): HomeFragment
-  }
 }
+
+class FragmentDep @Inject constructor()
