@@ -22,6 +22,9 @@
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.JavaComponentToDaggerGraphLineMarker"
             language="JAVA" />
+        <codeInsight.lineMarkerProvider
+            implementationClass="dev.arunkumar.scabbard.intellij.JavaContributesAndroidInjectorLineMarker"
+            language="JAVA" />
     </extensions>
 
     <id>dev.arunkumar.scabbard.idea-plugin</id>

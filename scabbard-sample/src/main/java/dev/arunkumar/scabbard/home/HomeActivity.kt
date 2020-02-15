@@ -12,7 +12,7 @@ import dev.arunkumar.scabbard.debug.SimpleSingleton
 import dev.arunkumar.scabbard.di.appComponent
 import dev.arunkumar.scabbard.di.scope.ActivityScope
 import dev.arunkumar.scabbard.home.fragment.HomeFragment
-import dev.arunkumar.scabbard.home.fragment.HomeFragmentBuilder
+import dev.arunkumar.scabbard.home.fragment.ModuleHolder
 import javax.inject.Inject
 
 class HomeActivity : DaggerAppCompatActivity() {
@@ -47,7 +47,7 @@ class HomeActivity : DaggerAppCompatActivity() {
   @Module
   interface Builder {
     @ActivityScope
-    @ContributesAndroidInjector(modules = [HomeFragmentBuilder::class])
+    @ContributesAndroidInjector(modules = [ModuleHolder.HomeFragmentBuilder::class])
     fun homeActivity(): HomeActivity
   }
 }
