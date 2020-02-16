@@ -16,6 +16,10 @@ constructor(
   private val scabbardOptions: ScabbardOptions
 ) : FilerOutputManager {
 
+  companion object {
+    const val SCABBARD_PACKAGE = "scabbard"
+  }
+
   override fun createOutputFiles(currentComponent: TypeElement): OutputFiles {
     val componentName = ClassName.get(currentComponent)
     val packageName = componentName.packageName()
@@ -23,12 +27,12 @@ constructor(
     val fileName = "$packageName.$componentSimpleNames".replace("$", ".")
     val graphOutput = filer.createResource(
       CLASS_OUTPUT,
-      componentName.toString(),
+      SCABBARD_PACKAGE,
       "$fileName.png"
     )
     val dotOutput = filer.createResource(
       CLASS_OUTPUT,
-      componentName.toString(),
+      SCABBARD_PACKAGE,
       "$fileName.dot"
     )
     return OutputFiles(

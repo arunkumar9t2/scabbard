@@ -1,5 +1,6 @@
 package dev.arunkumar.scabbard.plugin
 
+import dev.arunkumar.scabbard.plugin.output.DefaultOutputManager
 import guru.nidi.graphviz.model.MutableGraph
 import guru.nidi.graphviz.parse.Parser
 import java.io.File
@@ -12,7 +13,7 @@ fun Class<*>.generatedDotFile(): File {
   val projectDir = System.getProperty("user.dir")
   val sep = File.separatorChar.toString()
   val name = name.replace("$", ".")
-  val pathToGenFile = name.replace(".", sep)
+  val pathToGenFile = DefaultOutputManager.SCABBARD_PACKAGE
   val absoluteGenPath = "$projectDir${sep}build/tmp/kapt3/classes/test${sep}$pathToGenFile${sep}"
   return Paths.get(absoluteGenPath).resolve("$name.dot").toFile()
 }

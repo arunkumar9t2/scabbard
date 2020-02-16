@@ -32,5 +32,6 @@ dependencies {
     implementation "com.google.dagger:dagger:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
+    implementation project(path: ":scabbard-processor")
     kaptTest project(path: ":scabbard-processor")
 }
