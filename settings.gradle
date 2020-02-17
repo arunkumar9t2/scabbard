@@ -1,10 +1,15 @@
 include ':dot-dsl'
+
 include ':scabbard-processor'
-include ':scabbard-idea-plugin'
-include ':scabbard-sample'
-include ':scabbard-sample-java'
 include ':scabbard-processor-tests:common'
 include ':scabbard-processor-tests:qualified-names-test'
+include ':scabbard-processor-tests:full-binding-graph-test'
+
+include ':scabbard-idea-plugin'
+
+include ':scabbard-sample'
+include ':scabbard-sample-java'
+
 
 includeBuild('scabbard-gradle-plugin') {
     dependencySubstitution {

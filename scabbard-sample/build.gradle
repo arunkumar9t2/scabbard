@@ -30,7 +30,7 @@ android {
 
 scabbard {
     enabled true
-    failOnError false
+    failOnError true
     fullBindingGraphValidation true
     qualifiedNames false
 }

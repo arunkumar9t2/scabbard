@@ -43,11 +43,10 @@ class KotlinComponentToDaggerGraphLineMarker : LineMarkerProvider {
           if (ktClass.hasDaggerComponentAnnotations()) {
             val componentName = ktClass.name
             val qualifiedName = ktClass.getKotlinFqName().toString()
-            val fileNameToFind = "$qualifiedName.png"
             return prepareLineMarkerOpenerForFileName(
-              element,
-              componentName!!,
-              fileNameToFind
+              element = element,
+              componentName = componentName!!,
+              fileName = qualifiedName
             )
           }
         }
