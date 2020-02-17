@@ -37,7 +37,7 @@ class JavaComponentToDaggerGraphLineMarker : LineMarkerProvider {
         return prepareLineMarkerOpenerForFileName(
           element = element,
           componentName = psiClass.name!!,
-          fileName = "$qualifiedName.png"
+          fileName = qualifiedName
         )
       }
     }

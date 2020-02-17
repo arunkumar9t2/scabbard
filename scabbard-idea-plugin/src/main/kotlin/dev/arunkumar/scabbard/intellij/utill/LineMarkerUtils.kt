@@ -11,6 +11,12 @@ import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.PsiShortNamesCache
 import com.intellij.util.Function
 
+
+private val GENERATED_FILE_FORMATS = listOf(
+  "%s.png",
+  "full_%s.png" // TODO(arun) create a common package to share this between intellij and processor
+)
+
 /**
  * Adds a gutter icon to open the dependency graph for the Subcomponent that `@ContributesAndroidInjector`
  * would be generating.
@@ -52,7 +58,7 @@ fun prepareContributesAndroidInjectorLineMarker(
   } else {
     // If Android Project uses packageName suffix then generated subcomponent will have suffix in
     // its package name which invalidates all the assumptions we made above. To overcome this,
-    // we could get the correct package name by querying IntelliJ class index.
+    // we could get the correct package name by querying IntelliJ class index with the return type.
     val project = contributesAndroidInjectorElement.project
     PsiShortNamesCache.getInstance(project)
       .getClassesByName(
@@ -64,11 +70,22 @@ fun prepareContributesAndroidInjectorLineMarker(
         return prepareLineMarkerOpenerForFileName(
           contributesAndroidInjectorElement,
           subcomponentName,
-          "$qualifiedName.png"
+          "$qualifiedName"
         )
       }
   }
   return null
+}
+
+/**
+ * Format and sanitize raw file name received from PSI processors.
+ *
+ * Currently
+ * * replaces inner class markers `$` with `.`
+ */
+private fun String.sanitize(format: String): String {
+  val sanitized = replace("$", ".")
+  return String.format(format, sanitized)
 }
 
 fun prepareLineMarkerOpenerForFileName(
@@ -78,9 +95,14 @@ fun prepareLineMarkerOpenerForFileName(
 ): LineMarkerInfo<PsiElement>? {
   // TODO(arun) Need to optimize this - try to scope it to the module where scabbard is applied
   val scope = GlobalSearchScope.allScope(element.project)
-  FilenameIndex.getFilesByName(element.project, fileName.replace("$", "."), scope)
-    .takeIf { it.isNotEmpty() }
-    ?.first()
+  GENERATED_FILE_FORMATS
+    .flatMap { fileNameFormat ->
+      FilenameIndex.getFilesByName(
+        element.project,
+        fileName.sanitize(fileNameFormat),
+        scope
+      ).toList()
+    }.firstOrNull() // TODO(arun) Migrate to showing popup for multiple files
     ?.let { graphFile ->
       return LineMarkerInfo<PsiElement>(
         element,
@@ -88,11 +110,12 @@ fun prepareLineMarkerOpenerForFileName(
         IconLoader.getIcon("/icons/scabbard-icon.png"),
         Function { "Open ${componentName}'s dependency graph" },
         GutterIconNavigationHandler<PsiElement?> { _, _ ->
-          FileEditorManager.getInstance(element.project).openFile(
-            graphFile.virtualFile,
-            true,
-            true
-          )
+          FileEditorManager.getInstance(element.project)
+            .openFile(
+              graphFile.virtualFile,
+              true,
+              true
+            )
         },
         GutterIconRenderer.Alignment.CENTER
       )
