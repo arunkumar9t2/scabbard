@@ -1,5 +1,6 @@
 package dev.arunkumar.scabbard.plugin.processor.graphviz
 
+import com.github.kittinunf.result.success
 import dagger.Binds
 import dagger.Module
 import dagger.model.Binding
@@ -8,6 +9,7 @@ import dagger.model.BindingGraph.*
 import dagger.model.BindingKind.DELEGATE
 import dagger.model.BindingKind.MEMBERS_INJECTION
 import dagger.model.ComponentPath
+import dev.arunkumar.dot.DotGraph
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.dot.dsl.directedGraph
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
@@ -17,12 +19,12 @@ import dev.arunkumar.scabbard.plugin.output.OutputManager
 import dev.arunkumar.scabbard.plugin.parser.*
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
-import dev.arunkumar.scabbard.plugin.util.exceptionHandler
 import dev.arunkumar.scabbard.plugin.util.processingBlock
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
 import java.util.*
 import javax.inject.Inject
+import javax.lang.model.element.TypeElement
 
 @ProcessorScope
 class GraphVizBindingGraphProcessor
@@ -54,6 +56,7 @@ constructor(
     val network = bindingGraph.network()
     val nodes = network.nodes()
     val allEdges = network.edges()
+
     nodes.asSequence()
       .groupBy { it.componentPath() }
       .map { (componentPath, componentNodes) ->
@@ -70,17 +73,19 @@ constructor(
           edges = allEdges.asSequence() // TODO(arun) why pass global edges here?
         )
         return@map currentComponent to baseGraphBuilder.dotGraph
-      }.forEach { (currentComponent, dotGraph) ->
-        scabbardOptions.exceptionHandler {
-          val (outputFile, dotFile) = outputManager.createOutputFiles(currentComponent)
-          val dotOutput = dotGraph.toString()
+      }.forEach { (currentComponent, dotGraph) -> writeOutput(currentComponent, dotGraph) }
+  }
 
-          Graphviz.fromString(dotOutput)
-            .render(Format.PNG)
-            .toOutputStream(outputFile.openOutputStream())
+  private fun writeOutput(currentComponent: TypeElement, dotGraph: DotGraph) {
+    outputManager.createOutputFiles(currentComponent, bindingGraph.isFullBindingGraph)
+      .success { (outputFile, dotFile) ->
+        val dotOutput = dotGraph.toString()
 
-          dotFile.openOutputStream().write(dotOutput.toByteArray())
-        }
+        Graphviz.fromString(dotOutput)
+          .render(Format.PNG)
+          .toOutputStream(outputFile.openOutputStream())
+
+        dotFile.openOutputStream().write(dotOutput.toByteArray())
       }
   }
 

@@ -2,7 +2,6 @@ package dev.arunkumar.scabbard.plugin.util
 
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
-import javax.annotation.processing.FilerException
 
 /**
  * Function that executes the actual processing operations usually by a [BindingGraphProcessor]. The
@@ -33,10 +32,5 @@ inline fun ScabbardOptions.exceptionHandler(block: () -> Unit) {
 inline fun ScabbardOptions.handleException(exception: Exception) {
   if (failOnError) {
     throw RuntimeException("Scabbard processor failed", exception)
-  } else {
-    if (exception !is FilerException) {
-      // Soon Timber this
-      System.err.println(exception.message)
-    }
   }
 }
