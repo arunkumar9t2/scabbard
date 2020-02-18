@@ -162,6 +162,11 @@ class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
           qualifiedName
             .substring(packageName.length + 1)
             .replace('.', innerClassSeparator)
+            // Heurestics: There is a high change some classes esp dagger.android ones have long
+            // nested names. For now only consider maximum of 2 levels for reduced width.
+            .split(innerClassSeparator)
+            .takeLast(2)
+            .joinToString(separator = innerClassSeparator.toString())
         )
       }
     }

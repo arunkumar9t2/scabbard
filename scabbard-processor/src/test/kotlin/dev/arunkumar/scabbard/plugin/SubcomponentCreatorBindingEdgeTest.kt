@@ -59,7 +59,7 @@ class SubcomponentCreatorBindingEdgeTest {
     assertThat(generatedText).contains(" subgraph \"cluster_Subcomponents\" {")
     assertThat(generatedText).contains(
       "[shape=\"component\", " +
-          "label=\"SubcomponentCreatorBindingEdgeTest.SimpleSubComponent.Factory\\n\\nSubcomponent Creator\"," +
+          "label=\"SimpleSubComponent.Factory\\n\\nSubcomponent Creator\"," +
           " penwidth=\"2\"]"
     )
     assertThat(generatedText).contains("[style=\"dashed\", label=\"subcomponent\"]")

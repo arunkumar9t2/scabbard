@@ -17,6 +17,16 @@ import javax.inject.Singleton
 @RunWith(JUnit4::class)
 class SimpleNamesTest {
 
+  object NestedInnerClassType {
+    object Level1 {
+      object Level2 {
+        object Level3 {
+          class NestedNode @Inject constructor()
+        }
+      }
+    }
+  }
+
   class NodeA @Inject constructor()
 
   @Singleton
@@ -28,7 +38,8 @@ class SimpleNamesTest {
     private val integer: Int,
     private val double: Double,
     private val char: Char,
-    private val boolean: Boolean
+    private val boolean: Boolean,
+    private val nestedNode: NestedInnerClassType.Level1.Level2.Level3.NestedNode
   )
 
   @Module
@@ -103,5 +114,11 @@ class SimpleNamesTest {
       .contains("[label=\"Character\"")
     assertThat(generatedText)
       .contains("[label=\"Boolean\"")
+  }
+
+  @Test
+  fun `assert nested inner class type has max 2 levels in its simple name`() {
+    assertThat(generatedText)
+      .contains("label=\"Level3.NestedNode\"")
   }
 }
