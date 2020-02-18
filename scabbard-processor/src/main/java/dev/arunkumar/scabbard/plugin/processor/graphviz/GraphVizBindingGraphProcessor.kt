@@ -269,6 +269,7 @@ constructor(
         (source.id link target.id) {
           "style" eq "dashed"
           "label" eq "subcomponent"
+          "headport" eq "w"
         }
       }
     }
