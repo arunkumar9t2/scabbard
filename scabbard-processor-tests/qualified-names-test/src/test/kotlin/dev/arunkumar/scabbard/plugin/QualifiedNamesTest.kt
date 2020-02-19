@@ -124,6 +124,12 @@ class QualifiedNamesTest {
   }
 
   @Test
+  fun `assert multibindings cluster members have qualified names`() {
+    assertThat(simpleComponentDot)
+      .contains("label=\"dev.arunkumar.scabbard.plugin.QualifiedNamesTest.SimpleModule.provideMultibindings()\"")
+  }
+
+  @Test
   fun `assert qualifiers have qualified names in dependency graph`() {
     assertThat(simpleComponentDot).contains("@dev.arunkumar.scabbard.plugin.QualifiedNamesTest.SimpleQualifier\\ndev.arunkumar.scabbard.plugin.QualifiedNamesTest.SimpleNode")
   }

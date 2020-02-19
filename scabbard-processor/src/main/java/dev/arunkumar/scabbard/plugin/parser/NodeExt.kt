@@ -27,7 +27,7 @@ internal fun Node.calculateLabel(typeNameExtractor: TypeNameExtractor): String =
       val isSubComponentCreator = kind() == SUBCOMPONENT_CREATOR
 
       key().multibindingContributionIdentifier().ifPresent { identifier ->
-        name = identifier.let { it.module().split(".").last() + "." + it.bindingElement() }
+        name = typeNameExtractor.extractName(identifier)
       }
 
       buildLabel(name, qualifier, scopeName, isSubComponentCreator)

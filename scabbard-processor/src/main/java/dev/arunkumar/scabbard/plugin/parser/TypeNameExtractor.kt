@@ -5,6 +5,7 @@ import com.squareup.javapoet.TypeName
 import dagger.Module
 import dagger.Provides
 import dagger.model.ComponentPath
+import dagger.model.Key
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import javax.inject.Inject
@@ -33,6 +34,11 @@ interface TypeNameExtractor {
    * "AppComponent → SubComponent"
    */
   fun extractName(componentPath: ComponentPath): String
+
+  /**
+   * @return the multibinding contribution info as string
+   */
+  fun extractName(identifier: Key.MultibindingContributionIdentifier): String
 }
 
 @Module
@@ -62,6 +68,9 @@ class QualifiedTypeNameExtractor @Inject constructor() : TypeNameExtractor {
   override fun extractName(typeMirror: TypeMirror) = typeMirror.toString()
   override fun extractName(annotationMirror: AnnotationMirror) = annotationMirror.toString()
   override fun extractName(componentPath: ComponentPath): String = componentPath.toString()
+  override fun extractName(identifier: Key.MultibindingContributionIdentifier): String {
+    return identifier.let { it.module() + "." + it.bindingElement() + "()" }
+  }
 }
 
 /**
@@ -78,6 +87,17 @@ class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
   override fun extractName(componentPath: ComponentPath) = componentPath
     .components()
     .joinToString(separator = " → ") { extractName(it.asType()) }
+
+  override fun extractName(identifier: Key.MultibindingContributionIdentifier): String {
+    val module = identifier.module()
+      .split(".")
+      .last() // The simple name of the module
+      // dagger.android specific optimization (Look for Contribute_)
+      .split("_Contribute")
+      .last()
+    val bindingElement = identifier.bindingElement()
+    return "$module.$bindingElement()"
+  }
 
   /**
    * Recursively each type and in the given [typeMirror] and calculates simple name.

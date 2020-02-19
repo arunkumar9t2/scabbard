@@ -5,6 +5,7 @@ import dagger.Component
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
+import dagger.multibindings.ElementsIntoSet
 import dev.arunkumar.scabbard.plugin.generatedDotFile
 import org.junit.Before
 import org.junit.Test
@@ -39,7 +40,9 @@ class SimpleNamesTest {
     private val double: Double,
     private val char: Char,
     private val boolean: Boolean,
-    private val nestedNode: NestedInnerClassType.Level1.Level2.Level3.NestedNode
+    private val nestedNode: NestedInnerClassType.Level1.Level2.Level3.NestedNode,
+    private val set: Set<String>,
+    private val booleans: Set<Boolean>
   )
 
   @Module
@@ -61,10 +64,29 @@ class SimpleNamesTest {
 
     @Provides
     fun provideNodePair(nodeA: NodeA, nodeB: NodeB): Pair<NodeA, NodeB> = nodeA to nodeB
+
+    @Provides
+    @ElementsIntoSet
+    fun provideBooleanSet(): Set<Boolean> = emptySet()
+  }
+
+  /**
+   * Contains _Contribute to mimix dagger.Android generated classes
+   */
+  @Module
+  object Module_ContributeSomeActivity {
+    @Provides
+    @ElementsIntoSet
+    fun bindAndroidInjectorFactory(): Set<String> = setOf("Scabbard")
   }
 
   @Singleton
-  @Component(modules = [SimpleModule::class])
+  @Component(
+    modules = [
+      SimpleModule::class,
+      Module_ContributeSomeActivity::class
+    ]
+  )
   interface SimpleComponent {
     fun nodeB(): NodeB
     fun nodePair(): Pair<NodeA, NodeB>
@@ -120,5 +142,17 @@ class SimpleNamesTest {
   fun `assert nested inner class type has max 2 levels in its simple name`() {
     assertThat(generatedText)
       .contains("label=\"Level3.NestedNode\"")
+  }
+
+  @Test
+  fun `assert multibindings have binding module and binding element in simple name`() {
+    assertThat(generatedText)
+      .contains("label=\"SimpleModule.provideBooleanSet()\"")
+  }
+
+  @Test
+  fun `assert dagger android generated multibindings have simple name extracted to specify the android component name`() {
+    assertThat(generatedText)
+      .contains("label=\"SomeActivity.bindAndroidInjectorFactory()\"")
   }
 }
