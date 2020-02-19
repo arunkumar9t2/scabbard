@@ -92,9 +92,9 @@ class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
     val module = identifier.module()
       .split(".")
       .last() // The simple name of the module
-      // dagger.android specific optimization (Look for Contribute_)
-      .split("_Contribute")
-      .last()
+      // dagger.android specific optimization (The name is usually Module_MethodName$packageSuffix)
+      .split("$")
+      .first()
     val bindingElement = identifier.bindingElement()
     return "$module.$bindingElement()"
   }

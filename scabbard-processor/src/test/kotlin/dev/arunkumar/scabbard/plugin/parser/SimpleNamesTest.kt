@@ -42,7 +42,8 @@ class SimpleNamesTest {
     private val boolean: Boolean,
     private val nestedNode: NestedInnerClassType.Level1.Level2.Level3.NestedNode,
     private val set: Set<String>,
-    private val booleans: Set<Boolean>
+    private val booleans: Set<Boolean>,
+    private val chars: Set<Char>
   )
 
   @Module
@@ -80,11 +81,23 @@ class SimpleNamesTest {
     fun bindAndroidInjectorFactory(): Set<String> = setOf("Scabbard")
   }
 
+  object Nested {
+    object Multibinding {
+      @dagger.Module
+      object Module {
+        @Provides
+        @ElementsIntoSet
+        fun chars(): Set<Char> = emptySet()
+      }
+    }
+  }
+
   @Singleton
   @Component(
     modules = [
       SimpleModule::class,
-      Module_ContributeSomeActivity::class
+      Module_ContributeSomeActivity::class,
+      Nested.Multibinding.Module::class
     ]
   )
   interface SimpleComponent {
@@ -153,6 +166,12 @@ class SimpleNamesTest {
   @Test
   fun `assert dagger android generated multibindings have simple name extracted to specify the android component name`() {
     assertThat(generatedText)
-      .contains("label=\"SomeActivity.bindAndroidInjectorFactory()\"")
+      .contains("label=\"Module_ContributeSomeActivity.bindAndroidInjectorFactory()\"")
+  }
+
+  @Test
+  fun `assert name for multibinds provided by nested inner class has simple name extracted`() {
+    assertThat(generatedText)
+      .contains("label=\"Module.chars()\"")
   }
 }
