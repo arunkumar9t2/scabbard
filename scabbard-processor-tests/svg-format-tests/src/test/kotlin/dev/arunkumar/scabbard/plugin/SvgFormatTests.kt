@@ -6,8 +6,11 @@ import dagger.Module
 import dagger.Provides
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 import java.io.File
 
+@RunWith(JUnit4::class)
 class SvgFormatTests {
   class Node
 
