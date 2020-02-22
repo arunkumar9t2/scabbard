@@ -43,15 +43,23 @@ class SubComponentDefaultAttributesTest {
     }
   }
 
-  private lateinit var generatedText: String
+  private lateinit var simpleComponentGeneratedText: String
+  private lateinit var subComponentGeneratedText: String
 
   @Before
   fun setup() {
-    generatedText = SimpleSubComponent::class.java.generatedDotFile().readText()
+    simpleComponentGeneratedText = SimpleComponent::class.java.generatedDotFile().readText()
+    subComponentGeneratedText = SimpleSubComponent::class.java.generatedDotFile().readText()
   }
 
   @Test
-  fun `test subcomponent hierarchy is set as label`() {
-    assertThat(generatedText).contains("label=\"SubComponentDefaultAttributesTest.SimpleComponent → SubComponentDefaultAttributesTest.SimpleSubComponent\"")
+  fun `assert subcomponent hierarchy is set as label`() {
+    assertThat(subComponentGeneratedText).contains("label=\"SubComponentDefaultAttributesTest.SimpleComponent → SubComponentDefaultAttributesTest.SimpleSubComponent\"")
+  }
+
+
+  @Test
+  fun `assert parent component's subcomponent cluster has hrefs to subcomponent generated files`() {
+    assertThat(simpleComponentGeneratedText).contains("href=\"dev.arunkumar.scabbard.plugin.SubComponentDefaultAttributesTest.SimpleSubComponent.png\"")
   }
 }

@@ -112,7 +112,7 @@ class QualifiedNamesTest {
   fun `assert subcomponent entry point and edge has qualified names`() {
     assertThat(simpleComponentDot).contains("dev.arunkumar.scabbard.plugin.QualifiedNamesTest.SimpleSubComponent.Factory\\n\\nSubcomponent Creator")
     // End of edge
-    assertThat(simpleComponentDot).contains("[label=\"dev.arunkumar.scabbard.plugin.QualifiedNamesTest.SimpleSubComponent\"]")
+    assertThat(simpleComponentDot).contains("label=\"dev.arunkumar.scabbard.plugin.QualifiedNamesTest.SimpleSubComponent\"")
   }
 
   @Test

@@ -4,6 +4,7 @@ import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLU
 import dev.arunkumar.scabbard.gradle.common.ProjectTest
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.DAGGER_FULL_BINDING_GRAPH_VALIDATION
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.FAIL_ON_ERROR
+import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.OUTPUT_FORMAT
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.QUALIFIED_NAMES
 import org.gradle.api.Project
 import org.gradle.api.tasks.compile.CompileOptions
@@ -96,7 +97,7 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
   }
 
   @Test
-  fun `for java projects assert fullBindingGraphValidation property is forwarded to kapt and javac`() {
+  fun `assert for java projects fullBindingGraphValidation property is forwarded to kapt and javac`() {
     project.plugins.apply {
       apply("java")
       apply(SCABBARD_PLUGIN_ID)
@@ -110,6 +111,44 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
       assertTrue(
         "JavaC binding graph validation key is added",
         options.compilerArgs.contains("-A$DAGGER_FULL_BINDING_GRAPH_VALIDATION")
+      )
+    }
+  }
+
+  @Test
+  fun `assert output format is forwarded to kapt`() {
+    project.plugins.apply {
+      apply("kotlin")
+      apply("kotlin-kapt")
+      apply(SCABBARD_PLUGIN_ID)
+    }
+
+    ScabbardPropertiesDelegate(prepareScabbardExtension {
+      outputFormat = "svg"
+    }).delegate()
+
+    assertTrue(
+      "Output format is set to svg",
+      project.kaptOptions().containsKey(OUTPUT_FORMAT)
+          && project.kaptOptions().containsValue("svg")
+    )
+  }
+
+  @Test
+  fun `assert for java projects output format is forwarded to javac`() {
+    project.plugins.apply {
+      apply("java")
+      apply(SCABBARD_PLUGIN_ID)
+    }
+
+    ScabbardPropertiesDelegate(prepareScabbardExtension {
+      outputFormat = "svg"
+    }).delegate()
+
+    project.javacOptions { options ->
+      assertTrue(
+        "JavaC output format is added",
+        options.compilerArgs.contains("-A$OUTPUT_FORMAT=svg")
       )
     }
   }

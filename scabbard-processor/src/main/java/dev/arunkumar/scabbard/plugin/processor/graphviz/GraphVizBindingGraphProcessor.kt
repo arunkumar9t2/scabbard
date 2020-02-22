@@ -1,6 +1,5 @@
 package dev.arunkumar.scabbard.plugin.processor.graphviz
 
-import com.github.kittinunf.result.success
 import dagger.Binds
 import dagger.Module
 import dagger.model.Binding
@@ -16,17 +15,17 @@ import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.output.OutputManager
+import dev.arunkumar.scabbard.plugin.output.OutputWriter
 import dev.arunkumar.scabbard.plugin.parser.*
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
 import dev.arunkumar.scabbard.plugin.util.processingBlock
-import guru.nidi.graphviz.engine.Format
-import guru.nidi.graphviz.engine.Graphviz
 import java.util.*
 import javax.inject.Inject
 import javax.lang.model.element.TypeElement
 
 @ProcessorScope
+@JvmSuppressWildcards
 class GraphVizBindingGraphProcessor
 @Inject
 constructor(
@@ -34,6 +33,7 @@ constructor(
   private val scabbardOptions: ScabbardOptions,
   private val scopeColors: ScopeColors,
   private val outputManager: OutputManager,
+  private val outputWriters: Set<OutputWriter>,
   private val typeNameExtractor: TypeNameExtractor
 ) : BindingGraphProcessor {
 
@@ -77,16 +77,10 @@ constructor(
   }
 
   private fun writeOutput(currentComponent: TypeElement, dotGraph: DotGraph) {
-    outputManager.createOutputFiles(currentComponent, bindingGraph.isFullBindingGraph)
-      .success { (outputFile, dotFile) ->
-        val dotOutput = dotGraph.toString()
-
-        Graphviz.fromString(dotOutput)
-          .render(Format.PNG)
-          .toOutputStream(outputFile.openOutputStream())
-
-        dotFile.openOutputStream().write(dotOutput.toByteArray())
-      }
+    val dotString = dotGraph.toString()
+    outputWriters.forEach { writer ->
+      writer.write(dotString, currentComponent, bindingGraph.isFullBindingGraph)
+    }
   }
 
   private fun baseDotGraphBuilder(currentComponentPath: ComponentPath) =
@@ -205,8 +199,14 @@ constructor(
   }
 
   private fun DotGraphBuilder.addSubcomponent(subcomponent: ComponentNode) {
+    val subComponentGeneratedFile = outputManager.outputFileNameFor(
+      scabbardOptions.outputImageFormat,
+      subcomponent.componentPath().currentComponent(),
+      bindingGraph.isFullBindingGraph
+    )
     subcomponent.id {
       "label" eq subcomponent.label
+      "href" eq subComponentGeneratedFile
       // TODO(arun) will multiple scopes be present? If yes, can it be visualized?
       subcomponent.scopes().forEach { scope ->
         "color" eq scopeColors[scope.name]

@@ -4,6 +4,7 @@ include ':scabbard-processor'
 include ':scabbard-processor-tests:common'
 include ':scabbard-processor-tests:qualified-names-test'
 include ':scabbard-processor-tests:full-binding-graph-test'
+include ':scabbard-processor-tests:svg-format-tests'
 
 include ':scabbard-idea-plugin'
 
@@ -16,3 +17,4 @@ includeBuild('scabbard-gradle-plugin') {
         substitute module('dev.arunkumar:scabbard-gradle-plugin') with project(':')
     }
 }
+
