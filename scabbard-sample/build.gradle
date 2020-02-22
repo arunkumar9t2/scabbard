@@ -35,6 +35,12 @@ scabbard {
     qualifiedNames false
 }
 
+kapt {
+    arguments {
+        arg("scabbard.outputFormat", "svg")
+    }
+}
+
 apply from: "../gradle/scabbard-local-processor.gradle"
 
 dependencies {

@@ -4,17 +4,20 @@ import com.intellij.codeInsight.daemon.GutterIconNavigationHandler
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.openapi.fileEditor.FileEditorManager
-import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
 import com.intellij.psi.search.FilenameIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.PsiShortNamesCache
 import com.intellij.util.Function
 
+private const val FULL_GRAPH_FILE_NAME =
+  "full_%s" // TODO(arun) create a common package to share this between intellij and processor
 
 private val GENERATED_FILE_FORMATS = listOf(
   "%s.png",
-  "full_%s.png" // TODO(arun) create a common package to share this between intellij and processor
+  "$FULL_GRAPH_FILE_NAME.png",
+  "%s.svg",
+  "$FULL_GRAPH_FILE_NAME.svg"
 )
 
 /**
@@ -107,7 +110,7 @@ fun prepareLineMarkerOpenerForFileName(
       return LineMarkerInfo<PsiElement>(
         element,
         element.textRange,
-        IconLoader.getIcon("/icons/scabbard-icon.png"),
+        SCABBARD_ICON,
         Function { "Open ${componentName}'s dependency graph" },
         GutterIconNavigationHandler<PsiElement?> { _, _ ->
           FileEditorManager.getInstance(element.project)
