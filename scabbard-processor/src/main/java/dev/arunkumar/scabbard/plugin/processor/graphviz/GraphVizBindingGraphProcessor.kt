@@ -202,7 +202,7 @@ constructor(
     val subComponentGeneratedFile = outputManager.outputFileNameFor(
       scabbardOptions.outputImageFormat,
       subcomponent.componentPath().currentComponent(),
-      false
+      bindingGraph.isFullBindingGraph
     )
     subcomponent.id {
       "label" eq subcomponent.label
