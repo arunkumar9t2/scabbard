@@ -14,6 +14,7 @@ import dev.arunkumar.dot.dsl.directedGraph
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
+import dev.arunkumar.scabbard.plugin.output.OutputManager
 import dev.arunkumar.scabbard.plugin.output.OutputWriter
 import dev.arunkumar.scabbard.plugin.parser.*
 import dev.arunkumar.scabbard.plugin.util.component1
@@ -31,6 +32,7 @@ constructor(
   override val bindingGraph: BindingGraph,
   private val scabbardOptions: ScabbardOptions,
   private val scopeColors: ScopeColors,
+  private val outputManager: OutputManager,
   private val outputWriters: Set<OutputWriter>,
   private val typeNameExtractor: TypeNameExtractor
 ) : BindingGraphProcessor {
@@ -197,8 +199,14 @@ constructor(
   }
 
   private fun DotGraphBuilder.addSubcomponent(subcomponent: ComponentNode) {
+    val subComponentGeneratedFile = outputManager.outputFileNameFor(
+      scabbardOptions.outputImageFormat,
+      subcomponent.componentPath().currentComponent(),
+      false
+    )
     subcomponent.id {
       "label" eq subcomponent.label
+      "href" eq subComponentGeneratedFile
       // TODO(arun) will multiple scopes be present? If yes, can it be visualized?
       subcomponent.scopes().forEach { scope ->
         "color" eq scopeColors[scope.name]

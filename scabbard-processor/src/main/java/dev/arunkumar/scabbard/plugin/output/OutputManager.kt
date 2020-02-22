@@ -21,9 +21,24 @@ interface OutputManager {
   }
 
   /**
+   *Return the output file name, taking into account the format, component name and it if is a
+   * full graph.
+   *
+   * @param format The extension of the generated file.
+   * @param currentComponent the component for which files should be created.
+   * @param isFullGraph Whether the current graph is a full binding graph.
+   */
+  fun outputFileNameFor(
+    format: Format,
+    currentComponent: TypeElement,
+    isFullGraph: Boolean = false
+  ): String
+
+  /**
    * Create output files for the [currentComponent]
    *
-   * @param currentComponent the component for which files should be created
+   * @param format The extension of the generated file.
+   * @param currentComponent the component for which files should be created.
    * @param isFullGraph Whether the current graph is a full binding graph.
    */
   fun createOutputFiles(
@@ -62,18 +77,26 @@ constructor(
       )
     }
 
-  override fun createOutputFiles(
+  override fun outputFileNameFor(
     format: OutputManager.Format,
     currentComponent: TypeElement,
     isFullGraph: Boolean
-  ): Result<FileObject, Exception> {
+  ): String {
     val componentName = ClassName.get(currentComponent)
     val packageName = componentName.packageName()
     val componentSimpleNames = componentName.simpleNames().joinToString(".")
     val name = "$packageName.$componentSimpleNames".replace("$", ".")
     val prefix = if (isFullGraph) FULL_GRAPH_PREFIX else ""
-    val fileName = "$prefix$name"
-    return filer.safeCreate("$fileName.${format.extension}")
+    return "$prefix$name.${format.extension}"
+  }
+
+  override fun createOutputFiles(
+    format: OutputManager.Format,
+    currentComponent: TypeElement,
+    isFullGraph: Boolean
+  ): Result<FileObject, Exception> {
+    val fileName = outputFileNameFor(format, currentComponent, isFullGraph)
+    return filer.safeCreate(fileName)
   }
 }
 
