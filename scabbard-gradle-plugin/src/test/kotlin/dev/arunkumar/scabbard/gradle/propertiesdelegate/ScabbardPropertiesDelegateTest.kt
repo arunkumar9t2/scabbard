@@ -1,7 +1,7 @@
 package dev.arunkumar.scabbard.gradle.propertiesdelegate
 
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.common.ProjectTest
+import dev.arunkumar.scabbard.gradle.OutputFormat
+import dev.arunkumar.scabbard.gradle.common.ScabbardBaseTest
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.DAGGER_FULL_BINDING_GRAPH_VALIDATION
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.FAIL_ON_ERROR
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.OUTPUT_FORMAT
@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class ScabbardPropertiesDelegateTest : ProjectTest() {
+class ScabbardPropertiesDelegateTest : ScabbardBaseTest() {
 
   private fun Project.kaptOptions(): Map<String, String> {
     return project.extensions.findByType<KaptExtension>()
@@ -25,19 +25,15 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
 
   private fun Project.javacOptions(compileOptions: (CompileOptions) -> Unit) {
     val javaCTasks = project.tasks.withType<JavaCompile>()
-    assertTrue("JavaC tasks are present", javaCTasks.isNotEmpty())
+    assertTrue("Javac tasks are present", javaCTasks.isNotEmpty())
     javaCTasks.onEach { javaCompile -> compileOptions(javaCompile.options) }
   }
 
   @Test
   fun `when kapt is present assert extension properties are delegated to kapt`() {
-    project.plugins.apply {
-      apply("kotlin")
-      apply("kotlin-kapt")
-      apply(SCABBARD_PLUGIN_ID)
-    }
+    project.setupAsKotlin()
 
-    ScabbardPropertiesDelegate(prepareScabbardExtension {
+    ScabbardPropertiesDelegate(scabbardExtension {
       failOnError = true
       qualifiedNames = true
     }).delegate()
@@ -56,12 +52,9 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
 
   @Test
   fun `for pure java projects assert extension properties are delegated to JavaCompile tasks`() {
-    project.plugins.apply {
-      apply("java")
-      apply(SCABBARD_PLUGIN_ID)
-    }
+    project.setupAsJava()
 
-    ScabbardPropertiesDelegate(prepareScabbardExtension {
+    ScabbardPropertiesDelegate(scabbardExtension {
       failOnError = true
       qualifiedNames = true
     }).delegate()
@@ -80,14 +73,10 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
 
   @Test
   fun `assert fullBindingGraphValidation property is forwarded to kapt`() {
-    project.plugins.apply {
-      apply("kotlin")
-      apply("kotlin-kapt")
-      apply(SCABBARD_PLUGIN_ID)
-    }
+    project.setupAsKotlin()
 
-    ScabbardPropertiesDelegate(prepareScabbardExtension {
-      fullGraphValidation = true
+    ScabbardPropertiesDelegate(scabbardExtension {
+      fullBindingGraphValidation = true
     }).delegate()
 
     assertTrue(
@@ -98,18 +87,15 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
 
   @Test
   fun `assert for java projects fullBindingGraphValidation property is forwarded to kapt and javac`() {
-    project.plugins.apply {
-      apply("java")
-      apply(SCABBARD_PLUGIN_ID)
-    }
+    project.setupAsJava()
 
-    ScabbardPropertiesDelegate(prepareScabbardExtension {
-      fullGraphValidation = true
+    ScabbardPropertiesDelegate(scabbardExtension {
+      fullBindingGraphValidation = true
     }).delegate()
 
     project.javacOptions { options ->
       assertTrue(
-        "JavaC binding graph validation key is added",
+        "Javac binding graph validation key is added",
         options.compilerArgs.contains("-A$DAGGER_FULL_BINDING_GRAPH_VALIDATION")
       )
     }
@@ -117,14 +103,10 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
 
   @Test
   fun `assert output format is forwarded to kapt`() {
-    project.plugins.apply {
-      apply("kotlin")
-      apply("kotlin-kapt")
-      apply(SCABBARD_PLUGIN_ID)
-    }
+    project.setupAsKotlin()
 
-    ScabbardPropertiesDelegate(prepareScabbardExtension {
-      outputFormat = "svg"
+    ScabbardPropertiesDelegate(scabbardExtension {
+      outputFormat = OutputFormat.SVG
     }).delegate()
 
     assertTrue(
@@ -136,18 +118,15 @@ class ScabbardPropertiesDelegateTest : ProjectTest() {
 
   @Test
   fun `assert for java projects output format is forwarded to javac`() {
-    project.plugins.apply {
-      apply("java")
-      apply(SCABBARD_PLUGIN_ID)
-    }
+    project.setupAsJava()
 
-    ScabbardPropertiesDelegate(prepareScabbardExtension {
-      outputFormat = "svg"
+    ScabbardPropertiesDelegate(scabbardExtension {
+      outputFormat = OutputFormat.SVG
     }).delegate()
 
     project.javacOptions { options ->
       assertTrue(
-        "JavaC output format is added",
+        "Javac output format is added",
         options.compilerArgs.contains("-A$OUTPUT_FORMAT=svg")
       )
     }

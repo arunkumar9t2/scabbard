@@ -1,14 +1,17 @@
 package dev.arunkumar.scabbard.gradle.processor
 
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KOTLIN_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.common.ProjectTest
+import dev.arunkumar.scabbard.gradle.common.ScabbardBaseTest
 import dev.arunkumar.scabbard.gradle.projectmeta.ANNOTATION_PROCESSOR
 import dev.arunkumar.scabbard.gradle.projectmeta.VersionCalculator
 import org.gradle.api.Project
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class ScabbardProcessorManagerTest : ProjectTest() {
+class ScabbardProcessorManagerTest : ScabbardBaseTest() {
 
   private fun Project.hasScabbardProcessor(isKoltin: Boolean = true): Boolean {
     return project.configurations
@@ -33,61 +36,51 @@ class ScabbardProcessorManagerTest : ProjectTest() {
 
   @Test
   fun `when kapt is present assert scabbard processor is added by default (kapt)`() {
-    project.plugins.apply {
-      apply("kotlin")
-      apply("kotlin-kapt")
-      apply(SCABBARD_PLUGIN_ID)
-    }
-    ScabbardProcessorManager(prepareScabbardExtension()).manage()
+    project.setupAsKotlin()
+    ScabbardProcessorManager(scabbardExtension()).manage()
     assertTrue("Scabbard applied", project.hasScabbardProcessor())
   }
 
   @Test
   fun `when kapt added and scabbard extension disabled assert scabbard processor is not added`() {
-    project.plugins.apply {
-      apply("kotlin")
-      apply("kotlin-kapt")
-      apply(SCABBARD_PLUGIN_ID)
-    }
-    ScabbardProcessorManager(prepareScabbardExtension {
-      isScabbardEnabled = false
+    project.setupAsKotlin()
+    ScabbardProcessorManager(scabbardExtension {
+      enabled = false
     }).manage()
     assertTrue("Scabbard is not applied", !project.hasScabbardProcessor())
   }
 
   @Test
   fun `when java plugin present assert scabbard processor is added by default (annotationProcessor)`() {
-    project.plugins.apply {
-      apply("java")
-      apply(SCABBARD_PLUGIN_ID)
-    }
-    ScabbardProcessorManager(prepareScabbardExtension()).manage()
+    project.setupAsJava()
+    ScabbardProcessorManager(scabbardExtension()).manage()
     assertTrue("Scabbard applied", project.hasScabbardProcessor(isKoltin = false))
   }
 
   @Test
   fun `when java plugin present and scabbard extension disabled assert scabbard processor is not added`() {
-    project.plugins.apply {
-      apply("java")
-      apply(SCABBARD_PLUGIN_ID)
-    }
-    ScabbardProcessorManager(prepareScabbardExtension {
-      isScabbardEnabled = false
+    project.setupAsJava()
+
+    ScabbardProcessorManager(scabbardExtension {
+      enabled = false
     }).manage()
+
     assertTrue("Scabbard is not applied", !project.hasScabbardProcessor(isKoltin = false))
   }
 
   @Test
   fun `when both java and kotlin are present assert scabbard processor is added only in kapt config`() {
     project.plugins.apply {
-      apply("java")
-      apply("kotlin")
-      apply("kotlin-kapt")
+      apply(JAVA_PLUGIN_ID)
+      apply(KOTLIN_PLUGIN_ID)
+      apply(KAPT_PLUGIN_ID)
       apply(SCABBARD_PLUGIN_ID)
     }
-    ScabbardProcessorManager(prepareScabbardExtension {
-      isScabbardEnabled = false
+
+    ScabbardProcessorManager(scabbardExtension {
+      enabled = false
     }).manage()
+
     assertTrue("Scabbard is not applied", !project.hasScabbardProcessor(isKoltin = false))
   }
 }

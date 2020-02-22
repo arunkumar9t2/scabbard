@@ -1,6 +1,6 @@
 package dev.arunkumar.scabbard.gradle.processor
 
-import dev.arunkumar.scabbard.gradle.DefaultScabbardSpec
+import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
 import dev.arunkumar.scabbard.gradle.projectmeta.ANNOTATION_PROCESSOR
 import dev.arunkumar.scabbard.gradle.projectmeta.VersionCalculator
 import dev.arunkumar.scabbard.gradle.projectmeta.hasJavaAnnotationProcessorConfig
@@ -14,13 +14,13 @@ internal const val KAPT = "kapt"
  * Responsible for applying Scabbard processor dependency based of project metadata. For example,
  * `kapt` for Kotlin projects and `annotationProcessor` for pure Java projects.
  */
-internal class ScabbardProcessorManager(private val scabbardSpec: DefaultScabbardSpec) {
+internal class ScabbardProcessorManager(private val scabbardPluginExtension: ScabbardPluginExtension) {
 
-  private val project get() = scabbardSpec.project
+  private val project get() = scabbardPluginExtension.project
 
   fun manage() {
     @Suppress("ControlFlowWithEmptyBody")
-    if (scabbardSpec.isScabbardEnabled) {
+    if (scabbardPluginExtension.enabled) {
       val scabbardVersion = VersionCalculator(project).calculate()
       val scabbardDependency = SCABBARD_PROCESSOR_FORMAT.format(scabbardVersion)
       project.logger.info("Applying scabbard dependency: $scabbardDependency")
