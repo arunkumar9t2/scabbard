@@ -6,6 +6,7 @@ interface ScabbardSpec {
 
   fun enabled(enabled: Boolean)
   // fun singleGraph(enabled: Boolean)
+
   fun failOnError(failOnError: Boolean)
 
   /**
@@ -19,6 +20,12 @@ interface ScabbardSpec {
    * and `@Subcomponent`. This enables visualization of missing bindings and generates graphs for
    * `@Module` too. */
   fun fullBindingGraphValidation(enabled: Boolean)
+  
+  
+  /**
+   * Specify the output image format. Can be be one of `png` or `svg`.
+   */
+  fun outputFormat(outputFormat: String)
 }
 
 internal open class DefaultScabbardSpec(val project: Project) : ScabbardSpec {
@@ -33,15 +40,21 @@ internal open class DefaultScabbardSpec(val project: Project) : ScabbardSpec {
     this.failOnError = failOnError
   }
 
+  var qualifiedNames = false
+  override fun qualifiedNames(enabled: Boolean) {
+    qualifiedNames = enabled
+  }
+
   var fullGraphValidation = false
   override fun fullBindingGraphValidation(enabled: Boolean) {
     fullGraphValidation = enabled
   }
 
-  var qualifiedNames = false
-  override fun qualifiedNames(enabled: Boolean) {
-    qualifiedNames = enabled
+  var outputFormat: String = "png"
+  override fun outputFormat(outputFormat: String) {
+    this.outputFormat = outputFormat
   }
+
 
   inline fun ifEnabled(block: () -> Unit) {
     if (isScabbardEnabled) {

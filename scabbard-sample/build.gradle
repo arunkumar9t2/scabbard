@@ -33,12 +33,7 @@ scabbard {
     failOnError true
     fullBindingGraphValidation true
     qualifiedNames false
-}
-
-kapt {
-    arguments {
-        arg("scabbard.outputFormat", "svg")
-    }
+    outputFormat "svg"
 }
 
 apply from: "../gradle/scabbard-local-processor.gradle"
