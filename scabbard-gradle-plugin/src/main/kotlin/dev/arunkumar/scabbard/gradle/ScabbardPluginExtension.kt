@@ -1,21 +1,16 @@
 package dev.arunkumar.scabbard.gradle
 
-import groovy.lang.Closure
+import dev.arunkumar.scabbard.gradle.propertiesdelegate.*
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.model.ObjectFactory
-import org.gradle.kotlin.dsl.invoke
-import org.gradle.util.Configurable
-import org.gradle.util.ConfigureUtil
 
 /**
  * Scabbard plugin extension that configures the project.
  */
 open class ScabbardPluginExtension(
   val project: Project,
-  private val objectFactory: ObjectFactory,
-  private val extensionConfiguredAction: Action<ScabbardPluginExtension>
-) : Configurable<ScabbardPluginExtension> {
+  val onCompilerPropertyChanged: Action<CompilerProperty<*>>
+) {
 
   /**
    * Control whether scabbard is enabled or not
@@ -26,14 +21,13 @@ open class ScabbardPluginExtension(
    * By default, scabbard does not fail the build when any error occurs in scabbard's processor. Setting
    * this property to `true` will change that behaviour to fail on any error for debugging purposes
    */
-  open var failOnError: Boolean = false
+  open var failOnError by compilerProperty(FAIL_ON_ERROR)
 
   /**
    * Flag to control if fully qualified names should be used everywhere in the graph. Default value
    * is `false`
    */
-  open var qualifiedNames: Boolean = false
-
+  open var qualifiedNames by compilerProperty(QUALIFIED_NAMES)
   /**
    * Configures Dagger processor to do full graph validation which processes each `@Module`, `@Component`
    * and `@Subcomponent`. This enables visualization of missing bindings and generates graphs for
@@ -45,15 +39,14 @@ open class ScabbardPluginExtension(
    * The output image format that scabbard generates. Supported values are [OutputFormat.PNG]
    * or [OutputFormat.SVG]
    */
-  open var outputFormat: String = OutputFormat.PNG
+  open var outputFormat by compilerProperty(OUTPUT_FORMAT)
 
   /**
-   * Implement [Configurable.configure] to receive callback when Gradle configures the extension.
-   * For more details, see [https://github.com/arunkumar9t2/scabbard/issues/15]
+   * Executes the given [block] if the plugin is `enabled` with the extension as the receiver.
    */
-  override fun configure(closure: Closure<*>): ScabbardPluginExtension {
-    ConfigureUtil.configureSelf(closure, this)
-    extensionConfiguredAction(this)
-    return this
+  internal fun ifEnabled(block: ScabbardPluginExtension.() -> Unit) {
+    if (enabled) {
+      block(this)
+    }
   }
 }

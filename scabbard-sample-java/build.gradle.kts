@@ -20,7 +20,8 @@ configure<ApplicationPluginConvention> {
 
 configure<ScabbardPluginExtension> {
   enabled = true
-  failOnError = false
+  qualifiedNames = true
+  failOnError = true
   fullBindingGraphValidation = true
   outputFormat = "svg"
 }
