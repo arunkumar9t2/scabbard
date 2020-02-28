@@ -33,13 +33,19 @@ open class ScabbardPluginExtension(
    * and `@Subcomponent`. This enables visualization of missing bindings and generates graphs for
    * `@Module` too.
    */
-  open var fullBindingGraphValidation: Boolean = false
+  open var fullBindingGraphValidation by mapCompilerProperty(
+    compilerProperty = FULL_GRAPH_VALIDATION,
+    valueMapper = FULL_GRAPH_VALIDATION_MAPPER
+  )
 
   /**
    * The output image format that scabbard generates. Supported values are [OutputFormat.PNG]
    * or [OutputFormat.SVG]
    */
-  open var outputFormat by compilerProperty(OUTPUT_FORMAT)
+  open var outputFormat by mapCompilerProperty(
+    OUTPUT_FORMAT,
+    valueMapper = OutputFormat::parse
+  )
 
   /**
    * Executes the given [block] if the plugin is `enabled` with the extension as the receiver.

@@ -6,6 +6,7 @@ import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD
 import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.CompilerProperty.Companion.FAIL_ON_ERROR_PROPERTY
+import dev.arunkumar.scabbard.gradle.propertiesdelegate.CompilerProperty.Companion.FULL_GRAPH_VALIDATION_PROPERTY
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.CompilerProperty.Companion.OUTPUT_FORMAT_PROPERTY
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.CompilerProperty.Companion.QUALIFIED_NAMES_PROPERTY
 import org.gradle.api.Project
@@ -21,21 +22,42 @@ data class CompilerProperty<T>(val name: String, val value: T) {
     internal const val FAIL_ON_ERROR_PROPERTY = "$SCABBARD.failOnError"
     internal const val QUALIFIED_NAMES_PROPERTY = "$SCABBARD.qualifiedNames"
     internal const val OUTPUT_FORMAT_PROPERTY = "$SCABBARD.outputFormat"
-    internal const val DAGGER_FULL_BINDING_GRAPH_VALIDATION =
-      "dagger.fullBindingGraphValidation=WARNING"
+    internal const val FULL_GRAPH_VALIDATION_PROPERTY = "dagger.fullBindingGraphValidation"
   }
 }
 
 internal val FAIL_ON_ERROR = CompilerProperty(FAIL_ON_ERROR_PROPERTY, false)
 internal val QUALIFIED_NAMES = CompilerProperty(QUALIFIED_NAMES_PROPERTY, false)
 internal val OUTPUT_FORMAT = CompilerProperty(OUTPUT_FORMAT_PROPERTY, OutputFormat.PNG)
+internal val FULL_GRAPH_VALIDATION = CompilerProperty(
+  FULL_GRAPH_VALIDATION_PROPERTY,
+  false
+)
+internal val FULL_GRAPH_VALIDATION_MAPPER: (Boolean) -> String? = { enabled ->
+  if (enabled) {
+    "WARNING"
+  } else {
+    null
+  }
+}
+
+/**
+ * A pass-through mapper function that forwards value as received without any modification
+ */
+internal fun <T> instanceMapper(): (T) -> T = { it }
 
 internal fun <T> ScabbardPluginExtension.compilerProperty(
   compilerProperty: CompilerProperty<T>
+) = mapCompilerProperty(compilerProperty, instanceMapper())
+
+internal fun <T, R> ScabbardPluginExtension.mapCompilerProperty(
+  compilerProperty: CompilerProperty<T>,
+  valueMapper: (T) -> R
 ) = object : ObservableProperty<T>(compilerProperty.value) {
   override fun afterChange(property: KProperty<*>, oldValue: T, newValue: T) {
     if (oldValue != newValue) {
-      onCompilerPropertyChanged.execute(compilerProperty.copy(value = newValue))
+      val mappedValue = valueMapper(newValue)
+      onCompilerPropertyChanged.execute(CompilerProperty(compilerProperty.name, mappedValue))
     }
   }
 }
