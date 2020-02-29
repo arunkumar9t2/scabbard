@@ -9,6 +9,7 @@ local.properties
 .idea/modules.xml
 .idea/vcs.xml
 .idea/workspace.xml
+.idea/compiler.xml
 /.idea/jarRepositories.xml
 .idea/shelf
 .DS_Store
