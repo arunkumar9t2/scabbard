@@ -15,7 +15,7 @@ class ScopeColors @Inject constructor() {
     listOf(
       "aquamarine",
       "bisque",
-      "brown1",
+      "yellow1",
       "chartreuse1",
       "coral",
       "cornflowerblue",
@@ -29,7 +29,6 @@ class ScopeColors @Inject constructor() {
       "green1",
       "seagreen1",
       "thistle",
-      "yellow1",
       "yellowgreen"
     )
   }
