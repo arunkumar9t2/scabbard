@@ -6,7 +6,7 @@ plugins {
   application
 }
 apply(plugin = "scabbard.gradle")
-apply(from = rootProject.file("gradle/scabbard-local-processor.gradle"))
+apply(from = "../../gradle/scabbard-local-processor.gradle")
 
 configure<JavaPluginExtension> {
   sourceCompatibility = VERSION_1_8

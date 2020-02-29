@@ -16,7 +16,7 @@ scabbard {
     outputFormat "svg"
 }
 
-apply from: rootProject.file("/gradle/scabbard-local-processor.gradle")
+apply from: "../../gradle/scabbard-local-processor.gradle"
 
 repositories {
     jcenter()
