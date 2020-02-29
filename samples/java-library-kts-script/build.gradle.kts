@@ -1,4 +1,3 @@
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin
 import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
 import org.gradle.api.JavaVersion.VERSION_1_8
 
@@ -7,7 +6,7 @@ plugins {
   application
 }
 apply(plugin = "scabbard.gradle")
-apply(from = "../gradle/scabbard-local-processor.gradle")
+apply(from = rootProject.file("gradle/scabbard-local-processor.gradle"))
 
 configure<JavaPluginExtension> {
   sourceCompatibility = VERSION_1_8

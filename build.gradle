@@ -32,7 +32,7 @@ def isWin = System.getProperty("os.name").toLowerCase().contains("win")
 //TODO Investigate migrating to GradleBuild. ATM has issues disabling daemon.
 tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
     group = "development"
-    def sample = "scabbard-sample"
+    def sample = "samples:android-kotlin"
     doLast {
         def isDebug = project.hasProperty("debug")
         if (isDebug) {

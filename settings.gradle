@@ -8,8 +8,8 @@ include ':scabbard-processor-tests:svg-format-tests'
 
 include ':scabbard-idea-plugin'
 
-include ':scabbard-sample'
-include ':scabbard-sample-java'
+include 'samples:android-kotlin'
+include 'samples:java-library-kts-script'
 
 
 includeBuild('scabbard-gradle-plugin') {
