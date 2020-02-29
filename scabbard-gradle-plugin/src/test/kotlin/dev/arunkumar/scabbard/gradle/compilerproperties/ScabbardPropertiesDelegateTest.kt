@@ -1,6 +1,6 @@
-package dev.arunkumar.scabbard.gradle.propertiesdelegate
+package dev.arunkumar.scabbard.gradle.compilerproperties
 
-import dev.arunkumar.scabbard.gradle.OutputFormat
+import dev.arunkumar.scabbard.gradle.output.OutputFormat
 import dev.arunkumar.scabbard.gradle.common.ScabbardBaseTest
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.DAGGER_FULL_BINDING_GRAPH_VALIDATION
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.FAIL_ON_ERROR

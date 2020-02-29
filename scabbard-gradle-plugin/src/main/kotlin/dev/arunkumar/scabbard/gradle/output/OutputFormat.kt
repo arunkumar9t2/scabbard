@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.gradle
+package dev.arunkumar.scabbard.gradle.output
 
 object OutputFormat {
   const val SVG = "svg"

@@ -1,6 +1,8 @@
 package dev.arunkumar.scabbard.gradle
 
-import dev.arunkumar.scabbard.gradle.propertiesdelegate.*
+import dev.arunkumar.scabbard.gradle.compilerproperties.*
+import dev.arunkumar.scabbard.gradle.compilerproperties.compilerProperty
+import dev.arunkumar.scabbard.gradle.output.OutputFormat
 import dev.arunkumar.scabbard.gradle.util.enabledProperty
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -45,14 +47,14 @@ open class ScabbardPluginExtension(
    * or [OutputFormat.SVG]
    */
   open var outputFormat by mapCompilerProperty(
-    OUTPUT_FORMAT,
+    compilerProperty = OUTPUT_FORMAT,
     valueMapper = OutputFormat::parse
   )
 
   /**
    * Executes the given [block] if the plugin is `enabled` with the extension as the receiver.
    */
-  internal fun ifEnabled(block: ScabbardPluginExtension.() -> Unit) {
+  fun ifEnabled(block: ScabbardPluginExtension.() -> Unit) {
     if (enabled) {
       block(this)
     }

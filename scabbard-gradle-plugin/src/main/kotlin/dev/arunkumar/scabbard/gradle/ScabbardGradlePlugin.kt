@@ -1,8 +1,8 @@
 package dev.arunkumar.scabbard.gradle
 
+import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty
+import dev.arunkumar.scabbard.gradle.compilerproperties.applyCompilerProperty
 import dev.arunkumar.scabbard.gradle.processor.manageScabbardProcessor
-import dev.arunkumar.scabbard.gradle.propertiesdelegate.CompilerProperty
-import dev.arunkumar.scabbard.gradle.propertiesdelegate.applyCompilerProperty
 import org.gradle.api.Action
 import org.gradle.api.Plugin
 import org.gradle.api.Project

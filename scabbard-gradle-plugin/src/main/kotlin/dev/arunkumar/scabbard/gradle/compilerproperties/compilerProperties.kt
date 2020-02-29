@@ -1,14 +1,14 @@
-package dev.arunkumar.scabbard.gradle.propertiesdelegate
+package dev.arunkumar.scabbard.gradle.compilerproperties
 
-import dev.arunkumar.scabbard.gradle.OutputFormat
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_LIBRARY_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD
 import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
-import dev.arunkumar.scabbard.gradle.propertiesdelegate.CompilerProperty.Companion.FAIL_ON_ERROR_PROPERTY
-import dev.arunkumar.scabbard.gradle.propertiesdelegate.CompilerProperty.Companion.FULL_GRAPH_VALIDATION_PROPERTY
-import dev.arunkumar.scabbard.gradle.propertiesdelegate.CompilerProperty.Companion.OUTPUT_FORMAT_PROPERTY
-import dev.arunkumar.scabbard.gradle.propertiesdelegate.CompilerProperty.Companion.QUALIFIED_NAMES_PROPERTY
+import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.FAIL_ON_ERROR_PROPERTY
+import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.FULL_GRAPH_VALIDATION_PROPERTY
+import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.OUTPUT_FORMAT_PROPERTY
+import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.QUALIFIED_NAMES_PROPERTY
+import dev.arunkumar.scabbard.gradle.output.OutputFormat
 import org.gradle.api.Project
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.kotlin.dsl.configure
@@ -29,10 +29,7 @@ data class CompilerProperty<T>(val name: String, val value: T) {
 internal val FAIL_ON_ERROR = CompilerProperty(FAIL_ON_ERROR_PROPERTY, false)
 internal val QUALIFIED_NAMES = CompilerProperty(QUALIFIED_NAMES_PROPERTY, false)
 internal val OUTPUT_FORMAT = CompilerProperty(OUTPUT_FORMAT_PROPERTY, OutputFormat.PNG)
-internal val FULL_GRAPH_VALIDATION = CompilerProperty(
-  FULL_GRAPH_VALIDATION_PROPERTY,
-  false
-)
+internal val FULL_GRAPH_VALIDATION = CompilerProperty(FULL_GRAPH_VALIDATION_PROPERTY, false)
 internal val FULL_GRAPH_VALIDATION_MAPPER: (Boolean) -> String? = { enabled ->
   when {
     enabled -> "WARNING"
@@ -55,7 +52,12 @@ internal fun <T, R> ScabbardPluginExtension.mapCompilerProperty(
 ): ReadWriteProperty<Any?, T> = observable(compilerProperty.value) { _, oldValue, newValue ->
   if (oldValue != newValue) {
     val mappedValue = valueMapper(newValue)
-    onCompilerPropertyChanged.execute(CompilerProperty(compilerProperty.name, mappedValue))
+    onCompilerPropertyChanged.execute(
+      CompilerProperty(
+        compilerProperty.name,
+        mappedValue
+      )
+    )
   }
 }
 
