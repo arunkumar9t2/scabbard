@@ -27,8 +27,11 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+def isWin = System.getProperty("os.name").toLowerCase().contains("win")
+
 //TODO Investigate migrating to GradleBuild. ATM has issues disabling daemon.
 tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
+    group = "development"
     def sample = "scabbard-sample"
     doLast {
         def isDebug = project.hasProperty("debug")
@@ -39,7 +42,6 @@ tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
             }
         }
         exec {
-            def isWin = System.getProperty("os.name").toLowerCase().contains("win")
             def shell = isWin ? 'cmd' : 'sh'
             def commandPrefix = isWin ? '' : './'
             def shellArg = isWin ? '/c' : '-c'
@@ -50,5 +52,19 @@ tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
             workingDir(projectDir)
             commandLine shell, shellArg, command
         }
+    }
+}
+
+tasks.register("docsServe") {
+    group = "documentation"
+    description = "Serve documentation website and open browser"
+    doLast {
+        def url = "http://127.0.0.1:8000/"
+        if (isWin) {
+            exec { commandLine 'cmd', '/c', "start $url" }
+        } else {
+            exec { commandLine "open", url }
+        }
+        exec { commandLine("mkdocs", "serve") }
     }
 }
