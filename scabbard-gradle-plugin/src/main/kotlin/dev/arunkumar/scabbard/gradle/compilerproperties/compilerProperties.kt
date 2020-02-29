@@ -17,6 +17,14 @@ import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 import kotlin.properties.Delegates.observable
 import kotlin.properties.ReadWriteProperty
 
+
+/**
+ * Data structure abstraction to define JVM compiler property in a type-safe way.
+ *
+ * @param name the name of the property
+ * @param value the value for this property. The type is usually converted to string using [toString]
+ * hence care must for taken when custom object is used.
+ */
 data class CompilerProperty<T>(val name: String, val value: T) {
   companion object {
     internal const val FAIL_ON_ERROR_PROPERTY = "$SCABBARD.failOnError"
@@ -46,6 +54,20 @@ internal fun <T> ScabbardPluginExtension.compilerProperty(
   compilerProperty: CompilerProperty<T>
 ) = mapCompilerProperty(compilerProperty, passThroughMapper())
 
+
+/**
+ * A property delegate that calls [ScabbardPluginExtension.onCompilerPropertyChanged] whenever
+ * the backing value changes and broadcasts it as `CompilerProperty<T>` where `T` is the type of the
+ * property. Optionally it is possible to convert the property type from one to another by using
+ * [valueMapper]. For example, see `[FULL_GRAPH_VALIDATION] and [FULL_GRAPH_VALIDATION_MAPPER].
+ *
+ * Note:
+ * The change is broadcast only if the value actually changes.
+ *
+ * @param compilerProperty initial defaults of the compiler property
+ * @param valueMapper a value mapper that will be executed before broadcasting change to
+ * [ScabbardPluginExtension.onCompilerPropertyChanged]
+ */
 internal fun <T, R> ScabbardPluginExtension.mapCompilerProperty(
   compilerProperty: CompilerProperty<T>,
   valueMapper: (T) -> R
@@ -56,6 +78,12 @@ internal fun <T, R> ScabbardPluginExtension.mapCompilerProperty(
   }
 }
 
+/**
+ * Applies the given [compilerProperty] to this project.
+ *
+ * For `Java` projects, the properties are directly set to [JavaCompile]'s compiler arguments.
+ * For `Kotlin` projects, the properties are set tp [KaptExtension]'s arguments.
+ */
 internal fun Project.applyCompilerProperty(compilerProperty: CompilerProperty<*>) {
   pluginManager.withPlugin(KAPT_PLUGIN_ID) {
     // For Kotlin projects, forward compiler arguments to Kapt

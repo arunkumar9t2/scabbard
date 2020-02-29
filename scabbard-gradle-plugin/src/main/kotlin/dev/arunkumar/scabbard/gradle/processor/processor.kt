@@ -9,6 +9,7 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.ConfigurationContainer
 import org.gradle.api.artifacts.Dependency
+import org.gradle.api.plugins.PluginManager
 
 internal const val KAPT_CONFIG = "kapt"
 internal const val ANNOTATION_PROCESSOR_CONFIG = "annotationProcessor"
@@ -16,9 +17,15 @@ internal const val SCABBARD_GROUP = "dev.arunkumar"
 internal const val SCABBARD_NAME = "scabbard-processor"
 internal const val SCABBARD_PROCESSOR_FORMAT = "$SCABBARD_GROUP:$SCABBARD_NAME:%s"
 
+/**
+ * @return if the [Dependency] is Scabbard's annotation processor dependency
+ */
 private fun Dependency.isScabbardDependency() =
   group == SCABBARD_GROUP && name == SCABBARD_NAME
 
+/**
+ * @return Boolean if the Configuration has Scabbard's annotation processor dependency
+ */
 private fun Configuration.hasScabbard() = dependencies.any(Dependency::isScabbardDependency)
 
 private fun configName(isKapt: Boolean) = when {
@@ -26,6 +33,13 @@ private fun configName(isKapt: Boolean) = when {
   else -> ANNOTATION_PROCESSOR_CONFIG
 }
 
+/**
+ * Removes the Scabbard annotation processor dependency from this project. [isKapt] controls which
+ * config to remove from.
+ *
+ * @param isKapt when true the dependency is removed from `kapt`, if not it is removed from
+ * `annotationProcessor`
+ */
 private fun Project.removeScabbard(isKapt: Boolean = false) {
   val config = configName(isKapt)
   configurations.findByName(config)
@@ -68,6 +82,20 @@ internal class VersionCalculator(private val project: Project) {
   }
 }
 
+/**
+ * Responsible for adding Scabbard's annotation processor to the Project based on project properties
+ * such as if it is as `java`, `kotlin`, `android` or a mixed project.
+ *
+ * The logic relies on callback's from Gradle's [PluginManager] API to determine the course of action
+ * to avoid reliance on plugin application order to determine other applied plugins. Relying on plugin
+ * application order can have issue when using `subprojects` or `allprojects`
+ *
+ * The dependency is added without forcing any resolution of other dependencies.
+ *
+ * @param enabled control whether the processor to be added to this project. If `false` any dependency
+ * on Scabbard's annotation processor will be removed from this project. Even if it was not added by
+ * this plugin.
+ */
 internal fun Project.manageScabbardProcessor(enabled: Boolean) {
   val scabbardVersion = VersionCalculator(project).calculate()
   val scabbardDependency = SCABBARD_PROCESSOR_FORMAT.format(scabbardVersion)
