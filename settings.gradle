@@ -10,6 +10,7 @@ include ':scabbard-idea-plugin'
 
 include 'samples:android-kotlin'
 include 'samples:java-library-kts-script'
+include 'samples:coffee-java'
 
 
 includeBuild('scabbard-gradle-plugin') {

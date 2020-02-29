@@ -1,0 +1,31 @@
+plugins {
+    id 'java-library'
+    id 'application'
+}
+apply plugin: scabbardGradlePlugin
+
+application {
+    mainClassName = 'dev.arunkumar.scabbard.coffee.CoffeeApp'
+}
+
+scabbard {
+    enabled true
+    failOnError true
+    fullBindingGraphValidation true
+    qualifiedNames false
+    outputFormat "svg"
+}
+
+apply from: rootProject.file("/gradle/scabbard-local-processor.gradle")
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${versions.dagger}"
+    implementation 'com.google.guava:guava:28.0-jre'
+    testImplementation "junit:junit:${versions.junit}"
+}
+
