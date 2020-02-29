@@ -4,10 +4,9 @@ import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.ANDROID_APP_
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.ANDROID_LIBRARY_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_LIBRARY_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.plugin.VERSION
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
-import org.gradle.api.artifacts.ConfigurationContainer
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.plugins.PluginManager
 
@@ -15,7 +14,7 @@ internal const val KAPT_CONFIG = "kapt"
 internal const val ANNOTATION_PROCESSOR_CONFIG = "annotationProcessor"
 internal const val SCABBARD_GROUP = "dev.arunkumar"
 internal const val SCABBARD_NAME = "scabbard-processor"
-internal const val SCABBARD_PROCESSOR_FORMAT = "$SCABBARD_GROUP:$SCABBARD_NAME:%s"
+internal const val SCABBARD_PROCESSOR_DEPENDENCY = "$SCABBARD_GROUP:$SCABBARD_NAME:$VERSION"
 
 /**
  * @return if the [Dependency] is Scabbard's annotation processor dependency
@@ -55,30 +54,22 @@ private fun Project.removeScabbard(isKapt: Boolean = false) {
     }
 }
 
-internal class VersionCalculator(private val project: Project) {
-
-  companion object {
-    private const val CLASSPATH_CONFIG = "classpath"
-  }
-
-  private fun versionFromConfigurations(configurations: ConfigurationContainer): String? {
-    return try {
-      configurations.getByName(CLASSPATH_CONFIG)
-        .dependencies.first { it.name == SCABBARD_PLUGIN_ID }
-        .version.takeIf { it?.trim()?.isNotEmpty() == true }
-    } catch (e: Exception) {
-      null
+/**
+ * Add scabbard processor dependency to the project in either `annotationProcessor` or `kapt`
+ * configuration as determined by [isKapt]
+ *
+ * The dependency is added only if the configuration itself is already available, if not it is not
+ * added.
+ */
+private fun Project.addScabbard(isKapt: Boolean = false) {
+  val annotationConfig = configName(isKapt)
+  if (configurations.findByName(annotationConfig) != null) {
+    if (!configurations.getByName(annotationConfig).hasScabbard()) {
+      logger.info("Adding scabbard to $annotationConfig config")
+      dependencies.add(annotationConfig, SCABBARD_PROCESSOR_DEPENDENCY)
     }
-  }
-
-  fun calculate(): String {
-    val rootProjectConfigs = project.rootProject.buildscript.configurations
-    val currentProjectConfigs = project.buildscript.configurations
-    val versionFromRootProject = versionFromConfigurations(rootProjectConfigs)
-    //.also { project.logger.quiet("versionFromRootProject:$it") }
-    val versionFromCurrentProject = versionFromConfigurations(currentProjectConfigs)
-    //.also { project.logger.quiet("versionFromCurrentProject:$it") }
-    return versionFromCurrentProject ?: versionFromRootProject ?: "0.1.0" // <- worst case
+  } else {
+    logger.info("Skipped adding Scabbard due to lack of $annotationConfig config")
   }
 }
 
@@ -97,20 +88,7 @@ internal class VersionCalculator(private val project: Project) {
  * this plugin.
  */
 internal fun Project.manageScabbardProcessor(enabled: Boolean) {
-  val scabbardVersion = VersionCalculator(project).calculate()
-  val scabbardDependency = SCABBARD_PROCESSOR_FORMAT.format(scabbardVersion)
   if (enabled) {
-    fun Project.addScabbard(isKapt: Boolean = false) {
-      val annotationConfig = configName(isKapt)
-      if (configurations.findByName(annotationConfig) != null) {
-        if (!configurations.getByName(annotationConfig).hasScabbard()) {
-          logger.info("Adding scabbard to $annotationConfig config")
-          dependencies.add(annotationConfig, scabbardDependency)
-        }
-      } else {
-        logger.info("Skipped adding Scabbard due to lack of $annotationConfig config")
-      }
-    }
     pluginManager.run {
       withPlugin(ANDROID_APP_PLUGIN_ID) { addScabbard() }
       withPlugin(ANDROID_LIBRARY_PLUGIN_ID) { addScabbard() }

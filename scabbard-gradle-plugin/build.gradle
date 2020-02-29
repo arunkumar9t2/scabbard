@@ -36,10 +36,9 @@ gradlePlugin {
 
 sourceSets {
     functionalTest {
-        java {
-            srcDirs 'src/functionalTest/kotlin'
-        }
+        java.srcDirs 'src/functionalTest/kotlin'
     }
+    main.java.srcDir 'build/generated/kotlin'
 }
 
 gradlePlugin.testSourceSets(sourceSets.functionalTest)
@@ -58,4 +57,23 @@ pluginBundle {
     website = project.findProperty("website")
     vcsUrl = project.findProperty("website")
     tags = ['dagger 2', 'dependency injection', 'visualize dependency graph']
+}
+
+def generatePluginVersion = tasks.register("generatePluginVersion") {
+    def outputDir = file('build/generated/kotlin')
+    inputs.property 'version', version
+    outputs.dir outputDir
+    doLast {
+        def packageName = groupId + "." + project.name.replace("-", ".")
+        def versionFile = file("${outputDir}/${packageName.replace(".", "/")}/Version.kt")
+        versionFile.parentFile.mkdirs()
+        versionFile.text = """// Generated file. Do not edit!
+package $packageName
+const val VERSION = "${project.version}"
+"""
+    }
+}
+
+tasks.named('compileKotlin').configure {
+    dependsOn(generatePluginVersion)
 }

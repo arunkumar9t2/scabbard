@@ -23,10 +23,7 @@ class ScabbardProcessorManagerTest : ScabbardBaseTest() {
           else -> configuration.name == ANNOTATION_PROCESSOR_CONFIG
         }
       }.flatMap { it.dependencies }.any { dep ->
-        val version = VersionCalculator(
-          project
-        ).calculate()
-        "${dep.group}:${dep.name}:${dep.version}" == SCABBARD_PROCESSOR_FORMAT.format(version)
+        "${dep.group}:${dep.name}:${dep.version}" == SCABBARD_PROCESSOR_DEPENDENCY
       }
   }
 
@@ -104,7 +101,7 @@ class ScabbardProcessorManagerTest : ScabbardBaseTest() {
     project.setupAsKotlin()
 
     // Add the processor dependency manually
-    project.dependencies.add(KAPT_CONFIG, SCABBARD_PROCESSOR_FORMAT.format("0.1.0"))
+    project.dependencies.add(KAPT_CONFIG, SCABBARD_PROCESSOR_DEPENDENCY)
 
     scabbardExtension {
       enabled = false
