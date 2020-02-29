@@ -52,12 +52,7 @@ internal fun <T, R> ScabbardPluginExtension.mapCompilerProperty(
 ): ReadWriteProperty<Any?, T> = observable(compilerProperty.value) { _, oldValue, newValue ->
   if (oldValue != newValue) {
     val mappedValue = valueMapper(newValue)
-    onCompilerPropertyChanged.execute(
-      CompilerProperty(
-        compilerProperty.name,
-        mappedValue
-      )
-    )
+    onCompilerPropertyChanged.execute(CompilerProperty(compilerProperty.name, mappedValue))
   }
 }
 

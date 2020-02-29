@@ -37,10 +37,9 @@ class ScabbardGradlePlugin : Plugin<Project> {
   }
 
   private fun Project.setupProjects(block: Project.() -> Unit) {
+    block(this)
     if (this == rootProject) {
       subprojects(block)
-    } else {
-      block(this)
     }
   }
 

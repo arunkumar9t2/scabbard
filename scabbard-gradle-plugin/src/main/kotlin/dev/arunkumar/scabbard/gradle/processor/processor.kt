@@ -19,10 +19,6 @@ internal const val SCABBARD_PROCESSOR_FORMAT = "$SCABBARD_GROUP:$SCABBARD_NAME:%
 private fun Dependency.isScabbardDependency() =
   group == SCABBARD_GROUP && name == SCABBARD_NAME
 
-@Suppress("unused")
-private fun Dependency.isDaggerCompiler() =
-  group == "com.google.dagger" && name == "dagger-compiler"
-
 private fun Configuration.hasScabbard() = dependencies.any(Dependency::isScabbardDependency)
 
 private fun configName(isKapt: Boolean) = when {

@@ -1,11 +1,7 @@
 package dev.arunkumar.scabbard.gradle.compilerproperties
 
-import dev.arunkumar.scabbard.gradle.output.OutputFormat
 import dev.arunkumar.scabbard.gradle.common.ScabbardBaseTest
-import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.DAGGER_FULL_BINDING_GRAPH_VALIDATION
-import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.FAIL_ON_ERROR
-import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.OUTPUT_FORMAT
-import dev.arunkumar.scabbard.gradle.propertiesdelegate.ScabbardPropertiesDelegate.Companion.QUALIFIED_NAMES
+import dev.arunkumar.scabbard.gradle.output.OutputFormat.SVG
 import org.gradle.api.Project
 import org.gradle.api.tasks.compile.CompileOptions
 import org.gradle.api.tasks.compile.JavaCompile
@@ -15,7 +11,11 @@ import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class ScabbardPropertiesDelegateTest : ScabbardBaseTest() {
+/**
+ * Set of tests around how Scabbard plugin receives user preference and configures both Kotlin and
+ * Java projects
+ */
+class CompilerPropertiesTest : ScabbardBaseTest() {
 
   private fun Project.kaptOptions(): Map<String, String> {
     return project.extensions.findByType<KaptExtension>()
@@ -30,43 +30,45 @@ class ScabbardPropertiesDelegateTest : ScabbardBaseTest() {
   }
 
   @Test
-  fun `when kapt is present assert extension properties are delegated to kapt`() {
+  fun `assert when kapt is present extension properties are delegated to kapt`() {
     project.setupAsKotlin()
 
-    ScabbardPropertiesDelegate(scabbardExtension {
+    scabbardExtension {
+      enabled = true
       failOnError = true
       qualifiedNames = true
-    }).delegate()
+    }
 
     project.kaptOptions().let { options ->
       assertTrue(
         "Fail on error flag added",
-        options.containsKey(FAIL_ON_ERROR) && options.containsValue("true")
+        options.containsKey(FAIL_ON_ERROR.name) && options.containsValue("true")
       )
       assertTrue(
         "Qualified names flag added",
-        options.containsKey(QUALIFIED_NAMES) && options.containsValue("true")
+        options.containsKey(QUALIFIED_NAMES.name) && options.containsValue("true")
       )
     }
   }
 
   @Test
-  fun `for pure java projects assert extension properties are delegated to JavaCompile tasks`() {
+  fun `assert for pure java projects extension properties are delegated to JavaCompile tasks`() {
     project.setupAsJava()
 
-    ScabbardPropertiesDelegate(scabbardExtension {
+    scabbardExtension {
+      enabled = true
       failOnError = true
       qualifiedNames = true
-    }).delegate()
+    }
 
     project.javacOptions { options ->
       assertTrue(
         "Fail on error flag  added",
-        options.compilerArgs.contains("-A$FAIL_ON_ERROR=true")
+        options.compilerArgs.contains("-A${FAIL_ON_ERROR.name}=true")
       )
       assertTrue(
         "Qualified names flag added",
-        options.compilerArgs.contains("-A$QUALIFIED_NAMES=true")
+        options.compilerArgs.contains("-A${QUALIFIED_NAMES.name}=true")
       )
     }
   }
@@ -75,13 +77,14 @@ class ScabbardPropertiesDelegateTest : ScabbardBaseTest() {
   fun `assert fullBindingGraphValidation property is forwarded to kapt`() {
     project.setupAsKotlin()
 
-    ScabbardPropertiesDelegate(scabbardExtension {
+    scabbardExtension {
+      enabled = true
       fullBindingGraphValidation = true
-    }).delegate()
+    }
 
     assertTrue(
       "Binding graph validation key is present",
-      project.kaptOptions().contains(DAGGER_FULL_BINDING_GRAPH_VALIDATION)
+      project.kaptOptions().contains(FULL_GRAPH_VALIDATION.name)
     )
   }
 
@@ -89,14 +92,15 @@ class ScabbardPropertiesDelegateTest : ScabbardBaseTest() {
   fun `assert for java projects fullBindingGraphValidation property is forwarded to kapt and javac`() {
     project.setupAsJava()
 
-    ScabbardPropertiesDelegate(scabbardExtension {
+    scabbardExtension {
+      enabled = true
       fullBindingGraphValidation = true
-    }).delegate()
+    }
 
     project.javacOptions { options ->
       assertTrue(
         "Javac binding graph validation key is added",
-        options.compilerArgs.contains("-A$DAGGER_FULL_BINDING_GRAPH_VALIDATION")
+        options.compilerArgs.contains("-A${FULL_GRAPH_VALIDATION.name}=WARNING")
       )
     }
   }
@@ -105,14 +109,15 @@ class ScabbardPropertiesDelegateTest : ScabbardBaseTest() {
   fun `assert output format is forwarded to kapt`() {
     project.setupAsKotlin()
 
-    ScabbardPropertiesDelegate(scabbardExtension {
-      outputFormat = OutputFormat.SVG
-    }).delegate()
+    scabbardExtension {
+      enabled = true
+      outputFormat = SVG
+    }
 
     assertTrue(
       "Output format is set to svg",
-      project.kaptOptions().containsKey(OUTPUT_FORMAT)
-          && project.kaptOptions().containsValue("svg")
+      project.kaptOptions().containsKey(OUTPUT_FORMAT.name)
+          && project.kaptOptions().containsValue(SVG)
     )
   }
 
@@ -120,14 +125,15 @@ class ScabbardPropertiesDelegateTest : ScabbardBaseTest() {
   fun `assert for java projects output format is forwarded to javac`() {
     project.setupAsJava()
 
-    ScabbardPropertiesDelegate(scabbardExtension {
-      outputFormat = OutputFormat.SVG
-    }).delegate()
+    scabbardExtension {
+      enabled = true
+      outputFormat = SVG
+    }
 
     project.javacOptions { options ->
       assertTrue(
-        "Javac output format is added",
-        options.compilerArgs.contains("-A$OUTPUT_FORMAT=svg")
+        "Output format is set to svg",
+        options.compilerArgs.contains("-A${OUTPUT_FORMAT.name}=$SVG")
       )
     }
   }
