@@ -1,39 +1,66 @@
 package dev.arunkumar.scabbard.gradle.processor
 
-import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
-import dev.arunkumar.scabbard.gradle.projectmeta.ANNOTATION_PROCESSOR
-import dev.arunkumar.scabbard.gradle.projectmeta.VersionCalculator
-import dev.arunkumar.scabbard.gradle.projectmeta.hasJavaAnnotationProcessorConfig
-import dev.arunkumar.scabbard.gradle.projectmeta.isKotlinProject
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.ANDROID_APP_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.ANDROID_LIBRARY_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_LIBRARY_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
+import org.gradle.api.Project
+import org.gradle.api.artifacts.Configuration
+import org.gradle.api.artifacts.Dependency
 
-//TODO(arun) Can this be provided via resources?
-internal const val SCABBARD_PROCESSOR_FORMAT = "dev.arunkumar:scabbard-processor:%s"
-internal const val KAPT = "kapt"
+internal const val KAPT_CONFIG = "kapt"
+internal const val ANNOTATION_PROCESSOR_CONFIG = "annotationProcessor"
 
-/**
- * Responsible for applying Scabbard processor dependency based of project metadata. For example,
- * `kapt` for Kotlin projects and `annotationProcessor` for pure Java projects.
- */
-internal class ScabbardProcessorManager(private val scabbardPluginExtension: ScabbardPluginExtension) {
+private fun configName(isKapt: Boolean) = when {
+  isKapt -> KAPT_CONFIG
+  else -> ANNOTATION_PROCESSOR_CONFIG
+}
 
-  private val project get() = scabbardPluginExtension.project
-
-  fun manage() {
-    @Suppress("ControlFlowWithEmptyBody")
-    if (scabbardPluginExtension.enabled) {
-      val scabbardVersion = VersionCalculator(project).calculate()
-      val scabbardDependency = SCABBARD_PROCESSOR_FORMAT.format(scabbardVersion)
-      project.logger.info("Applying scabbard dependency: $scabbardDependency")
-      when {
-        project.isKotlinProject -> project.dependencies.add(KAPT, scabbardDependency)
-        project.hasJavaAnnotationProcessorConfig -> project.dependencies.add(
-          ANNOTATION_PROCESSOR,
-          scabbardDependency
-        )
-        else -> project.logger.debug("Neither $ANNOTATION_PROCESSOR or $KAPT was found in project")
+private fun Project.removeScabbard(isKapt: Boolean = false) {
+  val config = configName(isKapt)
+  configurations.findByName(config)
+    ?.dependencies
+    ?.iterator()
+    ?.let { iterator ->
+      for (dependency in iterator) {
+        if (dependency.isScabbardDependency()) {
+          iterator.remove()
+          logger.info("Removed Scabbard from $name")
+        }
       }
-    } else {
-      //TODO(arun) Manually remove the dependency? It is possible for the dep to be added without plugin
     }
+}
+
+private fun Configuration.hasScabbard() = dependencies.any(Dependency::isScabbardDependency)
+
+internal fun Project.manageScabbardProcessor(enabled: Boolean) {
+  val scabbardVersion = VersionCalculator(project).calculate()
+  val scabbardDependency = SCABBARD_PROCESSOR_FORMAT.format(scabbardVersion)
+  if (enabled) {
+    fun Project.addScabbard(isKapt: Boolean = false) {
+      val annotationConfig = configName(isKapt)
+      if (configurations.findByName(annotationConfig) != null) {
+        if (!configurations.getByName(annotationConfig).hasScabbard()) {
+          logger.info("Adding scabbard to $annotationConfig config")
+          dependencies.add(annotationConfig, scabbardDependency)
+        }
+      } else {
+        logger.info("Skipped adding Scabbard due to lack of $annotationConfig config")
+      }
+    }
+    pluginManager.run {
+      withPlugin(ANDROID_APP_PLUGIN_ID) { addScabbard() }
+      withPlugin(ANDROID_LIBRARY_PLUGIN_ID) { addScabbard() }
+      withPlugin(JAVA_LIBRARY_PLUGIN_ID) { addScabbard() }
+      withPlugin(KAPT_PLUGIN_ID) {
+        removeScabbard() // Remove from annotationProcessor and add to kapt alone.
+        addScabbard(isKapt = true)
+      }
+    }
+  } else {
+    // Even though by default we don't add the annotation processor dependency, it is possible the
+    // dep was added by other means. Hence manually remove the dependency if it is found.
+    removeScabbard()
+    removeScabbard(isKapt = true)
   }
 }

@@ -1,6 +1,6 @@
 package dev.arunkumar.scabbard.gradle.common
 
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_LIBRARY_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KOTLIN_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLUGIN_ID
@@ -31,7 +31,7 @@ abstract class ScabbardBaseTest {
 
   internal fun Project.setupAsJava() {
     plugins.apply {
-      apply(JAVA_PLUGIN_ID)
+      apply(JAVA_LIBRARY_PLUGIN_ID)
       apply(SCABBARD_PLUGIN_ID)
     }
   }

@@ -1,6 +1,7 @@
 package dev.arunkumar.scabbard.gradle
 
 import dev.arunkumar.scabbard.gradle.propertiesdelegate.*
+import dev.arunkumar.scabbard.gradle.util.enabledProperty
 import org.gradle.api.Action
 import org.gradle.api.Project
 
@@ -9,13 +10,14 @@ import org.gradle.api.Project
  */
 open class ScabbardPluginExtension(
   val project: Project,
-  val onCompilerPropertyChanged: Action<CompilerProperty<*>>
+  internal val onEnabled: Action<Boolean>,
+  internal val onCompilerPropertyChanged: Action<CompilerProperty<*>>
 ) {
 
   /**
    * Control whether scabbard is enabled or not
    */
-  open var enabled: Boolean = true
+  open var enabled by enabledProperty()
 
   /**
    * By default, scabbard does not fail the build when any error occurs in scabbard's processor. Setting
