@@ -1,0 +1,72 @@
+<svg width="729px" height="171px"
+ viewBox="0.00 0.00 728.80 171.24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 156.84)">
+<title>dev.arunkumar.scabbard.coffee.CoffeeApp.CoffeeShop</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-156.84 714.4,-156.84 714.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="76" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">CoffeeApp.CoffeeShop</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="8,-32.4397 8,-107.44 114,-107.44 114,-32.4397 8,-32.4397"/>
+<text text-anchor="middle" x="51" y="-92.2397" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="135,-37.4397 135,-134.44 692,-134.44 692,-37.4397 135,-37.4397"/>
+<text text-anchor="middle" x="197.5" y="-119.24" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 6db84635&#45;ac9b&#45;4b70&#45;ba05&#45;ee63f29aad04 -->
+<g id="node1" class="node"><title>6db84635&#45;ac9b&#45;4b70&#45;ba05&#45;ee63f29aad04</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="106,-76.4397 16,-76.4397 16,-72.4397 12,-72.4397 12,-68.4397 16,-68.4397 16,-48.4397 12,-48.4397 12,-44.4397 16,-44.4397 16,-40.4397 106,-40.4397 106,-76.4397"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-72.4397 20,-72.4397 20,-68.4397 16,-68.4397 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-48.4397 20,-48.4397 20,-44.4397 16,-44.4397 "/>
+<text text-anchor="middle" x="61" y="-54.7397" font-family="Times New Roman,serif" font-size="14.00">CoffeeMaker</text>
+</g>
+<!-- 7d80f5ee&#45;4275&#45;46f7&#45;84fd&#45;667e0f193e96 -->
+<g id="node3" class="node"><title>7d80f5ee&#45;4275&#45;46f7&#45;84fd&#45;667e0f193e96</title>
+<polygon fill="aquamarine" stroke="aquamarine" points="501,-83.4397 420,-83.4397 420,-45.4397 501,-45.4397 501,-83.4397"/>
+<text text-anchor="middle" x="460.5" y="-68.2397" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
+<text text-anchor="middle" x="460.5" y="-53.2397" font-family="Times New Roman,serif" font-size="14.00">Heater</text>
+</g>
+<!-- 6db84635&#45;ac9b&#45;4b70&#45;ba05&#45;ee63f29aad04&#45;&gt;7d80f5ee&#45;4275&#45;46f7&#45;84fd&#45;667e0f193e96 -->
+<g id="edge1" class="edge"><title>6db84635&#45;ac9b&#45;4b70&#45;ba05&#45;ee63f29aad04&#45;&gt;7d80f5ee&#45;4275&#45;46f7&#45;84fd&#45;667e0f193e96</title>
+<path fill="none" stroke="black" d="M106.313,-42.8355C115.672,-40.1779 125.572,-37.8296 135,-36.4397 244.044,-20.3655 274.47,-17.202 383,-36.4397 392,-38.0349 401.33,-40.6091 410.252,-43.5663"/>
+<polygon fill="black" stroke="black" points="409.142,-46.886 419.737,-46.8973 411.462,-40.2815 409.142,-46.886"/>
+</g>
+<!-- 27480b3a&#45;9ac0&#45;4969&#45;b9cb&#45;d6d37a647b82 -->
+<g id="node4" class="node"><title>27480b3a&#45;9ac0&#45;4969&#45;b9cb&#45;d6d37a647b82</title>
+<polygon fill="turquoise" stroke="turquoise" points="197,-81.4397 143,-81.4397 143,-45.4397 197,-45.4397 197,-81.4397"/>
+<text text-anchor="middle" x="170" y="-59.7397" font-family="Times New Roman,serif" font-size="14.00">Pump</text>
+</g>
+<!-- 6db84635&#45;ac9b&#45;4b70&#45;ba05&#45;ee63f29aad04&#45;&gt;27480b3a&#45;9ac0&#45;4969&#45;b9cb&#45;d6d37a647b82 -->
+<g id="edge2" class="edge"><title>6db84635&#45;ac9b&#45;4b70&#45;ba05&#45;ee63f29aad04&#45;&gt;27480b3a&#45;9ac0&#45;4969&#45;b9cb&#45;d6d37a647b82</title>
+<path fill="none" stroke="black" d="M106.139,-60.5023C114.979,-60.9153 124.171,-61.3449 132.709,-61.7438"/>
+<polygon fill="black" stroke="black" points="132.578,-65.2415 142.731,-62.2122 132.905,-58.2491 132.578,-65.2415"/>
+</g>
+<!-- de26cb14&#45;ddbe&#45;40df&#45;b522&#45;6f1098178a5b -->
+<!-- fede8a41&#45;d1d5&#45;4706&#45;b96a&#45;b7436ff29129 -->
+<g id="node5" class="node"><title>fede8a41&#45;d1d5&#45;4706&#45;b96a&#45;b7436ff29129</title>
+<polygon fill="turquoise" stroke="turquoise" points="684,-82.4397 589,-82.4397 589,-46.4397 684,-46.4397 684,-82.4397"/>
+<text text-anchor="middle" x="636.5" y="-60.7397" font-family="Times New Roman,serif" font-size="14.00">ElectricHeater</text>
+</g>
+<!-- 7d80f5ee&#45;4275&#45;46f7&#45;84fd&#45;667e0f193e96&#45;&gt;fede8a41&#45;d1d5&#45;4706&#45;b96a&#45;b7436ff29129 -->
+<g id="edge3" class="edge"><title>7d80f5ee&#45;4275&#45;46f7&#45;84fd&#45;667e0f193e96&#45;&gt;fede8a41&#45;d1d5&#45;4706&#45;b96a&#45;b7436ff29129</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M501.419,-64.4397C524.347,-64.4397 553.517,-64.4397 578.791,-64.4397"/>
+<polygon fill="black" stroke="black" points="578.989,-67.9398 588.989,-64.4397 578.989,-60.9398 578.989,-67.9398"/>
+<text text-anchor="middle" x="545" y="-68.2397" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- eed2ac02&#45;48c2&#45;44b9&#45;b740&#45;4a0c8effe999 -->
+<g id="node6" class="node"><title>eed2ac02&#45;48c2&#45;44b9&#45;b740&#45;4a0c8effe999</title>
+<polygon fill="turquoise" stroke="turquoise" points="383,-81.4397 285,-81.4397 285,-45.4397 383,-45.4397 383,-81.4397"/>
+<text text-anchor="middle" x="334" y="-59.7397" font-family="Times New Roman,serif" font-size="14.00">Thermosiphon</text>
+</g>
+<!-- 27480b3a&#45;9ac0&#45;4969&#45;b9cb&#45;d6d37a647b82&#45;&gt;eed2ac02&#45;48c2&#45;44b9&#45;b740&#45;4a0c8effe999 -->
+<g id="edge4" class="edge"><title>27480b3a&#45;9ac0&#45;4969&#45;b9cb&#45;d6d37a647b82&#45;&gt;eed2ac02&#45;48c2&#45;44b9&#45;b740&#45;4a0c8effe999</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M197.028,-63.4397C217.966,-63.4397 248.182,-63.4397 274.814,-63.4397"/>
+<polygon fill="black" stroke="black" points="274.82,-66.9398 284.82,-63.4397 274.82,-59.9398 274.82,-66.9398"/>
+<text text-anchor="middle" x="241" y="-67.2397" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- eed2ac02&#45;48c2&#45;44b9&#45;b740&#45;4a0c8effe999&#45;&gt;7d80f5ee&#45;4275&#45;46f7&#45;84fd&#45;667e0f193e96 -->
+<g id="edge5" class="edge"><title>eed2ac02&#45;48c2&#45;44b9&#45;b740&#45;4a0c8effe999&#45;&gt;7d80f5ee&#45;4275&#45;46f7&#45;84fd&#45;667e0f193e96</title>
+<path fill="none" stroke="black" d="M383.135,-63.8263C391.889,-63.8966 401.037,-63.9701 409.834,-64.0408"/>
+<polygon fill="black" stroke="black" points="409.929,-67.5415 419.956,-64.1221 409.985,-60.5418 409.929,-67.5415"/>
+</g>
+</g>
+</svg>

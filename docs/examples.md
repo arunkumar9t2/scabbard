@@ -2,6 +2,10 @@
 
 Please download/open in new tab to zoom contents.
 
+## [Coffee App from Dagger](https://github.com/google/dagger/tree/master/examples/simple/src/main/java/coffee)
+
+<a href="../images/dev.arunkumar.scabbard.coffee.CoffeeApp.CoffeeShop.svg"><img src="../images/dev.arunkumar.scabbard.coffee.CoffeeApp.CoffeeShop.svg" width="100%"></a>
+
 ## [Google I/O 2019 App](https://github.com/google/iosched)
 
 <video width="100%" controls>
@@ -23,7 +27,7 @@ Please download/open in new tab to zoom contents.
 ## [Plaid](https://github.com/android/plaid)
 
 ### `HomeComponent`
-<a href="../images/plaid_home.png"><img src="../images/plaid_home.png" width="100%"></a>
+<a href="../images/io.plaidapp.dagger.HomeComponent.svg"><img src="../images/io.plaidapp.dagger.HomeComponent.svg" width="100%"></a>
 
 ### `UpvoteStoryServiceComponent`
-<a href="../images/plaid_upvote.png"><img src="../images/plaid_upvote.png" width="100%"></a>
+<a href="../images/io.plaidapp.core.dagger.designernews.UpvoteStoryServiceComponent.svg"><img src="../images/io.plaidapp.core.dagger.designernews.UpvoteStoryServiceComponent.svg" width="100%"></a>
