@@ -70,7 +70,7 @@ tasks.register("docsServe") {
     }
 }
 
-def publishSampleImages = tasks.register("publishSampleImages") {
+tasks.register("publishSampleImages") {
     group = "documentation"
     description = "Publishes sample images to website"
     doLast {
@@ -81,8 +81,20 @@ def publishSampleImages = tasks.register("publishSampleImages") {
             into "docs/images"
         }
     }
+    dependsOn sampleProject.tasks.named("kaptDebugKotlin")
 }
 
-publishSampleImages.configure {
-    dependsOn sampleProject.tasks.named("kaptDebugKotlin")
+// Common publish task to publish all artifacts
+tasks.register("publishAllArtifacts") {
+    group = "publishing"
+    description = "Publishes all artifiacts"
+    doFirst {
+        logger.quiet("Publishing version $publishVersion")
+    }
+    dependsOn project("scabbard-idea-plugin").tasks.named("publishPlugin")
+    dependsOn gradle.includedBuild("scabbard-gradle-plugin").task(":publishPlugins")
+    dependsOn project("scabbard-processor").tasks.named("bintrayUpload")
+    doLast {
+        logger.quiet("Done!")
+    }
 }
