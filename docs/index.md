@@ -23,6 +23,8 @@ More advanced [examples](examples.md).
 
 * **Supports** both Kotlin and Java.
 
+-----
+
 ## Getting Started
 
 ### Requirements
@@ -53,19 +55,19 @@ Scabbard artifacts are served via `jcenter()`. Please ensure `jcenter()` is adde
 
 ### [Gradle Plugin](https://plugins.gradle.org/plugin/scabbard.gradle)
 
+<a href="https://plugins.gradle.org/plugin/scabbard.gradle"><img src="https://img.shields.io/maven-metadata/v/https/plugins.gradle.org/m2/scabbard/gradle/scabbard.gradle.gradle.plugin/maven-metadata.xml.svg?style=flat-square&label=Gradle&logo=gradle&colorB=fb7b21&logoColor=06A0CE"/></a>
+
 Using the plugins DSL:
 
 ```Groovy tab=
 plugins {
-  // After Java, Kotlin or Android plugins  
-  id "scabbard.gradle" version "0.1.0"
+  id "scabbard.gradle" version "0.2.0"
 }
 ```
 
 ```Kotlin tab=
 plugins {
-  // After Java, Kotlin or Android plugins  
-  id("scabbard.gradle") version "0.1.0"
+  id("scabbard.gradle") version "0.2.0"
 }
 ```
 
@@ -79,11 +81,10 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.1.0"
+    classpath "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.2.0"
   }
 }
 
-// After Java, Kotlin or Android plugins
 apply plugin: "scabbard.gradle"
 ```
 
@@ -95,11 +96,10 @@ buildscript {
     }
   }
   dependencies {
-    classpath("gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.1.0")
+    classpath("gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.2.0")
   }
 }
 
-// After Java, Kotlin or Android plugins
 apply(plugin = "scabbard.gradle")
 ```
 
@@ -112,35 +112,41 @@ scabbard {
 ```
 
 ```Kotlin tab=
-scabbard.configure(closureOf<ScabbardSpec> {
-    enabled(true)
-})
+scabbard {
+    enabled = true
+}
 ```
 
 !!! success
-    That's it. Now after building the project, Scabbard would have generated `dot` and `png` files for your Dagger components in your `build` folder.
+    That's it. Now after building the project, Scabbard would have generated `dot` and `png` files for your Dagger components in your `build` folder. The default output directory is location defined by `StandardLocation.CLASS_OUTPUT`.
 
-!!! todo
-    There are some improvements planned for improving plugin configuration syntax from **Kotlin**. Please see [#15](https://github.com/arunkumar9t2/scabbard/issues/15) for more details.
+    * **Java** : `build/classes/java/$sourceSet/scabbard`
+    * **Kotlin** : `build/tmp/kapt3/classes/$sourceSet/scabbard`
+
 
 ### [Android Studio/Idea Plugin](https://plugins.jetbrains.com/plugin/13548-scabbard--dagger-2-visualizer/)
 
-Scabbard also ships an IDE plugin to open generated `png`'s directly from your source code via gutter icons. Please install plugins from `File > Preferences/Settings > Plugins > Market Place > Search for "Scabbard" > Install` and Restart.
+<a href="https://plugins.jetbrains.com/plugin/13548-scabbard--dagger-2-visualizer"><img src="https://img.shields.io/jetbrains/plugin/v/13548-scabbard--dagger-2-visualizer?style=flat-square&label=IntelliJ&logo=intellij-idea&colorB=fb7b21&logoColor=18d68c"/></a>
 
-Alternatively you could download the plugin `zip` file directly from [releases](https://github.com/arunkumar9t2/scabbard/releases) and install via `File > Preferences/Settings > Plugins > Gear Icon > Install from Disk and point to jar file`.
+Scabbard also ships an IDE plugin to open generated images directly from your source code via gutter icons. Please install plugins from `File > Preferences/Settings > Plugins > Market Place > Search for "Scabbard" > Install` and Restart.
+
+Alternatively you could download the plugin `zip` file directly from [releases](https://github.com/arunkumar9t2/scabbard/releases) and install via `File > Preferences/Settings > Plugins > Gear ⚙ > Install from Disk` and point to zip file.
 
 !!! success
-    That's it. The plugin will automatically add an icon 🗡 next to `@Component`, `@Subcomponent` or `@Module` as soon as project is indexed.
+    The plugin should automatically add an icon 🗡 next to `@Component`, `@Subcomponent`, `@Module` or `@ContributesAndroidInjector` as soon as project is indexed.
 
 ### Other build systems
 
-Scabbard at its core is just an annotation processor. You could add `dev.arunkumar:scabbard-processor:0.1.0` to your build system's annotation processor config to get it working.
+<a href="https://bintray.com/arunkumar9t2/maven/scabbard-processor/_latestVersion"><img src="https://img.shields.io/bintray/v/arunkumar9t2/maven/scabbard-processor.svg?style=flat-square&label=Processor&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEPUlEQVRo3u2YT2gcZRTAf28bcmhLKSEEC5vSg0KIksTbrK0RjzkUoQERJ5LJQcRDXYp4kZZQGuxJ7amm8TKrO4WKNtRQIVQtaOjk4KFKTuLBQ0%2BlBylLCNtlnof9Nvm6bjYzuzt1q%2FvgY%2F%2Fw5s%2Fve9%2F7Cz35n8lskHvWC3KDaT8nk%2BbNvSA3JvADsJI2TCZFS4wBK8BRwAFWZlOEyaQD4UzIDkRNHIGV2cBJBUZSOE4TwDJwbBeVdYWTBTd80LUWiQFRs8wNL3CGuhLEC5wx4IYFUQEeWiol6%2FtLIMtekBvqKhAvcLIgtk9UgAvA9zUdhSLw1eMwXPOC3P6uAVHkPvAjEBmIj8yqWGqbwBzwtQW7orDVNSAFNywD7wC%2BscQF3w0r9VHFd8NN4C1jmQ%2BASwU3jLrKR3w3LIO%2BDbpQD1GntwXqgl7yOwQB0NfJyOG761FMvcpTVaI8SemBJI5smu79%2B5pk6T6EEZC%2BPWIvqP7hz4SlprWQ7PqcQUSyMXZiE%2Fjdd8PEzn4Q5TbooRgV26vAnRY38w1UP46h9wvwSl1uih21%2Bs1K%2B3j3t3N6Wg2%2FZZOlbWknnG4Bf%2F3jNDR6N20JRHa7sgS4wIZ1%2F%2FttgFwFvrN%2BTwKfN3o3EUkOUsVoCDKg8BnISdCNgru%2BRyTYsyIoAaXZwEGQSdBPgf1J26fM3n3X9voWJAJBkGMCNwUZnbuai3t9sz7GQPANyJDRL4Pcsa9vFsKT5JGLpqKtlSFHgdVIGZ0r5lpvi4s5UAwEg5YfngG%2BjNvPJgGpAPPAggWTFViNhBEvSA7jFXOIcAJh2YKoAGd8N7ycpC9PlNlNtXreLCyYWwqjLUwMTpiucsCyxGngcsdKFEVBqWwvC0aVBZT5OphVL8i9kKC%2Fn2wAkVfVRSt7R9bzI20SPDJNAs5DhOcQjiAcAe5uN1IzYYSwYI7a9jEDbnrVeVZTxzYQy%2FUQwFJh5rEo%2BIX1%2FCl7Qzs6DpotOhkROQs6b23KnyCv%2BW74mxc414DXzf%2BfAO%2BbPFEHIXlUl%2FyZ9ZYbrX3tgPx6%2FZ6On8r%2BLCIZ4GWzMYeBqYlT2dsIk8DzRj00WdyCkDJIXquWaKtbbAukBjMxPfwTSAbkuPk8jMgUyAGQZ0weeATyHsjATp4gD7pUcNfbbnk7Nmn0glwf6Dngwxg1XFkhL8hSp%2Fr2fZ0CuXv9XvTi9PBanWUaZHcpg5wWkSu%2BG3as3eoYSA1mfDq7JkgGON4gKlaPk3DFfzPsaC%2FQURDjM9H49PCaVCFsmFqIXdyty%2BsKH2nsM5wDzpqyI%2B%2B74eJTN3wwQ7rzBiYPUWoQT0S8osNc0aEnPelJT9LNI6Z17Y%2BXatS6lcZIT0n1ATQCKq2MTA%2BB3gI9GG9PNNEYKLk%2BG6i4tDAyzYCMVIG6QkrNDNfKgO5f9IMWJo0Km6i8S%2FpD7LgUD3RnPvDflb8BKBVzKqLzQocAAAAASUVORK5CYII%3D&colorB=fb7b21"/></a>
+
+Scabbard at its core is just an annotation processor. You could add `dev.arunkumar:scabbard-processor:0.2.0` to your build system's annotation processor config to get it working. Samples for other build systems are planned.
 
 ## Resources
 
 * [Configuration](configuration.md)
 * [FAQ](faq.md)
 * [Cheat Sheet](cheat-sheet.md)
+* [Examples](examples.md)
 * [Contributing](contributing.md)
 
 ## License
