@@ -1,0 +1,24 @@
+<svg width="1315px" height="194px"
+ viewBox="0.00 0.00 1314.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → com.google.samples.apps.iosched.ui.map.MapModule_ContributeMapVariantSelectionFragment$mobile_debug.MapVariantSelectionDialogFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1300.4,-179.4 1300.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="643" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → MapModule_ContributeMapVariantSelectionFragment$mobile_debug.MapVariantSelectionDialogFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="503.5,-31 503.5,-106 782.5,-106 782.5,-31 503.5,-31"/>
+<text text-anchor="middle" x="546.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="581.2,-114 581.2,-157 705.8,-157 705.8,-114 581.2,-114"/>
+<text text-anchor="middle" x="643.7" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 605381e8&#45;9a88&#45;45f4&#45;95e4&#45;b85ebc9dbbe8 -->
+<g id="node1" class="node"><title>605381e8&#45;9a88&#45;45f4&#45;95e4&#45;b85ebc9dbbe8</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="774.5,-75 511.5,-75 511.5,-71 507.5,-71 507.5,-67 511.5,-67 511.5,-47 507.5,-47 507.5,-43 511.5,-43 511.5,-39 774.5,-39 774.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="511.5,-71 515.5,-71 515.5,-67 511.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="511.5,-47 515.5,-47 515.5,-43 511.5,-43 "/>
+<text text-anchor="middle" x="643" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (MapVariantSelectionDialogFragment)</text>
+</g>
+<!-- 99b847ff&#45;cc1e&#45;4530&#45;a708&#45;d045195cdcb8 -->
+</g>
+</svg>

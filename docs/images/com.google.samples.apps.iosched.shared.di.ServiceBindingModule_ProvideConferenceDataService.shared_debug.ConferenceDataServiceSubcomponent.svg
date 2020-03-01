@@ -1,0 +1,34 @@
+<svg width="773px" height="165px"
+ viewBox="0.00 0.00 772.80 164.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 150.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.shared.di.ServiceBindingModule_ProvideConferenceDataService$shared_debug.ConferenceDataServiceSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-150.4 758.4,-150.4 758.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="372" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ServiceBindingModule_ProvideConferenceDataService$shared_debug.ConferenceDataServiceSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="151,-31 151,-106 357,-106 357,-31 151,-31"/>
+<text text-anchor="middle" x="194" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="377,-31 377,-128 593,-128 593,-31 377,-31"/>
+<text text-anchor="middle" x="439.5" y="-112.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 62c72436&#45;5466&#45;4804&#45;906d&#45;c5eb80011a56 -->
+<g id="node1" class="node"><title>62c72436&#45;5466&#45;4804&#45;906d&#45;c5eb80011a56</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="349,-75 159,-75 159,-71 155,-71 155,-67 159,-67 159,-47 155,-47 155,-43 159,-43 159,-39 349,-39 349,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="159,-71 163,-71 163,-67 159,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="159,-47 163,-47 163,-43 159,-43 "/>
+<text text-anchor="middle" x="254" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (ConferenceDataService)</text>
+</g>
+<!-- 4a024b3f&#45;9ca9&#45;4551&#45;9dc7&#45;ebe923575440 -->
+<g id="node3" class="node"><title>4a024b3f&#45;9ca9&#45;4551&#45;9dc7&#45;ebe923575440</title>
+<polygon fill="turquoise" stroke="turquoise" points="585,-75 385,-75 385,-39 585,-39 585,-75"/>
+<text text-anchor="middle" x="485" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">RefreshConferenceDataUseCase</text>
+</g>
+<!-- 62c72436&#45;5466&#45;4804&#45;906d&#45;c5eb80011a56&#45;&gt;4a024b3f&#45;9ca9&#45;4551&#45;9dc7&#45;ebe923575440 -->
+<g id="edge1" class="edge"><title>62c72436&#45;5466&#45;4804&#45;906d&#45;c5eb80011a56&#45;&gt;4a024b3f&#45;9ca9&#45;4551&#45;9dc7&#45;ebe923575440</title>
+<path fill="none" stroke="black" d="M349.134,-57C357.466,-57 365.947,-57 374.391,-57"/>
+<polygon fill="black" stroke="black" points="374.662,-60.5001 384.662,-57 374.662,-53.5001 374.662,-60.5001"/>
+</g>
+<!-- af005ba3&#45;3f9d&#45;4c7c&#45;859d&#45;5a6dc24bc468 -->
+</g>
+</svg>

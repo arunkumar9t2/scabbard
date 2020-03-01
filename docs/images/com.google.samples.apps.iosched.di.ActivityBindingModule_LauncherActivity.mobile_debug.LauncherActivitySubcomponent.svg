@@ -1,0 +1,101 @@
+<svg width="2026px" height="236px"
+ viewBox="0.00 0.00 2025.80 235.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 221.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_LauncherActivity$mobile_debug.LauncherActivitySubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-221.4 2011.4,-221.4 2011.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="315.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_LauncherActivity$mobile_debug.LauncherActivitySubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="8,-66 8,-141 178,-141 178,-66 8,-66"/>
+<text text-anchor="middle" x="51" y="-125.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="199,-31 199,-199 1989,-199 1989,-31 199,-31"/>
+<text text-anchor="middle" x="261.5" y="-183.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<g id="clust3" class="cluster"><title>cluster_Map&lt;Class&lt;? extends androidx.lifecycle.ViewModel&gt;, Provider&lt;ViewModel&gt;&gt;</title>
+<path fill="none" stroke="black" d="M687,-39C687,-39 1536,-39 1536,-39 1542,-39 1548,-45 1548,-51 1548,-51 1548,-156 1548,-156 1548,-162 1542,-168 1536,-168 1536,-168 687,-168 687,-168 681,-168 675,-162 675,-156 675,-156 675,-51 675,-51 675,-45 681,-39 687,-39"/>
+<text text-anchor="middle" x="1111.5" y="-152.8" font-family="Times New Roman,serif" font-size="14.00">Map&lt;Class&lt;? extends androidx.lifecycle.ViewModel&gt;, Provider&lt;ViewModel&gt;&gt;</text>
+</g>
+<!-- 45332c3c&#45;eacf&#45;4a13&#45;88b1&#45;e9cd06f25874 -->
+<g id="node1" class="node"><title>45332c3c&#45;eacf&#45;4a13&#45;88b1&#45;e9cd06f25874</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="170,-110 16,-110 16,-106 12,-106 12,-102 16,-102 16,-82 12,-82 12,-78 16,-78 16,-74 170,-74 170,-110"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-106 20,-106 20,-102 16,-102 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-82 20,-82 20,-78 16,-78 "/>
+<text text-anchor="middle" x="93" y="-88.3" font-family="Times New Roman,serif" font-size="14.00">inject (LauncherActivity)</text>
+</g>
+<!-- 8288c512&#45;d2f1&#45;4736&#45;b8ea&#45;8d1725d755c3 -->
+<g id="node3" class="node"><title>8288c512&#45;d2f1&#45;4736&#45;b8ea&#45;8d1725d755c3</title>
+<polygon fill="turquoise" stroke="turquoise" points="383,-110 207,-110 207,-74 383,-74 383,-110"/>
+<text text-anchor="middle" x="295" y="-88.3" font-family="Times New Roman,serif" font-size="14.00">ViewModelProvider.Factory</text>
+</g>
+<!-- 45332c3c&#45;eacf&#45;4a13&#45;88b1&#45;e9cd06f25874&#45;&gt;8288c512&#45;d2f1&#45;4736&#45;b8ea&#45;8d1725d755c3 -->
+<g id="edge1" class="edge"><title>45332c3c&#45;eacf&#45;4a13&#45;88b1&#45;e9cd06f25874&#45;&gt;8288c512&#45;d2f1&#45;4736&#45;b8ea&#45;8d1725d755c3</title>
+<path fill="none" stroke="black" d="M170.182,-92C178.924,-92 187.925,-92 196.894,-92"/>
+<polygon fill="black" stroke="black" points="196.992,-95.5001 206.992,-92 196.992,-88.5001 196.992,-95.5001"/>
+</g>
+<!-- f0d72d0b&#45;a23d&#45;4137&#45;bb37&#45;d2838e70e204 -->
+<!-- c16cd8d3&#45;63b8&#45;4277&#45;870a&#45;cbc3e7eefb9f -->
+<g id="node4" class="node"><title>c16cd8d3&#45;63b8&#45;4277&#45;870a&#45;cbc3e7eefb9f</title>
+<polygon fill="turquoise" stroke="turquoise" points="646,-110 471,-110 471,-74 646,-74 646,-110"/>
+<text text-anchor="middle" x="558.5" y="-88.3" font-family="Times New Roman,serif" font-size="14.00">IOSchedViewModelFactory</text>
+</g>
+<!-- 8288c512&#45;d2f1&#45;4736&#45;b8ea&#45;8d1725d755c3&#45;&gt;c16cd8d3&#45;63b8&#45;4277&#45;870a&#45;cbc3e7eefb9f -->
+<g id="edge2" class="edge"><title>8288c512&#45;d2f1&#45;4736&#45;b8ea&#45;8d1725d755c3&#45;&gt;c16cd8d3&#45;63b8&#45;4277&#45;870a&#45;cbc3e7eefb9f</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M383.076,-92C407.997,-92 435.31,-92 460.772,-92"/>
+<polygon fill="black" stroke="black" points="460.805,-95.5001 470.805,-92 460.804,-88.5001 460.805,-95.5001"/>
+<text text-anchor="middle" x="427" y="-95.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- bcfde059&#45;335c&#45;4f5a&#45;bc25&#45;d8ac5637dac3 -->
+<g id="node8" class="node"><title>bcfde059&#45;335c&#45;4f5a&#45;bc25&#45;d8ac5637dac3</title>
+<polygon fill="turquoise" stroke="turquoise" points="1149,-110 695,-110 695,-114 683,-114 683,-74 1149,-74 1149,-110"/>
+<polyline fill="none" stroke="turquoise" points="683,-110 695,-110 "/>
+<text text-anchor="middle" x="916" y="-88.3" font-family="Times New Roman,serif" font-size="14.00">Map&lt;Class&lt;? extends androidx.lifecycle.ViewModel&gt;, Provider&lt;ViewModel&gt;&gt;</text>
+</g>
+<!-- c16cd8d3&#45;63b8&#45;4277&#45;870a&#45;cbc3e7eefb9f&#45;&gt;bcfde059&#45;335c&#45;4f5a&#45;bc25&#45;d8ac5637dac3 -->
+<g id="edge3" class="edge"><title>c16cd8d3&#45;63b8&#45;4277&#45;870a&#45;cbc3e7eefb9f&#45;&gt;bcfde059&#45;335c&#45;4f5a&#45;bc25&#45;d8ac5637dac3</title>
+<path fill="none" stroke="black" d="M646.01,-92C654.538,-92 663.45,-92 672.628,-92"/>
+<polygon fill="black" stroke="black" points="672.687,-95.5001 682.687,-92 672.687,-88.5001 672.687,-95.5001"/>
+</g>
+<!-- 2c2eb0d7&#45;36f4&#45;49bb&#45;9bbd&#45;2686bce3bde4 -->
+<g id="node5" class="node"><title>2c2eb0d7&#45;36f4&#45;49bb&#45;9bbd&#45;2686bce3bde4</title>
+<polygon fill="turquoise" stroke="turquoise" points="1528,-83 1198,-83 1198,-47 1528,-47 1528,-83"/>
+<text text-anchor="middle" x="1363" y="-61.3" font-family="Times New Roman,serif" font-size="14.00">LaunchModule.bindLaunchViewModel$mobile_debug()</text>
+</g>
+<!-- ebc94a70&#45;41b9&#45;48bc&#45;9e46&#45;577af6446b26 -->
+<g id="node6" class="node"><title>ebc94a70&#45;41b9&#45;48bc&#45;9e46&#45;577af6446b26</title>
+<polygon fill="turquoise" stroke="turquoise" points="1750,-83 1628,-83 1628,-47 1750,-47 1750,-83"/>
+<text text-anchor="middle" x="1689" y="-61.3" font-family="Times New Roman,serif" font-size="14.00">LaunchViewModel</text>
+</g>
+<!-- 2c2eb0d7&#45;36f4&#45;49bb&#45;9bbd&#45;2686bce3bde4&#45;&gt;ebc94a70&#45;41b9&#45;48bc&#45;9e46&#45;577af6446b26 -->
+<g id="edge6" class="edge"><title>2c2eb0d7&#45;36f4&#45;49bb&#45;9bbd&#45;2686bce3bde4&#45;&gt;ebc94a70&#45;41b9&#45;48bc&#45;9e46&#45;577af6446b26</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1528.37,-65C1559.76,-65 1591.04,-65 1617.47,-65"/>
+<polygon fill="black" stroke="black" points="1617.74,-68.5001 1627.74,-65 1617.74,-61.5001 1617.74,-68.5001"/>
+<text text-anchor="middle" x="1584" y="-68.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- 292c0716&#45;335e&#45;45a6&#45;a959&#45;848d0f83919e -->
+<g id="node7" class="node"><title>292c0716&#45;335e&#45;45a6&#45;a959&#45;848d0f83919e</title>
+<polygon fill="turquoise" stroke="turquoise" points="1981,-83 1787,-83 1787,-47 1981,-47 1981,-83"/>
+<text text-anchor="middle" x="1884" y="-61.3" font-family="Times New Roman,serif" font-size="14.00">OnboardingCompletedUseCase</text>
+</g>
+<!-- ebc94a70&#45;41b9&#45;48bc&#45;9e46&#45;577af6446b26&#45;&gt;292c0716&#45;335e&#45;45a6&#45;a959&#45;848d0f83919e -->
+<g id="edge7" class="edge"><title>ebc94a70&#45;41b9&#45;48bc&#45;9e46&#45;577af6446b26&#45;&gt;292c0716&#45;335e&#45;45a6&#45;a959&#45;848d0f83919e</title>
+<path fill="none" stroke="black" d="M1750.01,-65C1758.53,-65 1767.5,-65 1776.58,-65"/>
+<polygon fill="black" stroke="black" points="1776.88,-68.5001 1786.88,-65 1776.88,-61.5001 1776.88,-68.5001"/>
+</g>
+<!-- bcfde059&#45;335c&#45;4f5a&#45;bc25&#45;d8ac5637dac3&#45;&gt;2c2eb0d7&#45;36f4&#45;49bb&#45;9bbd&#45;2686bce3bde4 -->
+<g id="edge5" class="edge"><title>bcfde059&#45;335c&#45;4f5a&#45;bc25&#45;d8ac5637dac3&#45;&gt;2c2eb0d7&#45;36f4&#45;49bb&#45;9bbd&#45;2686bce3bde4</title>
+<path fill="none" stroke="black" d="M1149.28,-77.9069C1162.16,-77.125 1175.01,-76.3457 1187.63,-75.5797"/>
+<polygon fill="black" stroke="black" points="1187.94,-79.0676 1197.71,-74.9683 1187.51,-72.0804 1187.94,-79.0676"/>
+</g>
+<!-- 3b5b3f54&#45;41b6&#45;4e1c&#45;88ce&#45;8c18062c50d9 -->
+<g id="node9" class="node"><title>3b5b3f54&#45;41b6&#45;4e1c&#45;88ce&#45;8c18062c50d9</title>
+<polygon fill="turquoise" stroke="turquoise" points="1540,-137 1186,-137 1186,-101 1540,-101 1540,-137"/>
+<text text-anchor="middle" x="1363" y="-115.3" font-family="Times New Roman,serif" font-size="14.00">ThemedActivityDelegateModule.provideThemeViewModel()</text>
+</g>
+<!-- bcfde059&#45;335c&#45;4f5a&#45;bc25&#45;d8ac5637dac3&#45;&gt;3b5b3f54&#45;41b6&#45;4e1c&#45;88ce&#45;8c18062c50d9 -->
+<g id="edge4" class="edge"><title>bcfde059&#45;335c&#45;4f5a&#45;bc25&#45;d8ac5637dac3&#45;&gt;3b5b3f54&#45;41b6&#45;4e1c&#45;88ce&#45;8c18062c50d9</title>
+<path fill="none" stroke="black" d="M1149.28,-106.093C1158.14,-106.631 1166.98,-107.167 1175.74,-107.699"/>
+<polygon fill="black" stroke="black" points="1175.79,-111.208 1185.99,-108.321 1176.22,-104.221 1175.79,-111.208"/>
+</g>
+</g>
+</svg>

@@ -1,0 +1,24 @@
+<svg width="1318px" height="194px"
+ viewBox="0.00 0.00 1317.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_OnboardingActivity$mobile_debug.OnboardingActivitySubcomponent → com.google.samples.apps.iosched.ui.signin.SignInDialogModule_ContributeSignInDialogFragment$mobile_debug.SignInDialogFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1303.4,-179.4 1303.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="644.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_OnboardingActivity$mobile_debug.OnboardingActivitySubcomponent → SignInDialogModule_ContributeSignInDialogFragment$mobile_debug.SignInDialogFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="545,-31 545,-106 744,-106 744,-31 545,-31"/>
+<text text-anchor="middle" x="588" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="582.7,-114 582.7,-157 707.3,-157 707.3,-114 582.7,-114"/>
+<text text-anchor="middle" x="645.2" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 2453d7a6&#45;0227&#45;4587&#45;ae9c&#45;ebef0dadff64 -->
+<g id="node1" class="node"><title>2453d7a6&#45;0227&#45;4587&#45;ae9c&#45;ebef0dadff64</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="736,-75 553,-75 553,-71 549,-71 549,-67 553,-67 553,-47 549,-47 549,-43 553,-43 553,-39 736,-39 736,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="553,-71 557,-71 557,-67 553,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="553,-47 557,-47 557,-43 553,-43 "/>
+<text text-anchor="middle" x="644.5" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (SignInDialogFragment)</text>
+</g>
+<!-- f5efede6&#45;60e2&#45;4bb3&#45;9e27&#45;71e839421363 -->
+</g>
+</svg>

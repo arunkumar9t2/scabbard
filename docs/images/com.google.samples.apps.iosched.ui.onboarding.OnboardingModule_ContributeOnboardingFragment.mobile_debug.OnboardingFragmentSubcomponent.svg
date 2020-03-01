@@ -1,0 +1,24 @@
+<svg width="1302px" height="194px"
+ viewBox="0.00 0.00 1301.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_OnboardingActivity$mobile_debug.OnboardingActivitySubcomponent → com.google.samples.apps.iosched.ui.onboarding.OnboardingModule_ContributeOnboardingFragment$mobile_debug.OnboardingFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1287.4,-179.4 1287.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="636.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_OnboardingActivity$mobile_debug.OnboardingActivitySubcomponent → OnboardingModule_ContributeOnboardingFragment$mobile_debug.OnboardingFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="539.5,-31 539.5,-106 733.5,-106 733.5,-31 539.5,-31"/>
+<text text-anchor="middle" x="582.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="574.7,-114 574.7,-157 699.3,-157 699.3,-114 574.7,-114"/>
+<text text-anchor="middle" x="637.2" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 73482a52&#45;a503&#45;4ad9&#45;b966&#45;1348aca5f7a3 -->
+<g id="node1" class="node"><title>73482a52&#45;a503&#45;4ad9&#45;b966&#45;1348aca5f7a3</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="725.5,-75 547.5,-75 547.5,-71 543.5,-71 543.5,-67 547.5,-67 547.5,-47 543.5,-47 543.5,-43 547.5,-43 547.5,-39 725.5,-39 725.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="547.5,-71 551.5,-71 551.5,-67 547.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="547.5,-47 551.5,-47 551.5,-43 547.5,-43 "/>
+<text text-anchor="middle" x="636.5" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (OnboardingFragment)</text>
+</g>
+<!-- 650b4d97&#45;c03e&#45;478a&#45;a018&#45;6e755aee81e5 -->
+</g>
+</svg>
