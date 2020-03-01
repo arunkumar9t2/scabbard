@@ -27,6 +27,10 @@ width="210" hspace="10" vspace="10">
 <img src="https://thumbs.gfycat.com/ThankfulConfusedKillifish-small.gif">
 </p>
 
+<p align="center">
+<img src="docs/images/dev.arunkumar.scabbard.coffee.CoffeeApp.CoffeeShop.svg">
+</p>
+
 More advanced [examples](https://arunkumar9t2.github.io/scabbard/examples/).
 
 ## Features

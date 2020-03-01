@@ -9,7 +9,7 @@ The `scabbard` plugin can be configured in following ways and is the entry point
 
 !!! example "Configuration Examples"
     Example gradle build script configurations.
-    
+
     * [Android Kotlin project](https://github.com/arunkumar9t2/scabbard/blob/master/samples/android-kotlin/build.gradle)
     * [Java library project with KTS build script](https://github.com/arunkumar9t2/scabbard/blob/master/samples/java-library-kts-script/build.gradle.kts)
 
@@ -53,7 +53,7 @@ scabbard {
 
 ```Kotlin tab=
 scabbard {
-  fullBindingGraphValidation =true // default false
+  fullBindingGraphValidation = true // default false
 }
 ```
 
