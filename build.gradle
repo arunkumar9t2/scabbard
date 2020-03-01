@@ -28,15 +28,16 @@ task clean(type: Delete) {
 }
 
 def isWin = System.getProperty("os.name").toLowerCase().contains("win")
+def samplePath = "samples:android-kotlin"
+def sampleProject = project(samplePath)
 
 //TODO Investigate migrating to GradleBuild. ATM has issues disabling daemon.
 tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
     group = "development"
-    def sample = "samples:android-kotlin"
     doLast {
         def isDebug = project.hasProperty("debug")
         if (isDebug) {
-            delete fileTree("${sample}/build").matching {
+            delete fileTree(sampleProject.buildDir).matching {
                 include "**/*.dot"
                 include "**/*.png"
             }
@@ -48,7 +49,7 @@ tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
 
             def gradleDebug = "-Dorg.gradle.debug=$isDebug"
             def daemon = isDebug ? '--no-daemon' : ''
-            def command = "${commandPrefix}gradlew $daemon $gradleDebug ${sample}:kaptDebugKotlin"
+            def command = "${commandPrefix}gradlew $daemon $gradleDebug ${samplePath}:kaptDebugKotlin"
             workingDir(projectDir)
             commandLine shell, shellArg, command
         }
@@ -67,4 +68,21 @@ tasks.register("docsServe") {
         }
         exec { commandLine("mkdocs", "serve") }
     }
+}
+
+def publishSampleImages = tasks.register("publishSampleImages") {
+    group = "documentation"
+    description = "Publishes sample images to website"
+    doLast {
+        copy {
+            from "${sampleProject.buildDir}/tmp/kapt3/classes/debug/scabbard"
+            include "*.svg"
+            exclude "full_*.svg"
+            into "docs/images"
+        }
+    }
+}
+
+publishSampleImages.configure {
+    dependsOn sampleProject.tasks.named("kaptDebugKotlin")
 }
