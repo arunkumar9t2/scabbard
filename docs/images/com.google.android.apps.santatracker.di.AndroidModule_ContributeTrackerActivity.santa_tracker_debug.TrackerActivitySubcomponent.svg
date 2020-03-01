@@ -1,0 +1,159 @@
+<svg width="2577px" height="560px"
+ viewBox="0.00 0.00 2576.80 559.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 545.4)">
+<title>com.google.android.apps.santatracker.di.AppComponent → com.google.android.apps.santatracker.di.AndroidModule_ContributeTrackerActivity$santa_tracker_debug.TrackerActivitySubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-545.4 2562.4,-545.4 2562.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="335" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → AndroidModule_ContributeTrackerActivity$santa_tracker_debug.TrackerActivitySubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="8,-216 8,-291 170,-291 170,-216 8,-216"/>
+<text text-anchor="middle" x="51" y="-275.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="191,-31 191,-523 1740,-523 1740,-31 191,-31"/>
+<text text-anchor="middle" x="253.5" y="-507.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<g id="clust3" class="cluster"><title>cluster_Map&lt;Class&lt;?&gt;, Provider&lt;AndroidInjector.Factory&lt;?&gt;&gt;&gt;</title>
+<path fill="none" stroke="black" d="M481,-39C481,-39 1369,-39 1369,-39 1375,-39 1381,-45 1381,-51 1381,-51 1381,-480 1381,-480 1381,-486 1375,-492 1369,-492 1369,-492 481,-492 481,-492 475,-492 469,-486 469,-480 469,-480 469,-51 469,-51 469,-45 475,-39 481,-39"/>
+<text text-anchor="middle" x="925" y="-476.8" font-family="Times New Roman,serif" font-size="14.00">Map&lt;Class&lt;?&gt;, Provider&lt;AndroidInjector.Factory&lt;?&gt;&gt;&gt;</text>
+</g>
+<g id="clust4" class="cluster"><title>cluster_Subcomponents</title>
+<polygon fill="none" stroke="black" points="1844,-40 1844,-115 2540,-115 2540,-40 1844,-40"/>
+<text text-anchor="middle" x="1898" y="-99.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponents</text>
+</g>
+<!-- 33c21628&#45;99ed&#45;401d&#45;932f&#45;90548c567b19 -->
+<g id="node1" class="node"><title>33c21628&#45;99ed&#45;401d&#45;932f&#45;90548c567b19</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="162,-260 16,-260 16,-256 12,-256 12,-252 16,-252 16,-232 12,-232 12,-228 16,-228 16,-224 162,-224 162,-260"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-256 20,-256 20,-252 16,-252 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-232 20,-232 20,-228 16,-228 "/>
+<text text-anchor="middle" x="89" y="-238.3" font-family="Times New Roman,serif" font-size="14.00">inject (TrackerActivity)</text>
+</g>
+<!-- 5576f6f7&#45;8f2c&#45;4bc6&#45;a4a9&#45;4f0b094fa351 -->
+<g id="node3" class="node"><title>5576f6f7&#45;8f2c&#45;4bc6&#45;a4a9&#45;4f0b094fa351</title>
+<polygon fill="turquoise" stroke="turquoise" points="440,-260 199,-260 199,-224 440,-224 440,-260"/>
+<text text-anchor="middle" x="319.5" y="-238.3" font-family="Times New Roman,serif" font-size="14.00">DispatchingAndroidInjector&lt;Fragment&gt;</text>
+</g>
+<!-- 33c21628&#45;99ed&#45;401d&#45;932f&#45;90548c567b19&#45;&gt;5576f6f7&#45;8f2c&#45;4bc6&#45;a4a9&#45;4f0b094fa351 -->
+<g id="edge1" class="edge"><title>33c21628&#45;99ed&#45;401d&#45;932f&#45;90548c567b19&#45;&gt;5576f6f7&#45;8f2c&#45;4bc6&#45;a4a9&#45;4f0b094fa351</title>
+<path fill="none" stroke="black" d="M162.299,-242C170.754,-242 179.564,-242 188.506,-242"/>
+<polygon fill="black" stroke="black" points="188.646,-245.5 198.645,-242 188.645,-238.5 188.646,-245.5"/>
+</g>
+<!-- 7f6ad324&#45;6038&#45;4167&#45;8d7f&#45;76ccc8142f80 -->
+<!-- 1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f -->
+<g id="node6" class="node"><title>1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f</title>
+<polygon fill="turquoise" stroke="turquoise" points="820,-260 489,-260 489,-264 477,-264 477,-224 820,-224 820,-260"/>
+<polyline fill="none" stroke="turquoise" points="477,-260 489,-260 "/>
+<text text-anchor="middle" x="648.5" y="-238.3" font-family="Times New Roman,serif" font-size="14.00">Map&lt;Class&lt;?&gt;, Provider&lt;AndroidInjector.Factory&lt;?&gt;&gt;&gt;</text>
+</g>
+<!-- 5576f6f7&#45;8f2c&#45;4bc6&#45;a4a9&#45;4f0b094fa351&#45;&gt;1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f -->
+<g id="edge10" class="edge"><title>5576f6f7&#45;8f2c&#45;4bc6&#45;a4a9&#45;4f0b094fa351&#45;&gt;1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f</title>
+<path fill="none" stroke="black" d="M440.406,-242C449.08,-242 457.932,-242 466.852,-242"/>
+<polygon fill="black" stroke="black" points="466.946,-245.5 476.946,-242 466.946,-238.5 466.946,-245.5"/>
+</g>
+<!-- 54abec18&#45;f11f&#45;4a69&#45;a029&#45;5873b40b8a59 -->
+<g id="node4" class="node"><title>54abec18&#45;f11f&#45;4a69&#45;a029&#45;5873b40b8a59</title>
+<polygon fill="turquoise" stroke="turquoise" points="1373,-83 857,-83 857,-47 1373,-47 1373,-83"/>
+<text text-anchor="middle" x="1115" y="-61.3" font-family="Times New Roman,serif" font-size="14.00">FragmentBuildersModule_ContributeTrackerMapFragment.bindAndroidInjectorFactory()</text>
+</g>
+<!-- 3c5184f8&#45;f550&#45;486a&#45;b695&#45;4e70d85aa765 -->
+<g id="node5" class="node"><title>3c5184f8&#45;f550&#45;486a&#45;b695&#45;4e70d85aa765</title>
+<polygon fill="turquoise" stroke="turquoise" points="1732,-93 1461,-93 1461,-39 1732,-39 1732,-93"/>
+<text text-anchor="middle" x="1596.5" y="-77.8" font-family="Times New Roman,serif" font-size="14.00">TrackerMapFragmentSubcomponent.Factory</text>
+<text text-anchor="middle" x="1596.5" y="-46.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponent Creator</text>
+</g>
+<!-- 54abec18&#45;f11f&#45;4a69&#45;a029&#45;5873b40b8a59&#45;&gt;3c5184f8&#45;f550&#45;486a&#45;b695&#45;4e70d85aa765 -->
+<g id="edge11" class="edge"><title>54abec18&#45;f11f&#45;4a69&#45;a029&#45;5873b40b8a59&#45;&gt;3c5184f8&#45;f550&#45;486a&#45;b695&#45;4e70d85aa765</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1373.3,-65.5366C1399.85,-65.592 1426.12,-65.6468 1450.79,-65.6982"/>
+<polygon fill="black" stroke="black" points="1450.88,-69.1983 1460.89,-65.7193 1450.89,-62.1983 1450.88,-69.1983"/>
+<text text-anchor="middle" x="1417" y="-69.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- 19e107ea&#45;9694&#45;44e5&#45;9be6&#45;f4a3d39ac10a -->
+<g id="node14" class="node"><title>19e107ea&#45;9694&#45;44e5&#45;9be6&#45;f4a3d39ac10a</title>
+<g id="a_node14"><a xlink:href="com.google.android.apps.santatracker.di.FragmentBuildersModule_ContributeTrackerMapFragment.santa_tracker_debug.TrackerMapFragmentSubcomponent.svg" xlink:title="FragmentBuildersModule_ContributeTrackerMapFragment$santa_tracker_debug.TrackerMapFragmentSubcomponent">
+<polygon fill="turquoise" stroke="turquoise" points="2532,-84 1852,-84 1852,-48 2532,-48 2532,-84"/>
+<text text-anchor="middle" x="2192" y="-62.3" font-family="Times New Roman,serif" font-size="14.00">FragmentBuildersModule_ContributeTrackerMapFragment$santa_tracker_debug.TrackerMapFragmentSubcomponent</text>
+</a>
+</g>
+</g>
+<!-- 3c5184f8&#45;f550&#45;486a&#45;b695&#45;4e70d85aa765&#45;&gt;19e107ea&#45;9694&#45;44e5&#45;9be6&#45;f4a3d39ac10a -->
+<g id="edge12" class="edge"><title>3c5184f8&#45;f550&#45;486a&#45;b695&#45;4e70d85aa765&#45;&gt;19e107ea&#45;9694&#45;44e5&#45;9be6&#45;f4a3d39ac10a:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1732.02,-66C1767.15,-66 1805.2,-66 1840.97,-66"/>
+<polygon fill="black" stroke="black" points="1841,-69.5001 1851,-66 1841,-62.5001 1841,-69.5001"/>
+<text text-anchor="middle" x="1792" y="-70.8" font-family="Times New Roman,serif" font-size="14.00">subcomponent</text>
+</g>
+<!-- 1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;54abec18&#45;f11f&#45;4a69&#45;a029&#45;5873b40b8a59 -->
+<g id="edge9" class="edge"><title>1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;54abec18&#45;f11f&#45;4a69&#45;a029&#45;5873b40b8a59</title>
+<path fill="none" stroke="black" d="M667.501,-223.766C701.224,-190.9 777.7,-122.329 857,-92 862.57,-89.8696 868.255,-87.8876 874.027,-86.0444"/>
+<polygon fill="black" stroke="black" points="875.267,-89.3258 883.819,-83.0718 873.234,-82.6276 875.267,-89.3258"/>
+</g>
+<!-- bdd262f3&#45;cef6&#45;46ad&#45;b4ba&#45;ffca4408392a -->
+<g id="node7" class="node"><title>bdd262f3&#45;cef6&#45;46ad&#45;b4ba&#45;ffca4408392a</title>
+<polygon fill="turquoise" stroke="turquoise" points="1352,-137 878,-137 878,-101 1352,-101 1352,-137"/>
+<text text-anchor="middle" x="1115" y="-115.3" font-family="Times New Roman,serif" font-size="14.00">AndroidModule_ContributeSantaMessagingService.bindAndroidInjectorFactory()</text>
+</g>
+<!-- 1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;bdd262f3&#45;cef6&#45;46ad&#45;b4ba&#45;ffca4408392a -->
+<g id="edge7" class="edge"><title>1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;bdd262f3&#45;cef6&#45;46ad&#45;b4ba&#45;ffca4408392a</title>
+<path fill="none" stroke="black" d="M680.258,-223.831C719.726,-201.459 790.992,-164.197 857,-146 866.148,-143.478 875.54,-141.188 885.071,-139.11"/>
+<polygon fill="black" stroke="black" points="885.98,-142.496 895.05,-137.02 884.545,-135.644 885.98,-142.496"/>
+</g>
+<!-- 7d241ea0&#45;90bd&#45;42f6&#45;9992&#45;0f540a28e230 -->
+<g id="node8" class="node"><title>7d241ea0&#45;90bd&#45;42f6&#45;9992&#45;0f540a28e230</title>
+<polygon fill="turquoise" stroke="turquoise" points="1336.5,-191 893.5,-191 893.5,-155 1336.5,-155 1336.5,-191"/>
+<text text-anchor="middle" x="1115" y="-169.3" font-family="Times New Roman,serif" font-size="14.00">AndroidModule_ContributeTvStartupActivity.bindAndroidInjectorFactory()</text>
+</g>
+<!-- 1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;7d241ea0&#45;90bd&#45;42f6&#45;9992&#45;0f540a28e230 -->
+<g id="edge4" class="edge"><title>1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;7d241ea0&#45;90bd&#45;42f6&#45;9992&#45;0f540a28e230</title>
+<path fill="none" stroke="black" d="M729.491,-223.96C767.901,-215.773 814.676,-206.492 857,-200 875.22,-197.205 894.212,-194.612 913.259,-192.228"/>
+<polygon fill="black" stroke="black" points="913.724,-195.697 923.22,-191 912.867,-188.75 913.724,-195.697"/>
+</g>
+<!-- ab01add0&#45;474e&#45;4fb5&#45;b3c8&#45;cc4e4d265a45 -->
+<g id="node9" class="node"><title>ab01add0&#45;474e&#45;4fb5&#45;b3c8&#45;cc4e4d265a45</title>
+<polygon fill="turquoise" stroke="turquoise" points="1369,-245 861,-245 861,-209 1369,-209 1369,-245"/>
+<text text-anchor="middle" x="1115" y="-223.3" font-family="Times New Roman,serif" font-size="14.00">AndroidModule_ContributeWebSceneLandscapeActivity.bindAndroidInjectorFactory()</text>
+</g>
+<!-- 1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;ab01add0&#45;474e&#45;4fb5&#45;b3c8&#45;cc4e4d265a45 -->
+<g id="edge6" class="edge"><title>1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;ab01add0&#45;474e&#45;4fb5&#45;b3c8&#45;cc4e4d265a45</title>
+<path fill="none" stroke="black" d="M820.154,-236.489C830.151,-236.166 840.311,-235.838 850.554,-235.507"/>
+<polygon fill="black" stroke="black" points="850.939,-238.997 860.821,-235.176 850.713,-232.001 850.939,-238.997"/>
+</g>
+<!-- 7c12c31e&#45;721d&#45;440d&#45;80e0&#45;eb7f65b1f5d0 -->
+<g id="node10" class="node"><title>7c12c31e&#45;721d&#45;440d&#45;80e0&#45;eb7f65b1f5d0</title>
+<polygon fill="turquoise" stroke="turquoise" points="1363.5,-299 866.5,-299 866.5,-263 1363.5,-263 1363.5,-299"/>
+<text text-anchor="middle" x="1115" y="-277.3" font-family="Times New Roman,serif" font-size="14.00">AndroidModule_ContributeAppIndexingUpdateService.bindAndroidInjectorFactory()</text>
+</g>
+<!-- 1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;7c12c31e&#45;721d&#45;440d&#45;80e0&#45;eb7f65b1f5d0 -->
+<g id="edge8" class="edge"><title>1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;7c12c31e&#45;721d&#45;440d&#45;80e0&#45;eb7f65b1f5d0</title>
+<path fill="none" stroke="black" d="M820.154,-256.328C842.586,-258.212 865.843,-260.164 889.005,-262.109"/>
+<polygon fill="black" stroke="black" points="889.02,-265.623 899.278,-262.972 889.606,-258.647 889.02,-265.623"/>
+</g>
+<!-- 1ef0bb6b&#45;086d&#45;453d&#45;8669&#45;3ce4f373f6d8 -->
+<g id="node11" class="node"><title>1ef0bb6b&#45;086d&#45;453d&#45;8669&#45;3ce4f373f6d8</title>
+<polygon fill="turquoise" stroke="turquoise" points="1359,-353 871,-353 871,-317 1359,-317 1359,-353"/>
+<text text-anchor="middle" x="1115" y="-331.3" font-family="Times New Roman,serif" font-size="14.00">AndroidModule_ContributeWebSceneActivityPortrait.bindAndroidInjectorFactory()</text>
+</g>
+<!-- 1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;1ef0bb6b&#45;086d&#45;453d&#45;8669&#45;3ce4f373f6d8 -->
+<g id="edge5" class="edge"><title>1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;1ef0bb6b&#45;086d&#45;453d&#45;8669&#45;3ce4f373f6d8</title>
+<path fill="none" stroke="black" d="M696.977,-260.149C738.564,-275.307 800.943,-296.268 857,-308 870.074,-310.736 883.583,-313.201 897.25,-315.421"/>
+<polygon fill="black" stroke="black" points="896.802,-318.894 907.225,-316.995 897.892,-311.979 896.802,-318.894"/>
+</g>
+<!-- 22b332ad&#45;03e8&#45;483d&#45;91a3&#45;ef7d8e5072c3 -->
+<g id="node12" class="node"><title>22b332ad&#45;03e8&#45;483d&#45;91a3&#45;ef7d8e5072c3</title>
+<polygon fill="turquoise" stroke="turquoise" points="1328.5,-407 901.5,-407 901.5,-371 1328.5,-371 1328.5,-407"/>
+<text text-anchor="middle" x="1115" y="-385.3" font-family="Times New Roman,serif" font-size="14.00">AndroidModule_ContributeStartupActivity.bindAndroidInjectorFactory()</text>
+</g>
+<!-- 1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;22b332ad&#45;03e8&#45;483d&#45;91a3&#45;ef7d8e5072c3 -->
+<g id="edge3" class="edge"><title>1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;22b332ad&#45;03e8&#45;483d&#45;91a3&#45;ef7d8e5072c3</title>
+<path fill="none" stroke="black" d="M673.132,-260.186C710.075,-287.524 784.778,-338.507 857,-362 868.166,-365.632 879.735,-368.804 891.507,-371.571"/>
+<polygon fill="black" stroke="black" points="890.916,-375.026 901.44,-373.802 892.45,-368.196 890.916,-375.026"/>
+</g>
+<!-- afe06650&#45;71a0&#45;480b&#45;a816&#45;0c36b5729f0b -->
+<g id="node13" class="node"><title>afe06650&#45;71a0&#45;480b&#45;a816&#45;0c36b5729f0b</title>
+<polygon fill="turquoise" stroke="turquoise" points="1330,-461 900,-461 900,-425 1330,-425 1330,-461"/>
+<text text-anchor="middle" x="1115" y="-439.3" font-family="Times New Roman,serif" font-size="14.00">AndroidModule_ContributeTrackerActivity.bindAndroidInjectorFactory()</text>
+</g>
+<!-- 1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;afe06650&#45;71a0&#45;480b&#45;a816&#45;0c36b5729f0b -->
+<g id="edge2" class="edge"><title>1ba2a359&#45;741f&#45;4933&#45;b1ed&#45;1e0a62eb5a1f&#45;&gt;afe06650&#45;71a0&#45;480b&#45;a816&#45;0c36b5729f0b</title>
+<path fill="none" stroke="black" d="M664.373,-260.263C695.604,-297.134 772.172,-380.011 857,-416 867.541,-420.472 878.535,-424.321 889.787,-427.626"/>
+<polygon fill="black" stroke="black" points="889.164,-431.086 899.736,-430.393 891.039,-424.342 889.164,-431.086"/>
+</g>
+</g>
+</svg>

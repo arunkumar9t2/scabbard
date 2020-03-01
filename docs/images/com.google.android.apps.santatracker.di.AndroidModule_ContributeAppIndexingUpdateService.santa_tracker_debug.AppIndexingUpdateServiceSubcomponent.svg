@@ -1,0 +1,34 @@
+<svg width="835px" height="165px"
+ viewBox="0.00 0.00 834.80 164.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 150.4)">
+<title>com.google.android.apps.santatracker.di.AppComponent → com.google.android.apps.santatracker.di.AndroidModule_ContributeAppIndexingUpdateService$santa_tracker_debug.AppIndexingUpdateServiceSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-150.4 820.4,-150.4 820.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="403" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → AndroidModule_ContributeAppIndexingUpdateService$santa_tracker_debug.AppIndexingUpdateServiceSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="202.5,-31 202.5,-106 431.5,-106 431.5,-31 202.5,-31"/>
+<text text-anchor="middle" x="245.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="451.5,-31 451.5,-128 603.5,-128 603.5,-31 451.5,-31"/>
+<text text-anchor="middle" x="514" y="-112.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- ff08ff32&#45;6e4f&#45;41f5&#45;89cc&#45;457d5c2f0227 -->
+<g id="node1" class="node"><title>ff08ff32&#45;6e4f&#45;41f5&#45;89cc&#45;457d5c2f0227</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="423.5,-75 210.5,-75 210.5,-71 206.5,-71 206.5,-67 210.5,-67 210.5,-47 206.5,-47 206.5,-43 210.5,-43 210.5,-39 423.5,-39 423.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="210.5,-71 214.5,-71 214.5,-67 210.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="210.5,-47 214.5,-47 214.5,-43 210.5,-43 "/>
+<text text-anchor="middle" x="317" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (AppIndexingUpdateService)</text>
+</g>
+<!-- 0c6acdf7&#45;1de7&#45;4100&#45;a955&#45;48f3e0f0e11f -->
+<g id="node3" class="node"><title>0c6acdf7&#45;1de7&#45;4100&#45;a955&#45;48f3e0f0e11f</title>
+<polygon fill="turquoise" stroke="turquoise" points="595.5,-75 459.5,-75 459.5,-39 595.5,-39 595.5,-75"/>
+<text text-anchor="middle" x="527.5" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">SantaTrackerStickers</text>
+</g>
+<!-- ff08ff32&#45;6e4f&#45;41f5&#45;89cc&#45;457d5c2f0227&#45;&gt;0c6acdf7&#45;1de7&#45;4100&#45;a955&#45;48f3e0f0e11f -->
+<g id="edge1" class="edge"><title>ff08ff32&#45;6e4f&#45;41f5&#45;89cc&#45;457d5c2f0227&#45;&gt;0c6acdf7&#45;1de7&#45;4100&#45;a955&#45;48f3e0f0e11f</title>
+<path fill="none" stroke="black" d="M423.777,-57C432.377,-57 440.963,-57 449.301,-57"/>
+<polygon fill="black" stroke="black" points="449.332,-60.5001 459.332,-57 449.332,-53.5001 449.332,-60.5001"/>
+</g>
+<!-- c23b41e2&#45;cff8&#45;4a34&#45;be2d&#45;e6a0c012804f -->
+</g>
+</svg>
