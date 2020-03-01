@@ -28,15 +28,16 @@ task clean(type: Delete) {
 }
 
 def isWin = System.getProperty("os.name").toLowerCase().contains("win")
+def samplePath = "samples:android-kotlin"
+def sampleProject = project(samplePath)
 
 //TODO Investigate migrating to GradleBuild. ATM has issues disabling daemon.
 tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
     group = "development"
-    def sample = "samples:android-kotlin"
     doLast {
         def isDebug = project.hasProperty("debug")
         if (isDebug) {
-            delete fileTree("${sample}/build").matching {
+            delete fileTree(sampleProject.buildDir).matching {
                 include "**/*.dot"
                 include "**/*.png"
             }
@@ -48,7 +49,7 @@ tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
 
             def gradleDebug = "-Dorg.gradle.debug=$isDebug"
             def daemon = isDebug ? '--no-daemon' : ''
-            def command = "${commandPrefix}gradlew $daemon $gradleDebug ${sample}:kaptDebugKotlin"
+            def command = "${commandPrefix}gradlew $daemon $gradleDebug ${samplePath}:kaptDebugKotlin"
             workingDir(projectDir)
             commandLine shell, shellArg, command
         }
@@ -66,5 +67,34 @@ tasks.register("docsServe") {
             exec { commandLine "open", url }
         }
         exec { commandLine("mkdocs", "serve") }
+    }
+}
+
+tasks.register("publishSampleImages") {
+    group = "documentation"
+    description = "Publishes sample images to website"
+    doLast {
+        copy {
+            from "${sampleProject.buildDir}/tmp/kapt3/classes/debug/scabbard"
+            include "*.svg"
+            exclude "full_*.svg"
+            into "docs/images"
+        }
+    }
+    dependsOn sampleProject.tasks.named("kaptDebugKotlin")
+}
+
+// Common publish task to publish all artifacts
+tasks.register("publishAllArtifacts") {
+    group = "publishing"
+    description = "Publishes all artifiacts"
+    doFirst {
+        logger.quiet("Publishing version $publishVersion")
+    }
+    dependsOn project("scabbard-idea-plugin").tasks.named("publishPlugin")
+    dependsOn gradle.includedBuild("scabbard-gradle-plugin").task(":publishPlugins")
+    dependsOn project("scabbard-processor").tasks.named("bintrayUpload")
+    doLast {
+        logger.quiet("Done!")
     }
 }

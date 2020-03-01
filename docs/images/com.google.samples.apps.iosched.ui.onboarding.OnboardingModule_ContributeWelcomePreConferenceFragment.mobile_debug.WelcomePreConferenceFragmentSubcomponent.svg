@@ -1,0 +1,24 @@
+<svg width="1440px" height="194px"
+ viewBox="0.00 0.00 1439.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_OnboardingActivity$mobile_debug.OnboardingActivitySubcomponent → com.google.samples.apps.iosched.ui.onboarding.OnboardingModule_ContributeWelcomePreConferenceFragment$mobile_debug.WelcomePreConferenceFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1425.4,-179.4 1425.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="705.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_OnboardingActivity$mobile_debug.OnboardingActivitySubcomponent → OnboardingModule_ContributeWelcomePreConferenceFragment$mobile_debug.WelcomePreConferenceFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="573.5,-31 573.5,-106 837.5,-106 837.5,-31 573.5,-31"/>
+<text text-anchor="middle" x="616.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="643.7,-114 643.7,-157 768.3,-157 768.3,-114 643.7,-114"/>
+<text text-anchor="middle" x="706.2" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 44544fbd&#45;bb4b&#45;489f&#45;8747&#45;e6024a0f00ea -->
+<g id="node1" class="node"><title>44544fbd&#45;bb4b&#45;489f&#45;8747&#45;e6024a0f00ea</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="829.5,-75 581.5,-75 581.5,-71 577.5,-71 577.5,-67 581.5,-67 581.5,-47 577.5,-47 577.5,-43 581.5,-43 581.5,-39 829.5,-39 829.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="581.5,-71 585.5,-71 585.5,-67 581.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="581.5,-47 585.5,-47 585.5,-43 581.5,-43 "/>
+<text text-anchor="middle" x="705.5" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (WelcomePreConferenceFragment)</text>
+</g>
+<!-- 8b64ba42&#45;c891&#45;4bf2&#45;a6f5&#45;004b089aabc3 -->
+</g>
+</svg>

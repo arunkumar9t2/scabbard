@@ -4,10 +4,10 @@ If you would like to contribute to Scabbard you can do so through GitHub by fork
 
 ## Running Scabbard locally
 
-After the cloning the repo, the project could be built by `.gradlew assemble` command. Scabbard also ships with IDE configurations for common tasks.
+After the cloning the repo, the project could be built by `./gradlew assemble` command. Scabbard also ships with IDE configurations for common tasks.
 
-* `runScabbardProcessor` - Runs the annotation processor on `scabbard-sample` project. After build, graphs should have been generated.
-* `debugScabbardProcessor` - Starts a gradle build for debugging and waits for debugger to be attached. Please run `Attach Scabbard Debugger` config to attach the debugger. Breakpoints and step through should work normally.
+* `Run Scabbard Processor` - Runs the annotation processor on `samples:android-kotlin` project. After build, graphs should have generated.
+* `Debug Scabbard Processor` - Starts a gradle build for debugging and waits for debugger to be attached. Please run `Attach Scabbard Debugger` config to attach the debugger. Breakpoints and step through should work normally.
 * `Run Scabbard IntelliJ Plugin` - Builds the plugin and opens an IntelliJ instance that has the plugin applied.
 
 ## Workflow
