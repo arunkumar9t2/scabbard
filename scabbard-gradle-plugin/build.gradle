@@ -1,10 +1,10 @@
 plugins {
-    id 'java-gradle-plugin'
-    id 'com.gradle.plugin-publish' version '0.10.1'
+    id "java-gradle-plugin"
+    id "com.gradle.plugin-publish" version "0.10.1"
     id "org.gradle.kotlin.kotlin-dsl" version "1.3.3"
 }
 
-apply from: '../constants.gradle'
+apply from: "../constants.gradle"
 
 group groupId
 version publishVersion
@@ -14,8 +14,8 @@ repositories {
 }
 
 dependencies {
-    implementation platform('org.jetbrains.kotlin:kotlin-bom')
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation platform("org.jetbrains.kotlin:kotlin-bom")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
 
     testImplementation "junit:junit:${versions.junit}"
@@ -27,18 +27,18 @@ gradlePlugin {
     plugins {
         scabbardPlugin {
             id = scabbardGradlePlugin
-            displayName = 'Scabbard - Dagger 2 Visualizer'
-            description = 'Gradle plugin to visualize Dagger 2 dependency graph'
-            implementationClass = 'dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin'
+            displayName = "Scabbard - Dagger 2 Visualizer"
+            description = "Gradle plugin to visualize Dagger 2 dependency graph"
+            implementationClass = "dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin"
         }
     }
 }
 
 sourceSets {
     functionalTest {
-        java.srcDirs 'src/functionalTest/kotlin'
+        java.srcDirs "src/functionalTest/kotlin"
     }
-    main.java.srcDir 'build/generated/kotlin'
+    main.java.srcDir "build/generated/kotlin"
 }
 
 gradlePlugin.testSourceSets(sourceSets.functionalTest)
@@ -56,12 +56,12 @@ check {
 pluginBundle {
     website = project.findProperty("website")
     vcsUrl = project.findProperty("website")
-    tags = ['dagger 2', 'dependency injection', 'visualize dependency graph']
+    tags = ["dagger 2", "dependency injection", "visualize dependency graph"]
 }
 
 def generatePluginVersion = tasks.register("generatePluginVersion") {
-    def outputDir = file('build/generated/kotlin')
-    inputs.property 'version', version
+    def outputDir = file("build/generated/kotlin")
+    inputs.property "version", version
     outputs.dir outputDir
     doLast {
         def packageName = groupId + "." + project.name.replace("-", ".")
@@ -74,6 +74,6 @@ const val VERSION = "${project.version}"
     }
 }
 
-tasks.named('compileKotlin').configure {
+tasks.named("compileKotlin").configure {
     dependsOn(generatePluginVersion)
 }

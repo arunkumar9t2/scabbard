@@ -2,7 +2,7 @@ plugins {
     id "java-library"
     id "org.jetbrains.kotlin.jvm"
 }
-description = 'Build dot files easily with Kotlin'
+description = "Build dot files easily with Kotlin"
 apply from: "../publishing.gradle"
 
 java {
@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     testImplementation "junit:junit:${versions.junit}"

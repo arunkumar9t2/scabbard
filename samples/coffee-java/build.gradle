@@ -1,11 +1,11 @@
 plugins {
-    id 'java-library'
-    id 'application'
+    id "java-library"
+    id "application"
 }
 apply plugin: scabbardGradlePlugin
 
 application {
-    mainClassName = 'dev.arunkumar.scabbard.coffee.CoffeeApp'
+    mainClassName = "dev.arunkumar.scabbard.coffee.CoffeeApp"
 }
 
 scabbard {
@@ -25,7 +25,7 @@ repositories {
 dependencies {
     implementation "com.google.dagger:dagger:${versions.dagger}"
     annotationProcessor "com.google.dagger:dagger-compiler:${versions.dagger}"
-    implementation 'com.google.guava:guava:28.0-jre'
+    implementation "com.google.guava:guava:28.0-jre"
     testImplementation "junit:junit:${versions.junit}"
 }
 

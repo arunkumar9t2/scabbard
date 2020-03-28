@@ -1,5 +1,5 @@
 buildscript {
-    apply from: 'constants.gradle'
+    apply from: "constants.gradle"
     repositories {
         google()
         jcenter()
@@ -8,7 +8,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:${versions.agp}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "dev.arunkumar:scabbard-gradle-plugin:${publishVersion}"
-        classpath 'com.novoda:bintray-release:0.9.2'
+        classpath "com.novoda:bintray-release:0.9.2"
     }
 }
 
@@ -43,12 +43,12 @@ tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
             }
         }
         exec {
-            def shell = isWin ? 'cmd' : 'sh'
-            def commandPrefix = isWin ? '' : './'
-            def shellArg = isWin ? '/c' : '-c'
+            def shell = isWin ? "cmd" : "sh"
+            def commandPrefix = isWin ? "" : "./"
+            def shellArg = isWin ? "/c" : "-c"
 
             def gradleDebug = "-Dorg.gradle.debug=$isDebug"
-            def daemon = isDebug ? '--no-daemon' : ''
+            def daemon = isDebug ? "--no-daemon" : ""
             def command = "${commandPrefix}gradlew $daemon $gradleDebug ${samplePath}:kaptDebugKotlin"
             workingDir(projectDir)
             commandLine shell, shellArg, command
@@ -62,7 +62,7 @@ tasks.register("docsServe") {
     doLast {
         def url = "http://127.0.0.1:8000/"
         if (isWin) {
-            exec { commandLine 'cmd', '/c', "start $url" }
+            exec { commandLine "cmd", "/c", "start $url" }
         } else {
             exec { commandLine "open", url }
         }
@@ -88,13 +88,7 @@ tasks.register("publishSampleImages") {
 tasks.register("publishAllArtifacts") {
     group = "publishing"
     description = "Publishes all artifiacts"
-    doFirst {
-        logger.quiet("Publishing version $publishVersion")
-    }
     dependsOn project("scabbard-idea-plugin").tasks.named("publishPlugin")
     dependsOn gradle.includedBuild("scabbard-gradle-plugin").task(":publishPlugins")
     dependsOn project("scabbard-processor").tasks.named("bintrayUpload")
-    doLast {
-        logger.quiet("Done!")
-    }
 }

@@ -2,7 +2,7 @@
 configurations.configureEach {
     resolutionStrategy {
         dependencySubstitution {
-            substitute module('dev.arunkumar:scabbard-processor') with project(':scabbard-processor')
+            substitute module("dev.arunkumar:scabbard-processor") with project(":scabbard-processor")
         }
     }
 }

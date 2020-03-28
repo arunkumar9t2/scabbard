@@ -14,8 +14,8 @@ repositories {
 }
 
 sourceSets {
-    main.java.srcDirs('build/generated/source/kapt/main')
-    test.java.srcDirs('build/generated/source/kapt/test')
+    main.java.srcDirs("build/generated/source/kapt/main")
+    test.java.srcDirs("build/generated/source/kapt/test")
 }
 
 dependencies {

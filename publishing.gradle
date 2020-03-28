@@ -1,5 +1,5 @@
-apply plugin: 'maven-publish'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: "maven-publish"
+apply plugin: "com.novoda.bintray-release"
 
 afterEvaluate {
     publishing.publications.getByName("maven") {
