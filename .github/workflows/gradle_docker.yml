@@ -21,7 +21,10 @@ jobs:
           java-version: 1.8
 
       - name: Set gradle permissions
-        run: sudo chmod +x ./gradlew
+        run: |
+          sudo chmod +x ./gradlew
+          cd scabbard-gradle-plugin
+          sudo chmod +x ./gradlew
 
       - name: Prepare gradle cache
         run: |
