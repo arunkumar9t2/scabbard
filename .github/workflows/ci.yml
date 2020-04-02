@@ -5,25 +5,15 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: registry.hub.docker.com/arunkumar9t2/scabbard:latest
     steps:
       - uses: actions/checkout@v1
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-
-      - name: Install GraphViz
-        run: sudo apt-get install graphviz
 
       - name: Set gradle permissions
         run: |
           sudo chmod +x ./gradlew
           cd scabbard-gradle-plugin
           sudo chmod +x ./gradlew
-
-      - name: Download dependencies
-        run: |
-          ./gradlew dependencies
 
       - name: Build scabbard project
         run: |
