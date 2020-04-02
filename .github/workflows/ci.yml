@@ -11,9 +11,9 @@ jobs:
 
       - name: Set gradle permissions
         run: |
-          sudo chmod +x ./gradlew
+          chmod +x ./gradlew
           cd scabbard-gradle-plugin
-          sudo chmod +x ./gradlew
+          chmod +x ./gradlew
 
       - name: Build scabbard project
         run: |
