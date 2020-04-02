@@ -1,0 +1,20 @@
+tasks.register("resolveDependencies") {
+    group = "build"
+    description = "Resovle and prefetch dependencies"
+    doLast {
+        def resolver = { ConfigurationContainer container ->
+            configurations
+                    .findAll { it.canBeResolved }
+                    .each { configuration ->
+                        try {
+                            configuration.resolve()
+                        } catch (Exception ignore) {
+                        }
+                    }
+            allprojects { Project project ->
+                resolver(project.buildscript.configurations)
+                resolver(project.configurations)
+            }
+        }
+    }
+}
