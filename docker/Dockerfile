@@ -2,7 +2,7 @@ FROM reactivecircus/android-sdk:latest
 
 MAINTAINER Arunkumar "hi@arunkumar.dev"
 
-WORKDIR .
+RUN apt-get update && apt-get install -y graphviz
 
 ENV GRADLE_USER_HOME=/root/.gradle
 
