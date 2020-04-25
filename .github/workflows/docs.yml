@@ -17,8 +17,8 @@ jobs:
           python-version: '3.x'
       - name: Install MkDocs
         run: |
-          pip install -Iv mkdocs=1.0.4
-          pip install -Iv mkdocs-material=4.6.0
+          pip install -Iv mkdocs==1.0.4
+          pip install -Iv mkdocs-material==4.6.0
 
       - name: Setup git
         env:
