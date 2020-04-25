@@ -23,7 +23,8 @@ More advanced [examples](examples.md).
 
 * **Supports** both Kotlin and Java.
 
------
+!!! tip "What's new"
+    Recent additions include support for [simple names](#qualified-names), [SVG output format](#output-format) and easier setup for [multi-module projects](#multi-module-projects).
 
 ## Getting Started
 
@@ -39,7 +40,7 @@ Scabbard uses [GraphViz](https://www.graphviz.org/) to generate graphs and hence
 
 * **Linux** - Install via apt. `sudo apt-get install graphviz`.
 
-* **Windows** - Install via [GraphViz installer](https://graphviz.gitlab.io/_pages/Download/Download_windows.html)
+* **Windows** - Install via [GraphViz installer](https://graphviz.gitlab.io/_pages/Download/Download_windows.html) or `choco install graphviz` with [Chocolatey](https://chocolatey.org/packages/Graphviz).
 
 After installation, verify installation by executing `dot -V`, example:
 
@@ -116,6 +117,8 @@ scabbard {
     enabled = true
 }
 ```
+!!! note ""
+    For multi-module projects, please refer [here](configuration.md#multi-module-projects).
 
 !!! success
     That's it. Now after building the project, Scabbard would have generated `dot` and `png` files for your Dagger components in your `build` folder. The default output directory is location defined by `StandardLocation.CLASS_OUTPUT`.

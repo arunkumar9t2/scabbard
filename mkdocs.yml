@@ -33,6 +33,7 @@ nav:
   - FAQ: faq.md
   - Examples: examples.md
   - Cheat Sheet: cheat-sheet.md
+  - Tips: tips.md
   - Contributing: contributing.md
 
 plugins:

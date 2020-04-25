@@ -4,9 +4,6 @@
 
 The `scabbard` plugin can be configured in following ways and is the entry point for customizing scabbard processor behavior.
 
-!!! tip "What's new"
-    Recent additions include support for [simple names](#qualified-names), [SVG output format](#output-format) and easier setup for [multi-module projects](#multi-module-projects).
-
 !!! example "Configuration Examples"
     Example gradle build script configurations.
 
