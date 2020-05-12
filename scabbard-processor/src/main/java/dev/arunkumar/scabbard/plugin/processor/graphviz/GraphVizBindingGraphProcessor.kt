@@ -5,8 +5,7 @@ import dagger.Module
 import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.*
-import dagger.model.BindingKind.DELEGATE
-import dagger.model.BindingKind.MEMBERS_INJECTION
+import dagger.model.BindingKind.*
 import dagger.model.ComponentPath
 import dev.arunkumar.dot.DotGraph
 import dev.arunkumar.dot.dsl.DotGraphBuilder
@@ -170,6 +169,9 @@ constructor(
     binding.id {
       "label" eq binding.label
       "color" eq binding.color
+      if (binding.kind() == BOUND_INSTANCE) {
+        "shape" eq "parallelogram"
+      }
     }
   }
 

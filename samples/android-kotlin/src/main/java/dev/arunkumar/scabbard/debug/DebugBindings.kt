@@ -1,5 +1,6 @@
 package dev.arunkumar.scabbard.debug
 
+import android.app.Application
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -21,7 +22,8 @@ class ComplexSingleton
 @Inject
 constructor(
   private val unScopedBinding: UnScopedBinding,
-  private val simpleSingleton: SimpleSingleton
+  private val simpleSingleton: SimpleSingleton,
+  private val application: Application
 )
 
 class ProvisionBinding
@@ -38,7 +40,8 @@ interface MultiBindingType
 class SimpleMultiBindingType @Inject constructor() : MultiBindingType
 
 class ComplexMultiBindingType
-@Inject constructor(val provisionBinding: ProvisionBinding) : MultiBindingType
+@Inject
+constructor(val provisionBinding: ProvisionBinding) : MultiBindingType
 
 @Module
 abstract class MultiBindingsProvisionModule {
