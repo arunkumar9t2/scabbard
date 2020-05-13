@@ -54,7 +54,7 @@ fun prepareContributesAndroidInjectorLineMarker(
   val lineMarker = prepareLineMarkerOpenerForFileName(
     element = contributesAndroidInjectorElement,
     componentName = subcomponentName,
-    fileName = "$generatedImageName.png"
+    fileName = generatedImageName
   )
   if (lineMarker != null) {
     return lineMarker
