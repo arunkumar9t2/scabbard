@@ -3,35 +3,35 @@ package dev.arunkumar.scabbard.intellij
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.LineMarkerProvider
 import com.intellij.psi.PsiAnnotation
-import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiModifierList
+import com.intellij.psi.PsiIdentifier
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_COMPONENT
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_MODULE
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_SUBCOMPONENT
 import dev.arunkumar.scabbard.intellij.utill.prepareLineMarkerOpenerForFileName
-
+import org.jetbrains.kotlin.j2k.getContainingClass
 
 class JavaComponentToDaggerGraphLineMarker : LineMarkerProvider {
 
-  private fun PsiElement.hasDaggerAnnotations(): Boolean {
-    return findAnnotation(DAGGER_COMPONENT) != null
-        || findAnnotation(DAGGER_SUBCOMPONENT) != null
-        || findAnnotation(DAGGER_MODULE) != null
-  }
+  private val daggerAnnotations = listOf(DAGGER_COMPONENT, DAGGER_SUBCOMPONENT, DAGGER_MODULE)
 
-  private fun PsiElement.findAnnotation(annotationName: String): PsiAnnotation? {
-    return takeIf { this is PsiModifierList }?.run {
-      (parent as? PsiClass)
-        ?.modifierList
-        ?.annotations
-        ?.firstOrNull { it.qualifiedName == annotationName }
+  /**
+   * @return true only when
+   * 1. The given PSI element is an `PsiIdentifier`.
+   * 2. and is a dagger annotation entry.
+   * For example, for `@Component` annotation on a class or an interface, this method will return `true` only for
+   * `Component` part when it is represented as a `PsiIdentifier`.
+   */
+  private fun PsiElement.isDaggerAnnotationIdentifier(): Boolean {
+    val psiIdentifier = this as? PsiIdentifier
+    return daggerAnnotations.any { daggerAnnotation ->
+      (psiIdentifier?.parent?.parent as? PsiAnnotation)?.qualifiedName == daggerAnnotation
     }
   }
 
   override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
-    if (element.hasDaggerAnnotations()) {
-      val psiClass = (element as PsiModifierList).parent as? PsiClass
+    if (element.isDaggerAnnotationIdentifier()) {
+      val psiClass = element.getContainingClass()
       val qualifiedName = psiClass?.qualifiedName
       qualifiedName?.let {
         return prepareLineMarkerOpenerForFileName(
