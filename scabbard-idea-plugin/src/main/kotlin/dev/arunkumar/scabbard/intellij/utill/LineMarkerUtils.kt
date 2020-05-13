@@ -91,6 +91,10 @@ private fun String.sanitize(format: String): String {
   return String.format(format, sanitized)
 }
 
+/**
+ * Prepares a LineMarker instance for gutter icon by search for [fileName] in different scopes. If given `fileName` is
+ * found in any of the scope will return a `LineMarkerInfo` instance that simply opens the file with `FileEditorManager.openFile`.
+ */
 fun prepareLineMarkerOpenerForFileName(
   element: PsiElement,
   componentName: String,
@@ -105,14 +109,14 @@ fun prepareLineMarkerOpenerForFileName(
         fileName.sanitize(fileNameFormat),
         scope
       ).toList()
-    }.firstOrNull() // TODO(arun) Migrate to showing popup for multiple files
+    }.maxBy { it.virtualFile.timeStamp } // TODO(arun) Migrate to showing popup for multiple files
     ?.let { graphFile ->
-      return LineMarkerInfo<PsiElement>(
+      return LineMarkerInfo(
         element,
         element.textRange,
         SCABBARD_ICON,
         Function { "Open ${componentName}'s dependency graph" },
-        GutterIconNavigationHandler<PsiElement?> { _, _ ->
+        GutterIconNavigationHandler { _, _ ->
           FileEditorManager.getInstance(element.project)
             .openFile(
               graphFile.virtualFile,
