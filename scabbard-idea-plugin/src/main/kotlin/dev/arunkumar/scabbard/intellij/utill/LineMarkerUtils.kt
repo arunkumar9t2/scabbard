@@ -3,14 +3,18 @@ package dev.arunkumar.scabbard.intellij.utill
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.navigation.NavigationGutterIconBuilder
 import com.intellij.icons.AllIcons
+import com.intellij.ide.util.DefaultPsiElementCellRenderer
+import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.search.FilenameIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.PsiShortNamesCache
+import com.intellij.psi.util.PsiUtilCore
 
-private const val FULL_GRAPH_FILE_NAME =
-  "full_%s" // TODO(arun) create a common package to share this between intellij and processor
+// TODO(arun) create a common package to share these between intellij and processor
+private const val FULL_GRAPH_PREFIX = "full_"
+private const val FULL_GRAPH_FILE_NAME = "$FULL_GRAPH_PREFIX%s"
 
 private val GENERATED_FILE_FORMATS = listOf(
   "%s.png",
@@ -18,6 +22,9 @@ private val GENERATED_FILE_FORMATS = listOf(
   "%s.svg",
   "$FULL_GRAPH_FILE_NAME.svg"
 )
+
+
+private const val DEPENDENCY_GRAPH = "dependency graph"
 
 /**
  * Adds a gutter icon to open the dependency graph for the Subcomponent that `@ContributesAndroidInjector`
@@ -91,6 +98,31 @@ private fun String.sanitize(format: String): String {
 }
 
 /**
+ * Custom cell renderer that simple updates the generated graph file name's entry to use the actual class name.
+ */
+private class PsiElementToDaggerComponentNameCellRenderer : DefaultPsiElementCellRenderer() {
+
+  override fun getElementText(element: PsiElement): String {
+    val project = element.project
+    val searchScope = GlobalSearchScope.allScope(project)
+    val javaPsiFacade = JavaPsiFacade.getInstance(project)
+
+    val graphFileName = PsiUtilCore.getVirtualFile(element)?.nameWithoutExtension
+    if (graphFileName != null) {
+      val isFullGraph = graphFileName.startsWith(FULL_GRAPH_PREFIX)
+      val classNameToSearch = if (isFullGraph) graphFileName.split(FULL_GRAPH_PREFIX).last() else graphFileName
+      val classSimpleName = javaPsiFacade.findClass(classNameToSearch, searchScope)?.name
+      return if (isFullGraph) {
+        "$classSimpleName's Full $DEPENDENCY_GRAPH"
+      } else {
+        "$classSimpleName's $DEPENDENCY_GRAPH"
+      }
+    }
+    return super.getElementText(element)
+  }
+}
+
+/**
  * Prepares a LineMarker instance for gutter icon by search for [fileName] in different scopes. If given `fileName` is
  * found in any of the scope will return a `LineMarkerInfo` instance that navigates to the file on click of gutter icon.
  */
@@ -108,12 +140,13 @@ fun prepareDaggerComponentLineMarkerWithFileName(
         scope
       ).toList()
     }
-  val title = "Open ${componentName}'s dependency graph"
+  val title = "Open ${componentName}'s $DEPENDENCY_GRAPH"
   return if (matchedFiles.isNotEmpty()) {
     NavigationGutterIconBuilder.create(AllIcons.FileTypes.Diagram)
       .setTargets(matchedFiles)
       .setPopupTitle(title)
       .setTooltipText(title)
+      .setCellRenderer(PsiElementToDaggerComponentNameCellRenderer())
       .createLineMarkerInfo(element)
   } else {
     // TODO(arun) Can we present a search action?
