@@ -1,14 +1,13 @@
 package dev.arunkumar.scabbard.intellij.utill
 
-import com.intellij.codeInsight.daemon.GutterIconNavigationHandler
-import com.intellij.codeInsight.daemon.LineMarkerInfo
-import com.intellij.openapi.editor.markup.GutterIconRenderer
-import com.intellij.openapi.fileEditor.FileEditorManager
+import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
+import com.intellij.codeInsight.navigation.NavigationGutterIconBuilder
+import com.intellij.icons.AllIcons
 import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiFile
 import com.intellij.psi.search.FilenameIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.PsiShortNamesCache
-import com.intellij.util.Function
 
 private const val FULL_GRAPH_FILE_NAME =
   "full_%s" // TODO(arun) create a common package to share this between intellij and processor
@@ -39,7 +38,7 @@ fun prepareContributesAndroidInjectorLineMarker(
   qualifiedPath: String,
   methodName: String,
   returnTypeSimpleName: String
-): LineMarkerInfo<PsiElement>? {
+): RelatedItemLineMarkerInfo<PsiElement>? {
   val innerClassSep = '_'
 
   // Replace inner class paths with "_" and capitalize the method name to get the path
@@ -51,7 +50,7 @@ fun prepareContributesAndroidInjectorLineMarker(
   // suffixing "SubComponent"
   val subcomponentName = returnTypeSimpleName + "Subcomponent"
   val generatedImageName = "$generatedImagePath.$subcomponentName"
-  val lineMarker = prepareLineMarkerOpenerForFileName(
+  val lineMarker = prepareDaggerComponentLineMarkerWithFileName(
     element = contributesAndroidInjectorElement,
     componentName = subcomponentName,
     fileName = generatedImageName
@@ -70,7 +69,7 @@ fun prepareContributesAndroidInjectorLineMarker(
       ).firstOrNull()
       ?.let { subcomponentClass ->
         val qualifiedName = subcomponentClass.qualifiedName
-        return prepareLineMarkerOpenerForFileName(
+        return prepareDaggerComponentLineMarkerWithFileName(
           contributesAndroidInjectorElement,
           subcomponentName,
           "$qualifiedName"
@@ -93,39 +92,31 @@ private fun String.sanitize(format: String): String {
 
 /**
  * Prepares a LineMarker instance for gutter icon by search for [fileName] in different scopes. If given `fileName` is
- * found in any of the scope will return a `LineMarkerInfo` instance that simply opens the file with `FileEditorManager.openFile`.
+ * found in any of the scope will return a `LineMarkerInfo` instance that navigates to the file on click of gutter icon.
  */
-fun prepareLineMarkerOpenerForFileName(
+fun prepareDaggerComponentLineMarkerWithFileName(
   element: PsiElement,
   componentName: String,
   fileName: String
-): LineMarkerInfo<PsiElement>? {
-  // TODO(arun) Need to optimize this - try to scope it to the module where scabbard is applied
+): RelatedItemLineMarkerInfo<PsiElement>? {
   val scope = GlobalSearchScope.allScope(element.project)
-  GENERATED_FILE_FORMATS
+  val matchedFiles: List<PsiFile> = GENERATED_FILE_FORMATS
     .flatMap { fileNameFormat ->
       FilenameIndex.getFilesByName(
         element.project,
         fileName.sanitize(fileNameFormat),
         scope
       ).toList()
-    }.maxBy { it.virtualFile.timeStamp } // TODO(arun) Migrate to showing popup for multiple files
-    ?.let { graphFile ->
-      return LineMarkerInfo(
-        element,
-        element.textRange,
-        SCABBARD_ICON,
-        Function { "Open ${componentName}'s dependency graph" },
-        GutterIconNavigationHandler { _, _ ->
-          FileEditorManager.getInstance(element.project)
-            .openFile(
-              graphFile.virtualFile,
-              true,
-              true
-            )
-        },
-        GutterIconRenderer.Alignment.CENTER
-      )
     }
-  return null
+  val title = "Open ${componentName}'s dependency graph"
+  return if (matchedFiles.isNotEmpty()) {
+    NavigationGutterIconBuilder.create(AllIcons.FileTypes.Diagram)
+      .setTargets(matchedFiles)
+      .setPopupTitle(title)
+      .setTooltipText(title)
+      .createLineMarkerInfo(element)
+  } else {
+    // TODO(arun) Can we present a search action?
+    null
+  }
 }

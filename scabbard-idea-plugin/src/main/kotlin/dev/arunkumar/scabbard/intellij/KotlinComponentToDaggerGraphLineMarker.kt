@@ -1,13 +1,13 @@
 package dev.arunkumar.scabbard.intellij
 
-import com.intellij.codeInsight.daemon.LineMarkerInfo
-import com.intellij.codeInsight.daemon.LineMarkerProvider
+import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
+import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_COMPONENT
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_MODULE
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_SUBCOMPONENT
-import dev.arunkumar.scabbard.intellij.utill.prepareLineMarkerOpenerForFileName
+import dev.arunkumar.scabbard.intellij.utill.prepareDaggerComponentLineMarkerWithFileName
 import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtKeywordToken
@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.lexer.KtTokens.*
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
-class KotlinComponentToDaggerGraphLineMarker : LineMarkerProvider {
+class KotlinComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
   private fun KtClassOrObject.hasDaggerComponentAnnotations(): Boolean {
     return findAnnotation(FqName(DAGGER_COMPONENT)) != null
@@ -36,23 +36,25 @@ class KotlinComponentToDaggerGraphLineMarker : LineMarkerProvider {
     return null
   }
 
-  override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
+  override fun collectNavigationMarkers(
+    element: PsiElement,
+    result: MutableCollection<in RelatedItemLineMarkerInfo<PsiElement>>
+  ) {
     when (element) {
       is LeafPsiElement -> {
         element.getClassOrInterface()?.let { ktClass ->
           if (ktClass.hasDaggerComponentAnnotations()) {
             val componentName = ktClass.name
             val qualifiedName = ktClass.getKotlinFqName().toString()
-            return prepareLineMarkerOpenerForFileName(
+            val graphGutterIcon = prepareDaggerComponentLineMarkerWithFileName(
               element = element,
               componentName = componentName!!,
               fileName = qualifiedName
             )
+            graphGutterIcon?.let { result.add(graphGutterIcon) }
           }
         }
-        return null
       }
-      else -> return null
     }
   }
 }

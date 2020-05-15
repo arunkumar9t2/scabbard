@@ -1,7 +1,7 @@
 package dev.arunkumar.scabbard.intellij
 
-import com.intellij.codeInsight.daemon.LineMarkerInfo
-import com.intellij.codeInsight.daemon.LineMarkerProvider
+import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
+import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_CONTRIBUTES_ANDROID_INJECTOR
 import dev.arunkumar.scabbard.intellij.utill.prepareContributesAndroidInjectorLineMarker
@@ -10,9 +10,12 @@ import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtNamedFunction
 
-class KotlinContributesAndroidInjectorLineMarker : LineMarkerProvider {
+class KotlinContributesAndroidInjectorLineMarker : RelatedItemLineMarkerProvider() {
 
-  override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
+  override fun collectNavigationMarkers(
+    element: PsiElement,
+    result: MutableCollection<in RelatedItemLineMarkerInfo<PsiElement>>
+  ) {
     if (element is KtNamedFunction) {
       // Check if method has @ContributesAndroidInjector
       val crInjector = element.findAnnotation(FqName(DAGGER_CONTRIBUTES_ANDROID_INJECTOR))
@@ -24,16 +27,16 @@ class KotlinContributesAndroidInjectorLineMarker : LineMarkerProvider {
         val qualifiedPath = element.fqName?.asString()?.split(".$methodName")?.first()
         val returnTypeSimpleName = element.getReturnTypeReference()?.text
         if (returnTypeSimpleName != null && qualifiedPath != null && methodName != null) {
-          return prepareContributesAndroidInjectorLineMarker(
+          val graphGutterIcon = prepareContributesAndroidInjectorLineMarker(
             contributesAndroidInjectorElement = crInjector,
             packageName = packageName,
             qualifiedPath = qualifiedPath,
             methodName = methodName,
             returnTypeSimpleName = returnTypeSimpleName
           )
+          graphGutterIcon?.let { result.add(graphGutterIcon) }
         }
       }
     }
-    return null
   }
 }

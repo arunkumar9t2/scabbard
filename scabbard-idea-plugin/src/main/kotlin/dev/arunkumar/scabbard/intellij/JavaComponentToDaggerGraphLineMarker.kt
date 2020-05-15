@@ -1,17 +1,17 @@
 package dev.arunkumar.scabbard.intellij
 
-import com.intellij.codeInsight.daemon.LineMarkerInfo
-import com.intellij.codeInsight.daemon.LineMarkerProvider
+import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
+import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiIdentifier
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_COMPONENT
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_MODULE
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_SUBCOMPONENT
-import dev.arunkumar.scabbard.intellij.utill.prepareLineMarkerOpenerForFileName
+import dev.arunkumar.scabbard.intellij.utill.prepareDaggerComponentLineMarkerWithFileName
 import org.jetbrains.kotlin.j2k.getContainingClass
 
-class JavaComponentToDaggerGraphLineMarker : LineMarkerProvider {
+class JavaComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
   private val daggerAnnotations = listOf(DAGGER_COMPONENT, DAGGER_SUBCOMPONENT, DAGGER_MODULE)
 
@@ -29,18 +29,21 @@ class JavaComponentToDaggerGraphLineMarker : LineMarkerProvider {
     }
   }
 
-  override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
+  override fun collectNavigationMarkers(
+    element: PsiElement,
+    result: MutableCollection<in RelatedItemLineMarkerInfo<PsiElement>>
+  ) {
     if (element.isDaggerAnnotationIdentifier()) {
       val psiClass = element.getContainingClass()
       val qualifiedName = psiClass?.qualifiedName
       qualifiedName?.let {
-        return prepareLineMarkerOpenerForFileName(
+        val graphGutterIcon = prepareDaggerComponentLineMarkerWithFileName(
           element = element,
           componentName = psiClass.name!!,
           fileName = qualifiedName
         )
+        graphGutterIcon?.let { result.add(graphGutterIcon) }
       }
     }
-    return null
   }
 }

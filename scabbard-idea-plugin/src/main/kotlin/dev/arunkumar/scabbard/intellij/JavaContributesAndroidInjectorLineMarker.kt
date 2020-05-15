@@ -1,7 +1,7 @@
 package dev.arunkumar.scabbard.intellij
 
-import com.intellij.codeInsight.daemon.LineMarkerInfo
-import com.intellij.codeInsight.daemon.LineMarkerProvider
+import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
+import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiMethod
@@ -10,13 +10,16 @@ import com.intellij.psi.impl.source.PsiJavaFileImpl
 import dev.arunkumar.scabbard.intellij.utill.DAGGER_CONTRIBUTES_ANDROID_INJECTOR
 import dev.arunkumar.scabbard.intellij.utill.prepareContributesAndroidInjectorLineMarker
 
-class JavaContributesAndroidInjectorLineMarker : LineMarkerProvider {
+class JavaContributesAndroidInjectorLineMarker : RelatedItemLineMarkerProvider() {
 
   private fun PsiMethod.findAnnotation(annotationName: String): PsiAnnotation? {
     return annotations.firstOrNull { it.hasQualifiedName(annotationName) }
   }
 
-  override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
+  override fun collectNavigationMarkers(
+    element: PsiElement,
+    result: MutableCollection<in RelatedItemLineMarkerInfo<PsiElement>>
+  ) {
     if (element is PsiMethod) {
       // Check if method has @ContributesAndroidInjector
       val crInjector = element.findAnnotation(DAGGER_CONTRIBUTES_ANDROID_INJECTOR)
@@ -26,16 +29,16 @@ class JavaContributesAndroidInjectorLineMarker : LineMarkerProvider {
         val qualifiedPath = element.containingClass?.qualifiedName
         val methodName = element.name
         if (returnTypeSimpleName != null && qualifiedPath != null && packageName != null) {
-          return prepareContributesAndroidInjectorLineMarker(
+          val graphGutterIcon = prepareContributesAndroidInjectorLineMarker(
             contributesAndroidInjectorElement = crInjector,
             packageName = packageName,
             qualifiedPath = qualifiedPath,
             methodName = methodName,
             returnTypeSimpleName = returnTypeSimpleName
           )
+          graphGutterIcon?.let { result.add(graphGutterIcon) }
         }
       }
     }
-    return null
   }
 }
