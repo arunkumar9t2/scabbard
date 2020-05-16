@@ -54,3 +54,4 @@ _sandbox
 .vscode/
 
 site/
+/.idea/uiDesigner.xml
