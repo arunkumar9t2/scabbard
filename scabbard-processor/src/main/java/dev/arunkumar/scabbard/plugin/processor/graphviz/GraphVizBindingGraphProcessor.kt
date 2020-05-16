@@ -23,6 +23,7 @@ import java.util.*
 import javax.inject.Inject
 import javax.lang.model.element.TypeElement
 
+@Suppress("UnstableApiUsage")
 @ProcessorScope
 @JvmSuppressWildcards
 class GraphVizBindingGraphProcessor
