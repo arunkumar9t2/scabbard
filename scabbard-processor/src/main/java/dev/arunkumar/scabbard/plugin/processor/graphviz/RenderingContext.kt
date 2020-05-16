@@ -13,6 +13,11 @@ import dev.arunkumar.scabbard.plugin.parser.*
 import java.util.*
 import javax.inject.Inject
 
+/**
+ * A data structure for `Renderer`s to hold intermediate state or scoped state and share between multiple renderers.
+ * The default implementation creates a globally available instance that shares the same `BindingGraph` instance.
+ * It is upto the `Renderer` to customize the context when passing to other instances.
+ */
 class RenderingContext
 @Inject
 constructor(
@@ -80,21 +85,31 @@ constructor(
 
   fun createRootDotGraphBuilder(currentComponentPath: ComponentPath): DotGraphBuilder {
     return directedGraph(currentComponentPath.toString()) {
-      graphAttributes {
-        "rankdir" eq "LR"
-        "labeljust" eq "l"
-        "label" eq typeNameExtractor.extractName(currentComponentPath)
-        "pad" eq 0.2
-        "compound" eq true
-      }
-      nodeAttributes {
-        "shape" eq "rectangle"
-        "style" eq "filled"
-        "color" eq "turquoise"
-      }
+      defaultGraphAttributes(currentComponentPath)
     }
   }
 
+  /**
+   * The default attributes for root graph.
+   */
+  private fun DotGraphBuilder.defaultGraphAttributes(currentComponentPath: ComponentPath) {
+    graphAttributes {
+      "rankdir" eq "LR"
+      "labeljust" eq "l"
+      "label" eq typeNameExtractor.extractName(currentComponentPath)
+      "pad" eq 0.2
+      "compound" eq true
+    }
+    nodeAttributes {
+      "shape" eq "rectangle"
+      "style" eq "filled"
+      "color" eq "turquoise"
+    }
+  }
+
+  /**
+   * @return `true` if both `source` and `target` has been already rendered in current context.
+   */
   fun validInContext(source: Node, target: Node): Boolean {
     return nodeIdCache.containsKey(source) && nodeIdCache.containsKey(target)
   }

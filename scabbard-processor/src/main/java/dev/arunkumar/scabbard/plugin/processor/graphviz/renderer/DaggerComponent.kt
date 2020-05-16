@@ -6,6 +6,9 @@ import dagger.model.ComponentPath
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
+/**
+ * Data structure for holding data about a given component
+ */
 data class DaggerComponent(
   val componentPath: ComponentPath,
   val entryPoints: List<Binding>,
@@ -13,6 +16,9 @@ data class DaggerComponent(
   val subcomponents: List<BindingGraph.ComponentNode>,
   val edges: List<BindingGraph.Edge>
 ) {
+  /**
+   * Renders the given component's dependency graph by delegating for appropriate `Renderer` instances.
+   */
   class GraphRenderer(
     override val renderingContext: RenderingContext
   ) : Renderer<DaggerComponent> {

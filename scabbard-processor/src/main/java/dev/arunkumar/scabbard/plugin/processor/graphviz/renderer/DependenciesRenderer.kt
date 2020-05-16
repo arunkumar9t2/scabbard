@@ -6,6 +6,10 @@ import dagger.model.BindingKind
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
+/**
+ * Renders the actual dependency graph nodes in the current context accounting for missing nodes, multibindings,
+ * and component nodes.
+ */
 class DependenciesRenderer(
   override val renderingContext: RenderingContext
 ) : Renderer<List<BindingGraph.Node>> {

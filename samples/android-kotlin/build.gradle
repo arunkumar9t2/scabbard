@@ -34,7 +34,7 @@ scabbard {
     failOnError true
     fullBindingGraphValidation true
     qualifiedNames false
-    outputFormat "png"
+    outputFormat "svg"
 }
 
 apply from: "../../gradle/scabbard-local-processor.gradle"

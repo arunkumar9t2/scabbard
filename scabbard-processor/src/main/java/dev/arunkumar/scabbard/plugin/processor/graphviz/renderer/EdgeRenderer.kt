@@ -8,6 +8,10 @@ import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
 
+/**
+ * A renderer that renders edges for valid nodes in current rendering scope. For example, it only renders the given edge
+ * if both the source and target node of the edge was already rendered in the current `RenderingContext`.
+ */
 @Suppress("UnstableApiUsage")
 class EdgeRenderer(
   override val renderingContext: RenderingContext

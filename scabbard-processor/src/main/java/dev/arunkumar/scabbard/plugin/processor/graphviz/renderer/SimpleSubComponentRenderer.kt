@@ -5,6 +5,10 @@ import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.parser.name
 import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
+/**
+ * A renderer for all subcomponents that simply adds a Node with customized scope colors. This renderer does not expand
+ * the subcomponent i.e does not render any nodes present inside the subcomponent.
+ */
 class SimpleSubComponentRenderer(
   override val renderingContext: RenderingContext
 ) : Renderer<List<BindingGraph.ComponentNode>> {

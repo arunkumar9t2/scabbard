@@ -5,6 +5,9 @@ import dagger.model.BindingKind.MEMBERS_INJECTION
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
+/**
+ * Renders all entry point bindings in a separate cluster.
+ */
 class EntryPointsRenderer(
   override val renderingContext: RenderingContext
 ) : Renderer<List<Binding>> {
