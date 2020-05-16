@@ -8,7 +8,7 @@ import javax.inject.Inject
  * Class to cache and assign colors to Dagger scopes. The colors are assigned in cyclic order.
  */
 @ProcessorScope
-class ScopeColors @Inject constructor() {
+class DaggerScopeColors @Inject constructor() {
 
   //TODO(arun) Add more colors?
   private val scopeColors by lazy {
