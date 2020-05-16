@@ -48,7 +48,7 @@ constructor(
         // Render this component's graph
         DaggerComponent.GraphRenderer(renderingContext).render(
           dotGraphBuilder,
-          DaggerComponent(entryPoints, dependencyNodes, subcomponents, edges)
+          DaggerComponent(componentPath, entryPoints, dependencyNodes, subcomponents, edges)
         )
         return@map currentComponent to dotGraphBuilder.dotGraph
       }.forEach { (currentComponent, dotGraph) -> writeOutput(currentComponent, dotGraph) }

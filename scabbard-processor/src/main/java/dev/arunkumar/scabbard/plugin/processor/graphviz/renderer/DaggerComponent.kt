@@ -2,10 +2,12 @@ package dev.arunkumar.scabbard.plugin.processor.graphviz.renderer
 
 import dagger.model.Binding
 import dagger.model.BindingGraph
+import dagger.model.ComponentPath
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
 data class DaggerComponent(
+  val componentPath: ComponentPath,
   val entryPoints: List<Binding>,
   val dependencyNodes: List<BindingGraph.Node>,
   val subcomponents: List<BindingGraph.ComponentNode>,

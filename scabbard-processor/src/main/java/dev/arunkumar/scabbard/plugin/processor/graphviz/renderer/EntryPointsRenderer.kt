@@ -1,7 +1,7 @@
 package dev.arunkumar.scabbard.plugin.processor.graphviz.renderer
 
 import dagger.model.Binding
-import dagger.model.BindingKind
+import dagger.model.BindingKind.MEMBERS_INJECTION
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
@@ -16,7 +16,7 @@ class EntryPointsRenderer(
       }
       renderingElement.forEach { node ->
         val label = when (node.kind()) {
-          BindingKind.MEMBERS_INJECTION -> "inject (${node.label})"
+          MEMBERS_INJECTION -> "inject (${node.label})"
           else -> node.label
         }
         node.id {
