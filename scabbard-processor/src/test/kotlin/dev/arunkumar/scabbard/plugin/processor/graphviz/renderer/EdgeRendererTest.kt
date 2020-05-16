@@ -59,7 +59,7 @@ class EdgeRendererTest {
   @Test
   fun `test edge renderer only renders edges for nodes laid out so far`() {
     val dependencyNodes = simpleSubComponentGraph.graphs().first { it.name() == "Dependency Graph" }.nodes()
-    assertThat(dependencyNodes).hasSize(2)
+    assertThat(dependencyNodes).hasSize(1)
     assertThat(simpleSubComponentGraph.graphs().first { it.name() == "Entry Points" }.nodes()).hasSize(1)
   }
 }

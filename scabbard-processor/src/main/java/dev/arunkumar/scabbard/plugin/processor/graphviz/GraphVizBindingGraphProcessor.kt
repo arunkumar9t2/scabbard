@@ -4,6 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.model.Binding
 import dagger.model.BindingGraph
+import dagger.model.BindingGraph.MaybeBinding
 import dev.arunkumar.dot.DotGraph
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
@@ -40,7 +41,7 @@ constructor(
 
         val subcomponents = bindingGraph.subcomponentsOf(currentComponent)
         val entryPoints = nodes.filterIsInstance<Binding>().filter(renderingContext::isEntryPoint)
-        val dependencyNodes = nodes.filter { !(it is Binding && renderingContext.isEntryPoint(it)) }
+        val dependencyNodes = nodes.filterIsInstance<MaybeBinding>().filterNot(renderingContext::isEntryPoint)
         val edges = nodes.flatMap(network::incidentEdges).distinct()
 
         val dotGraphBuilder = renderingContext.createRootDotGraphBuilder(componentPath)

@@ -1,7 +1,8 @@
 package dev.arunkumar.scabbard.plugin.processor.graphviz.renderer
 
 import dagger.model.Binding
-import dagger.model.BindingGraph
+import dagger.model.BindingGraph.MaybeBinding
+import dagger.model.BindingGraph.MissingBinding
 import dagger.model.BindingKind
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
@@ -12,19 +13,12 @@ import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
  */
 class DependenciesRenderer(
   override val renderingContext: RenderingContext
-) : Renderer<List<BindingGraph.Node>> {
+) : Renderer<List<MaybeBinding>> {
 
-  private fun DotGraphBuilder.missingBinding(missingBinding: BindingGraph.MissingBinding) {
+  private fun DotGraphBuilder.missingBinding(missingBinding: MissingBinding) {
     missingBinding.id {
       "label" eq missingBinding.key().toString() // TODO(arun) Update label calculation for MissingBinding
       "color" eq "firebrick1"
-    }
-  }
-
-  private fun DotGraphBuilder.componentNode(node: BindingGraph.ComponentNode) {
-    node.id {
-      "style" eq "invis"
-      "shape" eq "point"
     }
   }
 
@@ -39,7 +33,7 @@ class DependenciesRenderer(
     }
   }
 
-  private fun DotGraphBuilder.addMultiBindings(currentComponentNodes: Sequence<BindingGraph.Node>) {
+  private fun DotGraphBuilder.addMultiBindings(currentComponentNodes: Sequence<MaybeBinding>) {
     // TODO(arun) Create a custom renderer for this and avoid abusing rendering context
     currentComponentNodes
       .filterIsInstance<Binding>()
@@ -64,7 +58,7 @@ class DependenciesRenderer(
       }
   }
 
-  override fun DotGraphBuilder.build(renderingElement: List<BindingGraph.Node>) {
+  override fun DotGraphBuilder.build(renderingElement: List<MaybeBinding>) {
     cluster("Dependency Graph") {
       graphAttributes {
         "labeljust" eq "l"
@@ -74,8 +68,7 @@ class DependenciesRenderer(
       renderingElement.forEach { node ->
         when (node) {
           is Binding -> dependencyBinding(node)
-          is BindingGraph.MissingBinding -> missingBinding(node)
-          is BindingGraph.ComponentNode -> componentNode(node)
+          is MissingBinding -> missingBinding(node)
         }
       }
       // Add multi bindings

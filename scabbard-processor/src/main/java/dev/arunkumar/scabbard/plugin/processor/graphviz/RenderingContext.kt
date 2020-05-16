@@ -28,7 +28,7 @@ constructor(
   private val outputManager: OutputManager
 ) {
 
-  fun isEntryPoint(binding: Binding) = bindingGraph.entryPointBindings().contains(binding)
+  fun isEntryPoint(binding: BindingGraph.MaybeBinding) = bindingGraph.entryPointBindings().contains(binding)
 
   fun color(binding: Binding) = scopeColor(binding.scopeName() ?: "")
 

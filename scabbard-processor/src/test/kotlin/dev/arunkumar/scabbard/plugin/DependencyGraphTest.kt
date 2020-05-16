@@ -26,29 +26,41 @@ class DependencyGraphTest {
     fun nodeB(): NodeB
   }
 
-  private lateinit var generatedGraph: MutableGraph
-  private lateinit var generatedText: String
+  @Singleton
+  @Component
+  interface EmptyDependencyGraphSubComponent {
+    fun nodeC(): NodeC
+  }
+
+  private lateinit var simpleComponentGraph: MutableGraph
+  private lateinit var simpleComponentDot: String
+  private lateinit var emptyDependencyGraphSubComponentGraph: MutableGraph
 
   @Before
   fun setup() {
-    generatedGraph = generatedGraph<SimpleComponent>()
-    generatedText = generatedDot<SimpleComponent>()
+    simpleComponentGraph = generatedGraph<SimpleComponent>()
+    simpleComponentDot = generatedDot<SimpleComponent>()
+    emptyDependencyGraphSubComponentGraph = generatedGraph<EmptyDependencyGraphSubComponent>()
   }
 
   @Test
   fun `assert dependency graph is rendered in different cluster`() {
-    val dependencyGraph = generatedGraph.graphs().firstOrNull() { it.name() == "Dependency Graph" }
+    val dependencyGraph = simpleComponentGraph.graphs().firstOrNull() { it.name() == "Dependency Graph" }
     assertThat(dependencyGraph).isNotNull()
   }
 
   @Test
   fun `assert dependency graph nodes have default attributes applied`() {
-    val dependencyGraph = generatedGraph.graphs().firstOrNull() { it.name() == "Dependency Graph" }
+    val dependencyGraph = simpleComponentGraph.graphs().firstOrNull() { it.name() == "Dependency Graph" }
     val dependencyGraphNodes = dependencyGraph!!.nodes()
-    assertThat(dependencyGraphNodes).hasSize(3)
-    assertThat(generatedText).contains(" graph [labeljust=\"l\", label=\"Dependency Graph\"]")
-    assertThat(generatedText).contains("[style=\"invis\", shape=\"point\"]") // component node
+    assertThat(dependencyGraphNodes).hasSize(2)
+    assertThat(simpleComponentDot).contains(" graph [labeljust=\"l\", label=\"Dependency Graph\"]")
     // Label and default color
-    assertThat(generatedText).contains("[label=\"DependencyGraphTest.NodeA\", color=\"turquoise\"]")
+    assertThat(simpleComponentDot).contains("[label=\"DependencyGraphTest.NodeA\", color=\"turquoise\"]")
+  }
+
+  @Test
+  fun `assert dependency graph cluster is not rendered when dependency nodes are empty`() {
+    assertThat(simpleComponentGraph.graphs().none { it.name() == "Dependency Graph" })
   }
 }

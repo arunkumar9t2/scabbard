@@ -12,7 +12,7 @@ import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 data class DaggerComponent(
   val componentPath: ComponentPath,
   val entryPoints: List<Binding>,
-  val dependencyNodes: List<BindingGraph.Node>,
+  val dependencyBindings: List<BindingGraph.MaybeBinding>,
   val subcomponents: List<BindingGraph.ComponentNode>,
   val edges: List<BindingGraph.Edge>
 ) {
@@ -24,7 +24,7 @@ data class DaggerComponent(
   ) : Renderer<DaggerComponent> {
     override fun DotGraphBuilder.build(renderingElement: DaggerComponent) {
       EntryPointsRenderer(renderingContext).render(this, renderingElement.entryPoints)
-      DependenciesRenderer(renderingContext).render(this, renderingElement.dependencyNodes)
+      DependenciesRenderer(renderingContext).render(this, renderingElement.dependencyBindings)
       SimpleSubComponentRenderer(renderingContext).render(this, renderingElement.subcomponents)
       EdgeRenderer(renderingContext).render(this, renderingElement.edges)
     }
