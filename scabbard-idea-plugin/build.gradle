@@ -26,7 +26,7 @@ compileTestKotlin {
 intellij {
     updateSinceUntilBuild false
     plugins = [
-            "Kotlin", "IntelliLang", "java"
+            "Kotlin", "IntelliLang", "java", "android"
     ]
     version "2019.2"
     pluginName "Scabbard - Dagger 2 Visualizer"

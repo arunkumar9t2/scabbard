@@ -1,16 +1,19 @@
 <idea-plugin>
     <name>Scabbard - Dagger 2 Visualizer</name>
+    <id>dev.arunkumar.scabbard.idea-plugin</id>
     <category>Custom Languages</category>
-
-    <depends>com.intellij.modules.lang</depends>
-    <depends>com.intellij.modules.java</depends>
-    <depends>org.jetbrains.kotlin</depends>
-
     <description><![CDATA[
     Intellij plugin that integrates with Scabbard(https://github.com/arunkumar9t2/scabbard) and adds
     gutter icons to quickly open generated graph images for Dagger components.
     <br>
     ]]></description>
+    <idea-version since-build="191"/>
+    <vendor email="hi@arunkumar.dev" url="http://arunkumar.dev">Arunkumar</vendor>
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>org.jetbrains.kotlin</depends>
+    <depends>org.jetbrains.android</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <codeInsight.lineMarkerProvider
@@ -27,8 +30,12 @@
             language="JAVA"/>
     </extensions>
 
-    <id>dev.arunkumar.scabbard.idea-plugin</id>
-
-    <idea-version since-build="191"/>
-    <vendor email="hi@arunkumar.dev" url="http://arunkumar.dev">Arunkumar</vendor>
+    <actions>
+        <action id="dev.arunkumar.scabbard.addtogradle"
+                class="dev.arunkumar.scabbard.intellij.gradle.AddScabbardToProjectAction"
+                text="Configure Scabbard in Project"
+                description="Configure current Gradle project for Dagger graph generation">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
