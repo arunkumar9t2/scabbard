@@ -51,8 +51,7 @@ interface OutputManager {
 /**
  * OutputManager implementation backed by a [Filer]
  */
-interface FilerOutputManager :
-  OutputManager {
+interface FilerOutputManager : OutputManager {
   val filer: Filer
 }
 
