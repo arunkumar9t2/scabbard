@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.intellij
+package dev.arunkumar.scabbard.intellij.dagger
 
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
@@ -7,8 +7,6 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.impl.source.PsiClassReferenceType
 import com.intellij.psi.impl.source.PsiJavaFileImpl
-import dev.arunkumar.scabbard.intellij.utill.DAGGER_CONTRIBUTES_ANDROID_INJECTOR
-import dev.arunkumar.scabbard.intellij.utill.prepareContributesAndroidInjectorLineMarker
 
 class JavaContributesAndroidInjectorLineMarker : RelatedItemLineMarkerProvider() {
 
@@ -29,14 +27,14 @@ class JavaContributesAndroidInjectorLineMarker : RelatedItemLineMarkerProvider()
         val qualifiedPath = element.containingClass?.qualifiedName
         val methodName = element.name
         if (returnTypeSimpleName != null && qualifiedPath != null && packageName != null) {
-          val graphGutterIcon = prepareContributesAndroidInjectorLineMarker(
+          val graphLineMarker = prepareContributesAndroidInjectorLineMarker(
             contributesAndroidInjectorElement = crInjector,
             packageName = packageName,
             qualifiedPath = qualifiedPath,
             methodName = methodName,
             returnTypeSimpleName = returnTypeSimpleName
           )
-          graphGutterIcon?.let { result.add(graphGutterIcon) }
+          graphLineMarker?.let { result.add(graphLineMarker) }
         }
       }
     }

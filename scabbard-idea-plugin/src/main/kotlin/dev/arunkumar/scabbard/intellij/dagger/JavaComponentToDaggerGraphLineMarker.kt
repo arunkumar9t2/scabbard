@@ -1,19 +1,19 @@
-package dev.arunkumar.scabbard.intellij
+package dev.arunkumar.scabbard.intellij.dagger
 
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiIdentifier
-import dev.arunkumar.scabbard.intellij.utill.DAGGER_COMPONENT
-import dev.arunkumar.scabbard.intellij.utill.DAGGER_MODULE
-import dev.arunkumar.scabbard.intellij.utill.DAGGER_SUBCOMPONENT
-import dev.arunkumar.scabbard.intellij.utill.prepareDaggerComponentLineMarkerWithFileName
 import org.jetbrains.kotlin.j2k.getContainingClass
 
 class JavaComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
-  private val daggerAnnotations = listOf(DAGGER_COMPONENT, DAGGER_SUBCOMPONENT, DAGGER_MODULE)
+  private val daggerAnnotations = listOf(
+    DAGGER_COMPONENT,
+    DAGGER_SUBCOMPONENT,
+    DAGGER_MODULE
+  )
 
   /**
    * @return true only when
@@ -37,12 +37,12 @@ class JavaComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
       val psiClass = element.getContainingClass()
       val qualifiedName = psiClass?.qualifiedName
       qualifiedName?.let {
-        val graphGutterIcon = prepareDaggerComponentLineMarkerWithFileName(
+        val graphLineMarker = prepareDaggerComponentLineMarkerWithFileName(
           element = element,
           componentName = psiClass.name!!,
           fileName = qualifiedName
         )
-        graphGutterIcon?.let { result.add(graphGutterIcon) }
+        graphLineMarker?.let { result.add(graphLineMarker) }
       }
     }
   }

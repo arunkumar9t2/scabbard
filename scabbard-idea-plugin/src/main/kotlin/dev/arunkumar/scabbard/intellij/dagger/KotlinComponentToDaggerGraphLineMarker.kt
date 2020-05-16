@@ -1,13 +1,9 @@
-package dev.arunkumar.scabbard.intellij
+package dev.arunkumar.scabbard.intellij.dagger
 
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
-import dev.arunkumar.scabbard.intellij.utill.DAGGER_COMPONENT
-import dev.arunkumar.scabbard.intellij.utill.DAGGER_MODULE
-import dev.arunkumar.scabbard.intellij.utill.DAGGER_SUBCOMPONENT
-import dev.arunkumar.scabbard.intellij.utill.prepareDaggerComponentLineMarkerWithFileName
 import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtKeywordToken
@@ -46,12 +42,12 @@ class KotlinComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
           if (ktClass.hasDaggerComponentAnnotations()) {
             val componentName = ktClass.name
             val qualifiedName = ktClass.getKotlinFqName().toString()
-            val graphGutterIcon = prepareDaggerComponentLineMarkerWithFileName(
+            val graphLineMarker = prepareDaggerComponentLineMarkerWithFileName(
               element = element,
               componentName = componentName!!,
               fileName = qualifiedName
             )
-            graphGutterIcon?.let { result.add(graphGutterIcon) }
+            graphLineMarker?.let { result.add(graphLineMarker) }
           }
         }
       }

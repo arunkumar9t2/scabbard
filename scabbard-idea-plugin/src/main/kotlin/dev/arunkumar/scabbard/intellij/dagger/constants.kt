@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.intellij.utill
+package dev.arunkumar.scabbard.intellij.dagger
 
 import com.intellij.openapi.util.IconLoader
 

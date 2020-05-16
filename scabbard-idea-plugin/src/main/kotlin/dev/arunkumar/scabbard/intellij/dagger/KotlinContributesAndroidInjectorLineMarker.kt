@@ -1,10 +1,8 @@
-package dev.arunkumar.scabbard.intellij
+package dev.arunkumar.scabbard.intellij.dagger
 
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
-import dev.arunkumar.scabbard.intellij.utill.DAGGER_CONTRIBUTES_ANDROID_INJECTOR
-import dev.arunkumar.scabbard.intellij.utill.prepareContributesAndroidInjectorLineMarker
 import org.jetbrains.kotlin.idea.quickfix.createFromUsage.callableBuilder.getReturnTypeReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
@@ -27,14 +25,14 @@ class KotlinContributesAndroidInjectorLineMarker : RelatedItemLineMarkerProvider
         val qualifiedPath = element.fqName?.asString()?.split(".$methodName")?.first()
         val returnTypeSimpleName = element.getReturnTypeReference()?.text
         if (returnTypeSimpleName != null && qualifiedPath != null && methodName != null) {
-          val graphGutterIcon = prepareContributesAndroidInjectorLineMarker(
+          val graphLineMarker = prepareContributesAndroidInjectorLineMarker(
             contributesAndroidInjectorElement = crInjector,
             packageName = packageName,
             qualifiedPath = qualifiedPath,
             methodName = methodName,
             returnTypeSimpleName = returnTypeSimpleName
           )
-          graphGutterIcon?.let { result.add(graphGutterIcon) }
+          graphLineMarker?.let { result.add(graphLineMarker) }
         }
       }
     }
