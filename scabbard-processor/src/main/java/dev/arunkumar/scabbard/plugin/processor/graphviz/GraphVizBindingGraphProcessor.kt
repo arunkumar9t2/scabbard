@@ -45,6 +45,9 @@ constructor(
 
         val dotGraphBuilder = renderingContext.createRootDotGraphBuilder(componentPath)
 
+        // Drop the id cache to render only nodes present in this component/subcomponent
+        renderingContext.dropIdCache()
+
         // Render this component's graph
         DaggerComponent.GraphRenderer(renderingContext).render(
           dotGraphBuilder,

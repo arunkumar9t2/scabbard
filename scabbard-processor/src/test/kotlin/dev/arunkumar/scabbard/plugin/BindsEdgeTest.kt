@@ -19,6 +19,7 @@ class BindsEdgeTest {
   class Implementation @Inject constructor() : SuperType
 
   class Node @Inject constructor(val superType: SuperType)
+
   @Module
   interface BindsModule {
     @Binds
@@ -35,7 +36,7 @@ class BindsEdgeTest {
 
   @Before
   fun setup() {
-    generatedGraph = SimpleComponent::class.java.generatedDotFile().readText()
+    generatedGraph = generatedDot<SimpleComponent>()
   }
 
 

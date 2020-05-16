@@ -15,6 +15,7 @@ import javax.inject.Singleton
 class RootComponentDefaultAttributesTest {
 
   class NodeA @Inject constructor()
+
   @Singleton
   class NodeB @Inject constructor(private val nodeA: NodeA)
 
@@ -29,8 +30,8 @@ class RootComponentDefaultAttributesTest {
 
   @Before
   fun setup() {
-    generatedGraph = SimpleComponent::class.java.parsedGraph()
-    generatedText = SimpleComponent::class.java.generatedDotFile().readText()
+    generatedGraph = generatedGraph<SimpleComponent>()
+    generatedText = generatedDot<SimpleComponent>()
   }
 
   @Test

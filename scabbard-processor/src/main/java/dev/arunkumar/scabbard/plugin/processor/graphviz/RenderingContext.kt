@@ -32,9 +32,28 @@ constructor(
 
   fun color(binding: Binding) = scopeColor(binding.scopeName() ?: "")
 
+  /**
+   * Cache of `id` generated for Nodes rendered so far. This is essential to identify nodes on graph for further mutation
+   * operations like adding edges or applying styling.
+   */
   private val nodeIdCache = mutableMapOf<Node, String>()
 
   fun nodeId(node: Node) = nodeIdCache.getOrPut(node) { UUID.randomUUID().toString() }
+
+  /**
+   * @return `true` if both `source` and `target` has been already rendered in current context.
+   */
+  fun validInContext(source: Node, target: Node): Boolean {
+    return nodeIdCache.containsKey(source) && nodeIdCache.containsKey(target)
+  }
+
+  /**
+   * Should be used carefully. Drops the id cache of all the nodes rendered so far. Directly affects subsequent
+   * `validInContext` calls
+   */
+  fun dropIdCache() {
+    nodeIdCache.clear()
+  }
 
   fun scopeColor(scopeName: String): String = daggerScopeColors[scopeName]
 
@@ -105,12 +124,5 @@ constructor(
       "style" eq "filled"
       "color" eq "turquoise"
     }
-  }
-
-  /**
-   * @return `true` if both `source` and `target` has been already rendered in current context.
-   */
-  fun validInContext(source: Node, target: Node): Boolean {
-    return nodeIdCache.containsKey(source) && nodeIdCache.containsKey(target)
   }
 }

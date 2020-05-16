@@ -80,6 +80,7 @@ class QualifiedNamesTest {
   @Subcomponent
   interface SimpleSubComponent {
     fun subcomponentNode(): SubComponentNode
+
     @Subcomponent.Factory
     interface Factory {
       fun create(): SimpleSubComponent
@@ -91,8 +92,8 @@ class QualifiedNamesTest {
 
   @Before
   fun setup() {
-    simpleComponentDot = SimpleComponent::class.java.generatedDotFile().readText()
-    simpleSubcomponentDot = SimpleSubComponent::class.java.generatedDotFile().readText()
+    simpleComponentDot = generatedDot<SimpleComponent>()
+    simpleSubcomponentDot = generatedDot<SimpleSubComponent>()
   }
 
   @Test

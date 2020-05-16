@@ -57,7 +57,7 @@ class QualifiersTest {
 
   @Before
   fun setup() {
-    generatedGraphText = SimpleComponent::class.java.generatedDotFile().readText()
+    generatedGraphText = generatedDot<SimpleComponent>()
   }
 
   @Test

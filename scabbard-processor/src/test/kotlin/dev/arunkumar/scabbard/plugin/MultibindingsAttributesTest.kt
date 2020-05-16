@@ -18,6 +18,7 @@ import javax.inject.Singleton
 class MultibindingsAttributesTest {
 
   class NodeA @Inject constructor(@JvmSuppressWildcards private val set: Set<String>)
+
   @Singleton
   class NodeB @Inject constructor(private val nodeA: NodeA)
 
@@ -40,8 +41,8 @@ class MultibindingsAttributesTest {
 
   @Before
   fun setup() {
-    generatedGraph = SimpleComponent::class.java.parsedGraph()
-    generatedText = SimpleComponent::class.java.generatedDotFile().readText()
+    generatedGraph = generatedGraph<SimpleComponent>()
+    generatedText = generatedDot<SimpleComponent>()
   }
 
   @Test

@@ -10,6 +10,8 @@ import java.nio.file.Paths
 
 fun Class<*>.parsedGraph(): MutableGraph = Parser().read(generatedDotFile().readText())
 
+inline fun <reified T> generatedGraph() = T::class.java.parsedGraph()
+
 fun Class<*>.generatedFile(fileNamePrefix: String, extension: String): File {
   //TODO(arun) The proper way would be to use Resources.getResource() but that does not seem to work
   val projectDir = System.getProperty("user.dir")
@@ -30,4 +32,8 @@ fun Class<*>.generatedSvgFile(fileNamePrefix: String = ""): File {
 
 fun Class<*>.generatedFullDotFile(): File {
   return generatedDotFile(fileNamePrefix = DefaultOutputManager.SCABBARD_PACKAGE)
+}
+
+inline fun <reified T> generatedDot(fileNamePrefix: String = ""): String {
+  return T::class.java.generatedDotFile(fileNamePrefix).readText()
 }

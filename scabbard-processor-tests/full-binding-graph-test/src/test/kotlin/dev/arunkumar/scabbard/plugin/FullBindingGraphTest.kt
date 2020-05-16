@@ -26,6 +26,7 @@ class FullBindingGraphTest {
   @Component(modules = [SimpleModule::class])
   interface SimpleComponent {
     fun node(): Node
+
     @Component.Factory
     interface Factory {
       fun create(): SimpleComponent

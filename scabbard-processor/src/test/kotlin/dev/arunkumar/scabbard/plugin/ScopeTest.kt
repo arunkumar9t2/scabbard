@@ -3,6 +3,7 @@ package dev.arunkumar.scabbard.plugin
 import com.google.common.truth.Truth.assertThat
 import dagger.Component
 import dagger.Subcomponent
+import guru.nidi.graphviz.model.MutableGraph
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,6 +16,7 @@ import javax.inject.Singleton
 class ScopeTest {
 
   class NodeA @Inject constructor()
+
   @Singleton
   class NodeB @Inject constructor(private val nodeA: NodeA)
 
@@ -23,6 +25,7 @@ class ScopeTest {
   interface SimpleComponent {
     fun nodeB(): NodeB
     fun subComponentFactory(): SimpleSubComponent.Factory
+    fun unScopedComponentFactory(): UnScopedSubComponent.Factory
   }
 
   @Scope
@@ -43,19 +46,34 @@ class ScopeTest {
   @Subcomponent
   interface SimpleSubComponent {
     fun subcomponentNode(): SubComponentNode
+
     @Subcomponent.Factory
     interface Factory {
       fun create(): SimpleSubComponent
     }
   }
 
+  class UnScopedSubComponentNode @Inject constructor()
+
+  @Subcomponent
+  interface UnScopedSubComponent {
+    fun unScopedSubComponentNode(): UnScopedSubComponentNode
+
+    @Subcomponent.Factory
+    interface Factory {
+      fun create(): UnScopedSubComponent
+    }
+  }
+
   private lateinit var simpleComponent: String
   private lateinit var simpleSubcomponent: String
+  private lateinit var simpleGraph: MutableGraph
 
   @Before
   fun setup() {
-    simpleComponent = SimpleComponent::class.java.generatedDotFile().readText()
-    simpleSubcomponent = SimpleSubComponent::class.java.generatedDotFile().readText()
+    simpleComponent = generatedDot<SimpleComponent>()
+    simpleSubcomponent = generatedDot<SimpleSubComponent>()
+    simpleGraph = generatedGraph<SimpleComponent>()
   }
 
   @Test
@@ -70,5 +88,18 @@ class ScopeTest {
       .contains("label=\"@SubScope\\nScopeTest.SimpleSubComponent\"")
     assertThat(simpleComponent)
       .contains("color=\"aquamarine\"")
+  }
+
+  @Test
+  fun `test unscoped subcomponent has the default color set`() {
+    val subcomponentAttrs = simpleGraph.graphs()
+      .first { it.name() == "Subcomponents" }
+      .nodes()
+      .first { node ->
+        node.attrs()
+          .any { it.value.toString().contains(UnScopedSubComponent::class.java.simpleName) }
+      }
+    assertThat(subcomponentAttrs).hasSize(2)
+    assertThat(subcomponentAttrs.none { it.key == "color" })
   }
 }

@@ -16,6 +16,7 @@ import javax.inject.Singleton
 class SubcomponentCreatorBindingEdgeTest {
 
   class NodeA @Inject constructor()
+
   @Singleton
   class NodeB @Inject constructor(private val nodeA: NodeA)
 
@@ -38,6 +39,7 @@ class SubcomponentCreatorBindingEdgeTest {
   @Subcomponent
   interface SimpleSubComponent {
     fun subcomponentNode(): SubComponentNode
+
     @Subcomponent.Factory
     interface Factory {
       fun create(): SimpleSubComponent
@@ -50,8 +52,8 @@ class SubcomponentCreatorBindingEdgeTest {
 
   @Before
   fun setup() {
-    generatedGraph = SimpleComponent::class.java.parsedGraph()
-    generatedText = SimpleComponent::class.java.generatedDotFile().readText()
+    generatedGraph = generatedGraph<SimpleComponent>()
+    generatedText = generatedDot<SimpleComponent>()
   }
 
   @Test

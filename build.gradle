@@ -41,6 +41,7 @@ tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
             delete fileTree(sampleProject.buildDir).matching {
                 include "**/*.dot"
                 include "**/*.png"
+                include "**/*.svg"
             }
         }
         exec {
@@ -50,7 +51,7 @@ tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
 
             def gradleDebug = "-Dorg.gradle.debug=$isDebug"
             def daemon = isDebug ? "--no-daemon" : ""
-            def command = "${commandPrefix}gradlew $daemon $gradleDebug ${samplePath}:kaptDebugKotlin"
+            def command = "${commandPrefix}gradlew $daemon $gradleDebug --no-build-cache ${samplePath}:kaptDebugKotlin"
             workingDir(projectDir)
             commandLine shell, shellArg, command
         }

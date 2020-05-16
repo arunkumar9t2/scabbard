@@ -30,7 +30,7 @@ class BindsInstanceTests {
 
   @Before
   fun setup() {
-    generatedGraph = SimpleComponent::class.java.generatedDotFile().readText()
+    generatedGraph = generatedDot<SimpleComponent>()
   }
 
   @Test

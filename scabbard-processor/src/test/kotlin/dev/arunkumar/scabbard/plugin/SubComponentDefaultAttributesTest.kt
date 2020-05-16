@@ -15,6 +15,7 @@ import javax.inject.Singleton
 class SubComponentDefaultAttributesTest {
 
   class NodeA @Inject constructor()
+
   @Singleton
   class NodeB @Inject constructor(private val nodeA: NodeA)
 
@@ -37,6 +38,7 @@ class SubComponentDefaultAttributesTest {
   @Subcomponent
   interface SimpleSubComponent {
     fun subcomponentNode(): SubComponentNode
+
     @Subcomponent.Factory
     interface Factory {
       fun create(): SimpleSubComponent
@@ -48,8 +50,8 @@ class SubComponentDefaultAttributesTest {
 
   @Before
   fun setup() {
-    simpleComponentGeneratedText = SimpleComponent::class.java.generatedDotFile().readText()
-    subComponentGeneratedText = SimpleSubComponent::class.java.generatedDotFile().readText()
+    simpleComponentGeneratedText = generatedDot<SimpleComponent>()
+    subComponentGeneratedText = generatedDot<SimpleSubComponent>()
   }
 
   @Test

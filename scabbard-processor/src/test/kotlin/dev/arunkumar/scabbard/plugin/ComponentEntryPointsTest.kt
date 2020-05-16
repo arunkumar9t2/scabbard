@@ -32,8 +32,8 @@ class ComponentEntryPointsTest {
 
   @Before
   fun setup() {
-    generatedDot = StringComponent::class.java.generatedDotFile().readText()
-    generatedGraph = StringComponent::class.java.parsedGraph()
+    generatedDot = generatedDot<StringComponent>()
+    generatedGraph = generatedGraph<StringComponent>()
   }
 
   @Test

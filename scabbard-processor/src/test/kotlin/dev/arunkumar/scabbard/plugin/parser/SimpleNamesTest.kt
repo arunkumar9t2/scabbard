@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
 import dagger.multibindings.ElementsIntoSet
-import dev.arunkumar.scabbard.plugin.generatedDotFile
+import dev.arunkumar.scabbard.plugin.generatedDot
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -118,6 +118,7 @@ class SimpleNamesTest {
   @Subcomponent
   interface SimpleSubComponent {
     fun subcomponentNode(): SubComponentNode
+
     @Subcomponent.Factory
     interface Factory {
       fun create(): SimpleSubComponent
@@ -128,7 +129,7 @@ class SimpleNamesTest {
 
   @Before
   fun setup() {
-    generatedText = SimpleComponent::class.java.generatedDotFile().readText()
+    generatedText = generatedDot<SimpleComponent>()
   }
 
   @Test
