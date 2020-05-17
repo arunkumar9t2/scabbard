@@ -1,25 +1,20 @@
-<svg width="282px" height="196px"
- viewBox="0.00 0.00 281.80 195.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 181.4)">
+<svg width="282px" height="145px"
+ viewBox="0.00 0.00 281.80 144.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 130.4)">
 <title>dev.arunkumar.scabbard.di.AppComponent → dev.arunkumar.scabbard.home.simple.SimpleSubcomponent</title>
-<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-181.4 267.4,-181.4 267.4,14.4 -14.4,14.4"/>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-130.4 267.4,-130.4 267.4,14.4 -14.4,14.4"/>
 <text text-anchor="middle" x="126.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → SimpleSubcomponent</text>
 <g id="clust1" class="cluster"><title>cluster_Entry Points</title>
 <polygon fill="none" stroke="black" points="66.5,-31 66.5,-108 186.5,-108 186.5,-31 66.5,-31"/>
 <text text-anchor="middle" x="109.5" y="-92.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
 </g>
-<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
-<polygon fill="none" stroke="black" points="64.7,-116 64.7,-159 189.3,-159 189.3,-116 64.7,-116"/>
-<text text-anchor="middle" x="127.2" y="-143.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
-</g>
-<!-- 50b9de5d&#45;f34d&#45;4b1f&#45;a589&#45;45d2f8700bed -->
-<g id="node1" class="node"><title>50b9de5d&#45;f34d&#45;4b1f&#45;a589&#45;45d2f8700bed</title>
-<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="178.5,-77 74.5,-77 74.5,-73 70.5,-73 70.5,-69 74.5,-69 74.5,-47 70.5,-47 70.5,-43 74.5,-43 74.5,-39 178.5,-39 178.5,-77"/>
-<polyline fill="none" stroke="turquoise" stroke-width="2" points="74.5,-73 78.5,-73 78.5,-69 74.5,-69 "/>
-<polyline fill="none" stroke="turquoise" stroke-width="2" points="74.5,-47 78.5,-47 78.5,-43 74.5,-43 "/>
+<!-- 86e8bf73&#45;cc36&#45;4f1c&#45;8626&#45;849a8bb6da26 -->
+<g id="node1" class="node"><title>86e8bf73&#45;cc36&#45;4f1c&#45;8626&#45;849a8bb6da26</title>
+<polygon fill="#ffff00" stroke="#ffff00" stroke-width="2" points="178.5,-77 74.5,-77 74.5,-73 70.5,-73 70.5,-69 74.5,-69 74.5,-47 70.5,-47 70.5,-43 74.5,-43 74.5,-39 178.5,-39 178.5,-77"/>
+<polyline fill="none" stroke="#ffff00" stroke-width="2" points="74.5,-73 78.5,-73 78.5,-69 74.5,-69 "/>
+<polyline fill="none" stroke="#ffff00" stroke-width="2" points="74.5,-47 78.5,-47 78.5,-43 74.5,-43 "/>
 <text text-anchor="middle" x="126.5" y="-61.8" font-family="Times New Roman,serif" font-size="14.00">@SimpleScope</text>
 <text text-anchor="middle" x="126.5" y="-46.8" font-family="Times New Roman,serif" font-size="14.00">SimpleDep</text>
 </g>
-<!-- b1c6739d&#45;d507&#45;4a24&#45;b3fd&#45;d0375ebdac1f -->
 </g>
 </svg>

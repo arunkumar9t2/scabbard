@@ -1,34 +1,33 @@
-<svg width="280px" height="165px"
- viewBox="0.00 0.00 279.80 164.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 150.4)">
+<svg width="333px" height="143px"
+ viewBox="0.00 0.00 333.18 142.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 128.4)">
 <title>dev.arunkumar.scabbard.debug.DependantComponent</title>
-<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-150.4 265.4,-150.4 265.4,14.4 -14.4,14.4"/>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-128.4 318.776,-128.4 318.776,14.4 -14.4,14.4"/>
 <text text-anchor="middle" x="71.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">DependantComponent</text>
-<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
-<polygon fill="none" stroke="black" points="126,-31 126,-128 251,-128 251,-31 126,-31"/>
-<text text-anchor="middle" x="188.5" y="-112.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
-</g>
 <g id="clust1" class="cluster"><title>cluster_Entry Points</title>
 <polygon fill="none" stroke="black" points="8,-31 8,-106 106,-106 106,-31 8,-31"/>
 <text text-anchor="middle" x="51" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
 </g>
-<!-- 1ce3c885&#45;507e&#45;43b7&#45;89c0&#45;dde54e2da676 -->
-<g id="node1" class="node"><title>1ce3c885&#45;507e&#45;43b7&#45;89c0&#45;dde54e2da676</title>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="126,-31 126,-106 296.376,-106 296.376,-31 126,-31"/>
+<text text-anchor="middle" x="188.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 9ddcd3de&#45;7665&#45;47b4&#45;8dad&#45;e60e4a472320 -->
+<g id="node1" class="node"><title>9ddcd3de&#45;7665&#45;47b4&#45;8dad&#45;e60e4a472320</title>
 <polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="98,-75 16,-75 16,-71 12,-71 12,-67 16,-67 16,-47 12,-47 12,-43 16,-43 16,-39 98,-39 98,-75"/>
 <polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-71 20,-71 20,-67 16,-67 "/>
 <polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-47 20,-47 20,-43 16,-43 "/>
 <text text-anchor="middle" x="57" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">HelloWorld</text>
 </g>
-<!-- fce81cf6&#45;2f41&#45;454f&#45;b5be&#45;0049ccdbcd1a -->
-<g id="node3" class="node"><title>fce81cf6&#45;2f41&#45;454f&#45;b5be&#45;0049ccdbcd1a</title>
-<polygon fill="turquoise" stroke="turquoise" points="229,-75 148,-75 148,-39 229,-39 229,-75"/>
-<text text-anchor="middle" x="188.5" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">Application</text>
+<!-- 5a1d3365&#45;1e32&#45;41b1&#45;8273&#45;41b3c8b6d5b0 -->
+<g id="node2" class="node"><title>5a1d3365&#45;1e32&#45;41b1&#45;8273&#45;41b3c8b6d5b0</title>
+<polygon fill="turquoise" stroke="turquoise" points="288.565,-75 165.476,-75 133.811,-39 256.9,-39 288.565,-75"/>
+<text text-anchor="middle" x="211.188" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">Application</text>
 </g>
-<!-- 1ce3c885&#45;507e&#45;43b7&#45;89c0&#45;dde54e2da676&#45;&gt;fce81cf6&#45;2f41&#45;454f&#45;b5be&#45;0049ccdbcd1a -->
-<g id="edge1" class="edge"><title>1ce3c885&#45;507e&#45;43b7&#45;89c0&#45;dde54e2da676&#45;&gt;fce81cf6&#45;2f41&#45;454f&#45;b5be&#45;0049ccdbcd1a</title>
-<path fill="none" stroke="black" d="M98.2647,-57C110.685,-57 124.515,-57 137.508,-57"/>
-<polygon fill="black" stroke="black" points="137.705,-60.5001 147.705,-57 137.705,-53.5001 137.705,-60.5001"/>
+<!-- 9ddcd3de&#45;7665&#45;47b4&#45;8dad&#45;e60e4a472320&#45;&gt;5a1d3365&#45;1e32&#45;41b1&#45;8273&#45;41b3c8b6d5b0 -->
+<g id="edge1" class="edge"><title>9ddcd3de&#45;7665&#45;47b4&#45;8dad&#45;e60e4a472320&#45;&gt;5a1d3365&#45;1e32&#45;41b1&#45;8273&#45;41b3c8b6d5b0</title>
+<path fill="none" stroke="black" d="M98.3841,-57C110.997,-57 125.303,-57 139.368,-57"/>
+<polygon fill="black" stroke="black" points="139.539,-60.5001 149.539,-57 139.539,-53.5001 139.539,-60.5001"/>
 </g>
-<!-- 7e1bec15&#45;ecca&#45;44e7&#45;89fa&#45;e49b689c3924 -->
 </g>
 </svg>

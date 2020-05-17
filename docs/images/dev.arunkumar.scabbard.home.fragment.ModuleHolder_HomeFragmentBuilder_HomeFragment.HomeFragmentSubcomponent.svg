@@ -1,34 +1,91 @@
-<svg width="1039px" height="165px"
- viewBox="0.00 0.00 1038.80 164.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 150.4)">
+<svg width="1039px" height="451px"
+ viewBox="0.00 0.00 1038.80 450.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 436.4)">
 <title>dev.arunkumar.scabbard.di.AppComponent → dev.arunkumar.scabbard.home.HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent → dev.arunkumar.scabbard.home.fragment.ModuleHolder_HomeFragmentBuilder_HomeFragment.HomeFragmentSubcomponent</title>
-<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-150.4 1024.4,-150.4 1024.4,14.4 -14.4,14.4"/>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-436.4 1024.4,-436.4 1024.4,14.4 -14.4,14.4"/>
 <text text-anchor="middle" x="505" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent → ModuleHolder_HomeFragmentBuilder_HomeFragment.HomeFragmentSubcomponent</text>
 <g id="clust1" class="cluster"><title>cluster_Entry Points</title>
-<polygon fill="none" stroke="black" points="356,-31 356,-106 517,-106 517,-31 356,-31"/>
-<text text-anchor="middle" x="399" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+<polygon fill="none" stroke="black" points="180.5,-185 180.5,-260 341.5,-260 341.5,-185 180.5,-185"/>
+<text text-anchor="middle" x="223.5" y="-244.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
 </g>
 <g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
-<polygon fill="none" stroke="black" points="537,-31 537,-128 662,-128 662,-31 537,-31"/>
-<text text-anchor="middle" x="599.5" y="-112.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+<polygon fill="none" stroke="black" points="537.5,-339 537.5,-414 662.5,-414 662.5,-339 537.5,-339"/>
+<text text-anchor="middle" x="600" y="-398.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
 </g>
-<!-- 0e9ae908&#45;89f9&#45;42c9&#45;ba40&#45;1a647a157930 -->
-<g id="node1" class="node"><title>0e9ae908&#45;89f9&#45;42c9&#45;ba40&#45;1a647a157930</title>
-<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="509,-75 364,-75 364,-71 360,-71 360,-67 364,-67 364,-47 360,-47 360,-43 364,-43 364,-39 509,-39 509,-75"/>
-<polyline fill="none" stroke="turquoise" stroke-width="2" points="364,-71 368,-71 368,-67 364,-67 "/>
-<polyline fill="none" stroke="turquoise" stroke-width="2" points="364,-47 368,-47 368,-43 364,-43 "/>
-<text text-anchor="middle" x="436.5" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (HomeFragment)</text>
+<g id="clust5" class="cluster"><title>cluster_AppComponent → HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent</title>
+<g id="a_clust5"><a xlink:href="dev.arunkumar.scabbard.home.HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent.svg" xlink:title="Inherited from HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent\n@ActivityScope">
+<polygon fill="none" stroke="bisque" stroke-dasharray="5,2" points="361.5,-185 361.5,-331 837.5,-331 837.5,-185 361.5,-185"/>
+<text text-anchor="middle" x="599.5" y="-315.8" font-family="Times New Roman,serif" font-size="14.00">Inherited from HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent</text>
+<text text-anchor="middle" x="599.5" y="-300.8" font-family="Times New Roman,serif" font-size="14.00">@ActivityScope</text>
+</a>
 </g>
-<!-- 3cebffdd&#45;b50a&#45;4c0f&#45;9efc&#45;1ade09399b22 -->
-<g id="node3" class="node"><title>3cebffdd&#45;b50a&#45;4c0f&#45;9efc&#45;1ade09399b22</title>
-<polygon fill="turquoise" stroke="turquoise" points="645,-75 553,-75 553,-39 645,-39 645,-75"/>
-<text text-anchor="middle" x="599" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">FragmentDep</text>
 </g>
-<!-- 0e9ae908&#45;89f9&#45;42c9&#45;ba40&#45;1a647a157930&#45;&gt;3cebffdd&#45;b50a&#45;4c0f&#45;9efc&#45;1ade09399b22 -->
-<g id="edge1" class="edge"><title>0e9ae908&#45;89f9&#45;42c9&#45;ba40&#45;1a647a157930&#45;&gt;3cebffdd&#45;b50a&#45;4c0f&#45;9efc&#45;1ade09399b22</title>
-<path fill="none" stroke="black" d="M509.3,-57C520.559,-57 532.042,-57 542.849,-57"/>
-<polygon fill="black" stroke="black" points="542.975,-60.5001 552.975,-57 542.975,-53.5001 542.975,-60.5001"/>
+<g id="clust6" class="cluster"><title>cluster_AppComponent</title>
+<g id="a_clust6"><a xlink:href="dev.arunkumar.scabbard.di.AppComponent.svg" xlink:title="Inherited from AppComponent\n@Singleton">
+<polygon fill="none" stroke="aquamarine" stroke-dasharray="5,2" points="504,-31 504,-177 695,-177 695,-31 504,-31"/>
+<text text-anchor="middle" x="599.5" y="-161.8" font-family="Times New Roman,serif" font-size="14.00">Inherited from AppComponent</text>
+<text text-anchor="middle" x="599.5" y="-146.8" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
+</a>
 </g>
-<!-- 7dda4dab&#45;a98a&#45;4024&#45;bf32&#45;28c07c996a98 -->
+</g>
+<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217 -->
+<g id="node1" class="node"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="333.5,-229 188.5,-229 188.5,-225 184.5,-225 184.5,-221 188.5,-221 188.5,-201 184.5,-201 184.5,-197 188.5,-197 188.5,-193 333.5,-193 333.5,-229"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="188.5,-225 192.5,-225 192.5,-221 188.5,-221 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="188.5,-201 192.5,-201 192.5,-197 188.5,-197 "/>
+<text text-anchor="middle" x="261" y="-207.3" font-family="Times New Roman,serif" font-size="14.00">inject (HomeFragment)</text>
+</g>
+<!-- 5986bca0&#45;e5b9&#45;4c8f&#45;a3ec&#45;e04030756fac -->
+<g id="node2" class="node"><title>5986bca0&#45;e5b9&#45;4c8f&#45;a3ec&#45;e04030756fac</title>
+<polygon fill="turquoise" stroke="turquoise" points="645.5,-383 553.5,-383 553.5,-347 645.5,-347 645.5,-383"/>
+<text text-anchor="middle" x="599.5" y="-361.3" font-family="Times New Roman,serif" font-size="14.00">FragmentDep</text>
+</g>
+<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;5986bca0&#45;e5b9&#45;4c8f&#45;a3ec&#45;e04030756fac -->
+<g id="edge2" class="edge"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;5986bca0&#45;e5b9&#45;4c8f&#45;a3ec&#45;e04030756fac</title>
+<path fill="none" stroke="black" d="M270.668,-229.022C285.169,-256.989 317.182,-310.196 361.5,-335 417.705,-366.457 492.937,-370.788 543.427,-369.328"/>
+<polygon fill="black" stroke="black" points="543.633,-372.823 553.495,-368.951 543.371,-365.828 543.633,-372.823"/>
+</g>
+<!-- 37c22a97&#45;5d3d&#45;48f7&#45;88a8&#45;abe3ddf5ad7a -->
+<g id="node3" class="node"><title>37c22a97&#45;5d3d&#45;48f7&#45;88a8&#45;abe3ddf5ad7a</title>
+<polygon fill="bisque" stroke="bisque" points="654,-285 545,-285 545,-247 654,-247 654,-285"/>
+<text text-anchor="middle" x="599.5" y="-269.8" font-family="Times New Roman,serif" font-size="14.00">@ActivityScope</text>
+<text text-anchor="middle" x="599.5" y="-254.8" font-family="Times New Roman,serif" font-size="14.00">ActivityDep</text>
+</g>
+<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;37c22a97&#45;5d3d&#45;48f7&#45;88a8&#45;abe3ddf5ad7a -->
+<g id="edge5" class="edge"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;37c22a97&#45;5d3d&#45;48f7&#45;88a8&#45;abe3ddf5ad7a</title>
+<path fill="none" stroke="black" d="M322.972,-229.067C335.628,-232.387 348.936,-235.567 361.5,-238 419.67,-249.265 486.807,-256.682 534.741,-261.035"/>
+<polygon fill="black" stroke="black" points="534.701,-264.545 544.972,-261.943 535.321,-257.572 534.701,-264.545"/>
+</g>
+<!-- 172bc05e&#45;5dca&#45;4ec5&#45;9ea1&#45;d60292d7f947 -->
+<g id="node4" class="node"><title>172bc05e&#45;5dca&#45;4ec5&#45;9ea1&#45;d60292d7f947</title>
+<polygon fill="turquoise" stroke="turquoise" points="712.5,-229 486.5,-229 486.5,-193 712.5,-193 712.5,-229"/>
+<text text-anchor="middle" x="599.5" y="-207.3" font-family="Times New Roman,serif" font-size="14.00">DispatchingAndroidInjector&lt;Object&gt;</text>
+</g>
+<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;172bc05e&#45;5dca&#45;4ec5&#45;9ea1&#45;d60292d7f947 -->
+<g id="edge1" class="edge"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;172bc05e&#45;5dca&#45;4ec5&#45;9ea1&#45;d60292d7f947</title>
+<path fill="none" stroke="black" d="M333.775,-211C375.222,-211 428.465,-211 476.321,-211"/>
+<polygon fill="black" stroke="black" points="476.445,-214.5 486.445,-211 476.445,-207.5 476.445,-214.5"/>
+</g>
+<!-- 170cff46&#45;29ca&#45;4641&#45;8d6e&#45;2d69de15c5aa -->
+<g id="node5" class="node"><title>170cff46&#45;29ca&#45;4641&#45;8d6e&#45;2d69de15c5aa</title>
+<polygon fill="turquoise" stroke="turquoise" points="659,-131 540,-131 540,-95 659,-95 659,-131"/>
+<text text-anchor="middle" x="599.5" y="-109.3" font-family="Times New Roman,serif" font-size="14.00">UnScopedBinding</text>
+</g>
+<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;170cff46&#45;29ca&#45;4641&#45;8d6e&#45;2d69de15c5aa -->
+<g id="edge3" class="edge"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;170cff46&#45;29ca&#45;4641&#45;8d6e&#45;2d69de15c5aa</title>
+<path fill="none" stroke="black" d="M321.415,-192.944C334.603,-188.976 348.518,-184.819 361.5,-181 418.241,-164.307 482.773,-145.824 530.157,-132.347"/>
+<polygon fill="black" stroke="black" points="531.337,-135.65 539.999,-129.549 529.423,-128.917 531.337,-135.65"/>
+</g>
+<!-- 15616114&#45;9cfc&#45;406c&#45;894c&#45;bc83f12ad9a8 -->
+<g id="node6" class="node"><title>15616114&#45;9cfc&#45;406c&#45;894c&#45;bc83f12ad9a8</title>
+<polygon fill="aquamarine" stroke="aquamarine" points="653,-77 546,-77 546,-39 653,-39 653,-77"/>
+<text text-anchor="middle" x="599.5" y="-61.8" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
+<text text-anchor="middle" x="599.5" y="-46.8" font-family="Times New Roman,serif" font-size="14.00">SimpleSingleton</text>
+</g>
+<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;15616114&#45;9cfc&#45;406c&#45;894c&#45;bc83f12ad9a8 -->
+<g id="edge4" class="edge"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;15616114&#45;9cfc&#45;406c&#45;894c&#45;bc83f12ad9a8</title>
+<path fill="none" stroke="black" d="M270.603,-192.791C285.016,-164.541 316.91,-110.828 361.5,-86 414.839,-56.3011 485.292,-51.5142 535.488,-52.8006"/>
+<polygon fill="black" stroke="black" points="535.448,-56.3012 545.562,-53.1468 535.688,-49.3053 535.448,-56.3012"/>
+</g>
 </g>
 </svg>
