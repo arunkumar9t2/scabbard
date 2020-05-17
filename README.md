@@ -24,7 +24,7 @@ width="210" hspace="10" vspace="10">
 
 
 <p align="center">
-<img src="https://thumbs.gfycat.com/ThankfulConfusedKillifish-small.gif">
+<img src="https://github.com/arunkumar9t2/scabbard/raw/master/docs/images/scabbard-demo.gif" width="90%">
 </p>
 
 <p align="center">
