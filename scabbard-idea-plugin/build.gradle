@@ -35,6 +35,8 @@ intellij {
 
 patchPluginXml {
     changeNotes """
+      0.3.0
+      New Gutter Icon, inherited bindings support in subcomponent graphs, and ability to open multiple images via gutter popup
       0.2.0
       Gutter icons on @ContributesAndroidInjector to open generated subcomponent image.
       <br>  

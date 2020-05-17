@@ -7,9 +7,31 @@
     <depends>org.jetbrains.kotlin</depends>
 
     <description><![CDATA[
-    Intellij plugin that integrates with Scabbard(https://github.com/arunkumar9t2/scabbard) and adds
-    gutter icons to quickly open generated graph images for Dagger components.
+    IntelliJ plugin to visualize Dagger 2 dependency graphs. Works alongside Scabbard gradle plugin.
+
     <br>
+
+    <img src="https://github.com/arunkumar9t2/scabbard/raw/master/docs/images/scabbard-demo.gif" width="500">
+
+    <br>
+
+    <ul>
+        <li>
+            <p><strong>Visualize</strong> entry points, dependency graph, component relationships and scopes in your <a href="https://github.com/google/dagger">Dagger 2</a> setup.</p>
+        </li>
+        <li>
+            <p><strong>Minimal setup</strong> - Scabbard's Gradle plugin prepares your project for graph generation and provides ability to customize graph generation behavior.</p>
+        </li>
+        <li>
+            <p><strong>IDE integration</strong> - Easily view a <code>@Component</code> or a <code>@Subcomponent</code> graph directly from source code via gutter icons (IntelliJ/Android Studio).</p>
+        </li>
+        <li>
+            <p><strong>Supports</strong> both Kotlin and Java.</p>
+        </li>
+    </ul>
+    <br>
+
+    <p>More advanced <a href="https://arunkumar9t2.github.io/scabbard/examples/" rel="nofollow">examples</a>.</p>
     ]]></description>
 
     <extensions defaultExtensionNs="com.intellij">
