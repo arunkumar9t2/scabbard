@@ -3,15 +3,16 @@ package dev.arunkumar.scabbard.plugin.processor.graphviz.renderer
 import dagger.model.Binding
 import dagger.model.BindingGraph.MaybeBinding
 import dagger.model.BindingGraph.MissingBinding
-import dagger.model.BindingKind
+import dagger.model.BindingKind.BOUND_INSTANCE
+import dagger.model.BindingKind.MEMBERS_INJECTION
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
 /**
- * Renders the actual dependency graph nodes in the current context accounting for missing nodes, multibindings,
- * and component nodes.
+ * Renders the actual dependency graph nodes in the current context accounting for missing nodes, multibindings and
+ * entry points.
  */
-class DependenciesRenderer(
+class BindingsRenderer(
   override val renderingContext: RenderingContext
 ) : Renderer<List<MaybeBinding>> {
 
@@ -22,19 +23,26 @@ class DependenciesRenderer(
     }
   }
 
-  private fun DotGraphBuilder.dependencyBinding(binding: Binding) {
+  private fun DotGraphBuilder.binding(binding: Binding) {
     if (binding.kind().isMultibinding) return // Multi binding rendered as another cluster
     binding.id {
       "label" eq binding.label
       "color" eq binding.color
-      if (binding.kind() == BindingKind.BOUND_INSTANCE) {
-        "shape" eq "parallelogram"
+      when {
+        binding.kind() == BOUND_INSTANCE -> {
+          "shape" eq "parallelogram"
+        }
+        binding.isEntryPoint -> {
+          "shape" eq "component"
+          if (binding.kind() == MEMBERS_INJECTION) {
+            "label" eq "inject (${binding.label})"
+          }
+        }
       }
     }
   }
 
   private fun DotGraphBuilder.addMultiBindings(currentComponentNodes: Sequence<MaybeBinding>) {
-    // TODO(arun) Create a custom renderer for this and avoid abusing rendering context
     currentComponentNodes
       .filterIsInstance<Binding>()
       .filter { it.kind().isMultibinding }
@@ -46,33 +54,32 @@ class DependenciesRenderer(
             "labeljust" eq "c"
             "style" eq "rounded"
           }
+
+          //TODO(arun) resuse binding()
           multiBinding.id {
             "shape" eq "tab"
             "label" eq multiBinding.label
             "color" eq multiBinding.color
           }
-          renderingContext.bindingGraph
-            .requestedBindings(multiBinding)
-            .forEach { binding -> dependencyBinding(binding) }
+          if (!multiBinding.isEntryPoint) {
+            // If multbinding node was present as an entry point does not make sense to render its' content in
+            // entry point cluster.
+            renderingContext.bindingGraph
+              .requestedBindings(multiBinding)
+              .forEach { binding -> binding(binding) }
+          }
         }
       }
   }
 
   override fun DotGraphBuilder.build(renderingElement: List<MaybeBinding>) {
-    cluster("Dependency Graph") {
-      graphAttributes {
-        "labeljust" eq "l"
-        "label" eq "Dependency Graph"
+    renderingElement.forEach { maybeBinding ->
+      when (maybeBinding) {
+        is Binding -> binding(maybeBinding)
+        is MissingBinding -> missingBinding(maybeBinding)
       }
-      // Add dependency graph
-      renderingElement.forEach { node ->
-        when (node) {
-          is Binding -> dependencyBinding(node)
-          is MissingBinding -> missingBinding(node)
-        }
-      }
-      // Add multi bindings
-      addMultiBindings(renderingElement.asSequence())
     }
+    // Add multi bindings
+    addMultiBindings(renderingElement.asSequence())
   }
 }

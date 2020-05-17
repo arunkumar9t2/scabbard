@@ -1,6 +1,5 @@
 package dev.arunkumar.scabbard.plugin.processor.graphviz.renderer
 
-import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.ComponentPath
 import dev.arunkumar.dot.dsl.DotGraphBuilder
@@ -11,9 +10,10 @@ import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
  */
 data class DaggerComponent(
   val componentPath: ComponentPath,
-  val entryPoints: List<Binding>,
+  val entryPointBindings: List<BindingGraph.MaybeBinding>,
   val dependencyBindings: List<BindingGraph.MaybeBinding>,
   val subcomponents: List<BindingGraph.ComponentNode>,
+  val inheritedBindings: List<InheritedBinding>,
   val edges: List<BindingGraph.Edge>
 ) {
   /**
@@ -23,9 +23,28 @@ data class DaggerComponent(
     override val renderingContext: RenderingContext
   ) : Renderer<DaggerComponent> {
     override fun DotGraphBuilder.build(renderingElement: DaggerComponent) {
-      EntryPointsRenderer(renderingContext).render(this, renderingElement.entryPoints)
-      DependenciesRenderer(renderingContext).render(this, renderingElement.dependencyBindings)
+      cluster("Entry Points") {
+        graphAttributes {
+          "labeljust" eq "l"
+          "label" eq "Entry Points"
+        }
+        nodeAttributes {
+          "shape" eq "component"
+          "penwidth" eq 2
+        }
+        BindingsRenderer(renderingContext).render(this, renderingElement.entryPointBindings)
+      }
+
+      cluster("Dependency Graph") {
+        graphAttributes {
+          "labeljust" eq "l"
+          "label" eq "Dependency Graph"
+        }
+        BindingsRenderer(renderingContext).render(this, renderingElement.dependencyBindings)
+      }
+
       SimpleSubComponentRenderer(renderingContext).render(this, renderingElement.subcomponents)
+      InheritedBinding.GraphRenderer(renderingContext).render(this, renderingElement.inheritedBindings)
       EdgeRenderer(renderingContext).render(this, renderingElement.edges)
     }
   }

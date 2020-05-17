@@ -79,7 +79,7 @@ class ScopeTest {
   @Test
   fun `test nodes present in a scope have different but consistent colors set`() {
     assertThat(simpleSubcomponent)
-      .contains("[label=\"@SubScope\\nScopeTest.AnotherSubcomponentNode\", color=\"aquamarine\"]")
+      .contains("[label=\"@SubScope\\nScopeTest.AnotherSubcomponentNode\", color=\"bisque\"]")
   }
 
   @Test

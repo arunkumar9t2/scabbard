@@ -74,6 +74,7 @@ class SimpleNamesTest {
   /**
    * Contains _Contribute to mimix dagger.Android generated classes
    */
+  @Suppress("ClassName")
   @Module
   object Module_ContributeSomeActivity {
     @Provides

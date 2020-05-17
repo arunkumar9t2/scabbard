@@ -18,8 +18,10 @@ import javax.inject.Inject
 class HomeActivity : DaggerAppCompatActivity() {
   @Inject
   lateinit var activityDep: ActivityDep
+
   @Inject
   lateinit var applicationSingleton: SimpleSingleton
+
   @Inject
   lateinit var complexSingleton: ComplexSingleton
 
