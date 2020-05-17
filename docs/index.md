@@ -8,7 +8,7 @@ width="190" hspace="10" vspace="10">
 A tool to visualize and understand your Dagger 2 dependency graph.
 <br>
 <video width="100%" controls>
-  <source src="video/ViewComponent.mp4" type="video/mp4">
+  <source src="video/scabbard-demo.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 More advanced [examples](examples.md).
@@ -25,6 +25,7 @@ More advanced [examples](examples.md).
 
 !!! tip "What's new"
     Recent additions include support for [simple names](#qualified-names), [SVG output format](#output-format) and easier setup for [multi-module projects](#multi-module-projects).
+    For more details, see [Releases](https://github.com/arunkumar9t2/scabbard/releases).
 
 ## Getting Started
 
