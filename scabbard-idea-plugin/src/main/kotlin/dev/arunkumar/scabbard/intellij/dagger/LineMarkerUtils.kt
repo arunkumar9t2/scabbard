@@ -2,7 +2,6 @@ package dev.arunkumar.scabbard.intellij.dagger
 
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.navigation.NavigationGutterIconBuilder
-import com.intellij.icons.AllIcons
 import com.intellij.ide.util.DefaultPsiElementCellRenderer
 import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiElement
@@ -142,7 +141,7 @@ fun prepareDaggerComponentLineMarkerWithFileName(
     }
   val title = "Open ${componentName}'s $DEPENDENCY_GRAPH"
   return if (matchedFiles.isNotEmpty()) {
-    NavigationGutterIconBuilder.create(AllIcons.FileTypes.Diagram)
+    NavigationGutterIconBuilder.create(SCABBARD_ICON)
       .setTargets(matchedFiles)
       .setPopupTitle(title)
       .setTooltipText(title)
