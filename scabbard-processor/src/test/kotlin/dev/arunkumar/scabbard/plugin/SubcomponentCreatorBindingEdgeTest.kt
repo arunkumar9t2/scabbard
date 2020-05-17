@@ -59,11 +59,6 @@ class SubcomponentCreatorBindingEdgeTest {
   @Test
   fun `assert edge between component and subcomponent creator is rendered with dashed lines and label`() {
     assertThat(generatedText).contains(" subgraph \"cluster_Subcomponents\" {")
-    assertThat(generatedText).contains(
-      "[shape=\"component\", " +
-          "label=\"SimpleSubComponent.Factory\\n\\nSubcomponent Creator\"," +
-          " penwidth=\"2\"]"
-    )
     assertThat(generatedText).contains("[style=\"dashed\", label=\"subcomponent\", headport=\"w\"]")
     assertThat(generatedText).contains("[label=\"SubcomponentCreatorBindingEdgeTest.NodeA\", color=\"turquoise\"]")
   }

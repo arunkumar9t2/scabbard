@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.MaybeBinding
+import dagger.model.ComponentPath
 import dev.arunkumar.dot.DotGraph
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
@@ -12,6 +13,7 @@ import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.output.OutputWriter
 import dev.arunkumar.scabbard.plugin.parser.subcomponentsOf
 import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.DaggerComponent
+import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.InheritedBinding
 import dev.arunkumar.scabbard.plugin.util.processingBlock
 import javax.inject.Inject
 import javax.lang.model.element.TypeElement
@@ -34,15 +36,18 @@ constructor(
     val network = bindingGraph.network()
 
     // Group all the nodes by their component
-    network.nodes().asSequence()
-      .groupBy { it.componentPath() }
+    network.nodes()
+      .asSequence()
+      .groupBy(BindingGraph.Node::componentPath)
       .map { (componentPath, nodes) ->
         val currentComponent = componentPath.currentComponent()
 
         val subcomponents = bindingGraph.subcomponentsOf(currentComponent)
-        val entryPoints = nodes.filterIsInstance<Binding>().filter(renderingContext::isEntryPoint)
-        val dependencyNodes = nodes.filterIsInstance<MaybeBinding>().filterNot(renderingContext::isEntryPoint)
+        val bindings = nodes.filterIsInstance<MaybeBinding>()
+        val entryPoints = bindings.filter(renderingContext::isEntryPoint)
+        val dependencyBindings = bindings.filterNot(renderingContext::isEntryPoint)
         val edges = nodes.flatMap(network::incidentEdges).distinct()
+        val inheritedBindings = inheritedBindings(componentPath, bindings)
 
         val dotGraphBuilder = renderingContext.createRootDotGraphBuilder(componentPath)
 
@@ -52,7 +57,14 @@ constructor(
         // Render this component's graph
         DaggerComponent.GraphRenderer(renderingContext).render(
           dotGraphBuilder,
-          DaggerComponent(componentPath, entryPoints, dependencyNodes, subcomponents, edges)
+          DaggerComponent(
+            componentPath,
+            entryPoints,
+            dependencyBindings,
+            subcomponents,
+            inheritedBindings,
+            edges
+          )
         )
         return@map currentComponent to dotGraphBuilder.dotGraph
       }.forEach { (currentComponent, dotGraph) -> writeOutput(currentComponent, dotGraph) }
@@ -63,6 +75,19 @@ constructor(
     outputWriters.forEach { writer ->
       writer.write(dotString, currentComponent, bindingGraph.isFullBindingGraph)
     }
+  }
+
+  private fun inheritedBindings(
+    componentPath: ComponentPath,
+    currentBindings: List<MaybeBinding>
+  ): List<InheritedBinding> {
+    return if (!componentPath.atRoot()) {
+      currentBindings
+        .filterIsInstance<Binding>()
+        .flatMap(bindingGraph::requestedBindings)
+        .groupBy(Binding::componentPath)
+        .map { InheritedBinding(bindingGraph.componentNode(it.key).get(), it.value) }
+    } else emptyList()
   }
 
   @Module

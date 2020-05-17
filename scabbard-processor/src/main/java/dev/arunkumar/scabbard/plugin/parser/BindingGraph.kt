@@ -20,7 +20,7 @@ internal fun Binding.scopeName() = when {
   else -> null
 }
 
-private const val newLine = "\\n"
+const val NewLine = "\\n"
 
 fun buildLabel(
   name: String,
@@ -30,16 +30,16 @@ fun buildLabel(
 ) = buildString {
   qualifier?.let {
     append(qualifier)
-    append(newLine)
+    append(NewLine)
   }
   scopeName?.let {
     append(scopeName)
-    append(newLine)
+    append(NewLine)
   }
   append(name)
   if (isSubComponentCreator) {
-    append(newLine)
-    append(newLine)
+    append(NewLine)
+    append(NewLine)
     append("Subcomponent Creator")
   }
 }
