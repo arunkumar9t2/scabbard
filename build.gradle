@@ -58,7 +58,7 @@ tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
     }
 }
 
-tasks.register("docsServe") {
+tasks.register("serveDocs") {
     group = "documentation"
     description = "Serve documentation website and open browser"
     doLast {

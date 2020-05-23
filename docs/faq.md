@@ -31,7 +31,7 @@ Please refer to Scabbard [cheat sheet](cheat-sheet.md).
 
 ## I don't see gutter icons to view graph.
 
-Please wait for Android Studio/IntelliJ indexing to be done for gutter icons to be visible. Even after indexing if the icons are not visible, please file an issue.
+Please ensure you have built the project once and wait for Android Studio/IntelliJ indexing to be done for gutter icons to be visible. Even after indexing if the icons are not visible, please file an issue.
 
 The common causes for missing gutter icons are
 
@@ -39,12 +39,6 @@ The common causes for missing gutter icons are
 *  Image are not generated. Please enable `scabbard.failOnError` and observe Gradle build log for any errors.
 
 You could also manually look for generated images in the `build` folder as described [here](index.md#gradle-plugin).
-
-## Some dependencies are missing.
-
-In order to keep graphs small and readable, Scabbard groups the dependencies by `@Component` or `@Subcomponent` and renders them in individual graphs.
-
-This has the benefit of keeping the graphs readable for large projects but this structure might not properly render cross component dependencies (inherited bindings in a subcomponent). Some work is being doing in this area, please refer [#7](https://github.com/arunkumar9t2/scabbard/issues/7).
 
 ## Any other format for visualizing the dependency graph?
 

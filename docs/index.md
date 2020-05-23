@@ -37,11 +37,21 @@ Scabbard uses [GraphViz](https://www.graphviz.org/) to generate graphs and hence
 
 ##### Installation instructions
 
-* **Mac** - Install via homebrew. `brew install graphviz`.
-
-* **Linux** - Install via apt. `sudo apt-get install graphviz`.
-
-* **Windows** - Install via [GraphViz installer](https://graphviz.gitlab.io/_pages/Download/Download_windows.html) or `choco install graphviz` with [Chocolatey](https://chocolatey.org/packages/Graphviz).
+=== "Mac"
+    Install via [homebrew](https://brew.sh/). 
+    ```bash
+    brew install graphviz
+    ```
+=== "Linux"
+    Install via apt. 
+    ```bash 
+    sudo apt-get install graphviz
+    ```
+=== "Windows"
+    Install via [GraphViz installer](https://graphviz.gitlab.io/_pages/Download/Download_windows.html) or with [Chocolatey](https://chocolatey.org/packages/Graphviz) by
+    ```bash
+    choco install graphviz
+    ```
 
 After installation, verify installation by executing `dot -V`, example:
 
@@ -51,78 +61,103 @@ dot - graphviz version 2.38.0 (20140413.2041)
 
 ## Installation
 
-### Repositories
+### [Gradle Plugin](https://plugins.gradle.org/plugin/scabbard.gradle)
+
+#### Repositories
 
 Scabbard artifacts are served via `jcenter()`. Please ensure `jcenter()` is added to your root `build.gradle`.
-
-### [Gradle Plugin](https://plugins.gradle.org/plugin/scabbard.gradle)
 
 <a href="https://plugins.gradle.org/plugin/scabbard.gradle"><img src="https://img.shields.io/maven-metadata/v/https/plugins.gradle.org/m2/scabbard/gradle/scabbard.gradle.gradle.plugin/maven-metadata.xml.svg?style=flat-square&label=Gradle&logo=gradle&colorB=fb7b21&logoColor=06A0CE"/></a>
 
 Using the plugins DSL:
 
-```Groovy tab=
-plugins {
-  id "scabbard.gradle" version "0.3.0"
-}
-```
-
-```Kotlin tab=
-plugins {
-  id("scabbard.gradle") version "0.3.0"
-}
-```
+=== "Groovy"
+    ```groovy
+    plugins {
+        id "scabbard.gradle" version "0.3.0"
+    }
+    ```
+=== "Kotlin"
+    ```kotlin
+    plugins {
+        id("scabbard.gradle") version "0.3.0"
+    }
+    ```
 
 or if you are using older versions of Gradle:
 
-```Groovy tab=
-buildscript {
-  repositories {
-    maven {
-      url "https://plugins.gradle.org/m2/"
+=== "Groovy"
+    ```groovy
+    buildscript {
+      repositories {
+        maven {
+          url "https://plugins.gradle.org/m2/"
+        }
+      }
+      dependencies {
+        classpath "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.3.0"
+      }
     }
-  }
-  dependencies {
-    classpath "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.3.0"
-  }
-}
+    
+    apply plugin: "scabbard.gradle"
+    ```
 
-apply plugin: "scabbard.gradle"
-```
-
-```Kotlin tab=
-buildscript {
-  repositories {
-    maven {
-      url = uri("https://plugins.gradle.org/m2/")
+=== "Kotlin"
+    ```kotlin
+    buildscript {
+      repositories {
+        maven {
+          url = uri("https://plugins.gradle.org/m2/")
+        }
+      }
+      dependencies {
+        classpath("gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.3.0")
+      }
     }
-  }
-  dependencies {
-    classpath("gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.3.0")
-  }
-}
-
-apply(plugin = "scabbard.gradle")
-```
+    
+    apply(plugin = "scabbard.gradle")
+    ```
 
 After applying the plugin, configure the plugin by adding a `scabbard` block:
 
-```Groovy tab=
-scabbard {
-    enabled true
-}
-```
-
-```Kotlin tab=
-scabbard {
-    enabled = true
-}
-```
-!!! note ""
-    For multi-module projects, please refer [here](configuration.md#multi-module-projects).
+=== "Groovy"
+    ```groovy
+    scabbard {
+        enabled true
+    }
+    ```
+=== "Kotlin"
+    ```kotlin
+    scabbard {
+        enabled = true
+    }
+    ```
+??? info "Configuring Scabbard for multi-module projects"
+    For multi-module projects, it is sufficient to apply Scabbard plugin in root project's `build.gradle` file. Doing so will let the plugin configure all subprojects for graph generation. 
+    
+    In root `build.gradle` file:
+    
+    === "Groovy"
+        ```groovy
+        apply plugin: "scabbard.gradle"
+        
+        scabbard {
+          enabled true
+          outputFormat "svg"
+        }
+        ```
+    === "Kotlin"
+        ```kotlin
+        apply(plugin = "scabbard.gradle")
+        
+        scabbard {
+          enabled = true
+          outputFormat = "svg"
+        }
+        ```
 
 !!! success
-    That's it. Now after building the project, Scabbard would have generated `dot` and `png` files for your Dagger components in your `build` folder. The default output directory is location defined by `StandardLocation.CLASS_OUTPUT`.
+    That's it. Now after **building** the project, Scabbard would have generated `dot` and (`png` or `svg`) files for your Dagger components in your `build` folder. The default output directory is location defined by `StandardLocation.CLASS_OUTPUT`.
 
     * **Java** : `build/classes/java/$sourceSet/scabbard`
     * **Kotlin** : `build/tmp/kapt3/classes/$sourceSet/scabbard`
@@ -137,7 +172,7 @@ Scabbard also ships an IDE plugin to open generated images directly from your so
 Alternatively you could download the plugin `zip` file directly from [releases](https://github.com/arunkumar9t2/scabbard/releases) and install via `File > Preferences/Settings > Plugins > Gear ⚙ > Install from Disk` and point to zip file.
 
 !!! success
-    The plugin should automatically add an icon 🗡 next to `@Component`, `@Subcomponent`, `@Module` or `@ContributesAndroidInjector` as soon as project is indexed.
+    The plugin should automatically add an icon <img src="images/scabbard-gutter.png" width="16" height="16"> next to `@Component`, `@Subcomponent`, `@Module` or `@ContributesAndroidInjector` as soon as project is indexed.
 
 ### Other build systems
 
@@ -168,7 +203,3 @@ Scabbard at its core is just an annotation processor. You could add `dev.arunkum
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-## Thanks
-
-Scabbard's icon 🗡 is from Square's [Dagger 1 Intellij plugin](https://github.com/square/dagger-intellij-plugin).
