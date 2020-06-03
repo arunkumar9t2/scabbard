@@ -2,3 +2,10 @@
 .gradle
 # Ignore Gradle build output directory
 build
+/.idea/.gitignore
+/.idea/compiler.xml
+/.idea/gradle.xml
+/.idea/misc.xml
+/.idea/vcs.xml
+/.idea/jarRepositories.xml
+/.idea/workspace.xml
