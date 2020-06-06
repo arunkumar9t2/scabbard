@@ -87,7 +87,6 @@ internal fun <T, R> ScabbardPluginExtension.mapCompilerProperty(
 internal fun Project.applyCompilerProperty(compilerProperty: CompilerProperty<*>) {
   pluginManager.withPlugin(KAPT_PLUGIN_ID) {
     // For Kotlin projects, forward compiler arguments to Kapt
-    // logger.info("K: ${compilerProperty.name} is set to `${compilerProperty.value}` for ${project.name}")
     configure<KaptExtension> {
       arguments {
         compilerProperty.value?.let { value -> arg(compilerProperty.name, value) }
@@ -96,7 +95,6 @@ internal fun Project.applyCompilerProperty(compilerProperty: CompilerProperty<*>
   }
   pluginManager.withPlugin(JAVA_LIBRARY_PLUGIN_ID) {
     // For Java projects, forward to Java Compile tasks directly.
-    // logger.info("J: ${compilerProperty.name} is set to `${compilerProperty.value}` for ${project.name}")
     tasks.withType<JavaCompile>().configureEach {
       options.compilerArgs.apply {
         compilerProperty.value?.let { value -> add("-A${compilerProperty.name}=$value") }

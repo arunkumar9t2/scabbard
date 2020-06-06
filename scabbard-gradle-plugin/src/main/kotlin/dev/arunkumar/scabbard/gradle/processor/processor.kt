@@ -15,19 +15,25 @@ internal const val ANNOTATION_PROCESSOR_CONFIG = "annotationProcessor"
 internal const val SCABBARD_GROUP = "dev.arunkumar"
 internal const val SCABBARD_NAME = "scabbard-processor"
 internal const val SCABBARD_PROCESSOR_DEPENDENCY = "$SCABBARD_GROUP:$SCABBARD_NAME:$VERSION"
+internal const val DAGGER_GROUP = "com.google.dagger"
+internal const val DAGGER_COMPILER = "dagger-compiler"
 
 /**
- * @return if the [Dependency] is Scabbard's annotation processor dependency
+ * @return `true` if the [Dependency] is Scabbard's annotation processor dependency
  */
-private fun Dependency.isScabbardDependency() =
-  group == SCABBARD_GROUP && name == SCABBARD_NAME
+internal fun Dependency.isScabbardDependency() = group == SCABBARD_GROUP && name == SCABBARD_NAME
+
+/**
+ * @return `true` if the [Dependency] is Dagger's main annotation processor dependency
+ */
+internal fun Dependency.isDaggerCompilerDependency() = group == DAGGER_GROUP && name == DAGGER_COMPILER
 
 /**
  * @return Boolean if the Configuration has Scabbard's annotation processor dependency
  */
 private fun Configuration.hasScabbard() = dependencies.any(Dependency::isScabbardDependency)
 
-private fun configName(isKapt: Boolean) = when {
+internal fun configName(isKapt: Boolean) = when {
   isKapt -> KAPT_CONFIG
   else -> ANNOTATION_PROCESSOR_CONFIG
 }
@@ -40,18 +46,11 @@ private fun configName(isKapt: Boolean) = when {
  * `annotationProcessor`
  */
 private fun Project.removeScabbard(isKapt: Boolean = false) {
-  val config = configName(isKapt)
-  configurations.findByName(config)
-    ?.dependencies
-    ?.iterator()
-    ?.let { iterator ->
-      for (dependency in iterator) {
-        if (dependency.isScabbardDependency()) {
-          iterator.remove()
-          logger.info("Removed Scabbard from $name")
-        }
-      }
+  configurations.findByName(configName(isKapt))?.withDependencies {
+    if (removeIf(Dependency::isScabbardDependency)) {
+      logger.info("Removed Scabbard from $path")
     }
+  }
 }
 
 /**
@@ -62,14 +61,12 @@ private fun Project.removeScabbard(isKapt: Boolean = false) {
  * added.
  */
 private fun Project.addScabbard(isKapt: Boolean = false) {
-  val annotationConfig = configName(isKapt)
-  if (configurations.findByName(annotationConfig) != null) {
-    if (!configurations.getByName(annotationConfig).hasScabbard()) {
-      logger.info("Adding scabbard to $annotationConfig config")
-      dependencies.add(annotationConfig, SCABBARD_PROCESSOR_DEPENDENCY)
+  val configName = configName(isKapt)
+  configurations.findByName(configName)?.withDependencies {
+    if (none(Dependency::isScabbardDependency) && any(Dependency::isDaggerCompilerDependency)) {
+      logger.info("Adding scabbard to $configName config")
+      dependencies.add(configName, SCABBARD_PROCESSOR_DEPENDENCY)
     }
-  } else {
-    logger.info("Skipped adding Scabbard due to lack of $annotationConfig config")
   }
 }
 

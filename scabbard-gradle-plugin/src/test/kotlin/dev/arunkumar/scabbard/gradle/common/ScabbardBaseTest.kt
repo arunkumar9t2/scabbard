@@ -7,6 +7,7 @@ import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLU
 import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.repositories
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.After
 import org.junit.Before
@@ -29,10 +30,18 @@ abstract class ScabbardBaseTest {
   internal fun scabbardExtension(block: ScabbardPluginExtension.() -> Unit) =
     scabbardExtension.apply(block)
 
+  internal fun Project.baseSetup() {
+    repositories {
+      jcenter()
+      mavenCentral()
+    }
+  }
+
   /**
    * Setup the [project] instance as a kotlin project.
    */
   internal fun Project.setupAsKotlin() {
+    baseSetup()
     plugins.apply {
       apply(KOTLIN_PLUGIN_ID)
       apply(KAPT_PLUGIN_ID)
@@ -44,6 +53,7 @@ abstract class ScabbardBaseTest {
    * Setup the [project] instance as a pure java project.
    */
   internal fun Project.setupAsJava() {
+    baseSetup()
     plugins.apply {
       apply(JAVA_LIBRARY_PLUGIN_ID)
       apply(SCABBARD_PLUGIN_ID)
