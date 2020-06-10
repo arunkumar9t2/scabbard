@@ -14,12 +14,6 @@ import org.gradle.api.Project
  * This class is only instantiated by Gradle and dependencies are resolved automatically by injection.
  * @see [ScabbardGradlePlugin] for information.
  *
- * Notes:
- * The extensions adds capability to observe changes to properties when gradle configures it. This is
- * required because of the need to modify project dependencies and Task properties
- * [KotlinCompile] and [JavaCompile].
- * @see [https://discuss.gradle.org/t/when-can-a-plugin-change-a-projects-dependencies/17505/7]
- *
  * @param project The project instance where the plugin is applied
  * @param onEnabledStatusChange The action to execute when [ScabbardPluginExtension.enabled] is configured
  * @param onCompilerPropertyChanged The action to execute when any of the compiler property is configured.
@@ -34,16 +28,19 @@ open class ScabbardPluginExtension(
    * Control whether scabbard is enabled or not. Default value is `false`.
    */
   open var enabled by enabledProperty()
+
   /**
    * By default, scabbard does not fail the build when any error occurs in scabbard's processor. Setting
    * this property to `true` will change that behaviour to fail on any error for debugging purposes.
    */
   open var failOnError by compilerProperty(FAIL_ON_ERROR)
+
   /**
    * Flag to control if fully qualified names should be used everywhere in the graph. Default value
    * is `false`
    */
   open var qualifiedNames by compilerProperty(QUALIFIED_NAMES)
+
   /**
    * Configures Dagger processor to do full graph validation which processes each `@Module`, `@Component`
    * and `@Subcomponent`. This enables visualization of missing bindings and generates graphs for
@@ -55,6 +52,7 @@ open class ScabbardPluginExtension(
     compilerProperty = FULL_GRAPH_VALIDATION,
     valueMapper = FULL_GRAPH_VALIDATION_MAPPER
   )
+
   /**
    * The output image format that scabbard generates. Supported values are [OutputFormat.PNG]
    * or [OutputFormat.SVG]

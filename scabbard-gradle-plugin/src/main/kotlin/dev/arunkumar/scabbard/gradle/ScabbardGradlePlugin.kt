@@ -24,8 +24,7 @@ import org.gradle.api.Project
  * via [ScabbardPluginExtension] to [JavaCompile] or [KotlinCompile] tasks
  * - At the moment, the plugin does not add any new tasks to the project.
  *
- * With the exception of adding dependencies, rest of the work happens lazily by confirming to
- * task configuration avoidance.
+ * Most of the work happens lazily by confirming to task configuration avoidance.
  *
  * Results:
  * After a successful build, the generated dagger visualization images should be present in
