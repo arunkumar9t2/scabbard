@@ -9,7 +9,10 @@ import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Compani
 import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.OUTPUT_FORMAT_PROPERTY
 import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.QUALIFIED_NAMES_PROPERTY
 import dev.arunkumar.scabbard.gradle.output.OutputFormat
+import dev.arunkumar.scabbard.gradle.processor.ANNOTATION_PROCESSOR_CONFIG
+import dev.arunkumar.scabbard.gradle.processor.isDaggerCompilerDependency
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Dependency
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
@@ -87,7 +90,6 @@ internal fun <T, R> ScabbardPluginExtension.mapCompilerProperty(
 internal fun Project.applyCompilerProperty(compilerProperty: CompilerProperty<*>) {
   pluginManager.withPlugin(KAPT_PLUGIN_ID) {
     // For Kotlin projects, forward compiler arguments to Kapt
-    // logger.info("K: ${compilerProperty.name} is set to `${compilerProperty.value}` for ${project.name}")
     configure<KaptExtension> {
       arguments {
         compilerProperty.value?.let { value -> arg(compilerProperty.name, value) }
@@ -96,10 +98,15 @@ internal fun Project.applyCompilerProperty(compilerProperty: CompilerProperty<*>
   }
   pluginManager.withPlugin(JAVA_LIBRARY_PLUGIN_ID) {
     // For Java projects, forward to Java Compile tasks directly.
-    // logger.info("J: ${compilerProperty.name} is set to `${compilerProperty.value}` for ${project.name}")
-    tasks.withType<JavaCompile>().configureEach {
-      options.compilerArgs.apply {
-        compilerProperty.value?.let { value -> add("-A${compilerProperty.name}=$value") }
+    configurations.findByName(ANNOTATION_PROCESSOR_CONFIG)?.withDependencies {
+      if (any(Dependency::isDaggerCompilerDependency)) {
+        tasks.withType<JavaCompile>().configureEach {
+          options.compilerArgs.apply {
+            compilerProperty.value?.let { value ->
+              add("-A${compilerProperty.name}=$value")
+            }
+          }
+        }
       }
     }
   }
