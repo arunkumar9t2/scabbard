@@ -89,7 +89,7 @@ class CompilerPropertiesTest : ScabbardBaseTest() {
   }
 
   @Test
-  fun `assert for java projects fullBindingGraphValidation property is forwarded to kapt and javac`() {
+  fun `assert for java projects fullBindingGraphValidation property is forwarded to javac`() {
     project.setupAsJava()
 
     scabbardExtension {
