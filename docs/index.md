@@ -132,6 +132,7 @@ After applying the plugin, configure the plugin by adding a `scabbard` block:
         enabled = true
     }
     ```
+    
 ??? info "Configuring Scabbard for multi-module projects"
     For multi-module projects, it is sufficient to apply Scabbard plugin in root project's `build.gradle` file. Doing so will let the plugin configure all subprojects for graph generation. 
     
