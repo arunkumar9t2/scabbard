@@ -13,11 +13,15 @@ Please download/open in new tab to zoom contents.
   Your browser does not support the video tag.
 </video>
 
-### `AppComponent`
-<a href="../images/com.google.samples.apps.iosched.di.AppComponent.svg"><img src="../images/com.google.samples.apps.iosched.di.AppComponent.svg" width="100%"></a>
+### AppComponent 
 
-### `MainActivitySubComponent`
-<a href="../images/com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity.mobile_debug.MainActivitySubcomponent.svg"><img src="../images/com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity.mobile_debug.MainActivitySubcomponent.svg" width="100%"></a>
+#### dagger.hilt
+Interactive SVG:
+<a href="../images/com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC.svg"><img src="../images/com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC.svg" width="100%"></a>
+
+#### dagger.android
+Interactive SVG:
+<a href="../images/com.google.samples.apps.iosched.di.AppComponent.svg"><img src="../images/com.google.samples.apps.iosched.di.AppComponent.svg" width="100%"></a>
 
 ## [Santa Tracker](https://github.com/google/santa-tracker-android)
 
