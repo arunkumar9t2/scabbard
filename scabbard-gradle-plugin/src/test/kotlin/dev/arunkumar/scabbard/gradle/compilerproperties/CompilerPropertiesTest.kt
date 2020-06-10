@@ -2,12 +2,14 @@ package dev.arunkumar.scabbard.gradle.compilerproperties
 
 import dev.arunkumar.scabbard.gradle.common.ScabbardBaseTest
 import dev.arunkumar.scabbard.gradle.output.OutputFormat.SVG
+import dev.arunkumar.scabbard.gradle.processor.ANNOTATION_PROCESSOR_CONFIG
 import org.gradle.api.Project
 import org.gradle.api.tasks.compile.CompileOptions
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -24,6 +26,8 @@ class CompilerPropertiesTest : ScabbardBaseTest() {
   }
 
   private fun Project.javacOptions(compileOptions: (CompileOptions) -> Unit) {
+    // Force a resolution of annotationProcessor
+    configurations.findByName(ANNOTATION_PROCESSOR_CONFIG)?.resolve()
     val javaCTasks = project.tasks.withType<JavaCompile>()
     assertTrue("Javac tasks are present", javaCTasks.isNotEmpty())
     javaCTasks.onEach { javaCompile -> compileOptions(javaCompile.options) }
@@ -54,6 +58,7 @@ class CompilerPropertiesTest : ScabbardBaseTest() {
   @Test
   fun `assert for pure java projects extension properties are delegated to JavaCompile tasks`() {
     project.setupAsJava()
+    project.addDagger()
 
     scabbardExtension {
       enabled = true
@@ -76,6 +81,7 @@ class CompilerPropertiesTest : ScabbardBaseTest() {
   @Test
   fun `assert fullBindingGraphValidation property is forwarded to kapt`() {
     project.setupAsKotlin()
+    project.addDagger()
 
     scabbardExtension {
       enabled = true
@@ -91,6 +97,7 @@ class CompilerPropertiesTest : ScabbardBaseTest() {
   @Test
   fun `assert for java projects fullBindingGraphValidation property is forwarded to javac`() {
     project.setupAsJava()
+    project.addDagger()
 
     scabbardExtension {
       enabled = true
@@ -124,6 +131,7 @@ class CompilerPropertiesTest : ScabbardBaseTest() {
   @Test
   fun `assert for java projects output format is forwarded to javac`() {
     project.setupAsJava()
+    project.addDagger()
 
     scabbardExtension {
       enabled = true
@@ -133,6 +141,23 @@ class CompilerPropertiesTest : ScabbardBaseTest() {
     project.javacOptions { options ->
       assertTrue(
         "Output format is set to svg",
+        options.compilerArgs.contains("-A${OUTPUT_FORMAT.name}=$SVG")
+      )
+    }
+  }
+
+  @Test
+  fun `assert compiler properties are not added when dagger is not there`() {
+    project.setupAsJava()
+
+    scabbardExtension {
+      enabled = true
+      outputFormat = SVG
+    }
+
+    project.javacOptions { options ->
+      assertFalse(
+        "Output format is not set",
         options.compilerArgs.contains("-A${OUTPUT_FORMAT.name}=$SVG")
       )
     }

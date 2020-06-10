@@ -5,7 +5,11 @@ import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KOTLIN_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
+import dev.arunkumar.scabbard.gradle.processor.DAGGER_COMPILER
+import dev.arunkumar.scabbard.gradle.processor.DAGGER_GROUP
+import dev.arunkumar.scabbard.gradle.processor.configName
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.repositories
 import org.gradle.testfixtures.ProjectBuilder
@@ -60,6 +64,11 @@ abstract class ScabbardBaseTest {
     }
   }
 
+  internal fun Project.addDagger(isKapt: Boolean = false) {
+    dependencies {
+      add(configName(isKapt), "$DAGGER_GROUP:$DAGGER_COMPILER:+")
+    }
+  }
 
   @Before
   fun setUp() {

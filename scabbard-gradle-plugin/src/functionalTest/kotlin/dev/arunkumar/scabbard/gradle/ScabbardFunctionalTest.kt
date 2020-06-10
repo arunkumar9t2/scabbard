@@ -46,4 +46,25 @@ abstract class ScabbardFunctionalTest {
             """.trimIndent()
     )
   }
+
+  protected fun addSimpleJavaSourceFile() {
+    projectFile(
+      path = "/src/main/java/scabbard/ScabbardSample.java",
+      content = """
+              package scabbard;
+              import javax.inject.Inject;
+              import dagger.Component;
+              
+              public class ScabbardSample {
+                static class Hello {
+                    @Inject Hello() {}
+                }
+                @Component
+                interface SimpleComponent {
+                  Hello hello();
+                }
+              }
+            """.trimIndent()
+    )
+  }
 }

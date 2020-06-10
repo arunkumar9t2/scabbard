@@ -5,6 +5,7 @@ import dev.arunkumar.scabbard.gradle.KAPT_PLUGIN_APPLICATION
 import dev.arunkumar.scabbard.gradle.KOLTIN_PLUGIN_APPLICATION
 import dev.arunkumar.scabbard.gradle.KOTLIN_VERSION
 import dev.arunkumar.scabbard.gradle.ScabbardFunctionalTest
+import org.gradle.testkit.runner.TaskOutcome
 import org.junit.Test
 import java.io.File
 
@@ -96,5 +97,45 @@ class CompilerPropertiesTest : ScabbardFunctionalTest() {
       .build().output
     assertThat(buildResult)
       .doesNotContain("The following options were not recognized by any processor")
+  }
+
+  @Test
+  fun `assert java compiler properties are applied in java project`() {
+    addSimpleJavaSourceFile()
+    projectFile(
+      path = "build.gradle",
+      content = """
+              | plugins {
+              |   id "java-library"
+              |   id "scabbard.gradle"
+              | }
+              | 
+              | repositories {
+              |   mavenCentral()
+              |   jcenter()
+              | }
+              | 
+              | scabbard {
+              |    enabled true
+              |    outputFormat "svg"
+              | }
+              | 
+              | dependencies {
+              |   implementation "com.google.dagger:dagger:+"
+              |   annotationProcessor "com.google.dagger:dagger-compiler:+"
+              | }
+            """.trimMargin()
+    )
+    val buildResult = gradleRunner
+      .withDebug(true)
+      .withArguments(":assemble")
+      .build()
+    assertThat(buildResult.task(":assemble")?.outcome == TaskOutcome.SUCCESS)
+    assertThat(
+      File(
+        testProjectDir.root,
+        "build/classes/java/main/scabbard/scabbard.ScabbardSample.SimpleComponent.svg"
+      ).exists()
+    ).isTrue()
   }
 }

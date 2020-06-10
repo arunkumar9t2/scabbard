@@ -6,7 +6,6 @@ import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KOTLIN_PLUGI
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.common.ScabbardBaseTest
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -109,12 +108,6 @@ class ScabbardProcessorManagerTest : ScabbardBaseTest() {
       "Scabbard is not applied on annotationProcessor",
       !project.hasScabbardProcessor(isKoltin = false)
     )
-  }
-
-  internal fun Project.addDagger(isKapt: Boolean = false) {
-    dependencies {
-      add(configName(isKapt), "$DAGGER_GROUP:$DAGGER_COMPILER:+")
-    }
   }
 
   private fun Project.hasScabbardProcessor(isKoltin: Boolean = true): Boolean {

@@ -9,7 +9,10 @@ import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Compani
 import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.OUTPUT_FORMAT_PROPERTY
 import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.QUALIFIED_NAMES_PROPERTY
 import dev.arunkumar.scabbard.gradle.output.OutputFormat
+import dev.arunkumar.scabbard.gradle.processor.ANNOTATION_PROCESSOR_CONFIG
+import dev.arunkumar.scabbard.gradle.processor.isDaggerCompilerDependency
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Dependency
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
@@ -95,9 +98,15 @@ internal fun Project.applyCompilerProperty(compilerProperty: CompilerProperty<*>
   }
   pluginManager.withPlugin(JAVA_LIBRARY_PLUGIN_ID) {
     // For Java projects, forward to Java Compile tasks directly.
-    tasks.withType<JavaCompile>().configureEach {
-      options.compilerArgs.apply {
-        compilerProperty.value?.let { value -> add("-A${compilerProperty.name}=$value") }
+    configurations.findByName(ANNOTATION_PROCESSOR_CONFIG)?.withDependencies {
+      if (any(Dependency::isDaggerCompilerDependency)) {
+        tasks.withType<JavaCompile>().configureEach {
+          options.compilerArgs.apply {
+            compilerProperty.value?.let { value ->
+              add("-A${compilerProperty.name}=$value")
+            }
+          }
+        }
       }
     }
   }
