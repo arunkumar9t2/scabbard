@@ -20,12 +20,6 @@ sourceSets {
     test.java.srcDirs("build/generated/source/kapt/test")
 }
 
-kapt {
-    arguments {
-        arg("scabbard.failOnError", true)
-    }
-}
-
 dependencies {
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "com.google.testing.compile:compile-testing:${versions.compileTesting}"
