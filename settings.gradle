@@ -11,6 +11,7 @@ include ":scabbard-idea-plugin"
 include "samples:android-kotlin"
 include "samples:java-library-kts-script"
 include "samples:coffee-java"
+include "samples:android-kotlin-hilt"
 
 
 includeBuild("scabbard-gradle-plugin") {
@@ -18,4 +19,3 @@ includeBuild("scabbard-gradle-plugin") {
         substitute module("dev.arunkumar:scabbard-gradle-plugin") with project(":")
     }
 }
-
