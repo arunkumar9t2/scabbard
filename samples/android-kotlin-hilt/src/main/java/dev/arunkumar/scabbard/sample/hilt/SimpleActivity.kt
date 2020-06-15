@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
@@ -12,6 +13,9 @@ class SimpleActivity : AppCompatActivity() {
 
   @Inject
   lateinit var activityDependency: ActivityDependency
+
+  @Inject
+  lateinit var activityRetainedDependency: ActivityRetainedDependency
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -27,4 +31,7 @@ class SimpleActivity : AppCompatActivity() {
     private val activity: Activity,
     private val mainActivityPresenter: MainActivityPresenter
   )
+
+  @ActivityRetainedScoped
+  class ActivityRetainedDependency @Inject constructor()
 }
