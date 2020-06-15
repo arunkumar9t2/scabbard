@@ -1,0 +1,61 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlin-kapt"
+apply plugin: scabbardGradlePlugin
+apply plugin: "dagger.hilt.android.plugin"
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId "dev.arunkumar.scabbard.sample.hilt"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+}
+
+scabbard {
+    enabled true
+    failOnError true
+    outputFormat "svg"
+}
+
+apply from: "../../gradle/scabbard-local-processor.gradle"
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+
+    implementation "androidx.appcompat:appcompat:${versions.androidx.appcompat}"
+    implementation "androidx.fragment:fragment-ktx:${versions.androidx.fragment.ktx}"
+    implementation "androidx.core:core-ktx:${versions.androidx.core}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
+
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    implementation "com.google.dagger:hilt-android:${versions.hilt}"
+    kapt "com.google.dagger:hilt-android-compiler:${versions.hilt}"
+
+    testImplementation "junit:junit:${versions.junit}"
+}
