@@ -3,6 +3,7 @@ apply plugin: "kotlin-android"
 apply plugin: "kotlin-android-extensions"
 apply plugin: "kotlin-kapt"
 apply plugin: scabbardGradlePlugin
+apply plugin: "dagger.hilt.android.plugin"
 
 android {
     compileSdkVersion 29
@@ -32,8 +33,6 @@ android {
 scabbard {
     enabled true
     failOnError true
-    fullBindingGraphValidation true
-    qualifiedNames false
     outputFormat "svg"
 }
 
@@ -50,10 +49,13 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
 
     implementation "com.google.dagger:dagger:${versions.dagger}"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
-    kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+    implementation "com.google.dagger:hilt-android:${versions.hilt}"
+    kapt "com.google.dagger:hilt-android-compiler:${versions.hilt}"
 
     testImplementation "junit:junit:${versions.junit}"
 }
