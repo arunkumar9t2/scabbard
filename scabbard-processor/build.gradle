@@ -33,6 +33,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     implementation "guru.nidi:graphviz-java:${versions.graphviz}"
+    implementation "org.slf4j:slf4j-nop:${versions.slf4jNop}"
 
     implementation "com.google.dagger:dagger-spi:${versions.dagger}"
     implementation "com.google.dagger:dagger:${versions.dagger}"
