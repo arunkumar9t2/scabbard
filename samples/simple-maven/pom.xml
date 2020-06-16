@@ -54,6 +54,9 @@
                             <version>0.3.0</version>
                         </path>
                     </annotationProcessorPaths>
+                    <compilerArgs>
+                        <arg>-Ascabbard.outputFormat=svg</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>
