@@ -1,5 +1,4 @@
 import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
-import org.gradle.api.JavaVersion.VERSION_1_8
 
 plugins {
   `java-library`
@@ -7,11 +6,6 @@ plugins {
 }
 apply(plugin = "scabbard.gradle")
 apply(from = "../../gradle/scabbard-local-processor.gradle")
-
-configure<JavaPluginExtension> {
-  sourceCompatibility = VERSION_1_8
-  targetCompatibility = VERSION_1_8
-}
 
 configure<ApplicationPluginConvention> {
   mainClassName = "dev.arunkumar.scabbard.javasample.ScabbardSample"

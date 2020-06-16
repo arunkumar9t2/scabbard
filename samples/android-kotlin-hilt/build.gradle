@@ -8,10 +8,6 @@ apply plugin: "dagger.hilt.android.plugin"
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 
     defaultConfig {
         applicationId "dev.arunkumar.scabbard.sample.hilt"
@@ -51,8 +47,8 @@ dependencies {
     implementation "com.google.dagger:dagger:${versions.dagger}"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
     implementation "com.google.dagger:hilt-android:${versions.hilt}"
     kapt "com.google.dagger:hilt-android-compiler:${versions.hilt}"

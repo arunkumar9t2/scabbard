@@ -6,11 +6,6 @@ plugins {
 description = "Visualize Dagger 2 dependency graphs with ease"
 apply from: "../publishing.gradle"
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
 repositories {
     jcenter()
 }

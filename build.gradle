@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile
+
 buildscript {
     apply from: "constants.gradle"
     repositories {
@@ -23,6 +25,25 @@ allprojects {
     }
     group groupId
     version publishVersion
+
+    plugins.withType(com.android.build.gradle.BasePlugin).configureEach { plugin ->
+        //noinspection GrDeprecatedAPIUsage
+        plugin.extension.compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach { task ->
+        task.sourceCompatibility = JavaVersion.VERSION_1_8
+        task.targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    tasks.withType(KotlinJvmCompile).configureEach { task ->
+        task.kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
 }
 
 task clean(type: Delete) {
