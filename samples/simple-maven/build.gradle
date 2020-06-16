@@ -1,0 +1,25 @@
+plugins {
+    id "java-library"
+}
+apply plugin: scabbardGradlePlugin
+
+repositories {
+    jcenter()
+}
+
+scabbard {
+    enabled true
+}
+
+apply from: "../../gradle/scabbard-local-processor.gradle"
+
+dependencies {
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${versions.dagger}"
+    testImplementation "junit:junit:${versions.junit}"
+}
+
+group = "dev.arunkumar.scabbard"
+version = "1.0-SNAPSHOT"
+description = "simple-maven"
+sourceCompatibility = "1.8"

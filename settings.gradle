@@ -12,6 +12,7 @@ include "samples:android-kotlin"
 include "samples:java-library-kts-script"
 include "samples:coffee-java"
 include "samples:android-kotlin-hilt"
+include "samples:simple-maven"
 
 
 includeBuild("scabbard-gradle-plugin") {
