@@ -1,4 +1,4 @@
-FROM reactivecircus/android-sdk:latest
+FROM reactivecircus/android-sdk:v2020_04_26-14-11-07
 
 MAINTAINER Arunkumar "hi@arunkumar.dev"
 
