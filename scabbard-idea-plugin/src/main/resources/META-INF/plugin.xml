@@ -37,20 +37,22 @@
     <extensions defaultExtensionNs="com.intellij">
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.KotlinComponentToDaggerGraphLineMarker"
-            language="kotlin"/>
+            language="kotlin" />
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.KotlinContributesAndroidInjectorLineMarker"
-            language="kotlin"/>
+            language="kotlin" />
+        <codeInsight.lineMarkerProvider
+            implementationClass="dev.arunkumar.scabbard.intellij.dagger.KotlinHiltLineMarker" language="kotlin" />
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.JavaComponentToDaggerGraphLineMarker"
-            language="JAVA"/>
+            language="JAVA" />
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.JavaContributesAndroidInjectorLineMarker"
-            language="JAVA"/>
+            language="JAVA" />
     </extensions>
 
     <id>dev.arunkumar.scabbard.idea-plugin</id>
 
-    <idea-version since-build="191"/>
+    <idea-version since-build="191" />
     <vendor email="hi@arunkumar.dev" url="http://arunkumar.dev">Arunkumar</vendor>
 </idea-plugin>
