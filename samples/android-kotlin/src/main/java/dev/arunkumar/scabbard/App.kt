@@ -11,18 +11,23 @@ class App : DaggerApplication() {
 
   @Inject
   lateinit var complexSingleton: ComplexSingleton
+
   @Inject
   lateinit var provisionBinding: ProvisionBinding
+
   @Inject
   @JvmSuppressWildcards
   lateinit var multiBindingTypes: Set<MultiBindingType>
+
   @Inject
   lateinit var delegateBinding: DelegateBinding
+
   @Inject
-  @field:Named("named")
+  @Named("named")
   lateinit var namedBinding: NamedBinding
+
   @Inject
-  @field:SimpleQualifier
+  @SimpleQualifier
   lateinit var qualifiedBinding: QualifiedBinding
 
   override fun applicationInjector() = appComponent

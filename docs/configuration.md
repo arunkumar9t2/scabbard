@@ -63,6 +63,8 @@ Enables Dagger's [full binding graph validation](https://dagger.dev/compiler-opt
 ### Qualified Names
 
 Since `0.2.0`, Scabbard uses simple names in graph images to keep the graph short. The qualified names behaviour could be restored as follows.
+
+
 === "Groovy"
     ```groovy
     scabbard {
@@ -92,3 +94,61 @@ Supported output formats for generated images are `png` and `svg`.
       outputFormat = "svg" // default png
     }
     ```
+    
+## Other build systems
+
+Although Scabbard integrates well with Gradle, other build systems are supported in limited capacity. The majority of the work is done by Scabbard's annotation processor available on `jcenter` with the following maven coordinates: `dev.arunkumar:scabbard-processor:0.3.0`. 
+
+The annotation processor behavior can be customized by passing the following Java compiler properties.
+
+Java Compiler Property       | Values          | Behavior
+-------------------------    | ----------------| ----------
+ -Ascabbard.failOnError    | `true`, `false` | [Link](#fail-build-on-any-error-in-scabbard-processor)
+ -Ascabbard.qualifiedNames | `true`, `false` | [Link](#qualified-names)
+ -Ascabbard.outputFormat   | `png`, `svg`    | [Link](#output-format)
+ 
+!!! info
+    When using the Gradle plugin, all these options are abstracted into type safe plugin configuration DSL, hence most of them this is of less concern for Gradle users.
+
+### Maven
+
+For Maven projects, add Scabbard's annotation processor dependency alongside Dagger as shown below. [Full working sample](https://github.com/arunkumar9t2/scabbard/blob/master/samples/simple-maven/pom.xml).
+
+```xml hl_lines="1 2 3 4 5 6 22 23 24 25 26 28 29 30"
+<repositories>
+    <repository>
+        <id>jcenter</id>
+        <url>https://jcenter.bintray.com</url>
+    </repository>
+</repositories>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.6.1</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+                <annotationProcessorPaths>
+                    <path>
+                        <groupId>com.google.dagger</groupId>
+                        <artifactId>dagger-compiler</artifactId>
+                        <version>2.28</version>
+                    </path>
+                    <path>
+                        <groupId>dev.arunkumar</groupId>
+                        <artifactId>scabbard-processor</artifactId>
+                        <version>0.3.0</version>
+                    </path>
+                </annotationProcessorPaths>
+                <compilerArgs>
+                    <arg>-Ascabbard.outputFormat=svg</arg>
+                </compilerArgs>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+After running a build, the images should be available in `target/classes/scabbard`.

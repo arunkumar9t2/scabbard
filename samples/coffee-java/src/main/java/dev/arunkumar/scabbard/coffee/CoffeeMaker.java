@@ -1,8 +1,8 @@
 package dev.arunkumar.scabbard.coffee;
 
-import javax.inject.Inject;
-
 import dagger.Lazy;
+
+import javax.inject.Inject;
 
 class CoffeeMaker {
   private final Lazy<Heater> heater; // Create a possibly costly heater only when we use it.

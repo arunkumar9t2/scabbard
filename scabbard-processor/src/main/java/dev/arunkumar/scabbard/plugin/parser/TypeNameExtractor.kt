@@ -64,6 +64,7 @@ object TypeNameExtractorModule {
  *
  * Example for [List] the result would be [java.util.List]
  */
+@Suppress("DEPRECATION")
 class QualifiedTypeNameExtractor @Inject constructor() : TypeNameExtractor {
   override fun extractName(typeMirror: TypeMirror) = typeMirror.toString()
   override fun extractName(annotationMirror: AnnotationMirror) = annotationMirror.toString()
@@ -76,6 +77,7 @@ class QualifiedTypeNameExtractor @Inject constructor() : TypeNameExtractor {
 /**
  * A [TypeNameExtractor] implementation that returns the simple name of the type
  */
+@Suppress("DEPRECATION")
 class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
 
   override fun extractName(typeMirror: TypeMirror) = typeToSimpleNameString(typeMirror)

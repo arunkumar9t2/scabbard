@@ -9,6 +9,8 @@ on:
       - 'docker/*'
       - '*/gradle-wrapper.properties'
       - '*.gradle'
+      - 'gradle.properties'
+      - '*/gradle.properties'
 
 jobs:
   build:

@@ -6,11 +6,6 @@ plugins {
 description = "Visualize Dagger 2 dependency graphs with ease"
 apply from: "../publishing.gradle"
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
 repositories {
     jcenter()
 }
@@ -18,12 +13,6 @@ repositories {
 sourceSets {
     main.java.srcDirs("build/generated/source/kapt/main")
     test.java.srcDirs("build/generated/source/kapt/test")
-}
-
-kapt {
-    arguments {
-        arg("scabbard.failOnError", true)
-    }
 }
 
 dependencies {
@@ -39,6 +28,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     implementation "guru.nidi:graphviz-java:${versions.graphviz}"
+    implementation "org.slf4j:slf4j-nop:${versions.slf4jNop}"
 
     implementation "com.google.dagger:dagger-spi:${versions.dagger}"
     implementation "com.google.dagger:dagger:${versions.dagger}"

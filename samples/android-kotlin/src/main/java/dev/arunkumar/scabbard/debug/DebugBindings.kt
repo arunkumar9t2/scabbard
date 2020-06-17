@@ -73,7 +73,6 @@ object NamedProvisionModule {
   @Provides
   @Named("named")
   @Singleton
-  @JvmStatic
   fun providesNamedBinding() = NamedBinding()
 }
 
@@ -87,6 +86,5 @@ class QualifiedBinding
 object QualifiedProvisionModule {
   @SimpleQualifier
   @Provides
-  @JvmStatic
   fun providesQualifiedBinding() = QualifiedBinding()
 }

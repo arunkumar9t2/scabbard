@@ -1,8 +1,8 @@
 package dev.arunkumar.scabbard.coffee;
 
-import javax.inject.Singleton;
-
 import dagger.Component;
+
+import javax.inject.Singleton;
 
 public class CoffeeApp {
   @Singleton
