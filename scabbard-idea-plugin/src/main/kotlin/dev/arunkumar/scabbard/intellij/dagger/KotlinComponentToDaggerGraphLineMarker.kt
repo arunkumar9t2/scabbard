@@ -5,16 +5,14 @@ import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
-import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 class KotlinComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
   private fun KtClassOrObject.hasDaggerComponentAnnotations(): Boolean {
-    return findAnnotation(FqName(DAGGER_COMPONENT)) != null
-        || findAnnotation(FqName(DAGGER_SUBCOMPONENT)) != null
-        || findAnnotation(FqName(DAGGER_MODULE)) != null
+    return hasAnnotation(DAGGER_COMPONENT)
+        || hasAnnotation(DAGGER_SUBCOMPONENT)
+        || hasAnnotation(DAGGER_MODULE)
   }
 
   override fun collectNavigationMarkers(
