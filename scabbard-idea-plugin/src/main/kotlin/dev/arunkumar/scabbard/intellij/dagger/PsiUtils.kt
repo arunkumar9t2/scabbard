@@ -4,8 +4,10 @@ import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiIdentifier
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtKeywordToken
 import org.jetbrains.kotlin.lexer.KtTokens
+import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 private val DaggerComponentAnnotations = listOf(
@@ -42,4 +44,8 @@ fun LeafPsiElement.ktClassOrObject(): KtClassOrObject? {
     }
   }
   return null
+}
+
+fun KtClassOrObject.hasAnnotation(qualifiedAnnotationName: String): Boolean {
+  return findAnnotation(FqName(qualifiedAnnotationName)) != null
 }

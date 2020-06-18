@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.intellij.dagger
+package dev.arunkumar.scabbard.intellij.dagger.android
 
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
@@ -7,6 +7,8 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.impl.source.PsiClassReferenceType
 import com.intellij.psi.impl.source.PsiJavaFileImpl
+import dev.arunkumar.scabbard.intellij.dagger.DAGGER_CONTRIBUTES_ANDROID_INJECTOR
+import dev.arunkumar.scabbard.intellij.dagger.prepareContributesAndroidInjectorLineMarker
 
 class JavaContributesAndroidInjectorLineMarker : RelatedItemLineMarkerProvider() {
 

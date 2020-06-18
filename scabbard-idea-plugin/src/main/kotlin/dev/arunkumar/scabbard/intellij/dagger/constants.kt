@@ -6,7 +6,9 @@ const val DAGGER_COMPONENT = "dagger.Component"
 const val DAGGER_SUBCOMPONENT = "dagger.Subcomponent"
 const val DAGGER_MODULE = "dagger.Module"
 const val DAGGER_CONTRIBUTES_ANDROID_INJECTOR = "dagger.android.ContributesAndroidInjector"
-const val DAGGER_ANDROID_ENTRY_POINT = "dagger.hilt.android.AndroidEntryPoint"
-const val DAGGER_HILT_ANDROID_APP = "dagger.hilt.android.HiltAndroidApp"
+const val ANDROIDX_COMPONENT_ACTIVITY = "androidx.activity.ComponentActivity"
+const val ANDROIDX_FRAGMENT = "androidx.fragment.app.Fragment"
+const val ANDROID_VIEW = "android.view.View"
+const val ANDROID_SERVICE = "android.app.Service"
 
 val SCABBARD_ICON = IconLoader.getIcon("/icons/gutter-icon.png")
