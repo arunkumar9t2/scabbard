@@ -44,6 +44,8 @@
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.hilt.KotlinHiltLineMarker" language="kotlin" />
         <codeInsight.lineMarkerProvider
+            implementationClass="dev.arunkumar.scabbard.intellij.dagger.hilt.JavaHiltLineMarker" language="JAVA" />
+        <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.JavaComponentToDaggerGraphLineMarker"
             language="JAVA" />
         <codeInsight.lineMarkerProvider

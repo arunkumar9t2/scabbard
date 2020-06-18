@@ -21,7 +21,7 @@ class KotlinHiltLineMarker : RelatedItemLineMarkerProvider() {
     return hasAnnotation(DAGGER_ANDROID_ENTRY_POINT) || hasAnnotation(DAGGER_HILT_ANDROID_APP)
   }
 
-  private fun KtClassOrObject.findGeneratedComponent() = findGeneratedHiltComponent(
+  private fun KtClassOrObject.findHiltGeneratedComponent() = findGeneratedHiltComponent(
     psiElement = this,
     hasAnnotation = { qualifiedName -> hasAnnotation(qualifiedName) },
     isSubClassOf = { qualifiedClassName -> isSubClassOf(this, qualifiedClassName) }
@@ -47,7 +47,7 @@ class KotlinHiltLineMarker : RelatedItemLineMarkerProvider() {
       is LeafPsiElement -> {
         element.ktClassOrObject()?.let { ktClass ->
           if (ktClass.hasHiltAnnotations()) {
-            val qualifiedName = ktClass.findGeneratedComponent()?.qualifiedName
+            val qualifiedName = ktClass.findHiltGeneratedComponent()?.qualifiedName
             qualifiedName?.let {
               val graphLineMarker = prepareDaggerComponentLineMarkerWithFileName(
                 element = element,
