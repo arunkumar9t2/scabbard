@@ -1,6 +1,7 @@
 package dev.arunkumar.scabbard.intellij.dagger
 
 import com.intellij.psi.PsiAnnotation
+import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiIdentifier
 import com.intellij.psi.impl.source.tree.LeafPsiElement
@@ -48,4 +49,15 @@ fun LeafPsiElement.ktClassOrObject(): KtClassOrObject? {
 
 fun KtClassOrObject.hasAnnotation(qualifiedAnnotationName: String): Boolean {
   return findAnnotation(FqName(qualifiedAnnotationName)) != null
+}
+
+fun PsiClass?.isSubClassOf(qualifiedClassName: String): Boolean {
+  var currSuperClass = this
+  do {
+    when (currSuperClass?.qualifiedName) {
+      qualifiedClassName -> return true
+      else -> currSuperClass = currSuperClass?.superClass
+    }
+  } while (currSuperClass != null)
+  return false
 }
