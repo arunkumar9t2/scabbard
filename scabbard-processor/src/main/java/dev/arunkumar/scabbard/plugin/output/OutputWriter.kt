@@ -72,9 +72,11 @@ constructor(private val outputManager: OutputManager) : OutputWriter {
   ) = outputManager.createOutputFiles(PNG, component, isFull)
     .flatMap { fileObject ->
       Result.of<Boolean, Exception> {
-        Graphviz.fromString(dotString)
-          .render(Format.PNG)
-          .toOutputStream(fileObject.openOutputStream())
+        fileObject.openOutputStream().use { stream ->
+          Graphviz.fromString(dotString)
+            .render(Format.PNG)
+            .toOutputStream(stream)
+        }
         true
       }
     }
@@ -84,7 +86,6 @@ constructor(private val outputManager: OutputManager) : OutputWriter {
 class SvgWriter
 @Inject
 constructor(private val outputManager: OutputManager) : OutputWriter {
-
   override fun write(
     dotString: String,
     component: TypeElement,
@@ -92,9 +93,11 @@ constructor(private val outputManager: OutputManager) : OutputWriter {
   ) = outputManager.createOutputFiles(SVG, component, isFull)
     .flatMap { fileObject ->
       Result.of<Boolean, Exception> {
-        Graphviz.fromString(dotString)
-          .render(Format.SVG)
-          .toOutputStream(fileObject.openOutputStream())
+        fileObject.openOutputStream().use { stream ->
+          Graphviz.fromString(dotString)
+            .render(Format.SVG)
+            .toOutputStream(stream)
+        }
         true
       }
     }
