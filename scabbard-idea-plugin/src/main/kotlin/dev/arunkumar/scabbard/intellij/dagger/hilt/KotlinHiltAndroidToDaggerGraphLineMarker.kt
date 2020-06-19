@@ -12,7 +12,7 @@ import dev.arunkumar.scabbard.intellij.dagger.ktClassOrObject
 import dev.arunkumar.scabbard.intellij.dagger.prepareDaggerComponentLineMarkerWithFileName
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
-class KotlinHiltLineMarker : RelatedItemLineMarkerProvider() {
+class KotlinHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
   /***
    * @return true when the given class has Hilt Annotations.

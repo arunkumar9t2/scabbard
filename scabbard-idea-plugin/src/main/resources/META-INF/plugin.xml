@@ -42,9 +42,9 @@
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.android.KotlinContributesAndroidInjectorLineMarker"
             language="kotlin" />
         <codeInsight.lineMarkerProvider
-            implementationClass="dev.arunkumar.scabbard.intellij.dagger.hilt.KotlinHiltLineMarker" language="kotlin" />
+            implementationClass="dev.arunkumar.scabbard.intellij.dagger.hilt.KotlinHiltAndroidToDaggerGraphLineMarker" language="kotlin" />
         <codeInsight.lineMarkerProvider
-            implementationClass="dev.arunkumar.scabbard.intellij.dagger.hilt.JavaHiltLineMarker" language="JAVA" />
+            implementationClass="dev.arunkumar.scabbard.intellij.dagger.hilt.JavaHiltAndroidToDaggerGraphLineMarker" language="JAVA" />
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.JavaComponentToDaggerGraphLineMarker"
             language="JAVA" />

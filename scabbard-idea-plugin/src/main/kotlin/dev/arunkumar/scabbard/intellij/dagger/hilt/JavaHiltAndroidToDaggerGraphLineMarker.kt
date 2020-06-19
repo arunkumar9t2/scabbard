@@ -9,7 +9,7 @@ import dev.arunkumar.scabbard.intellij.dagger.isSubClassOf
 import dev.arunkumar.scabbard.intellij.dagger.prepareDaggerComponentLineMarkerWithFileName
 import org.jetbrains.kotlin.j2k.getContainingClass
 
-class JavaHiltLineMarker : RelatedItemLineMarkerProvider() {
+class JavaHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
   private val hiltAnnotations = listOf(
     DAGGER_ANDROID_ENTRY_POINT,
