@@ -55,4 +55,9 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:${versions.hilt}"
 
     testImplementation "junit:junit:${versions.junit}"
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "androidx.test:core:${versions.androidx.test}"
+    testImplementation "org.robolectric:robolectric:${versions.robolectric}"
+    testImplementation project(path: ":scabbard-processor-tests:common")
+    kaptTest project(path: ":scabbard-processor")
 }
