@@ -1,10 +1,8 @@
 package dev.arunkumar.scabbard.intellij.dagger
 
-import com.intellij.psi.PsiAnnotation
-import com.intellij.psi.PsiClass
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiIdentifier
+import com.intellij.psi.*
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import com.intellij.psi.search.GlobalSearchScope
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtKeywordToken
 import org.jetbrains.kotlin.lexer.KtTokens
@@ -49,6 +47,16 @@ fun LeafPsiElement.ktClassOrObject(): KtClassOrObject? {
 
 fun KtClassOrObject.hasAnnotation(qualifiedAnnotationName: String): Boolean {
   return findAnnotation(FqName(qualifiedAnnotationName)) != null
+}
+
+/**
+ * Converts a Kotlin class object to `PsiClass` instance. Null if unsuccessful.
+ */
+fun KtClassOrObject.toPsiClass(): PsiClass? {
+  val javaPsiFacade = JavaPsiFacade.getInstance(project)
+  val searchScope = GlobalSearchScope.allScope(project)
+  return fqName?.asString()
+    ?.let { qualifiedName -> javaPsiFacade.findClass(qualifiedName, searchScope) }
 }
 
 fun PsiClass?.isSubClassOf(qualifiedClassName: String): Boolean {
