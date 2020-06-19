@@ -1,8 +1,10 @@
-package dev.arunkumar.scabbard.intellij.dagger
+package dev.arunkumar.scabbard.intellij.dagger.android
 
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
+import dev.arunkumar.scabbard.intellij.dagger.DAGGER_CONTRIBUTES_ANDROID_INJECTOR
+import dev.arunkumar.scabbard.intellij.dagger.prepareContributesAndroidInjectorLineMarker
 import org.jetbrains.kotlin.idea.quickfix.createFromUsage.callableBuilder.getReturnTypeReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName

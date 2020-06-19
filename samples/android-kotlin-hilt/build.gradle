@@ -29,6 +29,7 @@ android {
 scabbard {
     enabled true
     failOnError true
+    fullBindingGraphValidation true
     outputFormat "svg"
 }
 
