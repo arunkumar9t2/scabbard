@@ -13,11 +13,11 @@ class KotlinHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider()
    * @return true when the given class has Hilt Annotations.
    */
   private fun KtClassOrObject.hasHiltAnnotations(): Boolean {
-    return hasAnnotation(DAGGER_ANDROID_ENTRY_POINT) || hasAnnotation(DAGGER_HILT_ANDROID_APP)
+    return hasAnnotation(DAGGER_HILT_ANDROID_ENTRY_POINT) || hasAnnotation(DAGGER_HILT_ANDROID_APP)
   }
 
-  private fun KtClassOrObject.findHiltGeneratedComponent() = findGeneratedHiltComponent(
-    psiElement = this,
+  private fun KtClassOrObject.findHiltGeneratedComponent() = findGeneratedStandardHiltComponent(
+    componentClass = this,
     hasAnnotation = { qualifiedName -> hasAnnotation(qualifiedName) },
     isSubClassOf = { qualifiedClassName -> isSubClassOf(this, qualifiedClassName) }
   )

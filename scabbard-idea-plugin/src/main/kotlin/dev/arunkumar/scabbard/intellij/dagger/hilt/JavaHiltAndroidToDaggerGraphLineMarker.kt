@@ -12,12 +12,12 @@ import org.jetbrains.kotlin.j2k.getContainingClass
 class JavaHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
   private val hiltAnnotations = listOf(
-    DAGGER_ANDROID_ENTRY_POINT,
+    DAGGER_HILT_ANDROID_ENTRY_POINT,
     DAGGER_HILT_ANDROID_APP
   )
 
-  private fun PsiClass.findHiltGeneratedComponent() = findGeneratedHiltComponent(
-    psiElement = this,
+  private fun PsiClass.findHiltGeneratedComponent() = findGeneratedStandardHiltComponent(
+    componentClass = this,
     hasAnnotation = { qualifiedName -> hasAnnotation(qualifiedName) },
     isSubClassOf = { qualifiedClassName -> isSubClassOf(qualifiedClassName) }
   )
