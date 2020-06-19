@@ -188,7 +188,16 @@ class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
             // nested names. For now only consider maximum of 2 levels for reduced width.
             .split(innerClassSeparator)
             .takeLast(2)
-            .joinToString(separator = innerClassSeparator.toString())
+            .let { classNames ->
+              // Heurestics: For Hilt generated components, the format is usually <app_name>_HiltComponents.<component_nam>
+              // In this case, we can filter out the first part and consider <component_name> alone.
+              // TODO(arun) Move the constant to common module and share with idea plugin
+              if (classNames.firstOrNull()?.endsWith("HiltComponents") == true) {
+                listOf(classNames.last())
+              } else {
+                classNames
+              }
+            }.joinToString(separator = innerClassSeparator.toString())
         )
       }
     }
