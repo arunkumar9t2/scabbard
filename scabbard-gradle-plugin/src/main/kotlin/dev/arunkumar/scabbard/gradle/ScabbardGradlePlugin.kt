@@ -83,6 +83,7 @@ class ScabbardGradlePlugin : Plugin<Project> {
     internal const val SCABBARD_PLUGIN_ID = "scabbard.gradle"
     internal const val KOTLIN_PLUGIN_ID = "kotlin"
     internal const val KAPT_PLUGIN_ID = "kotlin-kapt"
+    internal const val JAVA_PLUGIN_ID = "java"
     internal const val JAVA_LIBRARY_PLUGIN_ID = "java-library"
     internal const val ANDROID_APP_PLUGIN_ID = "com.android.application"
     internal const val ANDROID_LIBRARY_PLUGIN_ID = "com.android.library"

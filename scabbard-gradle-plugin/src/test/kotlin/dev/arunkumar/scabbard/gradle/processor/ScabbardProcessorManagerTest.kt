@@ -46,7 +46,21 @@ class ScabbardProcessorManagerTest : ScabbardBaseTest() {
   }
 
   @Test
-  fun `assert when java plugin present and scabbard extension disabled assert scabbard processor is not added`() {
+  fun `assert when java plugin is present and scabbard extension is enabled, scabbard is added`() {
+    project.setupAsJava(isJavaLibrary = false)
+    project.addDagger()
+
+    scabbardExtension {
+      enabled = true
+    }
+    assertTrue(
+      "Scabbard is applied on annotationProcessor",
+      project.hasScabbardProcessor(isKoltin = false)
+    )
+  }
+
+  @Test
+  fun `assert when java-library plugin present and scabbard extension is enabled, scabbard is added`() {
     project.setupAsJava()
     project.addDagger()
 

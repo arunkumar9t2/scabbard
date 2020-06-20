@@ -56,7 +56,7 @@ abstract class ScabbardBaseTest {
   /**
    * Setup the [project] instance as a pure java project.
    */
-  internal fun Project.setupAsJava() {
+  internal fun Project.setupAsJava(isJavaLibrary: Boolean = true) {
     baseSetup()
     plugins.apply {
       apply(JAVA_LIBRARY_PLUGIN_ID)

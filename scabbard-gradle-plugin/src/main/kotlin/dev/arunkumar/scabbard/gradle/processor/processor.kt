@@ -3,6 +3,7 @@ package dev.arunkumar.scabbard.gradle.processor
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.ANDROID_APP_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.ANDROID_LIBRARY_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_LIBRARY_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.plugin.VERSION
 import org.gradle.api.Project
@@ -89,6 +90,7 @@ internal fun Project.manageScabbardProcessor(enabled: Boolean) {
     pluginManager.run {
       withPlugin(ANDROID_APP_PLUGIN_ID) { addScabbard() }
       withPlugin(ANDROID_LIBRARY_PLUGIN_ID) { addScabbard() }
+      withPlugin(JAVA_PLUGIN_ID) { addScabbard() }
       withPlugin(JAVA_LIBRARY_PLUGIN_ID) { addScabbard() }
       withPlugin(KAPT_PLUGIN_ID) {
         removeScabbard() // Remove from annotationProcessor and add to kapt alone.
