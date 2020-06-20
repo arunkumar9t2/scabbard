@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Inject
 import javax.inject.Named
+import javax.inject.Singleton
 
 @DefineComponent(parent = ApplicationComponent::class)
 interface HiltCustomComponent {
@@ -27,6 +28,9 @@ object HiltCustomModule {
   fun providesNumber(): Int = 10
 
 }
+
+@Singleton
+class SingletonBinding @Inject constructor()
 
 class CustomBinding @Inject constructor(@param:Named(NUMBER) private val number: Int)
 

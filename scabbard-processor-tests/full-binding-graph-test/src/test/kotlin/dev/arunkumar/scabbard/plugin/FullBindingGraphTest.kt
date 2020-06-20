@@ -41,21 +41,21 @@ class FullBindingGraphTest {
   fun setup() {
     simpleComponentDotFile = SimpleComponent::class.java.generatedDotFile()
     fullSimpleComponentDotFile = SimpleComponent::class.java.generatedFullDotFile()
-    simpleModuleDotFile = SimpleModule::class.java.generatedDotFile()
+    simpleModuleDotFile = SimpleModule::class.java.generatedFullDotFile()
   }
 
   @Test
   fun `assert full binding graph validation succeeds when fail on error is enabled`() {
-    assertThat(simpleComponentDotFile.exists())
+    assertThat(simpleComponentDotFile.exists()).isTrue()
   }
 
   @Test
   fun `assert full binding graph is generated as separate file with a prefix`() {
-    assertThat(fullSimpleComponentDotFile.exists())
+    assertThat(fullSimpleComponentDotFile.exists()).isTrue()
   }
 
   @Test
   fun `assert graph image is generated for simple module`() {
-    assertThat(simpleModuleDotFile.exists())
+    assertThat(simpleModuleDotFile.exists()).isTrue()
   }
 }

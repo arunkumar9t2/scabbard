@@ -8,4 +8,7 @@ import javax.inject.Inject
 class HiltSampleApp : Application() {
   @Inject
   lateinit var hiltCustomComponentBuilder: HiltCustomComponent.Builder
+
+  @Inject
+  lateinit var singletonBinding: SingletonBinding
 }

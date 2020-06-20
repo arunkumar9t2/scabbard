@@ -14,8 +14,12 @@ import com.intellij.psi.util.PsiUtilCore
 // TODO(arun) create a common package to share these between intellij and processor
 private const val FULL_GRAPH_PREFIX = "full_"
 private const val FULL_GRAPH_FILE_NAME = "$FULL_GRAPH_PREFIX%s"
+private const val TREE_GRAPH_PREFIX = "tree_"
+private const val TREE_GRAPH_FILE_NAME = "$TREE_GRAPH_PREFIX%s"
 
 private val GENERATED_FILE_FORMATS = listOf(
+  "$TREE_GRAPH_FILE_NAME.png",
+  "$TREE_GRAPH_FILE_NAME.svg",
   "%s.png",
   "$FULL_GRAPH_FILE_NAME.png",
   "%s.svg",
@@ -109,12 +113,19 @@ private class PsiElementToDaggerComponentNameCellRenderer : DefaultPsiElementCel
     val graphFileName = PsiUtilCore.getVirtualFile(element)?.nameWithoutExtension
     if (graphFileName != null) {
       val isFullGraph = graphFileName.startsWith(FULL_GRAPH_PREFIX)
-      val classNameToSearch = if (isFullGraph) graphFileName.split(FULL_GRAPH_PREFIX).last() else graphFileName
+      val isComponentTreeGraph = graphFileName.startsWith(TREE_GRAPH_PREFIX)
+
+      val classNameToSearch = when {
+        isFullGraph -> graphFileName.split(FULL_GRAPH_PREFIX).last()
+        isComponentTreeGraph -> graphFileName.split(TREE_GRAPH_PREFIX).last()
+        else -> graphFileName
+      }
+
       val classSimpleName = javaPsiFacade.findClass(classNameToSearch, searchScope)?.name
-      return if (isFullGraph) {
-        "$classSimpleName's Full $DEPENDENCY_GRAPH"
-      } else {
-        "$classSimpleName's $DEPENDENCY_GRAPH"
+      return when {
+        isFullGraph -> "$classSimpleName's Full $DEPENDENCY_GRAPH"
+        isComponentTreeGraph -> "$classSimpleName's Component Hierarchy"
+        else -> "$classSimpleName's $DEPENDENCY_GRAPH"
       }
     }
     return super.getElementText(element)

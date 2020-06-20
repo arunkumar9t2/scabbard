@@ -21,17 +21,19 @@ interface OutputManager {
   }
 
   /**
-   *Return the output file name, taking into account the format, component name and it if is a
+   * Return the output file name, taking into account the format, component name and it if is a
    * full graph.
    *
    * @param format The extension of the generated file.
    * @param currentComponent the component for which files should be created.
    * @param isFullGraph Whether the current graph is a full binding graph.
+   * @param isComponentTree Whether the output is for component tree.
    */
   fun outputFileNameFor(
     format: Format,
     currentComponent: TypeElement,
-    isFullGraph: Boolean = false
+    isFullGraph: Boolean = false,
+    isComponentTree: Boolean = false
   ): String
 
   /**
@@ -40,11 +42,13 @@ interface OutputManager {
    * @param format The extension of the generated file.
    * @param currentComponent the component for which files should be created.
    * @param isFullGraph Whether the current graph is a full binding graph.
+   * @param isComponentTree Whether the output is for component tree.
    */
   fun createOutputFiles(
     format: Format,
     currentComponent: TypeElement,
-    isFullGraph: Boolean = false
+    isFullGraph: Boolean = false,
+    isComponentTree: Boolean = false
   ): Result<FileObject, Exception>
 }
 
@@ -65,6 +69,7 @@ constructor(
   companion object {
     const val SCABBARD_PACKAGE = "scabbard"
     const val FULL_GRAPH_PREFIX = "full_"
+    const val TREE_GRAPH_PREFIX = "tree_"
   }
 
   private fun Filer.safeCreate(fileName: String) =
@@ -79,22 +84,28 @@ constructor(
   override fun outputFileNameFor(
     format: OutputManager.Format,
     currentComponent: TypeElement,
-    isFullGraph: Boolean
+    isFullGraph: Boolean,
+    isComponentTree: Boolean
   ): String {
     val componentName = ClassName.get(currentComponent)
     val packageName = componentName.packageName()
     val componentSimpleNames = componentName.simpleNames().joinToString(".")
     val name = "$packageName.$componentSimpleNames".replace("$", ".")
-    val prefix = if (isFullGraph) FULL_GRAPH_PREFIX else ""
+    val prefix = when {
+      isFullGraph -> FULL_GRAPH_PREFIX
+      isComponentTree -> TREE_GRAPH_PREFIX
+      else -> ""
+    }
     return "$prefix$name.${format.extension}"
   }
 
   override fun createOutputFiles(
     format: OutputManager.Format,
     currentComponent: TypeElement,
-    isFullGraph: Boolean
+    isFullGraph: Boolean,
+    isComponentTree: Boolean
   ): Result<FileObject, Exception> {
-    val fileName = outputFileNameFor(format, currentComponent, isFullGraph)
+    val fileName = outputFileNameFor(format, currentComponent, isFullGraph, isComponentTree)
     return filer.safeCreate(fileName)
   }
 }
