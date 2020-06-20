@@ -1,12 +1,9 @@
 package dev.arunkumar.scabbard.plugin.processor.graphviz
 
-import dagger.Binds
-import dagger.Module
 import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.MaybeBinding
 import dagger.model.ComponentPath
-import dagger.multibindings.IntoSet
 import dev.arunkumar.dot.DotGraph
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
@@ -91,12 +88,4 @@ constructor(
     } else emptyList()
   }
 
-  @Module
-  interface Builder {
-    @Binds
-    @IntoSet
-    fun bindingGraphProcessor(
-      defaultBindingGraphProcessor: DefaultBindingGraphProcessor
-    ): BindingGraphProcessor
-  }
 }

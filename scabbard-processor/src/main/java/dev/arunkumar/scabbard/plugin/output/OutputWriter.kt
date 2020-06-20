@@ -18,7 +18,8 @@ interface OutputWriter {
   fun write(
     dotString: String,
     component: TypeElement,
-    isFull: Boolean
+    isFull: Boolean,
+    isComponentTree: Boolean = false
   ): Result<Boolean, Exception>
 }
 
@@ -50,8 +51,9 @@ constructor(private val outputManager: OutputManager) : OutputWriter {
   override fun write(
     dotString: String,
     component: TypeElement,
-    isFull: Boolean
-  ) = outputManager.createOutputFiles(DOT, component, isFull)
+    isFull: Boolean,
+    isComponentTree: Boolean
+  ) = outputManager.createOutputFiles(DOT, component, isFull, isComponentTree)
     .flatMap { fileObject ->
       Result.of<Boolean, Exception> {
         fileObject.openOutputStream().use { it.write(dotString.toByteArray()) }
@@ -68,8 +70,9 @@ constructor(private val outputManager: OutputManager) : OutputWriter {
   override fun write(
     dotString: String,
     component: TypeElement,
-    isFull: Boolean
-  ) = outputManager.createOutputFiles(PNG, component, isFull)
+    isFull: Boolean,
+    isComponentTree: Boolean
+  ) = outputManager.createOutputFiles(PNG, component, isFull, isComponentTree)
     .flatMap { fileObject ->
       Result.of<Boolean, Exception> {
         fileObject.openOutputStream().use { stream ->
@@ -89,8 +92,9 @@ constructor(private val outputManager: OutputManager) : OutputWriter {
   override fun write(
     dotString: String,
     component: TypeElement,
-    isFull: Boolean
-  ) = outputManager.createOutputFiles(SVG, component, isFull)
+    isFull: Boolean,
+    isComponentTree: Boolean
+  ) = outputManager.createOutputFiles(SVG, component, isFull, isComponentTree)
     .flatMap { fileObject ->
       Result.of<Boolean, Exception> {
         fileObject.openOutputStream().use { stream ->
