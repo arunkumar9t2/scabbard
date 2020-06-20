@@ -18,6 +18,7 @@ internal const val SCABBARD_NAME = "scabbard-processor"
 internal const val SCABBARD_PROCESSOR_DEPENDENCY = "$SCABBARD_GROUP:$SCABBARD_NAME:$VERSION"
 internal const val DAGGER_GROUP = "com.google.dagger"
 internal const val DAGGER_COMPILER = "dagger-compiler"
+internal const val DAGGER_HILT_ANDROID_COMPILER = "hilt-android-compiler"
 
 /**
  * @return `true` if the [Dependency] is Scabbard's annotation processor dependency
@@ -27,7 +28,8 @@ internal fun Dependency.isScabbardDependency() = group == SCABBARD_GROUP && name
 /**
  * @return `true` if the [Dependency] is Dagger's main annotation processor dependency
  */
-internal fun Dependency.isDaggerCompilerDependency() = group == DAGGER_GROUP && name == DAGGER_COMPILER
+internal fun Dependency.isDaggerCompilerDependency() =
+  group == DAGGER_GROUP && (name == DAGGER_COMPILER || name == DAGGER_HILT_ANDROID_COMPILER)
 
 /**
  * @return Boolean if the Configuration has Scabbard's annotation processor dependency
