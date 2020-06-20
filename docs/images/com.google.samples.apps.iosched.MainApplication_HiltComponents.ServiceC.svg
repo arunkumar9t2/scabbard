@@ -1,9 +1,9 @@
-<svg width="868px" height="216px"
- viewBox="0.00 0.00 867.80 215.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="692px" height="216px"
+ viewBox="0.00 0.00 691.80 215.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 201.4)">
 <title>com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ServiceC</title>
-<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-201.4 853.4,-201.4 853.4,14.4 -14.4,14.4"/>
-<text text-anchor="middle" x="276.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">MainApplication_HiltComponents.ApplicationC → MainApplication_HiltComponents.ServiceC</text>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-201.4 677.4,-201.4 677.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="81.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">ApplicationC → ServiceC</text>
 <g id="clust1" class="cluster"><title>cluster_Entry Points</title>
 <polygon fill="none" stroke="black" points="8,-60 8,-135 214,-135 214,-60 8,-60"/>
 <text text-anchor="middle" x="51" y="-119.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
@@ -12,52 +12,52 @@
 <polygon fill="none" stroke="black" points="234,-60 234,-135 450,-135 450,-60 234,-60"/>
 <text text-anchor="middle" x="296.5" y="-119.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
 </g>
-<g id="clust5" class="cluster"><title>cluster_MainApplication_HiltComponents.ApplicationC</title>
-<g id="a_clust5"><a xlink:href="com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC.svg" xlink:title="Inherited from MainApplication_HiltComponents.ApplicationC\n@Singleton">
-<polygon fill="none" stroke="aquamarine" stroke-dasharray="5,2" points="470,-31 470,-179 839,-179 839,-31 470,-31"/>
-<text text-anchor="middle" x="654.5" y="-163.8" font-family="Times New Roman,serif" font-size="14.00">Inherited from MainApplication_HiltComponents.ApplicationC</text>
-<text text-anchor="middle" x="654.5" y="-148.8" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
+<g id="clust5" class="cluster"><title>cluster_ApplicationC</title>
+<g id="a_clust5"><a xlink:href="com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC.svg" xlink:title="Inherited from ApplicationC\n@Singleton">
+<polygon fill="none" stroke="aquamarine" stroke-dasharray="5,2" points="470,-31 470,-179 655,-179 655,-31 470,-31"/>
+<text text-anchor="middle" x="562.5" y="-163.8" font-family="Times New Roman,serif" font-size="14.00">Inherited from ApplicationC</text>
+<text text-anchor="middle" x="562.5" y="-148.8" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
 </a>
 </g>
 </g>
-<!-- 696e2a18&#45;cd6e&#45;46fe&#45;9db9&#45;c21cfd9efcb0 -->
-<g id="node1" class="node"><title>696e2a18&#45;cd6e&#45;46fe&#45;9db9&#45;c21cfd9efcb0</title>
+<!-- 0af26385&#45;9482&#45;4a0e&#45;835c&#45;204ac68bb0f4 -->
+<g id="node1" class="node"><title>0af26385&#45;9482&#45;4a0e&#45;835c&#45;204ac68bb0f4</title>
 <polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="206,-104 16,-104 16,-100 12,-100 12,-96 16,-96 16,-76 12,-76 12,-72 16,-72 16,-68 206,-68 206,-104"/>
 <polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-100 20,-100 20,-96 16,-96 "/>
 <polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-76 20,-76 20,-72 16,-72 "/>
 <text text-anchor="middle" x="111" y="-82.3" font-family="Times New Roman,serif" font-size="14.00">inject (ConferenceDataService)</text>
 </g>
-<!-- b977a8e7&#45;b7d8&#45;40c4&#45;bb65&#45;e071dffa6953 -->
-<g id="node2" class="node"><title>b977a8e7&#45;b7d8&#45;40c4&#45;bb65&#45;e071dffa6953</title>
+<!-- 5343a4d5&#45;4251&#45;4aa8&#45;b6b1&#45;abf26b2f3d15 -->
+<g id="node2" class="node"><title>5343a4d5&#45;4251&#45;4aa8&#45;b6b1&#45;abf26b2f3d15</title>
 <polygon fill="turquoise" stroke="turquoise" points="442,-104 242,-104 242,-68 442,-68 442,-104"/>
 <text text-anchor="middle" x="342" y="-82.3" font-family="Times New Roman,serif" font-size="14.00">RefreshConferenceDataUseCase</text>
 </g>
-<!-- 696e2a18&#45;cd6e&#45;46fe&#45;9db9&#45;c21cfd9efcb0&#45;&gt;b977a8e7&#45;b7d8&#45;40c4&#45;bb65&#45;e071dffa6953 -->
-<g id="edge1" class="edge"><title>696e2a18&#45;cd6e&#45;46fe&#45;9db9&#45;c21cfd9efcb0&#45;&gt;b977a8e7&#45;b7d8&#45;40c4&#45;bb65&#45;e071dffa6953</title>
+<!-- 0af26385&#45;9482&#45;4a0e&#45;835c&#45;204ac68bb0f4&#45;&gt;5343a4d5&#45;4251&#45;4aa8&#45;b6b1&#45;abf26b2f3d15 -->
+<g id="edge1" class="edge"><title>0af26385&#45;9482&#45;4a0e&#45;835c&#45;204ac68bb0f4&#45;&gt;5343a4d5&#45;4251&#45;4aa8&#45;b6b1&#45;abf26b2f3d15</title>
 <path fill="none" stroke="black" d="M206.134,-86C214.466,-86 222.947,-86 231.391,-86"/>
 <polygon fill="black" stroke="black" points="231.662,-89.5001 241.662,-86 231.662,-82.5001 231.662,-89.5001"/>
 </g>
-<!-- 8f57696a&#45;cf2d&#45;46fb&#45;a2fe&#45;870f2105df14 -->
-<g id="node3" class="node"><title>8f57696a&#45;cf2d&#45;46fb&#45;a2fe&#45;870f2105df14</title>
-<polygon fill="aquamarine" stroke="aquamarine" points="739,-133 570,-133 570,-95 739,-95 739,-133"/>
-<text text-anchor="middle" x="654.5" y="-117.8" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
-<text text-anchor="middle" x="654.5" y="-102.8" font-family="Times New Roman,serif" font-size="14.00">ConferenceDataRepository</text>
+<!-- c2969791&#45;8b1a&#45;4fba&#45;ae9b&#45;25ad82327ac6 -->
+<g id="node3" class="node"><title>c2969791&#45;8b1a&#45;4fba&#45;ae9b&#45;25ad82327ac6</title>
+<polygon fill="aquamarine" stroke="aquamarine" points="647,-133 478,-133 478,-95 647,-95 647,-133"/>
+<text text-anchor="middle" x="562.5" y="-117.8" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
+<text text-anchor="middle" x="562.5" y="-102.8" font-family="Times New Roman,serif" font-size="14.00">ConferenceDataRepository</text>
 </g>
-<!-- b977a8e7&#45;b7d8&#45;40c4&#45;bb65&#45;e071dffa6953&#45;&gt;8f57696a&#45;cf2d&#45;46fb&#45;a2fe&#45;870f2105df14 -->
-<g id="edge2" class="edge"><title>b977a8e7&#45;b7d8&#45;40c4&#45;bb65&#45;e071dffa6953&#45;&gt;8f57696a&#45;cf2d&#45;46fb&#45;a2fe&#45;870f2105df14</title>
-<path fill="none" stroke="black" d="M442.098,-94.9364C479.735,-98.3304 522.46,-102.183 559.602,-105.533"/>
-<polygon fill="black" stroke="black" points="559.648,-109.051 569.922,-106.463 560.276,-102.079 559.648,-109.051"/>
+<!-- 5343a4d5&#45;4251&#45;4aa8&#45;b6b1&#45;abf26b2f3d15&#45;&gt;c2969791&#45;8b1a&#45;4fba&#45;ae9b&#45;25ad82327ac6 -->
+<g id="edge3" class="edge"><title>5343a4d5&#45;4251&#45;4aa8&#45;b6b1&#45;abf26b2f3d15&#45;&gt;c2969791&#45;8b1a&#45;4fba&#45;ae9b&#45;25ad82327ac6</title>
+<path fill="none" stroke="black" d="M442.021,-98.6892C450.624,-99.7916 459.312,-100.905 467.869,-102.002"/>
+<polygon fill="black" stroke="black" points="467.478,-105.48 477.842,-103.28 468.368,-98.5368 467.478,-105.48"/>
 </g>
-<!-- e90a3ec1&#45;b709&#45;47c3&#45;9ad9&#45;6b96cbfaa10f -->
-<g id="node4" class="node"><title>e90a3ec1&#45;b709&#45;47c3&#45;9ad9&#45;6b96cbfaa10f</title>
-<polygon fill="turquoise" stroke="turquoise" points="720.5,-77 588.5,-77 588.5,-39 720.5,-39 720.5,-77"/>
-<text text-anchor="middle" x="654.5" y="-61.8" font-family="Times New Roman,serif" font-size="14.00">@IoDispatcher</text>
-<text text-anchor="middle" x="654.5" y="-46.8" font-family="Times New Roman,serif" font-size="14.00">CoroutineDispatcher</text>
+<!-- 7791af4a&#45;d865&#45;43ad&#45;a028&#45;bec30376ab23 -->
+<g id="node4" class="node"><title>7791af4a&#45;d865&#45;43ad&#45;a028&#45;bec30376ab23</title>
+<polygon fill="turquoise" stroke="turquoise" points="628.5,-77 496.5,-77 496.5,-39 628.5,-39 628.5,-77"/>
+<text text-anchor="middle" x="562.5" y="-61.8" font-family="Times New Roman,serif" font-size="14.00">@IoDispatcher</text>
+<text text-anchor="middle" x="562.5" y="-46.8" font-family="Times New Roman,serif" font-size="14.00">CoroutineDispatcher</text>
 </g>
-<!-- b977a8e7&#45;b7d8&#45;40c4&#45;bb65&#45;e071dffa6953&#45;&gt;e90a3ec1&#45;b709&#45;47c3&#45;9ad9&#45;6b96cbfaa10f -->
-<g id="edge3" class="edge"><title>b977a8e7&#45;b7d8&#45;40c4&#45;bb65&#45;e071dffa6953&#45;&gt;e90a3ec1&#45;b709&#45;47c3&#45;9ad9&#45;6b96cbfaa10f</title>
-<path fill="none" stroke="black" d="M442.098,-77.0636C486.11,-73.0947 537.081,-68.4983 577.945,-64.8133"/>
-<polygon fill="black" stroke="black" points="578.461,-68.2811 588.106,-63.8971 577.832,-61.3094 578.461,-68.2811"/>
+<!-- 5343a4d5&#45;4251&#45;4aa8&#45;b6b1&#45;abf26b2f3d15&#45;&gt;7791af4a&#45;d865&#45;43ad&#45;a028&#45;bec30376ab23 -->
+<g id="edge2" class="edge"><title>5343a4d5&#45;4251&#45;4aa8&#45;b6b1&#45;abf26b2f3d15&#45;&gt;7791af4a&#45;d865&#45;43ad&#45;a028&#45;bec30376ab23</title>
+<path fill="none" stroke="black" d="M442.021,-73.3108C456.832,-71.4129 471.895,-69.4826 486.109,-67.661"/>
+<polygon fill="black" stroke="black" points="486.82,-71.0987 496.294,-66.3559 485.93,-64.1554 486.82,-71.0987"/>
 </g>
 </g>
 </svg>
