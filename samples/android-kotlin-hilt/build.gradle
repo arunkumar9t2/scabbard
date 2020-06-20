@@ -18,10 +18,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+    variantFilter { variant ->
+        if (variant.buildType.name == 'release') {
+            variant.setIgnore(true)
         }
     }
 }
