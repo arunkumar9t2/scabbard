@@ -69,7 +69,7 @@ class ComponentRendererTest {
     assertThat(componentTreeDotContents).contains("node [shape=\"rectangle\", style=\"filled\", color=\"turquoise\"]")
     val graph = Parser().read(simpleComponentTreeDotFile)
     assertThat(graph.nodes()).hasSize(2)
-    assertThat(graph.nodes()).hasSize(1)
+    assertThat(graph.nodes().flatMap { it.links() }).hasSize(1)
     assertThat(graph.graphs()).hasSize(0)
   }
 }
