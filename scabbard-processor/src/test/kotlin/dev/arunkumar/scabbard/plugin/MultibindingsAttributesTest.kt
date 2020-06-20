@@ -67,7 +67,7 @@ class MultibindingsAttributesTest {
     assertThat(multibindingsAttrs["labeljust"]).isEqualTo("c")
     assertThat(multibindingsAttrs["style"]).isEqualTo("rounded")
 
-    assertThat(generatedText).contains("[shape=\"tab\", label=\"Set<String>\", color=\"turquoise\"]")
+    assertThat(generatedText).contains("[label=\"Set<String>\", color=\"turquoise\", shape=\"tab\"]")
     assertThat(generatedText).contains("[label=\"MultibindingsAttributesTest.NodeA\", color=\"turquoise\"]")
   }
 }

@@ -24,11 +24,13 @@ class BindingsRenderer(
   }
 
   private fun DotGraphBuilder.binding(binding: Binding) {
-    if (binding.kind().isMultibinding) return // Multi binding rendered as another cluster
     binding.id {
       "label" eq binding.label
       "color" eq binding.color
       when {
+        binding.kind().isMultibinding -> {
+          "shape" eq "tab"
+        }
         binding.kind() == BOUND_INSTANCE -> {
           "shape" eq "parallelogram"
         }
@@ -53,14 +55,11 @@ class BindingsRenderer(
             "label" eq name
             "labeljust" eq "c"
             "style" eq "rounded"
+            "color" eq "black"
           }
 
-          //TODO(arun) resuse binding()
-          multiBinding.id {
-            "shape" eq "tab"
-            "label" eq multiBinding.label
-            "color" eq multiBinding.color
-          }
+          binding(multiBinding)
+
           if (!multiBinding.isEntryPoint) {
             // If multbinding node was present as an entry point does not make sense to render its' content in
             // entry point cluster.
@@ -75,7 +74,12 @@ class BindingsRenderer(
   override fun DotGraphBuilder.build(renderingElement: List<MaybeBinding>) {
     renderingElement.forEach { maybeBinding ->
       when (maybeBinding) {
-        is Binding -> binding(maybeBinding)
+        is Binding -> {
+          if (!maybeBinding.kind().isMultibinding) {
+            // Multibindings are handled in another cluster
+            binding(maybeBinding)
+          }
+        }
         is MissingBinding -> missingBinding(maybeBinding)
       }
     }

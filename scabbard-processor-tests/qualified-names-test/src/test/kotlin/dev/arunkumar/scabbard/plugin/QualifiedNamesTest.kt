@@ -121,7 +121,7 @@ class QualifiedNamesTest {
     // Multibinding key
     assertThat(simpleComponentDot).contains("label=\"java.util.Set<java.lang.String>\"")
     // Multibinding contents
-    assertThat(simpleComponentDot).contains("[shape=\"tab\", label=\"java.util.Set<java.lang.String>\", color=\"turquoise\"]")
+    assertThat(simpleComponentDot).contains("[label=\"java.util.Set<java.lang.String>\", color=\"turquoise\", shape=\"tab\"]")
   }
 
   @Test
