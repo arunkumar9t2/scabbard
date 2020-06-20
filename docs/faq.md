@@ -44,5 +44,4 @@ You could also manually look for generated images in the `build` folder as descr
 
 Some other graph formats being considered are:
 
-* **Component Tree**: Render component and subcomponents in a tree structure similar to [Uber Ribs.](https://1fykyq3mdn5r21tpna3wkdyi-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/Carbon_architecture_Figure_02.gif)
 * **Single graph**: Instead of splitting the graph into multiple files, render all nodes in single file [#6](https://github.com/arunkumar9t2/scabbard/issues/6).
