@@ -87,7 +87,7 @@ constructor(
    *                        +------+--------+
    *                        |Subcomponent C |
    *                        +---------------+
-   * This information of component relationships is already via `componentPath`s in each `ComponentNode` i.e,
+   * This information of component relationships is already present via `componentPath`s in each `ComponentNode` i.e,
    * `componentPath.components` will give ordered list representing the hierarchy. For example, for the above component,
    *  * Root
    *  * Root -> Subcomponent A
