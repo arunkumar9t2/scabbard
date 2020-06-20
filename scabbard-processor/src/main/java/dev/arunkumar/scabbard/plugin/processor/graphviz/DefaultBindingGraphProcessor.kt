@@ -6,6 +6,7 @@ import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.MaybeBinding
 import dagger.model.ComponentPath
+import dagger.multibindings.IntoSet
 import dev.arunkumar.dot.DotGraph
 import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
@@ -23,7 +24,7 @@ import kotlin.collections.component2
 @Suppress("UnstableApiUsage")
 @ProcessorScope
 @JvmSuppressWildcards
-class GraphVizBindingGraphProcessor
+class DefaultBindingGraphProcessor
 @Inject
 constructor(
   override val bindingGraph: BindingGraph,
@@ -93,8 +94,9 @@ constructor(
   @Module
   interface Builder {
     @Binds
+    @IntoSet
     fun bindingGraphProcessor(
-      graphVizBindingGraphProcessor: GraphVizBindingGraphProcessor
+      defaultBindingGraphProcessor: DefaultBindingGraphProcessor
     ): BindingGraphProcessor
   }
 }
