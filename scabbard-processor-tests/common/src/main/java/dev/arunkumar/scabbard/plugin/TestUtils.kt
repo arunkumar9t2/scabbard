@@ -1,6 +1,8 @@
 package dev.arunkumar.scabbard.plugin
 
 import dev.arunkumar.scabbard.plugin.output.DefaultOutputManager
+import dev.arunkumar.scabbard.plugin.output.DefaultOutputManager.Companion.FULL_GRAPH_PREFIX
+import dev.arunkumar.scabbard.plugin.output.DefaultOutputManager.Companion.TREE_GRAPH_PREFIX
 import dev.arunkumar.scabbard.plugin.output.OutputManager.Format.DOT
 import dev.arunkumar.scabbard.plugin.output.OutputManager.Format.SVG
 import guru.nidi.graphviz.model.MutableGraph
@@ -34,7 +36,15 @@ fun Class<*>.generatedSvgFile(fileNamePrefix: String = "", sourceSet: String = T
 }
 
 fun Class<*>.generatedFullDotFile(sourceSet: String = TEST_SOURCE_SET): File {
-  return generatedDotFile(fileNamePrefix = DefaultOutputManager.SCABBARD_PACKAGE, sourceSet = sourceSet)
+  return generatedDotFile(fileNamePrefix = FULL_GRAPH_PREFIX, sourceSet = sourceSet)
+}
+
+inline fun <reified T> generatedComponentTreeDotFile(sourceSet: String = TEST_SOURCE_SET): File {
+  return T::class.java.generatedComponentTreeDotFile(sourceSet)
+}
+
+fun Class<*>.generatedComponentTreeDotFile(sourceSet: String = TEST_SOURCE_SET): File {
+  return generatedDotFile(fileNamePrefix = TREE_GRAPH_PREFIX, sourceSet = sourceSet)
 }
 
 inline fun <reified T> generatedDot(fileNamePrefix: String = "", sourceSet: String = TEST_SOURCE_SET): String {
