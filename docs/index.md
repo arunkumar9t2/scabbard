@@ -24,7 +24,7 @@ More advanced [examples](examples.md).
 * **Supports** both Kotlin and Java.
 
 !!! tip "What's new"
-    Recent additions include support for simple names, [SVG output format](tips.md#interactive-svg-graphs) and inherited bindings support for `@Subcomponent`.
+    Recent additions include support for Dagger Hilt, component hierarchies, [SVG output format](tips.md#interactive-svg-graphs) and inherited bindings support for `@Subcomponent`.
     For more details, see [Releases](https://github.com/arunkumar9t2/scabbard/releases).
 
 ## Getting Started
@@ -72,13 +72,13 @@ Using the plugins DSL:
 === "Groovy"
     ```groovy
     plugins {
-        id "scabbard.gradle" version "0.3.0"
+        id "scabbard.gradle" version "0.4.0"
     }
     ```
 === "Kotlin"
     ```kotlin
     plugins {
-        id("scabbard.gradle") version "0.3.0"
+        id("scabbard.gradle") version "0.4.0"
     }
     ```
 
@@ -93,7 +93,7 @@ or if you are using older versions of Gradle:
         }
       }
       dependencies {
-        classpath "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.3.0"
+        classpath "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.4.0"
       }
     }
     
@@ -109,7 +109,7 @@ or if you are using older versions of Gradle:
         }
       }
       dependencies {
-        classpath("gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.3.0")
+        classpath("gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.4.0")
       }
     }
     

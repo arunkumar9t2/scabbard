@@ -12,80 +12,80 @@
 <polygon fill="none" stroke="black" points="537.5,-339 537.5,-414 662.5,-414 662.5,-339 537.5,-339"/>
 <text text-anchor="middle" x="600" y="-398.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
 </g>
-<g id="clust5" class="cluster"><title>cluster_AppComponent → HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent</title>
-<g id="a_clust5"><a xlink:href="dev.arunkumar.scabbard.home.HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent.svg" xlink:title="Inherited from HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent\n@ActivityScope">
+<g id="clust4" class="cluster"><title>cluster_AppComponent → HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent</title>
+<g id="a_clust4"><a xlink:href="dev.arunkumar.scabbard.home.HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent.svg" xlink:title="Inherited from HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent\n@ActivityScope">
 <polygon fill="none" stroke="bisque" stroke-dasharray="5,2" points="361.5,-185 361.5,-331 837.5,-331 837.5,-185 361.5,-185"/>
 <text text-anchor="middle" x="599.5" y="-315.8" font-family="Times New Roman,serif" font-size="14.00">Inherited from HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent</text>
 <text text-anchor="middle" x="599.5" y="-300.8" font-family="Times New Roman,serif" font-size="14.00">@ActivityScope</text>
 </a>
 </g>
 </g>
-<g id="clust6" class="cluster"><title>cluster_AppComponent</title>
-<g id="a_clust6"><a xlink:href="dev.arunkumar.scabbard.di.AppComponent.svg" xlink:title="Inherited from AppComponent\n@Singleton">
+<g id="clust5" class="cluster"><title>cluster_AppComponent</title>
+<g id="a_clust5"><a xlink:href="dev.arunkumar.scabbard.di.AppComponent.svg" xlink:title="Inherited from AppComponent\n@Singleton">
 <polygon fill="none" stroke="aquamarine" stroke-dasharray="5,2" points="504,-31 504,-177 695,-177 695,-31 504,-31"/>
 <text text-anchor="middle" x="599.5" y="-161.8" font-family="Times New Roman,serif" font-size="14.00">Inherited from AppComponent</text>
 <text text-anchor="middle" x="599.5" y="-146.8" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
 </a>
 </g>
 </g>
-<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217 -->
-<g id="node1" class="node"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217</title>
+<!-- a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874 -->
+<g id="node1" class="node"><title>a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874</title>
 <polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="333.5,-229 188.5,-229 188.5,-225 184.5,-225 184.5,-221 188.5,-221 188.5,-201 184.5,-201 184.5,-197 188.5,-197 188.5,-193 333.5,-193 333.5,-229"/>
 <polyline fill="none" stroke="turquoise" stroke-width="2" points="188.5,-225 192.5,-225 192.5,-221 188.5,-221 "/>
 <polyline fill="none" stroke="turquoise" stroke-width="2" points="188.5,-201 192.5,-201 192.5,-197 188.5,-197 "/>
 <text text-anchor="middle" x="261" y="-207.3" font-family="Times New Roman,serif" font-size="14.00">inject (HomeFragment)</text>
 </g>
-<!-- 5986bca0&#45;e5b9&#45;4c8f&#45;a3ec&#45;e04030756fac -->
-<g id="node2" class="node"><title>5986bca0&#45;e5b9&#45;4c8f&#45;a3ec&#45;e04030756fac</title>
+<!-- 07f12576&#45;345c&#45;40b4&#45;9ecb&#45;bb6192cdf5bc -->
+<g id="node2" class="node"><title>07f12576&#45;345c&#45;40b4&#45;9ecb&#45;bb6192cdf5bc</title>
 <polygon fill="turquoise" stroke="turquoise" points="645.5,-383 553.5,-383 553.5,-347 645.5,-347 645.5,-383"/>
 <text text-anchor="middle" x="599.5" y="-361.3" font-family="Times New Roman,serif" font-size="14.00">FragmentDep</text>
 </g>
-<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;5986bca0&#45;e5b9&#45;4c8f&#45;a3ec&#45;e04030756fac -->
-<g id="edge2" class="edge"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;5986bca0&#45;e5b9&#45;4c8f&#45;a3ec&#45;e04030756fac</title>
+<!-- a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874&#45;&gt;07f12576&#45;345c&#45;40b4&#45;9ecb&#45;bb6192cdf5bc -->
+<g id="edge3" class="edge"><title>a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874&#45;&gt;07f12576&#45;345c&#45;40b4&#45;9ecb&#45;bb6192cdf5bc</title>
 <path fill="none" stroke="black" d="M270.668,-229.022C285.169,-256.989 317.182,-310.196 361.5,-335 417.705,-366.457 492.937,-370.788 543.427,-369.328"/>
 <polygon fill="black" stroke="black" points="543.633,-372.823 553.495,-368.951 543.371,-365.828 543.633,-372.823"/>
 </g>
-<!-- 37c22a97&#45;5d3d&#45;48f7&#45;88a8&#45;abe3ddf5ad7a -->
-<g id="node3" class="node"><title>37c22a97&#45;5d3d&#45;48f7&#45;88a8&#45;abe3ddf5ad7a</title>
+<!-- f378e44f&#45;a318&#45;417d&#45;870d&#45;76f51e344f6a -->
+<g id="node3" class="node"><title>f378e44f&#45;a318&#45;417d&#45;870d&#45;76f51e344f6a</title>
 <polygon fill="bisque" stroke="bisque" points="654,-285 545,-285 545,-247 654,-247 654,-285"/>
 <text text-anchor="middle" x="599.5" y="-269.8" font-family="Times New Roman,serif" font-size="14.00">@ActivityScope</text>
 <text text-anchor="middle" x="599.5" y="-254.8" font-family="Times New Roman,serif" font-size="14.00">ActivityDep</text>
 </g>
-<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;37c22a97&#45;5d3d&#45;48f7&#45;88a8&#45;abe3ddf5ad7a -->
-<g id="edge5" class="edge"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;37c22a97&#45;5d3d&#45;48f7&#45;88a8&#45;abe3ddf5ad7a</title>
+<!-- a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874&#45;&gt;f378e44f&#45;a318&#45;417d&#45;870d&#45;76f51e344f6a -->
+<g id="edge2" class="edge"><title>a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874&#45;&gt;f378e44f&#45;a318&#45;417d&#45;870d&#45;76f51e344f6a</title>
 <path fill="none" stroke="black" d="M322.972,-229.067C335.628,-232.387 348.936,-235.567 361.5,-238 419.67,-249.265 486.807,-256.682 534.741,-261.035"/>
 <polygon fill="black" stroke="black" points="534.701,-264.545 544.972,-261.943 535.321,-257.572 534.701,-264.545"/>
 </g>
-<!-- 172bc05e&#45;5dca&#45;4ec5&#45;9ea1&#45;d60292d7f947 -->
-<g id="node4" class="node"><title>172bc05e&#45;5dca&#45;4ec5&#45;9ea1&#45;d60292d7f947</title>
+<!-- 3417611b&#45;9823&#45;4e4b&#45;afbb&#45;fb6a52d2ac17 -->
+<g id="node4" class="node"><title>3417611b&#45;9823&#45;4e4b&#45;afbb&#45;fb6a52d2ac17</title>
 <polygon fill="turquoise" stroke="turquoise" points="712.5,-229 486.5,-229 486.5,-193 712.5,-193 712.5,-229"/>
 <text text-anchor="middle" x="599.5" y="-207.3" font-family="Times New Roman,serif" font-size="14.00">DispatchingAndroidInjector&lt;Object&gt;</text>
 </g>
-<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;172bc05e&#45;5dca&#45;4ec5&#45;9ea1&#45;d60292d7f947 -->
-<g id="edge1" class="edge"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;172bc05e&#45;5dca&#45;4ec5&#45;9ea1&#45;d60292d7f947</title>
+<!-- a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874&#45;&gt;3417611b&#45;9823&#45;4e4b&#45;afbb&#45;fb6a52d2ac17 -->
+<g id="edge4" class="edge"><title>a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874&#45;&gt;3417611b&#45;9823&#45;4e4b&#45;afbb&#45;fb6a52d2ac17</title>
 <path fill="none" stroke="black" d="M333.775,-211C375.222,-211 428.465,-211 476.321,-211"/>
 <polygon fill="black" stroke="black" points="476.445,-214.5 486.445,-211 476.445,-207.5 476.445,-214.5"/>
 </g>
-<!-- 170cff46&#45;29ca&#45;4641&#45;8d6e&#45;2d69de15c5aa -->
-<g id="node5" class="node"><title>170cff46&#45;29ca&#45;4641&#45;8d6e&#45;2d69de15c5aa</title>
-<polygon fill="turquoise" stroke="turquoise" points="659,-131 540,-131 540,-95 659,-95 659,-131"/>
-<text text-anchor="middle" x="599.5" y="-109.3" font-family="Times New Roman,serif" font-size="14.00">UnScopedBinding</text>
+<!-- 7891b37b&#45;ebcf&#45;45b3&#45;98a7&#45;bf272a0716d6 -->
+<g id="node5" class="node"><title>7891b37b&#45;ebcf&#45;45b3&#45;98a7&#45;bf272a0716d6</title>
+<polygon fill="aquamarine" stroke="aquamarine" points="653,-131 546,-131 546,-93 653,-93 653,-131"/>
+<text text-anchor="middle" x="599.5" y="-115.8" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
+<text text-anchor="middle" x="599.5" y="-100.8" font-family="Times New Roman,serif" font-size="14.00">SimpleSingleton</text>
 </g>
-<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;170cff46&#45;29ca&#45;4641&#45;8d6e&#45;2d69de15c5aa -->
-<g id="edge3" class="edge"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;170cff46&#45;29ca&#45;4641&#45;8d6e&#45;2d69de15c5aa</title>
-<path fill="none" stroke="black" d="M321.415,-192.944C334.603,-188.976 348.518,-184.819 361.5,-181 418.241,-164.307 482.773,-145.824 530.157,-132.347"/>
-<polygon fill="black" stroke="black" points="531.337,-135.65 539.999,-129.549 529.423,-128.917 531.337,-135.65"/>
+<!-- a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874&#45;&gt;7891b37b&#45;ebcf&#45;45b3&#45;98a7&#45;bf272a0716d6 -->
+<g id="edge5" class="edge"><title>a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874&#45;&gt;7891b37b&#45;ebcf&#45;45b3&#45;98a7&#45;bf272a0716d6</title>
+<path fill="none" stroke="black" d="M321.426,-192.981C334.614,-189.011 348.526,-184.844 361.5,-181 420.574,-163.495 488.047,-143.889 535.852,-130.063"/>
+<polygon fill="black" stroke="black" points="537.11,-133.343 545.745,-127.203 535.166,-126.618 537.11,-133.343"/>
 </g>
-<!-- 15616114&#45;9cfc&#45;406c&#45;894c&#45;bc83f12ad9a8 -->
-<g id="node6" class="node"><title>15616114&#45;9cfc&#45;406c&#45;894c&#45;bc83f12ad9a8</title>
-<polygon fill="aquamarine" stroke="aquamarine" points="653,-77 546,-77 546,-39 653,-39 653,-77"/>
-<text text-anchor="middle" x="599.5" y="-61.8" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
-<text text-anchor="middle" x="599.5" y="-46.8" font-family="Times New Roman,serif" font-size="14.00">SimpleSingleton</text>
+<!-- 2cf9d59f&#45;d1ac&#45;411d&#45;a477&#45;afb7ed71adc6 -->
+<g id="node6" class="node"><title>2cf9d59f&#45;d1ac&#45;411d&#45;a477&#45;afb7ed71adc6</title>
+<polygon fill="turquoise" stroke="turquoise" points="659,-75 540,-75 540,-39 659,-39 659,-75"/>
+<text text-anchor="middle" x="599.5" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">UnScopedBinding</text>
 </g>
-<!-- 3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;15616114&#45;9cfc&#45;406c&#45;894c&#45;bc83f12ad9a8 -->
-<g id="edge4" class="edge"><title>3d8c9ce8&#45;97f9&#45;440b&#45;b019&#45;0ee352b07217&#45;&gt;15616114&#45;9cfc&#45;406c&#45;894c&#45;bc83f12ad9a8</title>
-<path fill="none" stroke="black" d="M270.603,-192.791C285.016,-164.541 316.91,-110.828 361.5,-86 414.839,-56.3011 485.292,-51.5142 535.488,-52.8006"/>
-<polygon fill="black" stroke="black" points="535.448,-56.3012 545.562,-53.1468 535.688,-49.3053 535.448,-56.3012"/>
+<!-- a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874&#45;&gt;2cf9d59f&#45;d1ac&#45;411d&#45;a477&#45;afb7ed71adc6 -->
+<g id="edge1" class="edge"><title>a805c713&#45;c110&#45;4c1b&#45;9740&#45;ed5208810874&#45;&gt;2cf9d59f&#45;d1ac&#45;411d&#45;a477&#45;afb7ed71adc6</title>
+<path fill="none" stroke="black" d="M270.278,-192.948C284.45,-164.351 316.272,-109.289 361.5,-84 412.816,-55.3078 480.103,-50.1354 529.866,-51.2203"/>
+<polygon fill="black" stroke="black" points="529.788,-54.7195 539.891,-51.528 530.003,-47.7228 529.788,-54.7195"/>
 </g>
 </g>
 </svg>

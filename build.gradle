@@ -112,6 +112,7 @@ tasks.register("publishSampleImages") {
 tasks.register("publishAllArtifacts") {
     group = "publishing"
     description = "Publishes all artifiacts"
+    dependsOn tasks.named("publishSampleImages")
     dependsOn project("scabbard-idea-plugin").tasks.named("publishPlugin")
     dependsOn gradle.includedBuild("scabbard-gradle-plugin").task(":publishPlugins")
     dependsOn project("dot-dsl").tasks.named("bintrayUpload")

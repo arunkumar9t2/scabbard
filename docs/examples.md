@@ -13,6 +13,13 @@ Please download/open in new tab to zoom contents.
   Your browser does not support the video tag.
 </video>
 
+## Component Hierarchies
+
+Scabbard can also visualize component hierarchies as shown below.
+
+<a href="../images/tree_dev.arunkumar.scabbard.di.AppComponent.svg"><img src="../images/tree_dev.arunkumar.scabbard.di.AppComponent.svg" width="100%"></a>
+
+
 ### AppComponent 
 
 #### dagger.hilt
