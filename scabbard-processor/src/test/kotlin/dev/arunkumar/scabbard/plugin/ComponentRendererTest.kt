@@ -65,6 +65,7 @@ class ComponentRendererTest {
 
   @Test
   fun `test default graph attributes on component tree dot file`() {
+    assertThat(componentTreeDotContents).contains("digraph \"dev.arunkumar.scabbard.plugin.ComponentRendererTest.SimpleComponent\"")
     assertThat(componentTreeDotContents).contains("graph [rankdir=\"TB\", label=\"ComponentRendererTest.SimpleComponent\", compound=\"true\", labeljust=\"l\", pad=\"0.2\"")
     assertThat(componentTreeDotContents).contains("node [shape=\"rectangle\", style=\"filled\", color=\"turquoise\"]")
     val graph = Parser().read(simpleComponentTreeDotFile)

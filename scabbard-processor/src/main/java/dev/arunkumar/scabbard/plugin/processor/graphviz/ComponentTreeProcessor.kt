@@ -42,7 +42,7 @@ constructor(
 
     val componentTree = constructComponentTree()
 
-    val dotGraphBuilder = directedGraph(componentTree.toString()) {
+    val dotGraphBuilder = directedGraph(rootComponentNode.componentPath().toString()) {
       graphAttributes {
         "rankdir" eq "TB"
         "label" eq typeNameExtractor.extractName(rootComponentNode.componentPath())
