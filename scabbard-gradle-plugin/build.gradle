@@ -10,6 +10,10 @@ apply from: "../docker/resolve-dependencies.gradle"
 group groupId
 version publishVersion
 
+kotlinDslPluginOptions {
+    experimentalWarning.set(false)
+}
+
 repositories {
     jcenter()
 }
