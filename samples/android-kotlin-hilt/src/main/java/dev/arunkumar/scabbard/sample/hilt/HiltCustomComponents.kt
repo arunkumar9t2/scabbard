@@ -5,12 +5,12 @@ import dagger.Provides
 import dagger.hilt.DefineComponent
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
 
-@DefineComponent(parent = ApplicationComponent::class)
+@DefineComponent(parent = SingletonComponent::class)
 interface HiltCustomComponent {
   @DefineComponent.Builder
   interface Builder {

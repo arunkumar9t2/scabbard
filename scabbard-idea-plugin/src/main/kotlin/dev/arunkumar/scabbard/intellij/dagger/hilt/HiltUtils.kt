@@ -20,7 +20,7 @@ internal const val DAGGER_HILT_ENTRY_POINT = "dagger.hilt.EntryPoint"
 internal const val DAGGER_HILT_GENERATED_COMPONENT_SUFFIX = "HiltComponents"
 
 internal enum class HiltComponent {
-  ApplicationC,
+  SingletonC,
   ServiceC,
   ActivityC,
   ActivityRetainedC,
@@ -60,7 +60,7 @@ internal fun <T : PsiElement> findGeneratedStandardHiltComponent(
     return shortNamesCache.findHiltComponentByClassName(project, name)
   }
   return when {
-    componentClass.hasAnnotation(DAGGER_HILT_ANDROID_APP) -> ApplicationC.findClass()
+    componentClass.hasAnnotation(DAGGER_HILT_ANDROID_APP) -> SingletonC.findClass()
     componentClass.hasAnnotation(DAGGER_HILT_ANDROID_ENTRY_POINT) -> {
       when {
         componentClass.isSubClassOf(ANDROIDX_COMPONENT_ACTIVITY) -> ActivityC.findClass()
