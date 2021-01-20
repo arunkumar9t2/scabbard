@@ -20,6 +20,7 @@ configure<ScabbardPluginExtension> {
 }
 
 dependencies {
-  implementation("com.google.dagger:dagger:2.25.4")
-  annotationProcessor("com.google.dagger:dagger-compiler:2.25.4")
+  // TODO(arun) migrate to kts constants for versions
+  implementation("com.google.dagger:dagger:2.31.1")
+  annotationProcessor("com.google.dagger:dagger-compiler:2.31.1")
 }
