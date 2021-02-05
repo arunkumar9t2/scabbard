@@ -92,8 +92,7 @@ fun prepareContributesAndroidInjectorLineMarker(
 /**
  * Format and sanitize raw file name received from PSI processors.
  *
- * Currently
- * * replaces inner class markers `$` with `.`
+ * Currently replaces inner class markers `$` with `.`
  */
 private fun String.sanitize(format: String): String {
   val sanitized = replace("$", ".")
