@@ -87,5 +87,4 @@ constructor(
         .map { InheritedBinding(bindingGraph.componentNode(it.key).get(), it.value) }
     } else emptyList()
   }
-
 }

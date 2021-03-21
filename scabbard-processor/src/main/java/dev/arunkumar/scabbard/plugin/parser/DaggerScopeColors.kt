@@ -10,7 +10,7 @@ import javax.inject.Inject
 @ProcessorScope
 class DaggerScopeColors @Inject constructor() {
 
-  //TODO(arun) Add more colors?
+  // TODO(arun) Add more colors?
   private val scopeColors by lazy {
     listOf(
       "aquamarine",

@@ -47,4 +47,3 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
       .forEach(BindingGraphProcessor::process)
   }
 }
-

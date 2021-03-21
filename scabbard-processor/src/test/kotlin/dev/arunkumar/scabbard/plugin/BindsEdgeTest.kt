@@ -39,7 +39,6 @@ class BindsEdgeTest {
     generatedGraph = generatedDot<SimpleComponent>()
   }
 
-
   @Test
   fun `assert edge to binding node from supertype to implementation has correct attributes`() {
     assertThat(generatedGraph).contains("[label=\"BindsEdgeTest.SuperType\", color=\"turquoise\"]")

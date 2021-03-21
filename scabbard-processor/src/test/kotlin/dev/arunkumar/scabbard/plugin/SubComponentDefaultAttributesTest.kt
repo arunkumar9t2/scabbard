@@ -59,7 +59,6 @@ class SubComponentDefaultAttributesTest {
     assertThat(subComponentGeneratedText).contains("label=\"SubComponentDefaultAttributesTest.SimpleComponent → SubComponentDefaultAttributesTest.SimpleSubComponent\"")
   }
 
-
   @Test
   fun `assert parent component's subcomponent cluster has hrefs to subcomponent generated files`() {
     assertThat(simpleComponentGeneratedText).contains("href=\"dev.arunkumar.scabbard.plugin.SubComponentDefaultAttributesTest.SimpleSubComponent.png\"")

@@ -20,7 +20,6 @@ import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 import kotlin.properties.Delegates.observable
 import kotlin.properties.ReadWriteProperty
 
-
 /**
  * Data structure abstraction to define JVM compiler property in a type-safe way.
  *
@@ -56,7 +55,6 @@ internal fun <T> passThroughMapper(): (T) -> T = { it }
 internal fun <T> ScabbardPluginExtension.compilerProperty(
   compilerProperty: CompilerProperty<T>
 ) = mapCompilerProperty(compilerProperty, passThroughMapper())
-
 
 /**
  * A property delegate that calls [ScabbardPluginExtension.onCompilerPropertyChanged] whenever

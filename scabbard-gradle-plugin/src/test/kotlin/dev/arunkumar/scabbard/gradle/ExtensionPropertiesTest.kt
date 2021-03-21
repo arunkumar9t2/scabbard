@@ -73,7 +73,7 @@ class ExtensionPropertiesTest : ScabbardBaseTest() {
         assertEquals(
           "Compiler property change value matches",
           "WARNING",
-          this.value  // Even though boolean is the type, it should be mapped to `WARNING`
+          this.value // Even though boolean is the type, it should be mapped to `WARNING`
         )
       }
     ).run {

@@ -49,7 +49,6 @@ class SubcomponentCreatorBindingEdgeTest {
   private lateinit var generatedGraph: MutableGraph
   private lateinit var generatedText: String
 
-
   @Before
   fun setup() {
     generatedGraph = generatedGraph<SimpleComponent>()
