@@ -6,6 +6,22 @@ import javax.inject.Inject;
 
 public class ScabbardSample {
 
+  public static void main(String[] args) {
+    DaggerScabbardSample_ScabbardSampleComponent
+        .create()
+        .hello().world.say();
+  }
+
+  @Component
+  interface ScabbardSampleComponent {
+    Hello hello();
+
+    @Component.Factory
+    interface Factory {
+      ScabbardSampleComponent create();
+    }
+  }
+
   static class World {
     @Inject
     World() {
@@ -23,21 +39,5 @@ public class ScabbardSample {
     Hello(World world) {
       this.world = world;
     }
-  }
-
-  @Component
-  interface ScabbardSampleComponent {
-    Hello hello();
-
-    @Component.Factory
-    interface Factory {
-      ScabbardSampleComponent create();
-    }
-  }
-
-  public static void main(String[] args) {
-    DaggerScabbardSample_ScabbardSampleComponent
-        .create()
-        .hello().world.say();
   }
 }

@@ -11,8 +11,8 @@ class KotlinComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
   private fun KtClassOrObject.hasDaggerComponentAnnotations(): Boolean {
     return hasAnnotation(DAGGER_COMPONENT)
-        || hasAnnotation(DAGGER_SUBCOMPONENT)
-        || hasAnnotation(DAGGER_MODULE)
+      || hasAnnotation(DAGGER_SUBCOMPONENT)
+      || hasAnnotation(DAGGER_MODULE)
   }
 
   override fun collectNavigationMarkers(

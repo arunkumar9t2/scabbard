@@ -23,10 +23,10 @@ class DotGraphTest {
     }
     assertThat(dotGraph.toString()).contains(
       "graph {$NEWLN" +
-          "  graph$NEWLN" +
-          "  \"some node\"$NEWLN" +
-          "  \"some node\" -- \"another node\"$NEWLN" +
-          "}$NEWLN"
+        "  graph$NEWLN" +
+        "  \"some node\"$NEWLN" +
+        "  \"some node\" -- \"another node\"$NEWLN" +
+        "}$NEWLN"
     )
   }
 
@@ -38,9 +38,9 @@ class DotGraphTest {
     val output = StringWriter().also { dotGraph.write(0, PrintWriter(it)) }.toString()
     assertThat(output).contains(
       "graph {$NEWLN" +
-          "  subgraph \"some graph\" {$NEWLN" +
-          "  }$NEWLN" +
-          "}$NEWLN"
+        "  subgraph \"some graph\" {$NEWLN" +
+        "  }$NEWLN" +
+        "}$NEWLN"
     )
   }
 }

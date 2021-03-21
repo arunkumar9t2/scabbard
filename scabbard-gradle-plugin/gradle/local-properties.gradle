@@ -1,14 +1,14 @@
 def localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {
-    def localProperties = new Properties().with {
-        load(localPropertiesFile.newDataInputStream())
-        it
+  def localProperties = new Properties().with {
+    load(localPropertiesFile.newDataInputStream())
+    it
+  }
+  allprojects {
+    localProperties.forEach { key, value ->
+      if (!project.hasProperty(key)) {
+        project.extensions.add(key, value)
+      }
     }
-    allprojects {
-        localProperties.forEach { key, value ->
-            if (!project.hasProperty(key)) {
-                project.extensions.add(key, value)
-            }
-        }
-    }
+  }
 }

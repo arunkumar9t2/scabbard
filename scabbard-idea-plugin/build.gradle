@@ -1,40 +1,40 @@
 plugins {
-    id "org.jetbrains.intellij" version "0.4.21"
-    id "org.jetbrains.kotlin.jvm"
+  id "org.jetbrains.intellij" version "0.4.21"
+  id "org.jetbrains.kotlin.jvm"
 }
 
 targetCompatibility = "1.8"
 sourceCompatibility = "1.8"
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-    testImplementation "junit:junit:${versions.junit}"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+  testImplementation "junit:junit:${versions.junit}"
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+  kotlinOptions.jvmTarget = "1.8"
 }
 compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+  kotlinOptions.jvmTarget = "1.8"
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    updateSinceUntilBuild false
-    plugins = [
-            "Kotlin", "IntelliLang", "java"
-    ]
-    version "2019.2"
-    pluginName "Scabbard - Dagger 2 Visualizer"
-    //intellij.alternativeIdePath "C:\\Users\\arunk\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-2\\192.6071332"
+  updateSinceUntilBuild false
+  plugins = [
+    "Kotlin", "IntelliLang", "java"
+  ]
+  version "2019.2"
+  pluginName "Scabbard - Dagger 2 Visualizer"
+  //intellij.alternativeIdePath "C:\\Users\\arunk\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-2\\192.6071332"
 }
 
 patchPluginXml {
-    changeNotes """
+  changeNotes """
       0.3.0
       New Gutter Icon, inherited bindings support in subcomponent graphs, and ability to open multiple images via gutter popup
       0.2.0
@@ -46,9 +46,9 @@ patchPluginXml {
 }
 
 runIde {
-    systemProperty "idea.ProcessCanceledException", "disabled"
+  systemProperty "idea.ProcessCanceledException", "disabled"
 }
 
 publishPlugin {
-    token project.findProperty("intellijPublishToken")
+  token project.findProperty("intellijPublishToken")
 }

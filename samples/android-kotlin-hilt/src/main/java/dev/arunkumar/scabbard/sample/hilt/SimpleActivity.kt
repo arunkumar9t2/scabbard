@@ -42,7 +42,6 @@ class SimpleActivity : AppCompatActivity() {
   @ActivityRetainedScoped
   class ActivityRetainedDependency @Inject constructor()
 
-
   class ProvisionBinding
 
   @Module

@@ -36,4 +36,3 @@ interface AppComponent : AndroidInjector<App> {
     fun build(@BindsInstance application: Application): AppComponent
   }
 }
-

@@ -124,7 +124,7 @@ class CompilerPropertiesTest : ScabbardBaseTest() {
     assertTrue(
       "Output format is set to svg",
       project.kaptOptions().containsKey(OUTPUT_FORMAT.name)
-          && project.kaptOptions().containsValue(SVG)
+        && project.kaptOptions().containsValue(SVG)
     )
   }
 

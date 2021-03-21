@@ -1,7 +1,7 @@
 plugins {
-    id "java-gradle-plugin"
-    id "com.gradle.plugin-publish" version "0.11.0"
-    id "org.gradle.kotlin.kotlin-dsl" version "1.3.6"
+  id "java-gradle-plugin"
+  id "com.gradle.plugin-publish" version "0.11.0"
+  id "org.gradle.kotlin.kotlin-dsl" version "1.3.6"
 }
 
 apply from: "../constants.gradle"
@@ -11,74 +11,74 @@ group groupId
 version publishVersion
 
 kotlinDslPluginOptions {
-    experimentalWarning.set(false)
+  experimentalWarning.set(false)
 }
 
 repositories {
-    jcenter()
+  jcenter()
 }
 
 dependencies {
-    implementation platform("org.jetbrains.kotlin:kotlin-bom")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
-    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+  implementation platform("org.jetbrains.kotlin:kotlin-bom")
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+  implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
 
-    testImplementation "junit:junit:${versions.junit}"
-    testImplementation "com.google.truth:truth:${versions.truth}"
-    testImplementation gradleTestKit()
+  testImplementation "junit:junit:${versions.junit}"
+  testImplementation "com.google.truth:truth:${versions.truth}"
+  testImplementation gradleTestKit()
 }
 
 gradlePlugin {
-    plugins {
-        scabbardPlugin {
-            id = scabbardGradlePlugin
-            displayName = "Scabbard - Dagger 2 Visualizer"
-            description = "Gradle plugin to visualize Dagger 2 dependency graph"
-            implementationClass = "dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin"
-        }
+  plugins {
+    scabbardPlugin {
+      id = scabbardGradlePlugin
+      displayName = "Scabbard - Dagger 2 Visualizer"
+      description = "Gradle plugin to visualize Dagger 2 dependency graph"
+      implementationClass = "dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin"
     }
+  }
 }
 
 sourceSets {
-    functionalTest {
-        java.srcDirs "src/functionalTest/kotlin"
-    }
-    main.java.srcDir "build/generated/kotlin"
+  functionalTest {
+    java.srcDirs "src/functionalTest/kotlin"
+  }
+  main.java.srcDir "build/generated/kotlin"
 }
 
 gradlePlugin.testSourceSets(sourceSets.functionalTest)
 configurations.functionalTestImplementation.extendsFrom(configurations.testImplementation)
 
 task functionalTest(type: Test) {
-    testClassesDirs = sourceSets.functionalTest.output.classesDirs
-    classpath = sourceSets.functionalTest.runtimeClasspath
+  testClassesDirs = sourceSets.functionalTest.output.classesDirs
+  classpath = sourceSets.functionalTest.runtimeClasspath
 }
 
 check {
-    dependsOn(tasks.functionalTest)
+  dependsOn(tasks.functionalTest)
 }
 
 pluginBundle {
-    website = project.findProperty("website")
-    vcsUrl = project.findProperty("website")
-    tags = ["dagger 2", "dependency injection", "visualize dependency graph"]
+  website = project.findProperty("website")
+  vcsUrl = project.findProperty("website")
+  tags = ["dagger 2", "dependency injection", "visualize dependency graph"]
 }
 
 def generatePluginVersion = tasks.register("generatePluginVersion") {
-    def outputDir = file("build/generated/kotlin")
-    inputs.property "version", version
-    outputs.dir outputDir
-    doLast {
-        def packageName = groupId + "." + project.name.replace("-", ".")
-        def versionFile = file("${outputDir}/${packageName.replace(".", "/")}/Version.kt")
-        versionFile.parentFile.mkdirs()
-        versionFile.text = """// Generated file. Do not edit!
+  def outputDir = file("build/generated/kotlin")
+  inputs.property "version", version
+  outputs.dir outputDir
+  doLast {
+    def packageName = groupId + "." + project.name.replace("-", ".")
+    def versionFile = file("${outputDir}/${packageName.replace(".", "/")}/Version.kt")
+    versionFile.parentFile.mkdirs()
+    versionFile.text = """// Generated file. Do not edit!
 package $packageName
 const val VERSION = "${project.version}"
 """
-    }
+  }
 }
 
 tasks.named("compileKotlin").configure {
-    dependsOn(generatePluginVersion)
+  dependsOn(generatePluginVersion)
 }

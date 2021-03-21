@@ -9,10 +9,13 @@ import javax.inject.Inject
 class HomeFragment : DaggerFragment() {
   @Inject
   lateinit var activityDep: ActivityDep
+
   @Inject
   lateinit var fragmentDep: FragmentDep
+
   @Inject
   lateinit var singleton: SimpleSingleton
+
   @Inject
   lateinit var unScopedBinding: UnScopedBinding
 }

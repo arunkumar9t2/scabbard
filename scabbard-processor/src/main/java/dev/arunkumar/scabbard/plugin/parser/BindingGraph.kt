@@ -11,8 +11,8 @@ internal fun BindingGraph.subcomponentsOf(parent: TypeElement): List<BindingGrap
     .filter { node ->
       val componentPath = node.componentPath()
       node.isSubcomponent
-          && !componentPath.atRoot()
-          && componentPath.parent().currentComponent() == parent
+        && !componentPath.atRoot()
+        && componentPath.parent().currentComponent() == parent
     }
 
 internal fun Binding.scopeName() = when {
