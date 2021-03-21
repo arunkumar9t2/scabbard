@@ -8,14 +8,10 @@ import javax.inject.Inject;
 
 public class App {
 
-  static class Hello {
-    @Inject
-    Hello() {
-    }
-
-    void say() {
-      System.out.println("Hello World!");
-    }
+  public static void main(String[] args) {
+    DaggerApp_MavenSampleComponent
+        .create()
+        .hello().say();
   }
 
   @Component
@@ -28,9 +24,13 @@ public class App {
     }
   }
 
-  public static void main(String[] args) {
-    DaggerApp_MavenSampleComponent
-        .create()
-        .hello().say();
+  static class Hello {
+    @Inject
+    Hello() {
+    }
+
+    void say() {
+      System.out.println("Hello World!");
+    }
   }
 }

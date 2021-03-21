@@ -5,50 +5,50 @@ apply plugin: "kotlin-kapt"
 apply plugin: scabbardGradlePlugin
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+  compileSdkVersion 29
+  buildToolsVersion "29.0.3"
 
-    defaultConfig {
-        applicationId "dev.arunkumar.scabbard.sample"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
+  defaultConfig {
+    applicationId "dev.arunkumar.scabbard.sample"
+    minSdkVersion 21
+    targetSdkVersion 29
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
 
-    variantFilter { variant ->
-        if (variant.buildType.name == 'release') {
-            variant.setIgnore(true)
-        }
+  variantFilter { variant ->
+    if (variant.buildType.name == 'release') {
+      variant.setIgnore(true)
     }
+  }
 }
 
 scabbard {
-    enabled true
-    failOnError true
-    fullBindingGraphValidation true
-    qualifiedNames false
-    outputFormat "svg"
+  enabled true
+  failOnError true
+  fullBindingGraphValidation true
+  qualifiedNames false
+  outputFormat "svg"
 }
 
 apply from: "../../gradle/scabbard-local-processor.gradle"
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+  implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
-    implementation "androidx.appcompat:appcompat:${versions.androidx.appcompat}"
-    implementation "androidx.fragment:fragment-ktx:${versions.androidx.fragment.ktx}"
-    implementation "androidx.core:core-ktx:${versions.androidx.core}"
-    implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
+  implementation "androidx.appcompat:appcompat:${versions.androidx.appcompat}"
+  implementation "androidx.fragment:fragment-ktx:${versions.androidx.fragment.ktx}"
+  implementation "androidx.core:core-ktx:${versions.androidx.core}"
+  implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
 
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android:${versions.dagger}"
-    implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
-    kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+  implementation "com.google.dagger:dagger:${versions.dagger}"
+  kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+  implementation "com.google.dagger:dagger-android:${versions.dagger}"
+  implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
+  kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
 
-    testImplementation "junit:junit:${versions.junit}"
+  testImplementation "junit:junit:${versions.junit}"
 }

@@ -1,53 +1,64 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile
 
 buildscript {
-    apply from: "constants.gradle"
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath "com.android.tools.build:gradle:${versions.agp}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-        classpath "dev.arunkumar:scabbard-gradle-plugin:${publishVersion}"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
-        classpath "com.novoda:bintray-release:${versions.bintray}"
-    }
+  apply from: "constants.gradle"
+  repositories {
+    google()
+    jcenter()
+  }
+  dependencies {
+    classpath "com.android.tools.build:gradle:${versions.agp}"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+    classpath "dev.arunkumar:scabbard-gradle-plugin:${publishVersion}"
+    classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
+    classpath "com.novoda:bintray-release:${versions.bintray}"
+    classpath "com.diffplug.spotless:spotless-plugin-gradle:${versions.spotless}"
+  }
 }
-
 apply from: "gradle/local-properties.gradle"
 apply from: "docker/resolve-dependencies.gradle"
 
 allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-    group groupId
-    version publishVersion
+  repositories {
+    google()
+    jcenter()
+  }
+  group groupId
+  version publishVersion
 
-    plugins.withType(com.android.build.gradle.BasePlugin).configureEach { plugin ->
-        //noinspection GrDeprecatedAPIUsage
-        plugin.extension.compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
-        }
+  plugins.withType(com.android.build.gradle.BasePlugin).configureEach { plugin ->
+    //noinspection GrDeprecatedAPIUsage
+    plugin.extension.compileOptions {
+      sourceCompatibility = JavaVersion.VERSION_1_8
+      targetCompatibility = JavaVersion.VERSION_1_8
     }
+  }
 
-    tasks.withType(JavaCompile).configureEach { task ->
-        task.sourceCompatibility = JavaVersion.VERSION_1_8
-        task.targetCompatibility = JavaVersion.VERSION_1_8
+  tasks.withType(JavaCompile).configureEach { task ->
+    task.sourceCompatibility = JavaVersion.VERSION_1_8
+    task.targetCompatibility = JavaVersion.VERSION_1_8
+  }
+
+  tasks.withType(KotlinJvmCompile).configureEach { task ->
+    task.kotlinOptions {
+      jvmTarget = "1.8"
     }
+  }
 
-    tasks.withType(KotlinJvmCompile).configureEach { task ->
-        task.kotlinOptions {
-            jvmTarget = "1.8"
-        }
+  apply plugin: "com.diffplug.spotless"
+  spotless {
+    kotlin {
+      target "**/src/**/*.kt", "**/src/**/*.kt"
+      targetExclude("$buildDir/**/*.kt")
+      targetExclude("bin/**/*.kt")
+
+      ktlint(versions.ktlint).userData([
+        "indent_size"             : "2",
+        "continuation_indent_size": "2",
+        "disabled_rules"          : "no-wildcard-imports"
+      ])
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+  }
 }
 
 def isWin = System.getProperty("os.name").toLowerCase().contains("win")
@@ -56,65 +67,65 @@ def sampleProject = project(samplePath)
 
 //TODO Investigate migrating to GradleBuild. ATM has issues disabling daemon.
 tasks.register("runScabbardProcessor" /*, GradleBuild*/) {
-    group = "development"
-    doLast {
-        def isDebug = project.hasProperty("debug")
-        if (isDebug) {
-            delete fileTree(sampleProject.buildDir).matching {
-                include "**/*.dot"
-                include "**/*.png"
-                include "**/*.svg"
-            }
-        }
-        exec {
-            def shell = isWin ? "cmd" : "sh"
-            def commandPrefix = isWin ? "" : "./"
-            def shellArg = isWin ? "/c" : "-c"
-
-            def gradleDebug = "-Dorg.gradle.debug=$isDebug"
-            def daemon = isDebug ? "--no-daemon" : ""
-            def command = "${commandPrefix}gradlew $daemon $gradleDebug --no-build-cache ${samplePath}:kaptDebugKotlin"
-            workingDir(projectDir)
-            commandLine shell, shellArg, command
-        }
+  group = "development"
+  doLast {
+    def isDebug = project.hasProperty("debug")
+    if (isDebug) {
+      delete fileTree(sampleProject.buildDir).matching {
+        include "**/*.dot"
+        include "**/*.png"
+        include "**/*.svg"
+      }
     }
+    exec {
+      def shell = isWin ? "cmd" : "sh"
+      def commandPrefix = isWin ? "" : "./"
+      def shellArg = isWin ? "/c" : "-c"
+
+      def gradleDebug = "-Dorg.gradle.debug=$isDebug"
+      def daemon = isDebug ? "--no-daemon" : ""
+      def command = "${commandPrefix}gradlew $daemon $gradleDebug --no-build-cache ${samplePath}:kaptDebugKotlin"
+      workingDir(projectDir)
+      commandLine shell, shellArg, command
+    }
+  }
 }
 
 tasks.register("serveDocs") {
-    group = "documentation"
-    description = "Serve documentation website and open browser"
-    doLast {
-        def url = "http://127.0.0.1:8000/"
-        if (isWin) {
-            exec { commandLine "cmd", "/c", "start $url" }
-        } else {
-            exec { commandLine "open", url }
-        }
-        exec { commandLine("mkdocs", "serve") }
+  group = "documentation"
+  description = "Serve documentation website and open browser"
+  doLast {
+    def url = "http://127.0.0.1:8000/"
+    if (isWin) {
+      exec { commandLine "cmd", "/c", "start $url" }
+    } else {
+      exec { commandLine "open", url }
     }
+    exec { commandLine("mkdocs", "serve") }
+  }
 }
 
 tasks.register("publishSampleImages") {
-    group = "documentation"
-    description = "Publishes sample images to website"
-    doLast {
-        copy {
-            from "${sampleProject.buildDir}/tmp/kapt3/classes/debug/scabbard"
-            include "*.svg"
-            exclude "full_*.svg"
-            into "docs/images"
-        }
+  group = "documentation"
+  description = "Publishes sample images to website"
+  doLast {
+    copy {
+      from "${sampleProject.buildDir}/tmp/kapt3/classes/debug/scabbard"
+      include "*.svg"
+      exclude "full_*.svg"
+      into "docs/images"
     }
-    dependsOn sampleProject.tasks.named("kaptDebugKotlin")
+  }
+  dependsOn sampleProject.tasks.named("kaptDebugKotlin")
 }
 
 // Common publish task to publish all artifacts
 tasks.register("publishAllArtifacts") {
-    group = "publishing"
-    description = "Publishes all artifiacts"
-    dependsOn tasks.named("publishSampleImages")
-    dependsOn project("scabbard-idea-plugin").tasks.named("publishPlugin")
-    dependsOn gradle.includedBuild("scabbard-gradle-plugin").task(":publishPlugins")
-    dependsOn project("dot-dsl").tasks.named("bintrayUpload")
-    dependsOn project("scabbard-processor").tasks.named("bintrayUpload")
+  group = "publishing"
+  description = "Publishes all artifiacts"
+  dependsOn tasks.named("publishSampleImages")
+  dependsOn project("scabbard-idea-plugin").tasks.named("publishPlugin")
+  dependsOn gradle.includedBuild("scabbard-gradle-plugin").task(":publishPlugins")
+  dependsOn project("dot-dsl").tasks.named("bintrayUpload")
+  dependsOn project("scabbard-processor").tasks.named("bintrayUpload")
 }

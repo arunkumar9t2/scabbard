@@ -26,7 +26,6 @@ private val GENERATED_FILE_FORMATS = listOf(
   "$FULL_GRAPH_FILE_NAME.svg"
 )
 
-
 private const val DEPENDENCY_GRAPH = "dependency graph"
 
 /**
@@ -149,7 +148,7 @@ fun prepareDaggerComponentLineMarkerWithFileName(
         scope
       ).toList()
     }
-  val title = "Open ${componentName}'s $DEPENDENCY_GRAPH"
+  val title = "Open $componentName's $DEPENDENCY_GRAPH"
   return if (matchedFiles.isNotEmpty()) {
     NavigationGutterIconBuilder.create(SCABBARD_ICON)
       .setTargets(matchedFiles)

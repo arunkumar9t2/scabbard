@@ -1,7 +1,7 @@
-<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="6" width="6" height="6" fill="#40B6E0"/>
-<line x1="2.5" y1="8" x2="2.5" y2="3" stroke="#9AA7B0"/>
-<line x1="6" y1="3.5" x2="2" y2="3.5" stroke="#9AA7B0"/>
-<rect y="7" width="5" height="5" fill="#40B6E0"/>
-<rect x="7" y="8" width="4" height="4" fill="#EDA200"/>
+<svg fill="none" height="12" viewBox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg">
+    <rect fill="#40B6E0" height="6" width="6" x="6" />
+    <line stroke="#9AA7B0" x1="2.5" x2="2.5" y1="8" y2="3" />
+    <line stroke="#9AA7B0" x1="6" x2="2" y1="3.5" y2="3.5" />
+    <rect fill="#40B6E0" height="5" width="5" y="7" />
+    <rect fill="#EDA200" height="4" width="4" x="7" y="8" />
 </svg>

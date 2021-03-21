@@ -18,12 +18,12 @@ fun Class<*>.parsedGraph(sourceSet: String = TEST_SOURCE_SET): MutableGraph =
 inline fun <reified T> generatedGraph(sourceSet: String = TEST_SOURCE_SET) = T::class.java.parsedGraph(sourceSet)
 
 fun Class<*>.generatedFile(fileNamePrefix: String, extension: String, sourceSet: String = TEST_SOURCE_SET): File {
-  //TODO(arun) The proper way would be to use Resources.getResource() but that does not seem to work
+  // TODO(arun) The proper way would be to use Resources.getResource() but that does not seem to work
   val projectDir = System.getProperty("user.dir")
   val sep = File.separatorChar.toString()
   val name = name.replace("$", ".")
   val pathToGenFile = DefaultOutputManager.SCABBARD_PACKAGE
-  val absoluteGenPath = "$projectDir${sep}build/tmp/kapt3/classes/$sourceSet${sep}$pathToGenFile${sep}"
+  val absoluteGenPath = "$projectDir${sep}build/tmp/kapt3/classes/$sourceSet${sep}$pathToGenFile$sep"
   return Paths.get(absoluteGenPath).resolve("$fileNamePrefix$name.$extension").toFile()
 }
 

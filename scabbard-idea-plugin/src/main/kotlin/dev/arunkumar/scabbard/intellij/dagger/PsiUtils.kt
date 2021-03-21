@@ -33,9 +33,11 @@ fun PsiElement.isDaggerAnnotationIdentifier(daggerAnnotations: List<String> = Da
 }
 
 fun LeafPsiElement.ktClassOrObject(): KtClassOrObject? {
-  val isAClassType = (text == KtTokens.CLASS_KEYWORD.value
-      || text == KtTokens.OBJECT_KEYWORD.value
-      || text == KtTokens.INTERFACE_KEYWORD.value)
+  val isAClassType = (
+    text == KtTokens.CLASS_KEYWORD.value ||
+      text == KtTokens.OBJECT_KEYWORD.value ||
+      text == KtTokens.INTERFACE_KEYWORD.value
+    )
   if (elementType is KtKeywordToken && isAClassType) {
     val classOrObjectCandidate = parent
     if (classOrObjectCandidate is KtClassOrObject) {

@@ -10,9 +10,9 @@ internal fun BindingGraph.subcomponentsOf(parent: TypeElement): List<BindingGrap
   componentNodes()
     .filter { node ->
       val componentPath = node.componentPath()
-      node.isSubcomponent
-          && !componentPath.atRoot()
-          && componentPath.parent().currentComponent() == parent
+      node.isSubcomponent &&
+        !componentPath.atRoot() &&
+        componentPath.parent().currentComponent() == parent
     }
 
 internal fun Binding.scopeName() = when {
@@ -43,6 +43,5 @@ fun buildLabel(
     append("Subcomponent Creator")
   }
 }
-
 
 internal inline val Scope.name get() = "@${scopeAnnotationElement().simpleName}"

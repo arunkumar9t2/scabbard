@@ -5,7 +5,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
-
 @RunWith(JUnit4::class)
 class JavaComponentToDaggerGraphLineMarkerTest : LightJavaCodeInsightFixtureTestCase() {
 
@@ -14,7 +13,7 @@ class JavaComponentToDaggerGraphLineMarkerTest : LightJavaCodeInsightFixtureTest
     assertTrue(true)
   }
 
-  //@Test
+  // @Test
   fun `assert line markers are added for dagger annotations if file is present in project dir`() {
     myFixture.addFileToProject("dev.arunkumar.scabbard.home.simple.SimpleSubcomponent.png", "")
     myFixture.addClass(

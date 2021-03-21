@@ -64,4 +64,3 @@ class ProcessingEnvModule(
   @Provides
   fun scabbardOptions(): ScabbardOptions = parseOptions(options)
 }
-

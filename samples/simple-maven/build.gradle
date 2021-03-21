@@ -1,22 +1,22 @@
 plugins {
-    id "java"
+  id "java"
 }
 apply plugin: scabbardGradlePlugin
 
 repositories {
-    jcenter()
+  jcenter()
 }
 
 scabbard {
-    enabled true
+  enabled true
 }
 
 apply from: "../../gradle/scabbard-local-processor.gradle"
 
 dependencies {
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    annotationProcessor "com.google.dagger:dagger-compiler:${versions.dagger}"
-    testImplementation "junit:junit:${versions.junit}"
+  implementation "com.google.dagger:dagger:${versions.dagger}"
+  annotationProcessor "com.google.dagger:dagger-compiler:${versions.dagger}"
+  testImplementation "junit:junit:${versions.junit}"
 }
 
 group = "dev.arunkumar.scabbard"

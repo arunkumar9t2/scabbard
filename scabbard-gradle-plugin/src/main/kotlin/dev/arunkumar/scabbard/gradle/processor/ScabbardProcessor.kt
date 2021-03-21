@@ -7,7 +7,6 @@ import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_PLUGIN_
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.plugin.VERSION
 import org.gradle.api.Project
-import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.plugins.PluginManager
 
@@ -36,9 +35,11 @@ internal fun Dependency.isScabbardDependency() = group == SCABBARD_GROUP && name
  * @return `true` if the [Dependency] is Dagger's main annotation processor dependency or hilt's compiler dependency
  */
 internal fun Dependency.isDaggerCompilerDependency(): Boolean {
-  return group == DAGGER_GROUP && (name == DAGGER_COMPILER
-      || name == DAGGER_HILT_ANDROID_COMPILER
-      || name == DAGGER_HILT_COMPILER)
+  return group == DAGGER_GROUP && (
+    name == DAGGER_COMPILER ||
+      name == DAGGER_HILT_ANDROID_COMPILER ||
+      name == DAGGER_HILT_COMPILER
+    )
 }
 
 internal fun configName(isKapt: Boolean) = when {

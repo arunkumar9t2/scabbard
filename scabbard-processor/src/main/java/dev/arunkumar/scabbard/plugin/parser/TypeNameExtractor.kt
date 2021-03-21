@@ -14,7 +14,6 @@ import javax.lang.model.type.*
 import javax.lang.model.type.TypeKind.*
 import javax.lang.model.util.SimpleTypeVisitor6
 
-
 /**
  * A extractor to calculate a type's name.
  */
@@ -115,55 +114,58 @@ class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
   }
 
   private fun typeToString(type: TypeMirror, builder: StringBuilder, innerClassSeparator: Char) {
-    type.accept(object : SimpleTypeVisitor6<Void, Void>() {
-      override fun visitDeclared(declaredType: DeclaredType, p: Void?): Void? {
-        val typeElement = declaredType.asElement() as TypeElement
-        rawTypeToString(builder, typeElement, innerClassSeparator);
-        val typeArguments = declaredType.typeArguments
-        if (typeArguments.isNotEmpty()) {
-          builder.append("<")
-          for (i in typeArguments.indices) {
-            if (i != 0) {
-              builder.append(", ")
+    type.accept(
+      object : SimpleTypeVisitor6<Void, Void>() {
+        override fun visitDeclared(declaredType: DeclaredType, p: Void?): Void? {
+          val typeElement = declaredType.asElement() as TypeElement
+          rawTypeToString(builder, typeElement, innerClassSeparator)
+          val typeArguments = declaredType.typeArguments
+          if (typeArguments.isNotEmpty()) {
+            builder.append("<")
+            for (i in typeArguments.indices) {
+              if (i != 0) {
+                builder.append(", ")
+              }
+              typeToString(typeArguments[i]!!, builder, innerClassSeparator)
             }
-            typeToString(typeArguments[i]!!, builder, innerClassSeparator)
+            builder.append(">")
           }
-          builder.append(">")
+          return null
         }
-        return null
-      }
 
-      override fun visitPrimitive(primitiveType: PrimitiveType, p: Void?): Void? {
-        builder.append(box((type as PrimitiveType)))
-        return null
-      }
-
-      override fun visitArray(arrayType: ArrayType, p: Void?): Void? {
-        val componentType = arrayType.componentType
-        if (componentType is PrimitiveType) {
-          builder.append(componentType.toString()) // Don't box, since this is an array.
-        } else {
-          typeToString(arrayType.componentType, builder, innerClassSeparator)
+        override fun visitPrimitive(primitiveType: PrimitiveType, p: Void?): Void? {
+          builder.append(box((type as PrimitiveType)))
+          return null
         }
-        builder.append("[]")
-        return null
-      }
 
-      override fun visitTypeVariable(typeVariable: TypeVariable, p: Void?): Void? {
-        builder.append(typeVariable.asElement().simpleName);
-        return null
-      }
+        override fun visitArray(arrayType: ArrayType, p: Void?): Void? {
+          val componentType = arrayType.componentType
+          if (componentType is PrimitiveType) {
+            builder.append(componentType.toString()) // Don't box, since this is an array.
+          } else {
+            typeToString(arrayType.componentType, builder, innerClassSeparator)
+          }
+          builder.append("[]")
+          return null
+        }
 
-      override fun visitError(errorType: ErrorType, p: Void?): Void? {
-        builder.append(errorType.toString());
-        return null
-      }
+        override fun visitTypeVariable(typeVariable: TypeVariable, p: Void?): Void? {
+          builder.append(typeVariable.asElement().simpleName)
+          return null
+        }
 
-      override fun defaultAction(typeMirror: TypeMirror, p: Void?): Void? {
-        builder.append(TypeName.get(typeMirror).toString())
-        return null
-      }
-    }, null)
+        override fun visitError(errorType: ErrorType, p: Void?): Void? {
+          builder.append(errorType.toString())
+          return null
+        }
+
+        override fun defaultAction(typeMirror: TypeMirror, p: Void?): Void? {
+          builder.append(TypeName.get(typeMirror).toString())
+          return null
+        }
+      },
+      null
+    )
   }
 
   private fun rawTypeToString(

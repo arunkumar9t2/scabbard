@@ -100,7 +100,6 @@ constructor(
     val componentNodes = bindingGraph.componentNodes()
     val rootComponentNode = bindingGraph.rootComponentNode()
 
-
     // Create a custom tree of ComponentNodes.
     val componentTree: MutableGraph<BindingGraph.ComponentNode> = GraphBuilder
       .directed()

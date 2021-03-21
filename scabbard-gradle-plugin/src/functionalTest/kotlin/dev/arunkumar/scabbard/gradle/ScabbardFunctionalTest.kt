@@ -43,7 +43,7 @@ abstract class ScabbardFunctionalTest {
               interface SimpleComponent {
                 fun node(): Node
               }
-            """.trimIndent()
+      """.trimIndent()
     )
   }
 
@@ -64,7 +64,7 @@ abstract class ScabbardFunctionalTest {
                   Hello hello();
                 }
               }
-            """.trimIndent()
+      """.trimIndent()
     )
   }
 }

@@ -26,7 +26,6 @@ object HiltCustomModule {
   @Provides
   @Named(NUMBER)
   fun providesNumber(): Int = 10
-
 }
 
 @Singleton

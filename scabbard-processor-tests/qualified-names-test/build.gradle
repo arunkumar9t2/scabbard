@@ -1,39 +1,39 @@
 plugins {
-    id "java-library"
-    id "org.jetbrains.kotlin.jvm"
-    id "kotlin-kapt"
+  id "java-library"
+  id "org.jetbrains.kotlin.jvm"
+  id "kotlin-kapt"
 }
 
 repositories {
-    jcenter()
+  jcenter()
 }
 
 kapt {
-    arguments {
-        arg("scabbard.qualifiedNames", true)
-    }
+  arguments {
+    arg("scabbard.qualifiedNames", true)
+  }
 }
 
 sourceSets {
-    main.java.srcDirs("build/generated/source/kapt/main")
-    test.java.srcDirs("build/generated/source/kapt/test")
+  main.java.srcDirs("build/generated/source/kapt/main")
+  test.java.srcDirs("build/generated/source/kapt/test")
 }
 
 dependencies {
-    testImplementation "junit:junit:${versions.junit}"
-    testImplementation "com.google.testing.compile:compile-testing:${versions.compileTesting}"
-    testCompileOnly "com.google.auto.service:auto-service:${versions.autoService}"
-    kaptTest "com.google.auto.service:auto-service:${versions.autoService}"
-    kaptTest "com.google.dagger:dagger-compiler:${versions.dagger}"
+  testImplementation "junit:junit:${versions.junit}"
+  testImplementation "com.google.testing.compile:compile-testing:${versions.compileTesting}"
+  testCompileOnly "com.google.auto.service:auto-service:${versions.autoService}"
+  kaptTest "com.google.auto.service:auto-service:${versions.autoService}"
+  kaptTest "com.google.dagger:dagger-compiler:${versions.dagger}"
 
-    testImplementation project(path: ":scabbard-processor-tests:common")
+  testImplementation project(path: ":scabbard-processor-tests:common")
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-    implementation "guru.nidi:graphviz-java:${versions.graphviz}"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+  implementation "guru.nidi:graphviz-java:${versions.graphviz}"
 
-    implementation "com.google.dagger:dagger-spi:${versions.dagger}"
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+  implementation "com.google.dagger:dagger-spi:${versions.dagger}"
+  implementation "com.google.dagger:dagger:${versions.dagger}"
+  kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
-    kaptTest project(path: ":scabbard-processor")
+  kaptTest project(path: ":scabbard-processor")
 }

@@ -53,7 +53,6 @@ class MultibindingsAttributesTest {
     assertThat(multibindingsCluster).isNotNull()
   }
 
-
   @Test
   fun `assert multibindings nodes have correct attributes`() {
     val multibindingsCluster = generatedGraph.graphs()

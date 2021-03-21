@@ -89,18 +89,18 @@ class InheritedBindingsTest {
     assertThat(generatedAnotherChildComponentDot)
       .contains(
         "graph [labeljust=\"c\", " +
-            "label=\"Inherited from InheritedBindingsTest.ChildComponent\\n@ChildScope\", " +
-            "style=\"dashed\", " +
-            "href=\"dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.InheritedBindingsTest.ChildComponent.png\", " +
-            "color=\"aquamarine\"]"
+          "label=\"Inherited from InheritedBindingsTest.ChildComponent\\n@ChildScope\", " +
+          "style=\"dashed\", " +
+          "href=\"dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.InheritedBindingsTest.ChildComponent.png\", " +
+          "color=\"aquamarine\"]"
       )
     assertThat(generatedAnotherChildComponentDot)
       .contains(
         "graph [labeljust=\"c\", " +
-            "label=\"Inherited from InheritedBindingsTest.AnotherChildComponent\\n@AnotherChildScope\", " +
-            "style=\"dashed\", " +
-            "href=\"dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.InheritedBindingsTest.AnotherChildComponent.png\", " +
-            "color=\"bisque\"]"
+          "label=\"Inherited from InheritedBindingsTest.AnotherChildComponent\\n@AnotherChildScope\", " +
+          "style=\"dashed\", " +
+          "href=\"dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.InheritedBindingsTest.AnotherChildComponent.png\", " +
+          "color=\"bisque\"]"
       )
   }
 }

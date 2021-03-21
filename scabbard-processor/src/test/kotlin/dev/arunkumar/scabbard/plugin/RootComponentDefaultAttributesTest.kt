@@ -10,7 +10,6 @@ import org.junit.runners.JUnit4
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 @RunWith(JUnit4::class)
 class RootComponentDefaultAttributesTest {
 

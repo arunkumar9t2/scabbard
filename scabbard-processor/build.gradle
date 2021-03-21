@@ -1,45 +1,45 @@
 plugins {
-    id "java-library"
-    id "org.jetbrains.kotlin.jvm"
-    id "kotlin-kapt"
+  id "java-library"
+  id "org.jetbrains.kotlin.jvm"
+  id "kotlin-kapt"
 }
 description = "Visualize Dagger 2 dependency graphs with ease"
 apply from: "../publishing.gradle"
 
 repositories {
-    jcenter()
+  jcenter()
 }
 
 sourceSets {
-    main.java.srcDirs("build/generated/source/kapt/main")
-    test.java.srcDirs("build/generated/source/kapt/test")
+  main.java.srcDirs("build/generated/source/kapt/main")
+  test.java.srcDirs("build/generated/source/kapt/test")
 }
 
 dependencies {
-    testImplementation "junit:junit:${versions.junit}"
-    testImplementation "com.google.testing.compile:compile-testing:${versions.compileTesting}"
-    testCompileOnly "com.google.auto.service:auto-service:${versions.autoService}"
-    kaptTest "com.google.auto.service:auto-service:${versions.autoService}"
-    kaptTest "com.google.dagger:dagger-compiler:${versions.dagger}"
+  testImplementation "junit:junit:${versions.junit}"
+  testImplementation "com.google.testing.compile:compile-testing:${versions.compileTesting}"
+  testCompileOnly "com.google.auto.service:auto-service:${versions.autoService}"
+  kaptTest "com.google.auto.service:auto-service:${versions.autoService}"
+  kaptTest "com.google.dagger:dagger-compiler:${versions.dagger}"
 
-    testImplementation project(path: ":scabbard-processor-tests:common")
+  testImplementation project(path: ":scabbard-processor-tests:common")
 
-    implementation project(path: ":dot-dsl")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+  implementation project(path: ":dot-dsl")
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
-    implementation "guru.nidi:graphviz-java:${versions.graphviz}"
-    implementation "org.slf4j:slf4j-nop:${versions.slf4jNop}"
+  implementation "guru.nidi:graphviz-java:${versions.graphviz}"
+  implementation "org.slf4j:slf4j-nop:${versions.slf4jNop}"
 
-    implementation "com.google.dagger:dagger-spi:${versions.dagger}"
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+  implementation "com.google.dagger:dagger-spi:${versions.dagger}"
+  implementation "com.google.dagger:dagger:${versions.dagger}"
+  kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
-    implementation "com.google.auto:auto-common:${versions.autoCommon}"
+  implementation "com.google.auto:auto-common:${versions.autoCommon}"
 
-    compileOnly "com.google.auto.service:auto-service:${versions.autoService}"
-    kapt "com.google.auto.service:auto-service:${versions.autoService}"
+  compileOnly "com.google.auto.service:auto-service:${versions.autoService}"
+  kapt "com.google.auto.service:auto-service:${versions.autoService}"
 
-    implementation "com.google.guava:guava:${versions.guava}"
+  implementation "com.google.guava:guava:${versions.guava}"
 
-    implementation "com.github.kittinunf.result:result:${versions.result}"
+  implementation "com.github.kittinunf.result:result:${versions.result}"
 }
