@@ -25,7 +25,8 @@ repositories {
 dependencies {
   implementation "com.google.dagger:dagger:${versions.dagger}"
   annotationProcessor "com.google.dagger:dagger-compiler:${versions.dagger}"
-  implementation "com.google.guava:guava:28.0-jre"
+
+  implementation "com.google.guava:guava:${versions.guava}"
   testImplementation "junit:junit:${versions.junit}"
 }
 
