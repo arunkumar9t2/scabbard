@@ -6,10 +6,10 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.android.support.DaggerAppCompatActivity
 import dev.arunkumar.scabbard.R
-import dev.arunkumar.scabbard.debug.ComplexSingleton
-import dev.arunkumar.scabbard.debug.DaggerDependantComponent
-import dev.arunkumar.scabbard.debug.SimpleSingleton
-import dev.arunkumar.scabbard.di.appComponent
+import dev.arunkumar.scabbard.appComponent
+import dev.arunkumar.scabbard.di.ComplexSingleton
+import dev.arunkumar.scabbard.di.DaggerDependantComponent
+import dev.arunkumar.scabbard.di.SimpleSingleton
 import dev.arunkumar.scabbard.di.scope.ActivityScope
 import dev.arunkumar.scabbard.home.fragment.HomeFragment
 import dev.arunkumar.scabbard.home.fragment.ModuleHolder

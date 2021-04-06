@@ -1,8 +1,8 @@
 package dev.arunkumar.scabbard.home.fragment
 
 import dagger.android.support.DaggerFragment
-import dev.arunkumar.scabbard.debug.SimpleSingleton
-import dev.arunkumar.scabbard.debug.UnScopedBinding
+import dev.arunkumar.scabbard.di.SimpleSingleton
+import dev.arunkumar.scabbard.di.UnScopedBinding
 import dev.arunkumar.scabbard.home.ActivityDep
 import javax.inject.Inject
 

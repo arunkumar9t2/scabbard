@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.debug
+package dev.arunkumar.scabbard.di
 
 import android.app.Application
 import dagger.BindsInstance

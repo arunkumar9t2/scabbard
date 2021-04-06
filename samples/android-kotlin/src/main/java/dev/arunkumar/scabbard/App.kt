@@ -1,8 +1,8 @@
 package dev.arunkumar.scabbard
 
+import android.app.Application
 import dagger.android.support.DaggerApplication
-import dev.arunkumar.scabbard.debug.*
-import dev.arunkumar.scabbard.di.DaggerAppComponent
+import dev.arunkumar.scabbard.di.*
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -37,3 +37,5 @@ class App : DaggerApplication() {
     super.onCreate()
   }
 }
+
+val Application.appComponent get() = (this as App).appComponent
