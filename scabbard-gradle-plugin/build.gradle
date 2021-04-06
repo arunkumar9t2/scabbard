@@ -20,7 +20,6 @@ repositories {
 
 dependencies {
   implementation platform("org.jetbrains.kotlin:kotlin-bom")
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
   implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
 
   testImplementation "junit:junit:${versions.junit}"

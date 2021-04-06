@@ -29,7 +29,6 @@ dependencies {
 
   testImplementation project(path: ":scabbard-processor-tests:common")
 
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
   implementation "guru.nidi:graphviz-java:${versions.graphviz}"
 
   implementation "com.google.dagger:dagger-spi:${versions.dagger}"

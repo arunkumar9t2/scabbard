@@ -25,7 +25,6 @@ dependencies {
   testImplementation project(path: ":scabbard-processor-tests:common")
 
   implementation project(path: ":dot-dsl")
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
   implementation "guru.nidi:graphviz-java:${versions.graphviz}"
   implementation "org.slf4j:slf4j-nop:${versions.slf4jNop}"

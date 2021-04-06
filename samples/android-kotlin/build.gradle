@@ -18,7 +18,7 @@ android {
   }
 
   variantFilter { variant ->
-    if (variant.buildType.name == 'release') {
+    if (variant.buildType.name == "release") {
       variant.setIgnore(true)
     }
   }
@@ -36,8 +36,6 @@ apply from: "../../gradle/scabbard-local-processor.gradle"
 
 dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
-
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
   implementation "androidx.appcompat:appcompat:${versions.androidx.appcompat}"
   implementation "androidx.fragment:fragment-ktx:${versions.androidx.fragment.ktx}"
