@@ -17,7 +17,7 @@ class App : DaggerApplication() {
 
   @Inject
   @JvmSuppressWildcards
-  lateinit var multiBindingTypes: Set<MultiBindingType>
+  lateinit var multiBindings: Set<MultiBinding>
 
   @Inject
   lateinit var delegateBinding: DelegateBinding

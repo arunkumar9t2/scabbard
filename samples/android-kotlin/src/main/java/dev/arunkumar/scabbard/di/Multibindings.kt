@@ -5,21 +5,21 @@ import dagger.Module
 import dagger.multibindings.IntoSet
 import javax.inject.Inject
 
-interface MultiBindingType
+interface MultiBinding
 
-class SimpleMultiBindingType @Inject constructor() : MultiBindingType
+class SimpleMultiBinding @Inject constructor() : MultiBinding
 
-class ComplexMultiBindingType
+class ComplexMultiBinding
 @Inject
-constructor(val provisionBinding: ProvisionBinding) : MultiBindingType
+constructor(val provisionBinding: ProvisionBinding) : MultiBinding
 
 @Module
 abstract class MultiBindingsProvisionModule {
   @Binds
   @IntoSet
-  abstract fun SimpleMultiBindingType.simpleMultiBindingType(): MultiBindingType
+  abstract fun SimpleMultiBinding.simpleMultiBindingType(): MultiBinding
 
   @Binds
   @IntoSet
-  abstract fun ComplexMultiBindingType.complexMultiBindingType(): MultiBindingType
+  abstract fun ComplexMultiBinding.complexMultiBindingType(): MultiBinding
 }
