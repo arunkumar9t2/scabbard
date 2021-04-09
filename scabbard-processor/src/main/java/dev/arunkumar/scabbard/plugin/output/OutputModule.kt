@@ -3,8 +3,8 @@ package dev.arunkumar.scabbard.plugin.output
 import dagger.Binds
 import dagger.Module
 
-@Module
+@Module(includes = [OutputWriterModule::class])
 interface OutputModule {
   @Binds
-  fun bindOutputManager(defaultOutputManager: DefaultOutputManager): OutputManager
+  fun DefaultOutputManager.bindOutputManager(): OutputManager
 }

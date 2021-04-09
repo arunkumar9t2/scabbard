@@ -9,11 +9,9 @@ import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 interface BindingGraphProcessorModule {
   @Binds
   @IntoSet
-  fun bindingGraphProcessor(
-    defaultBindingGraphProcessor: DefaultBindingGraphProcessor
-  ): BindingGraphProcessor
+  fun DefaultBindingGraphProcessor.bindingGraphProcessor(): BindingGraphProcessor
 
   @Binds
   @IntoSet
-  fun componentTreeProcessor(componentTreeProcessor: ComponentTreeProcessor): BindingGraphProcessor
+  fun ComponentTreeProcessor.componentTreeProcessor(): BindingGraphProcessor
 }
