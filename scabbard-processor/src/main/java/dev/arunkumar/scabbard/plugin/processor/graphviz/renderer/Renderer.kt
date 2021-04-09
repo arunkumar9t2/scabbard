@@ -15,8 +15,8 @@ import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
  */
 interface Renderer<T> {
   /**
-   * The rendering context for this render. The root renderer usually has the global context and other renderer typically
-   * pass it to other renderers. Intermediate state between multiple renderers are store here.
+   * The rendering context for this render. The root renderer usually has the global context and other renderers typically
+   * pass it to other renderers. Intermediate state between multiple renderers can be stored here.
    *
    * It is the responsibility of the current renderer to pass the correct context to other renderers.
    */
@@ -36,8 +36,9 @@ interface Renderer<T> {
   fun render(dotGraphBuilder: DotGraphBuilder, element: T) = dotGraphBuilder.build(element)
 
   /**
-   * The actually rendering logic to implemented called with context of `DotGraphBuilder` passed to this renderer by the
-   * consumer. Implement the rendering logic or delegate work to other renderers here.
+   * Implementations should render the given [renderingElement] onto [DotGraphBuilder]. A typical implementation simply
+   * renders the element directly or delegates to other renderers as needed. [renderingContext] should be passed to
+   * other renderers and can be customized if needed.
    */
   fun DotGraphBuilder.build(renderingElement: T)
 }

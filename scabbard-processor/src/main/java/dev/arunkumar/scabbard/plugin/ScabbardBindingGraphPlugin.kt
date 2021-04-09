@@ -40,9 +40,9 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
 
   // TODO(arun) Establish  Singleton -> VisitGraph scope
   override fun visitGraph(bindingGraph: BindingGraph, diagnosticReporter: DiagnosticReporter) {
-    val processingEnvModule = ProcessingEnvModule(filer, types, elements, options)
+    val processingEnvModule = ProcessingEnvModule(filer, types, elements, options, diagnosticReporter)
     DaggerScabbardComponent.factory()
-      .create(processingEnvModule, bindingGraph, diagnosticReporter)
+      .create(processingEnvModule, bindingGraph)
       .bindingGraphProcessors()
       .forEach(BindingGraphProcessor::process)
   }

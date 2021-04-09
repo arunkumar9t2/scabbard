@@ -34,7 +34,6 @@ interface ScabbardComponent {
     fun create(
       processingEnvModule: ProcessingEnvModule,
       @BindsInstance bindingGraph: BindingGraph,
-      @BindsInstance diagnosticReporter: DiagnosticReporter
     ): ScabbardComponent
   }
 }
@@ -44,7 +43,8 @@ class ProcessingEnvModule(
   private val filer: Filer,
   private val types: Types,
   private val elements: Elements,
-  private val options: Map<String, String>
+  private val options: Map<String, String>,
+  private val diagnosticReporter: DiagnosticReporter
 ) {
   @ProcessorScope
   @Provides
@@ -61,4 +61,8 @@ class ProcessingEnvModule(
   @ProcessorScope
   @Provides
   fun scabbardOptions(): ScabbardOptions = parseOptions(options)
+
+  @ProcessorScope
+  @Provides
+  fun diagnosticReporter(): DiagnosticReporter = diagnosticReporter
 }

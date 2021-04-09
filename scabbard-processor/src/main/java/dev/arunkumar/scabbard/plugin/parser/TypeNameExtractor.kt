@@ -14,18 +14,10 @@ import javax.lang.model.type.*
 import javax.lang.model.type.TypeKind.*
 import javax.lang.model.util.SimpleTypeVisitor6
 
-/**
- * A extractor to calculate a type's name.
- */
 interface TypeNameExtractor {
-  /**
-   * @return the string representation of the given [typeMirror]
-   */
+
   fun extractName(typeMirror: TypeMirror): String
 
-  /**
-   * @return the string representation of the given [annotationMirror]
-   */
   fun extractName(annotationMirror: AnnotationMirror): String
 
   /**
@@ -101,7 +93,7 @@ class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
   }
 
   /**
-   * Recursively each type and in the given [typeMirror] and calculates simple name.
+   * Recursively traverses each type in the given [typeMirror] and calculates simple name.
    *
    * Based on
    * [https://github.com/square/dagger/blob/master/compiler/src/main/java/dagger/internal/codegen/Util.java#L123]
