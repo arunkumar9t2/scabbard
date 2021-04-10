@@ -7,6 +7,7 @@ import dagger.spi.DiagnosticReporter
 import dev.arunkumar.scabbard.plugin.di.DaggerScabbardComponent
 import dev.arunkumar.scabbard.plugin.di.ProcessingEnvModule
 import dev.arunkumar.scabbard.plugin.options.SUPPORTED_OPTIONS
+import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types

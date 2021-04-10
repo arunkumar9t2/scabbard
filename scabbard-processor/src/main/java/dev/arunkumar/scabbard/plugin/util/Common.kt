@@ -1,6 +1,6 @@
 package dev.arunkumar.scabbard.plugin.util
 
-import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
+import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 
 /**

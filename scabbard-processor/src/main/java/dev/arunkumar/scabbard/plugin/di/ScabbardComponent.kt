@@ -6,12 +6,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.model.BindingGraph
 import dagger.spi.DiagnosticReporter
-import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
+import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.options.parseOptions
 import dev.arunkumar.scabbard.plugin.output.OutputModule
 import dev.arunkumar.scabbard.plugin.parser.TypeNameExtractorModule
-import dev.arunkumar.scabbard.plugin.processor.graphviz.BindingGraphProcessorModule
+import dev.arunkumar.scabbard.plugin.processor.graphviz.GraphvizVisualizationModule
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
@@ -22,7 +22,7 @@ import javax.lang.model.util.Types
     OutputModule::class,
     ProcessingEnvModule::class,
     TypeNameExtractorModule::class,
-    BindingGraphProcessorModule::class
+    GraphvizVisualizationModule::class
   ]
 )
 interface ScabbardComponent {

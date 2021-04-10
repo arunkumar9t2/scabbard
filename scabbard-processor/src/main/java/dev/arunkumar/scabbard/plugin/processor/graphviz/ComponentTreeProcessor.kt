@@ -7,11 +7,11 @@ import com.google.common.graph.MutableGraph
 import dagger.model.BindingGraph
 import dev.arunkumar.dot.DotGraph
 import dev.arunkumar.dot.dsl.directedGraph
-import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.di.ProcessorScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.output.OutputWriter
 import dev.arunkumar.scabbard.plugin.parser.TypeNameExtractor
+import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.ComponentTreeRenderer
 import dev.arunkumar.scabbard.plugin.util.processingBlock
 import javax.inject.Inject
@@ -22,13 +22,12 @@ import javax.lang.model.element.TypeElement
  */
 @Suppress("UnstableApiUsage")
 @ProcessorScope
-@JvmSuppressWildcards
 class ComponentTreeProcessor
 @Inject
 constructor(
   override val bindingGraph: BindingGraph,
   private val scabbardOptions: ScabbardOptions,
-  private val outputWriters: Set<OutputWriter>,
+  private val outputWriters: Set<@JvmSuppressWildcards OutputWriter>,
   private val renderingContext: RenderingContext,
   private val typeNameExtractor: TypeNameExtractor
 ) : BindingGraphProcessor {
@@ -65,9 +64,9 @@ constructor(
   private fun writeOutput(currentComponent: TypeElement, dotGraph: DotGraph) {
     outputWriters.forEach { writer ->
       writer.write(
-        dotGraph.toString(),
-        currentComponent,
-        bindingGraph.isFullBindingGraph,
+        dotString = dotGraph.toString(),
+        component = currentComponent,
+        isFull = bindingGraph.isFullBindingGraph,
         isComponentTree = true
       )
     }
