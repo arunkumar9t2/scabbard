@@ -1,13 +1,13 @@
-package dev.arunkumar.scabbard.plugin.parser
+package dev.arunkumar.scabbard.plugin.store
 
 import com.google.common.collect.Iterators
-import dev.arunkumar.scabbard.plugin.di.ProcessorScope
+import dev.arunkumar.scabbard.plugin.di.VisitGraphScope
 import javax.inject.Inject
 
 /**
  * Class to cache and assign colors to Dagger scopes. The colors are assigned in cyclic order.
  */
-@ProcessorScope
+@VisitGraphScope
 class DaggerScopeColors @Inject constructor() {
 
   // TODO(arun) Add more colors?

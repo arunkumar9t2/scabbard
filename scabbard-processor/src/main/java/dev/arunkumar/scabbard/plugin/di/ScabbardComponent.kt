@@ -1,17 +1,12 @@
 package dev.arunkumar.scabbard.plugin.di
 
-import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.Provides
-import dagger.model.BindingGraph
-import dagger.spi.DiagnosticReporter
-import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.options.parseOptions
 import dev.arunkumar.scabbard.plugin.output.OutputModule
 import dev.arunkumar.scabbard.plugin.parser.TypeNameExtractorModule
-import dev.arunkumar.scabbard.plugin.processor.graphviz.GraphvizVisualizationModule
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
@@ -22,18 +17,16 @@ import javax.lang.model.util.Types
     OutputModule::class,
     ProcessingEnvModule::class,
     TypeNameExtractorModule::class,
-    GraphvizVisualizationModule::class
   ]
 )
 interface ScabbardComponent {
 
-  fun bindingGraphProcessors(): Set<BindingGraphProcessor>
+  fun bindingGraphVisitorComponent(): BindingGraphVisitorComponent.Factory
 
   @Component.Factory
   interface Factory {
     fun create(
       processingEnvModule: ProcessingEnvModule,
-      @BindsInstance bindingGraph: BindingGraph,
     ): ScabbardComponent
   }
 }
@@ -43,8 +36,7 @@ class ProcessingEnvModule(
   private val filer: Filer,
   private val types: Types,
   private val elements: Elements,
-  private val options: Map<String, String>,
-  private val diagnosticReporter: DiagnosticReporter
+  private val options: Map<String, String>
 ) {
   @ProcessorScope
   @Provides
@@ -61,8 +53,4 @@ class ProcessingEnvModule(
   @ProcessorScope
   @Provides
   fun scabbardOptions(): ScabbardOptions = parseOptions(options)
-
-  @ProcessorScope
-  @Provides
-  fun diagnosticReporter(): DiagnosticReporter = diagnosticReporter
 }

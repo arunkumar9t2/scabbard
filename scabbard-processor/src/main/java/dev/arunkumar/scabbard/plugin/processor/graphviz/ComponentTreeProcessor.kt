@@ -7,7 +7,7 @@ import com.google.common.graph.MutableGraph
 import dagger.model.BindingGraph
 import dev.arunkumar.dot.DotGraph
 import dev.arunkumar.dot.dsl.directedGraph
-import dev.arunkumar.scabbard.plugin.di.ProcessorScope
+import dev.arunkumar.scabbard.plugin.di.VisitGraphScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.output.OutputWriter
 import dev.arunkumar.scabbard.plugin.parser.TypeNameExtractor
@@ -21,7 +21,7 @@ import javax.lang.model.element.TypeElement
  * A [BindingGraphProcessor] that generates image of component hierarchy.
  */
 @Suppress("UnstableApiUsage")
-@ProcessorScope
+@VisitGraphScope
 class ComponentTreeProcessor
 @Inject
 constructor(

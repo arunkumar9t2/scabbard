@@ -6,6 +6,7 @@ import dagger.spi.BindingGraphPlugin
 import dagger.spi.DiagnosticReporter
 import dev.arunkumar.scabbard.plugin.di.DaggerScabbardComponent
 import dev.arunkumar.scabbard.plugin.di.ProcessingEnvModule
+import dev.arunkumar.scabbard.plugin.di.ScabbardComponent
 import dev.arunkumar.scabbard.plugin.options.SUPPORTED_OPTIONS
 import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 import javax.annotation.processing.Filer
@@ -39,11 +40,14 @@ class ScabbardBindingGraphPlugin : BindingGraphPlugin {
     this.options = options
   }
 
-  // TODO(arun) Establish  Singleton -> VisitGraph scope
+  private val scabbardComponent: ScabbardComponent by lazy {
+    val processingEnvModule = ProcessingEnvModule(filer, types, elements, options)
+    DaggerScabbardComponent.factory().create(processingEnvModule)
+  }
+
   override fun visitGraph(bindingGraph: BindingGraph, diagnosticReporter: DiagnosticReporter) {
-    val processingEnvModule = ProcessingEnvModule(filer, types, elements, options, diagnosticReporter)
-    DaggerScabbardComponent.factory()
-      .create(processingEnvModule, bindingGraph)
+    scabbardComponent.bindingGraphVisitorComponent()
+      .create(bindingGraph, diagnosticReporter)
       .bindingGraphProcessors()
       .forEach(BindingGraphProcessor::process)
   }
