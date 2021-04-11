@@ -68,6 +68,8 @@ constructor(
 
   companion object {
     const val SCABBARD_PACKAGE = "scabbard"
+
+    // TODO move to common module to share with intellij
     const val FULL_GRAPH_PREFIX = "full_"
     const val TREE_GRAPH_PREFIX = "tree_"
   }
