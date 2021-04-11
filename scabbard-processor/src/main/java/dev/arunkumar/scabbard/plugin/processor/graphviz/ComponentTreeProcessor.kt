@@ -106,9 +106,7 @@ constructor(
       .expectedNodeCount(componentNodes.size)
       .build()
 
-    val componentNodeTypeCache = componentNodes
-      .map { it.componentPath().currentComponent() to it }
-      .toMap()
+    val componentNodeTypeCache = componentNodes.associateBy { it.componentPath().currentComponent() }
 
     componentNodes
       .map { it.componentPath().components() }
