@@ -48,6 +48,7 @@ constructor(
         val dotGraphBuilder = renderingContext.createRootDotGraphBuilder(componentPath)
 
         // Drop the id cache to render only nodes present in this component/subcomponent
+        // TODO Make renderingContext scoped to component via factory
         renderingContext.dropIdCache()
 
         // Render this component's graph
