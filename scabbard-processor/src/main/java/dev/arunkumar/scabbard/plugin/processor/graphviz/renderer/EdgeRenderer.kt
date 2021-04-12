@@ -17,8 +17,8 @@ class EdgeRenderer(
   override val renderingContext: RenderingContext
 ) : Renderer<List<Edge>> {
 
-  override fun DotGraphBuilder.build(renderingElement: List<Edge>) {
-    renderingElement.forEach { edge ->
+  override fun DotGraphBuilder.build(renderElement: List<Edge>) {
+    renderElement.forEach { edge ->
       val (source, target) = renderingContext.bindingGraph.network().incidentNodes(edge)
       if (renderingContext.validInContext(source, target)) {
         renderEdge(edge, source, target)

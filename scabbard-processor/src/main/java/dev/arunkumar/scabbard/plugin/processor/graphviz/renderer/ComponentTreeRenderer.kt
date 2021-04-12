@@ -14,8 +14,8 @@ class ComponentTreeRenderer(
   override val renderingContext: RenderingContext
 ) : Renderer<Graph<BindingGraph.ComponentNode>> {
 
-  override fun DotGraphBuilder.build(renderingElement: Graph<BindingGraph.ComponentNode>) {
-    renderingElement.nodes()
+  override fun DotGraphBuilder.build(renderElement: Graph<BindingGraph.ComponentNode>) {
+    renderElement.nodes()
       .forEach { componentNode ->
         componentNode.id {
           "label" eq componentNode.label
@@ -26,7 +26,7 @@ class ComponentTreeRenderer(
           }
         }
       }
-    renderingElement.edges()
+    renderElement.edges()
       .forEach { edge: EndpointPair<BindingGraph.ComponentNode> ->
         val (source, target) = edge
         (source.id link target.id)

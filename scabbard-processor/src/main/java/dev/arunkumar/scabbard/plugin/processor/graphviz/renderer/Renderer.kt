@@ -36,9 +36,9 @@ interface Renderer<T> {
   fun render(dotGraphBuilder: DotGraphBuilder, element: T) = dotGraphBuilder.build(element)
 
   /**
-   * Implementations should render the given [renderingElement] onto [DotGraphBuilder]. A typical implementation simply
+   * Implementations should render the given [renderElement] onto [DotGraphBuilder]. A typical implementation simply
    * renders the element directly or delegates to other renderers as needed. [renderingContext] should be passed to
    * other renderers and can be customized if needed.
    */
-  fun DotGraphBuilder.build(renderingElement: T)
+  fun DotGraphBuilder.build(renderElement: T)
 }
