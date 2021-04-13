@@ -71,8 +71,8 @@ class BindingsRenderer(
       }
   }
 
-  override fun DotGraphBuilder.build(renderingElement: List<MaybeBinding>) {
-    renderingElement.forEach { maybeBinding ->
+  override fun DotGraphBuilder.build(renderElement: List<MaybeBinding>) {
+    renderElement.forEach { maybeBinding ->
       when (maybeBinding) {
         is Binding -> {
           if (!maybeBinding.kind().isMultibinding) {
@@ -84,6 +84,6 @@ class BindingsRenderer(
       }
     }
     // Add multi bindings
-    addMultiBindings(renderingElement.asSequence())
+    addMultiBindings(renderElement.asSequence())
   }
 }

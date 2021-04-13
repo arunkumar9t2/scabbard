@@ -5,11 +5,11 @@ import dagger.model.BindingGraph
 import dagger.model.BindingGraph.MaybeBinding
 import dagger.model.ComponentPath
 import dev.arunkumar.dot.DotGraph
-import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
-import dev.arunkumar.scabbard.plugin.di.ProcessorScope
+import dev.arunkumar.scabbard.plugin.di.VisitGraphScope
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.output.OutputWriter
 import dev.arunkumar.scabbard.plugin.parser.subcomponentsOf
+import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.DaggerComponent
 import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.InheritedBinding
 import dev.arunkumar.scabbard.plugin.util.processingBlock
@@ -19,14 +19,13 @@ import kotlin.collections.component1
 import kotlin.collections.component2
 
 @Suppress("UnstableApiUsage")
-@ProcessorScope
-@JvmSuppressWildcards
+@VisitGraphScope
 class DefaultBindingGraphProcessor
 @Inject
 constructor(
   override val bindingGraph: BindingGraph,
   private val scabbardOptions: ScabbardOptions,
-  private val outputWriters: Set<OutputWriter>,
+  private val outputWriters: Set<@JvmSuppressWildcards OutputWriter>,
   private val renderingContext: RenderingContext
 ) : BindingGraphProcessor {
 
@@ -35,7 +34,6 @@ constructor(
 
     // Group all the nodes by their component
     network.nodes()
-      .asSequence()
       .groupBy(BindingGraph.Node::componentPath)
       .map { (componentPath, nodes) ->
         val currentComponent = componentPath.currentComponent()
@@ -50,6 +48,7 @@ constructor(
         val dotGraphBuilder = renderingContext.createRootDotGraphBuilder(componentPath)
 
         // Drop the id cache to render only nodes present in this component/subcomponent
+        // TODO Make renderingContext scoped to component via factory
         renderingContext.dropIdCache()
 
         // Render this component's graph

@@ -1,7 +1,7 @@
 package dev.arunkumar.scabbard.plugin.util
 
-import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
+import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 
 /**
  * Function that executes the actual processing operations usually by a [BindingGraphProcessor]. The

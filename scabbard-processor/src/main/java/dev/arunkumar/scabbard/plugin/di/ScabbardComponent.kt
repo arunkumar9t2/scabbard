@@ -1,18 +1,12 @@
 package dev.arunkumar.scabbard.plugin.di
 
-import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.Provides
-import dagger.model.BindingGraph
-import dagger.spi.DiagnosticReporter
-import dev.arunkumar.scabbard.plugin.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.options.parseOptions
 import dev.arunkumar.scabbard.plugin.output.OutputModule
-import dev.arunkumar.scabbard.plugin.output.OutputWriterModule
 import dev.arunkumar.scabbard.plugin.parser.TypeNameExtractorModule
-import dev.arunkumar.scabbard.plugin.processor.graphviz.BindingGraphProcessorModule
 import javax.annotation.processing.Filer
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
@@ -21,22 +15,18 @@ import javax.lang.model.util.Types
 @Component(
   modules = [
     OutputModule::class,
-    OutputWriterModule::class,
     ProcessingEnvModule::class,
     TypeNameExtractorModule::class,
-    BindingGraphProcessorModule::class
   ]
 )
 interface ScabbardComponent {
 
-  fun bindingGraphProcessors(): Set<BindingGraphProcessor>
+  fun bindingGraphVisitorComponent(): BindingGraphVisitorComponent.Factory
 
   @Component.Factory
   interface Factory {
     fun create(
       processingEnvModule: ProcessingEnvModule,
-      @BindsInstance bindingGraph: BindingGraph,
-      @BindsInstance diagnosticReporter: DiagnosticReporter
     ): ScabbardComponent
   }
 }

@@ -22,7 +22,7 @@ data class DaggerComponent(
   class GraphRenderer(
     override val renderingContext: RenderingContext
   ) : Renderer<DaggerComponent> {
-    override fun DotGraphBuilder.build(renderingElement: DaggerComponent) {
+    override fun DotGraphBuilder.build(renderElement: DaggerComponent) {
       cluster("Entry Points") {
         graphAttributes {
           "labeljust" eq "l"
@@ -32,7 +32,7 @@ data class DaggerComponent(
           "shape" eq "component"
           "penwidth" eq 2
         }
-        BindingsRenderer(renderingContext).render(this, renderingElement.entryPointBindings)
+        BindingsRenderer(renderingContext).render(this, renderElement.entryPointBindings)
       }
 
       cluster("Dependency Graph") {
@@ -40,12 +40,12 @@ data class DaggerComponent(
           "labeljust" eq "l"
           "label" eq "Dependency Graph"
         }
-        BindingsRenderer(renderingContext).render(this, renderingElement.dependencyBindings)
+        BindingsRenderer(renderingContext).render(this, renderElement.dependencyBindings)
       }
 
-      SimpleSubComponentRenderer(renderingContext).render(this, renderingElement.subcomponents)
-      InheritedBinding.GraphRenderer(renderingContext).render(this, renderingElement.inheritedBindings)
-      EdgeRenderer(renderingContext).render(this, renderingElement.edges)
+      SimpleSubComponentRenderer(renderingContext).render(this, renderElement.subcomponents)
+      InheritedBinding.GraphRenderer(renderingContext).render(this, renderElement.inheritedBindings)
+      EdgeRenderer(renderingContext).render(this, renderElement.edges)
     }
   }
 }

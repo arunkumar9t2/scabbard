@@ -13,14 +13,14 @@ class SimpleSubComponentRenderer(
   override val renderingContext: RenderingContext
 ) : Renderer<List<BindingGraph.ComponentNode>> {
 
-  override fun DotGraphBuilder.build(renderingElement: List<BindingGraph.ComponentNode>) {
+  override fun DotGraphBuilder.build(renderElement: List<BindingGraph.ComponentNode>) {
     cluster("Subcomponents") {
       graphAttributes {
         "labeljust" eq "l"
         "shape" eq "folder"
         "label" eq "Subcomponents"
       }
-      renderingElement.forEach { subcomponent ->
+      renderElement.forEach { subcomponent ->
         subcomponent.id {
           "label" eq subcomponent.label
           "href" eq renderingContext.href(subcomponent)

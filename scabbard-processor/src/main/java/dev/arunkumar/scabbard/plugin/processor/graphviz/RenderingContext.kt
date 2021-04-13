@@ -10,6 +10,7 @@ import dev.arunkumar.dot.dsl.directedGraph
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.output.OutputManager
 import dev.arunkumar.scabbard.plugin.parser.*
+import dev.arunkumar.scabbard.plugin.store.DaggerScopeColors
 import java.util.*
 import javax.inject.Inject
 

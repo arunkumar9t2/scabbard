@@ -1,4 +1,4 @@
-package dev.arunkumar.scabbard.plugin
+package dev.arunkumar.scabbard.plugin.processor
 
 import dagger.model.BindingGraph
 
