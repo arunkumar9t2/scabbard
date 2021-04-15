@@ -1,9 +1,7 @@
 package dev.arukumar.scabbard.anvil
 
 import com.squareup.anvil.annotations.ContributesTo
-import com.squareup.anvil.annotations.MergeComponent
 import dagger.Binds
-import dagger.Component
 import dagger.Module
 import javax.inject.Inject
 
@@ -23,19 +21,8 @@ interface DaggerModule {
 @ContributesTo(AppScope::class)
 interface ComponentInterface {
   fun binding(): Binding
-}
 
-@MergeComponent(AppScope::class)
-interface AppComponent {
-  @Component.Factory
-  interface Factory {
-    fun create(): AppComponent
-  }
-}
+  fun setMultiBindings(): Set<@JvmSuppressWildcards ContributedMultiBinding>
 
-fun main() {
-  DaggerAppComponent
-    .factory()
-    .create()
-    .binding()
+  fun mapMultiBindings(): Map<String, Listener>
 }
