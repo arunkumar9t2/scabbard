@@ -13,6 +13,7 @@ buildscript {
     classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
     classpath "com.novoda:bintray-release:${versions.bintray}"
     classpath "com.diffplug.spotless:spotless-plugin-gradle:${versions.spotless}"
+    classpath "com.squareup.anvil:gradle-plugin:${versions.anvil}"
   }
 }
 apply from: "gradle/local-properties.gradle"

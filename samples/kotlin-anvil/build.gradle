@@ -1,0 +1,22 @@
+plugins {
+  id "java-library"
+  id "org.jetbrains.kotlin.jvm"
+}
+apply plugin: "com.squareup.anvil"
+apply plugin: "kotlin-kapt"
+
+apply plugin: scabbardGradlePlugin
+
+scabbard {
+  enabled true
+  failOnError true
+  fullBindingGraphValidation true
+  outputFormat "svg"
+}
+
+apply from: "../../gradle/scabbard-local-processor.gradle"
+
+dependencies {
+  implementation "com.google.dagger:dagger:${versions.dagger}"
+  kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+}
