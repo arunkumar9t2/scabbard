@@ -13,10 +13,12 @@ include "samples:java-library-kts-script"
 include "samples:coffee-java"
 include "samples:android-kotlin-hilt"
 include "samples:simple-maven"
+include "samples:kotlin-anvil"
 
 
 includeBuild("scabbard-gradle-plugin") {
-    dependencySubstitution {
-        substitute module("dev.arunkumar:scabbard-gradle-plugin") with project(":")
-    }
+  dependencySubstitution {
+    substitute module("dev.arunkumar:scabbard-gradle-plugin") with project(":")
+  }
 }
+
