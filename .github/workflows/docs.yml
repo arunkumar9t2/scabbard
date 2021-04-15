@@ -3,7 +3,7 @@ name: Publish docs workflow
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'docs/*'
       - 'mkdocs.yml'
