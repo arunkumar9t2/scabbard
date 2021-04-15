@@ -32,3 +32,10 @@ interface AppComponent {
     fun create(): AppComponent
   }
 }
+
+fun main() {
+  DaggerAppComponent
+    .factory()
+    .create()
+    .binding()
+}
