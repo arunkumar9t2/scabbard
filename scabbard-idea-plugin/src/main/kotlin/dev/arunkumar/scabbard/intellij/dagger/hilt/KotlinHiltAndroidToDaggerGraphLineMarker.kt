@@ -5,6 +5,7 @@ import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import dev.arunkumar.scabbard.intellij.dagger.*
+import org.jetbrains.annotations.NotNull
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 class KotlinHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
@@ -30,8 +31,8 @@ class KotlinHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider()
   }
 
   override fun collectNavigationMarkers(
-    element: PsiElement,
-    result: MutableCollection<in RelatedItemLineMarkerInfo<PsiElement>>
+    element: @NotNull PsiElement,
+    result: @NotNull MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     when (element) {
       is LeafPsiElement -> {

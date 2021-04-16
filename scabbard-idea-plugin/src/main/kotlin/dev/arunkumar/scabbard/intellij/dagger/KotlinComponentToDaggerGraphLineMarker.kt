@@ -4,20 +4,19 @@ import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import org.jetbrains.annotations.NotNull
 import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 class KotlinComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
   private fun KtClassOrObject.hasDaggerComponentAnnotations(): Boolean {
-    return hasAnnotation(DAGGER_COMPONENT) ||
-      hasAnnotation(DAGGER_SUBCOMPONENT) ||
-      hasAnnotation(DAGGER_MODULE)
+    return DAGGER_COMPONENT_ANNOTATIONS.any { daggerAnnotation -> hasAnnotation(daggerAnnotation) }
   }
 
   override fun collectNavigationMarkers(
-    element: PsiElement,
-    result: MutableCollection<in RelatedItemLineMarkerInfo<PsiElement>>
+    element: @NotNull PsiElement,
+    result: @NotNull MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     when (element) {
       is LeafPsiElement -> {

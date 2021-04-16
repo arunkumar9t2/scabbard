@@ -4,15 +4,15 @@ import com.squareup.anvil.annotations.MergeComponent
 import dagger.Component
 
 @MergeComponent(AppScope::class)
-interface AppComponent {
+interface AnvilComponent {
   @Component.Factory
   interface Factory {
-    fun create(): AppComponent
+    fun create(): AnvilComponent
   }
 }
 
 fun main() {
-  DaggerAppComponent.factory().create().apply {
+  DaggerAnvilComponent.factory().create().apply {
     binding()
     setMultiBindings()
     mapMultiBindings()
