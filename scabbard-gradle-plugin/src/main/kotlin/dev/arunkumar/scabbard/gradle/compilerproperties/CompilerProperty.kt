@@ -29,6 +29,7 @@ import kotlin.properties.ReadWriteProperty
  */
 data class CompilerProperty<T>(val name: String, val value: T) {
   companion object {
+    // TODO(arun) Share constants via common module
     internal const val FAIL_ON_ERROR_PROPERTY = "$SCABBARD.failOnError"
     internal const val QUALIFIED_NAMES_PROPERTY = "$SCABBARD.qualifiedNames"
     internal const val OUTPUT_FORMAT_PROPERTY = "$SCABBARD.outputFormat"
