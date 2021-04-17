@@ -31,7 +31,7 @@ class KotlinHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider()
 
   override fun collectNavigationMarkers(
     element: PsiElement,
-    result: MutableCollection<in RelatedItemLineMarkerInfo<PsiElement>>
+    result: MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     when (element) {
       is LeafPsiElement -> {

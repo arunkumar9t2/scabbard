@@ -10,14 +10,12 @@ import org.jetbrains.kotlin.psi.KtClassOrObject
 class KotlinComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
   private fun KtClassOrObject.hasDaggerComponentAnnotations(): Boolean {
-    return hasAnnotation(DAGGER_COMPONENT) ||
-      hasAnnotation(DAGGER_SUBCOMPONENT) ||
-      hasAnnotation(DAGGER_MODULE)
+    return DAGGER_COMPONENT_ANNOTATIONS.any { daggerAnnotation -> hasAnnotation(daggerAnnotation) }
   }
 
   override fun collectNavigationMarkers(
     element: PsiElement,
-    result: MutableCollection<in RelatedItemLineMarkerInfo<PsiElement>>
+    result: MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     when (element) {
       is LeafPsiElement -> {

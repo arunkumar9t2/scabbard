@@ -14,7 +14,7 @@ class KotlinContributesAndroidInjectorLineMarker : RelatedItemLineMarkerProvider
 
   override fun collectNavigationMarkers(
     element: PsiElement,
-    result: MutableCollection<in RelatedItemLineMarkerInfo<PsiElement>>
+    result: MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     if (element is KtNamedFunction) {
       // Check if method has @ContributesAndroidInjector

@@ -16,7 +16,7 @@ class JavaHiltCustomComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProv
 
   override fun collectNavigationMarkers(
     element: PsiElement,
-    result: MutableCollection<in RelatedItemLineMarkerInfo<PsiElement>>
+    result: MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     if (element.isDaggerAnnotationIdentifier(customComponentHiltAnnotations)) {
       element.getContainingClass()?.let { componentClass ->

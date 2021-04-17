@@ -18,7 +18,7 @@ class JavaContributesAndroidInjectorLineMarker : RelatedItemLineMarkerProvider()
 
   override fun collectNavigationMarkers(
     element: PsiElement,
-    result: MutableCollection<in RelatedItemLineMarkerInfo<PsiElement>>
+    result: MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     if (element is PsiMethod) {
       // Check if method has @ContributesAndroidInjector

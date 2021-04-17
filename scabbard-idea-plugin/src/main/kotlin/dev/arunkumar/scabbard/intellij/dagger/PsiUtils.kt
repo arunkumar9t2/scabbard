@@ -3,16 +3,23 @@ package dev.arunkumar.scabbard.intellij.dagger
 import com.intellij.psi.*
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.psi.search.GlobalSearchScope
+import dev.arunkumar.scabbard.intellij.dagger.anvil.ANVIL_MERGE_COMPONENT
+import dev.arunkumar.scabbard.intellij.dagger.anvil.ANVIL_MERGE_SUBCOMPONENT
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtKeywordToken
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
-private val DaggerComponentAnnotations = listOf(
+/**
+ * List of fully qualified annotations that correspond to a Dagger component.
+ */
+val DAGGER_COMPONENT_ANNOTATIONS = listOf(
   DAGGER_COMPONENT,
   DAGGER_SUBCOMPONENT,
-  DAGGER_MODULE
+  DAGGER_MODULE,
+  ANVIL_MERGE_COMPONENT, // Anvil's merge component is a replacement for `DAGGER_COMPONENT`.
+  ANVIL_MERGE_SUBCOMPONENT // Anvil's merge sub component is a replacement for `DAGGER_SUBCOMPONENT`.
 )
 
 /**
@@ -23,9 +30,9 @@ private val DaggerComponentAnnotations = listOf(
  * `Component` part when it is represented as a `PsiIdentifier`.
  *
  * @param daggerAnnotations the list of dagger annotation to look for.
- * @see DaggerComponentAnnotations
+ * @see DAGGER_COMPONENT_ANNOTATIONS
  */
-fun PsiElement.isDaggerAnnotationIdentifier(daggerAnnotations: List<String> = DaggerComponentAnnotations): Boolean {
+fun PsiElement.isDaggerAnnotationIdentifier(daggerAnnotations: List<String> = DAGGER_COMPONENT_ANNOTATIONS): Boolean {
   val psiIdentifier = this as? PsiIdentifier
   return daggerAnnotations.any { daggerAnnotation ->
     (psiIdentifier?.parent?.parent as? PsiAnnotation)?.qualifiedName == daggerAnnotation
