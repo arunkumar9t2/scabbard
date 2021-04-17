@@ -9,7 +9,6 @@ import dev.arunkumar.scabbard.intellij.dagger.hasAnnotation
 import dev.arunkumar.scabbard.intellij.dagger.ktClassOrObject
 import dev.arunkumar.scabbard.intellij.dagger.prepareDaggerComponentLineMarkerWithFileName
 import dev.arunkumar.scabbard.intellij.dagger.toPsiClass
-import org.jetbrains.annotations.NotNull
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 /**
@@ -26,8 +25,8 @@ class KotlinHiltCustomComponentToDaggerGraphLineMarker : RelatedItemLineMarkerPr
   }
 
   override fun collectNavigationMarkers(
-    element: @NotNull PsiElement,
-    result: @NotNull MutableCollection<in RelatedItemLineMarkerInfo<*>>
+    element: PsiElement,
+    result: MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     when (element) {
       is LeafPsiElement -> {

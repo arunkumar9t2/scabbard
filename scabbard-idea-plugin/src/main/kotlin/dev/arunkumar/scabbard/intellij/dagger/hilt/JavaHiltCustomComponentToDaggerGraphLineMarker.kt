@@ -5,7 +5,6 @@ import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
 import dev.arunkumar.scabbard.intellij.dagger.isDaggerAnnotationIdentifier
 import dev.arunkumar.scabbard.intellij.dagger.prepareDaggerComponentLineMarkerWithFileName
-import org.jetbrains.annotations.NotNull
 import org.jetbrains.kotlin.j2k.getContainingClass
 
 class JavaHiltCustomComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
@@ -16,8 +15,8 @@ class JavaHiltCustomComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProv
   )
 
   override fun collectNavigationMarkers(
-    element: @NotNull PsiElement,
-    result: @NotNull MutableCollection<in RelatedItemLineMarkerInfo<*>>
+    element: PsiElement,
+    result: MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     if (element.isDaggerAnnotationIdentifier(customComponentHiltAnnotations)) {
       element.getContainingClass()?.let { componentClass ->

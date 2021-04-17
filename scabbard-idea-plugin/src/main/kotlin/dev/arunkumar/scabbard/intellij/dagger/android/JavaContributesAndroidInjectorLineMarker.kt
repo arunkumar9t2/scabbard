@@ -9,7 +9,6 @@ import com.intellij.psi.impl.source.PsiClassReferenceType
 import com.intellij.psi.impl.source.PsiJavaFileImpl
 import dev.arunkumar.scabbard.intellij.dagger.DAGGER_CONTRIBUTES_ANDROID_INJECTOR
 import dev.arunkumar.scabbard.intellij.dagger.prepareContributesAndroidInjectorLineMarker
-import org.jetbrains.annotations.NotNull
 
 class JavaContributesAndroidInjectorLineMarker : RelatedItemLineMarkerProvider() {
 
@@ -18,8 +17,8 @@ class JavaContributesAndroidInjectorLineMarker : RelatedItemLineMarkerProvider()
   }
 
   override fun collectNavigationMarkers(
-    element: @NotNull PsiElement,
-    result: @NotNull MutableCollection<in RelatedItemLineMarkerInfo<*>>
+    element: PsiElement,
+    result: MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     if (element is PsiMethod) {
       // Check if method has @ContributesAndroidInjector

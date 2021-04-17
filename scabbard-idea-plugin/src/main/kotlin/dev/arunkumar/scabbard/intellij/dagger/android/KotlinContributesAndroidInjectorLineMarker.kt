@@ -5,7 +5,6 @@ import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
 import dev.arunkumar.scabbard.intellij.dagger.DAGGER_CONTRIBUTES_ANDROID_INJECTOR
 import dev.arunkumar.scabbard.intellij.dagger.prepareContributesAndroidInjectorLineMarker
-import org.jetbrains.annotations.NotNull
 import org.jetbrains.kotlin.idea.quickfix.createFromUsage.callableBuilder.getReturnTypeReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
@@ -14,8 +13,8 @@ import org.jetbrains.kotlin.psi.KtNamedFunction
 class KotlinContributesAndroidInjectorLineMarker : RelatedItemLineMarkerProvider() {
 
   override fun collectNavigationMarkers(
-    element: @NotNull PsiElement,
-    result: @NotNull MutableCollection<in RelatedItemLineMarkerInfo<*>>
+    element: PsiElement,
+    result: MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     if (element is KtNamedFunction) {
       // Check if method has @ContributesAndroidInjector
