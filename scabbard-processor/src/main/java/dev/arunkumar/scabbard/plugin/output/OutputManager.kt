@@ -74,10 +74,15 @@ constructor(
     const val TREE_GRAPH_PREFIX = "tree_"
   }
 
+  /**
+   * Attempts to crate a `FileObject` for `fileName` and wraps any `FilerException`
+   *
+   * //TODO Better design to track created resources.
+   */
   private fun Filer.safeCreate(fileName: String) =
     Result.of<FileObject, Exception> {
       createResource(
-        StandardLocation.CLASS_OUTPUT,
+        StandardLocation.SOURCE_OUTPUT,
         SCABBARD_PACKAGE,
         fileName
       )
