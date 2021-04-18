@@ -23,7 +23,7 @@ fun Class<*>.generatedFile(fileNamePrefix: String, extension: String, sourceSet:
   val sep = File.separatorChar.toString()
   val name = name.replace("$", ".")
   val pathToGenFile = DefaultOutputManager.SCABBARD_PACKAGE
-  val absoluteGenPath = "$projectDir${sep}build/tmp/kapt3/classes/$sourceSet${sep}$pathToGenFile$sep"
+  val absoluteGenPath = "$projectDir${sep}build/generated/source/kapt/$sourceSet${sep}$pathToGenFile$sep"
   return Paths.get(absoluteGenPath).resolve("$fileNamePrefix$name.$extension").toFile()
 }
 
