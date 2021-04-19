@@ -3,6 +3,7 @@ package dev.arunkumar.scabbard.intellij.dagger
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.navigation.NavigationGutterIconBuilder
 import com.intellij.ide.util.DefaultPsiElementCellRenderer
+import com.intellij.openapi.roots.ProjectFileIndex
 import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
@@ -17,7 +18,7 @@ private const val FULL_GRAPH_FILE_NAME = "$FULL_GRAPH_PREFIX%s"
 private const val TREE_GRAPH_PREFIX = "tree_"
 private const val TREE_GRAPH_FILE_NAME = "$TREE_GRAPH_PREFIX%s"
 
-private val GENERATED_FILE_FORMATS = listOf(
+private val GENERATED_FILE_FORMATS = sequenceOf(
   "$TREE_GRAPH_FILE_NAME.png",
   "$TREE_GRAPH_FILE_NAME.svg",
   "%s.png",
@@ -37,11 +38,11 @@ private const val DEPENDENCY_GRAPH = "dependency graph"
  *
  * @param contributesAndroidInjectorElement PsiElement representing the `@ContributesAndroidInjector`
  * @param packageName The package name of the containing file
- * @param qualifiedPath The full path to class that contains the method which the annotation.
+ * @param qualifiedPath The full path to class that contains the method with the annotation.
  * @param methodName The name of the method that has the annotation
  * @param returnTypeSimpleName The simple name of the method's return type.
  */
-fun prepareContributesAndroidInjectorLineMarker(
+internal fun prepareContributesAndroidInjectorLineMarker(
   contributesAndroidInjectorElement: PsiElement,
   packageName: String,
   qualifiedPath: String,
@@ -134,20 +135,27 @@ private class PsiElementToDaggerComponentNameCellRenderer : DefaultPsiElementCel
  * Prepares a LineMarker instance for gutter icon by search for [fileName] in different scopes. If given `fileName` is
  * found in any of the scope will return a `LineMarkerInfo` instance that navigates to the file on click of gutter icon.
  */
-fun prepareDaggerComponentLineMarkerWithFileName(
+internal fun prepareDaggerComponentLineMarkerWithFileName(
   element: PsiElement,
   componentName: String,
   fileName: String
 ): RelatedItemLineMarkerInfo<PsiElement>? {
   val scope = GlobalSearchScope.allScope(element.project)
+  val projectFileIndex = ProjectFileIndex.SERVICE.getInstance(element.project)
+
   val matchedFiles: List<PsiFile> = GENERATED_FILE_FORMATS
     .flatMap { fileNameFormat ->
+      // Search by file name
       FilenameIndex.getFilesByName(
         element.project,
         fileName.sanitize(fileNameFormat),
         scope
-      ).toList()
-    }
+      ).asSequence()
+    }.filter { psiFile ->
+      // Ensure files present only in sources
+      projectFileIndex.isInSource(psiFile.virtualFile)
+    }.toList()
+
   val title = "Open $componentName's $DEPENDENCY_GRAPH"
   return if (matchedFiles.isNotEmpty()) {
     NavigationGutterIconBuilder.create(SCABBARD_ICON)
