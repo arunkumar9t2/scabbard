@@ -1,10 +1,9 @@
 <idea-plugin>
     <name>Scabbard - Dagger 2 Visualizer</name>
+    <id>dev.arunkumar.scabbard.idea-plugin</id>
+    <idea-version since-build="191" />
+    <vendor email="hi@arunkumar.dev" url="https://arunkumar.dev">Arunkumar</vendor>
     <category>Custom Languages</category>
-
-    <depends>com.intellij.modules.lang</depends>
-    <depends>com.intellij.modules.java</depends>
-    <depends>org.jetbrains.kotlin</depends>
 
     <description><![CDATA[
     IntelliJ plugin to visualize Dagger 2 dependency graphs. Works alongside Scabbard gradle plugin.
@@ -34,6 +33,12 @@
     <p>More advanced <a href="https://arunkumar9t2.github.io/scabbard/examples/" rel="nofollow">examples</a>.</p>
     ]]></description>
 
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>org.jetbrains.kotlin</depends>
+    <depends>org.jetbrains.android</depends>
+
     <extensions defaultExtensionNs="com.intellij">
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.KotlinComponentToDaggerGraphLineMarker"
@@ -60,9 +65,4 @@
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.android.JavaContributesAndroidInjectorLineMarker"
             language="JAVA" />
     </extensions>
-
-    <id>dev.arunkumar.scabbard.idea-plugin</id>
-
-    <idea-version since-build="191" />
-    <vendor email="hi@arunkumar.dev" url="http://arunkumar.dev">Arunkumar</vendor>
 </idea-plugin>

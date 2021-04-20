@@ -4,6 +4,7 @@ buildscript {
   apply from: "constants.gradle"
   repositories {
     google()
+    mavenCentral()
     jcenter()
   }
   dependencies {
@@ -22,6 +23,7 @@ apply from: "docker/resolve-dependencies.gradle"
 allprojects {
   repositories {
     google()
+    mavenCentral()
     jcenter()
   }
   group groupId
