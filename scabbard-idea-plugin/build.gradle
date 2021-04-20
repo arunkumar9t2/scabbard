@@ -1,35 +1,37 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-  id "org.jetbrains.intellij" version "0.4.21"
+  id "org.jetbrains.intellij" version "0.7.2"
   id "org.jetbrains.kotlin.jvm"
 }
 
-targetCompatibility = "1.8"
-sourceCompatibility = "1.8"
+java {
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
+  toolchain {
+    // languageVersion = JavaLanguageVersion.of(11)
+  }
+}
 
-repositories {
-  mavenCentral()
+tasks.withType(KotlinCompile).configureEach {
+  kotlinOptions.jvmTarget = "1.8"
 }
 
 dependencies {
   testImplementation "junit:junit:${versions.junit}"
 }
 
-compileKotlin {
-  kotlinOptions.jvmTarget = "1.8"
-}
-compileTestKotlin {
-  kotlinOptions.jvmTarget = "1.8"
-}
-
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
   updateSinceUntilBuild false
+
+  version = "201.8743.12" // Based on AS 4.1.3 Stable
+  type "IC"
+
   plugins = [
-    "Kotlin", "IntelliLang", "java"
+    "Kotlin", "IntelliLang", "java", "android"
   ]
-  version "2019.2"
   pluginName "Scabbard - Dagger 2 Visualizer"
-  //intellij.alternativeIdePath "C:\\Users\\arunk\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-2\\192.6071332"
 }
 
 patchPluginXml {
