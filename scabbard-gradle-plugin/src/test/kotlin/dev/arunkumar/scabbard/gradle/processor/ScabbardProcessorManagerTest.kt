@@ -47,7 +47,7 @@ class ScabbardProcessorManagerTest : ScabbardBaseTest() {
 
   @Test
   fun `assert when java plugin is present and scabbard extension is enabled, scabbard is added`() {
-    project.setupAsJava(isJavaLibrary = false)
+    project.setupAsJava()
     project.addDagger()
 
     scabbardExtension {

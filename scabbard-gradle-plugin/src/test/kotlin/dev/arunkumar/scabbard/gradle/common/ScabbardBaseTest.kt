@@ -31,8 +31,7 @@ abstract class ScabbardBaseTest {
   protected val scabbardExtension: ScabbardPluginExtension
     get() = project.extensions.getByType()
 
-  internal fun scabbardExtension(block: ScabbardPluginExtension.() -> Unit) =
-    scabbardExtension.apply(block)
+  internal fun scabbardExtension(block: ScabbardPluginExtension.() -> Unit) = scabbardExtension.apply(block)
 
   internal fun Project.baseSetup() {
     repositories {
@@ -56,7 +55,7 @@ abstract class ScabbardBaseTest {
   /**
    * Setup the [project] instance as a pure java project.
    */
-  internal fun Project.setupAsJava(isJavaLibrary: Boolean = true) {
+  internal fun Project.setupAsJava() {
     baseSetup()
     plugins.apply {
       apply(JAVA_LIBRARY_PLUGIN_ID)

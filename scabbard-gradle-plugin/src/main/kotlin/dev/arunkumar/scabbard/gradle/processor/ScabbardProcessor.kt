@@ -19,10 +19,6 @@ internal const val SCABBARD_PROCESSOR_DEPENDENCY = "$SCABBARD_GROUP:$SCABBARD_NA
 internal const val DAGGER_GROUP = "com.google.dagger"
 internal const val DAGGER_COMPILER = "dagger-compiler"
 
-@Deprecated(
-  "Not used since Dagger 2.29.1, please use hilt-compiler instead",
-  ReplaceWith("DAGGER_HILT_COMPILER")
-)
 internal const val DAGGER_HILT_ANDROID_COMPILER = "hilt-android-compiler"
 internal const val DAGGER_HILT_COMPILER = "hilt-compiler"
 
