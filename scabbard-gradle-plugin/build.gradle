@@ -16,11 +16,13 @@ kotlinDslPluginOptions {
 
 repositories {
   jcenter()
+  google()
 }
 
 dependencies {
   implementation platform("org.jetbrains.kotlin:kotlin-bom")
   implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+  implementation "com.android.tools.build:gradle:4.1.3"
 
   testImplementation "junit:junit:${versions.junit}"
   testImplementation "com.google.truth:truth:${versions.truth}"
