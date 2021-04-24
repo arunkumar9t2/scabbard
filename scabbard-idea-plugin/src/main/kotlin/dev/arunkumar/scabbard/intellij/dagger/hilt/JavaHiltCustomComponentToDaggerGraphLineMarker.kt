@@ -25,7 +25,7 @@ class JavaHiltCustomComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProv
           val graphLineMarker = prepareDaggerComponentLineMarkerWithFileName(
             element = element,
             componentName = componentClass.name!!,
-            fileName = qualifiedName
+            componentFqcn = qualifiedName
           )
           graphLineMarker?.let { result.add(graphLineMarker) }
         }

@@ -42,7 +42,7 @@ class KotlinHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider()
               val graphLineMarker = prepareDaggerComponentLineMarkerWithFileName(
                 element = element,
                 componentName = ktClass.name!!,
-                fileName = qualifiedName
+                componentFqcn = qualifiedName
               )
               graphLineMarker?.let { result.add(graphLineMarker) }
             }
