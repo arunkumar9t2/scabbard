@@ -3,29 +3,12 @@ package dev.arunkumar.scabbard.intellij.dagger
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.navigation.NavigationGutterIconBuilder
 import com.intellij.ide.util.DefaultPsiElementCellRenderer
-import com.intellij.openapi.roots.ProjectFileIndex
 import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import com.intellij.psi.search.FilenameIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.PsiShortNamesCache
 import com.intellij.psi.util.PsiUtilCore
-
-// TODO(arun) create a common package to share these between intellij and processor
-private const val FULL_GRAPH_PREFIX = "full_"
-private const val FULL_GRAPH_FILE_NAME = "$FULL_GRAPH_PREFIX%s"
-private const val TREE_GRAPH_PREFIX = "tree_"
-private const val TREE_GRAPH_FILE_NAME = "$TREE_GRAPH_PREFIX%s"
-
-private val GENERATED_FILE_FORMATS = sequenceOf(
-  "$TREE_GRAPH_FILE_NAME.png",
-  "$TREE_GRAPH_FILE_NAME.svg",
-  "%s.png",
-  "$FULL_GRAPH_FILE_NAME.png",
-  "%s.svg",
-  "$FULL_GRAPH_FILE_NAME.svg"
-)
 
 private const val DEPENDENCY_GRAPH = "dependency graph"
 
@@ -63,7 +46,7 @@ internal fun prepareContributesAndroidInjectorLineMarker(
   val lineMarker = prepareDaggerComponentLineMarkerWithFileName(
     element = contributesAndroidInjectorElement,
     componentName = subcomponentName,
-    fileName = generatedImageName
+    componentFqcn = generatedImageName
   )
   if (lineMarker != null) {
     return lineMarker
@@ -87,16 +70,6 @@ internal fun prepareContributesAndroidInjectorLineMarker(
       }
   }
   return null
-}
-
-/**
- * Format and sanitize raw file name received from PSI processors.
- *
- * Currently replaces inner class markers `$` with `.`
- */
-private fun String.sanitize(format: String): String {
-  val sanitized = replace("$", ".")
-  return String.format(format, sanitized)
 }
 
 /**
@@ -132,30 +105,21 @@ private class PsiElementToDaggerComponentNameCellRenderer : DefaultPsiElementCel
 }
 
 /**
- * Prepares a LineMarker instance for gutter icon by search for [fileName] in different scopes. If given `fileName` is
- * found in any of the scope will return a `LineMarkerInfo` instance that navigates to the file on click of gutter icon.
+ * Prepares a [RelatedItemLineMarkerInfo] instance for gutter icon by searching for [componentFqcn] in different scopes.
+ * By default, [GENERATED_DAGGER_FILES] will be used as a base for searching generated component graphs.
+ *
+ * @return [RelatedItemLineMarkerInfo] instance with popup to navigate to all matched files
+ * @param element [PsiElement] for which the Gutter icon should be targeted
+ * @param componentName Simple name of the Dagger component that will be used in tooltip of the gutter icon.
+ * @param componentFqcn Fully qualified name of the dagger component
  */
 internal fun prepareDaggerComponentLineMarkerWithFileName(
   element: PsiElement,
   componentName: String,
-  fileName: String
+  componentFqcn: String
 ): RelatedItemLineMarkerInfo<PsiElement>? {
-  val scope = GlobalSearchScope.allScope(element.project)
-  val projectFileIndex = ProjectFileIndex.SERVICE.getInstance(element.project)
-
-  val matchedFiles: List<PsiFile> = GENERATED_FILE_FORMATS
-    .flatMap { fileNameFormat ->
-      // Search by file name
-      FilenameIndex.getFilesByName(
-        element.project,
-        fileName.sanitize(fileNameFormat),
-        scope
-      ).asSequence()
-    }.filter { psiFile ->
-      // Ensure files present only in sources
-      projectFileIndex.isInSource(psiFile.virtualFile)
-    }.toList()
-
+  val project = element.project
+  val matchedFiles: List<PsiFile> = searchGeneratedDaggerFiles(project, componentFqcn)
   val title = "Open $componentName's $DEPENDENCY_GRAPH"
   return if (matchedFiles.isNotEmpty()) {
     NavigationGutterIconBuilder.create(SCABBARD_ICON)

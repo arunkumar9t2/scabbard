@@ -33,7 +33,7 @@ class JavaHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
         val graphLineMarker = prepareDaggerComponentLineMarkerWithFileName(
           element = element,
           componentName = psiClass.name!!,
-          fileName = qualifiedName
+          componentFqcn = qualifiedName
         )
         graphLineMarker?.let { result.add(graphLineMarker) }
       }
