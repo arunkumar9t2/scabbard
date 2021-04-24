@@ -1,7 +1,5 @@
 package dev.arunkumar.scabbard.intellij.dagger.console.filters
 
-typealias DaggerComponent = String
-
 interface MissingBindingComponentExtractor {
   fun extract(line: String, entireLength: Int): Set<DaggerComponent>
 }
@@ -20,6 +18,7 @@ class DefaultMissingBindingComponentExtractor : MissingBindingComponentExtractor
       return emptySet()
     }
     if (isDaggerLog) {
+      val lineStart = entireLength - line.length
       // Parse the component simple name from dagger component error line
       if (line.contains("{")) {
         val classNameWithModifiers = when {
@@ -32,8 +31,10 @@ class DefaultMissingBindingComponentExtractor : MissingBindingComponentExtractor
           .map { it.trim() }
           .lastOrNull { it.isNotBlank() }
           ?.let { componentName ->
+            val start = line.indexOf(componentName) + lineStart
+            val end = start + componentName.length
             isDaggerLog = false
-            return setOf(componentName)
+            return setOf(DaggerComponent(start, end, componentName))
           }
       }
     }

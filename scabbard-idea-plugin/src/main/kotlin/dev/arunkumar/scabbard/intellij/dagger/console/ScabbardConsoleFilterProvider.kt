@@ -10,6 +10,6 @@ import dev.arunkumar.scabbard.intellij.dagger.console.filters.MissingBindingFilt
  */
 class ScabbardConsoleFilterProvider : ConsoleFilterProvider {
   override fun getDefaultFilters(project: Project): Array<Filter> {
-    return arrayOf(MissingBindingFilter())
+    return arrayOf(MissingBindingFilter(project))
   }
 }

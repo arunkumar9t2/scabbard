@@ -14,12 +14,19 @@ class DefaultMissingBindingComponentExtractorTest {
     missingBindingComponentExtractor = DefaultMissingBindingComponentExtractor()
   }
 
+  private data class LineInfo(val line: String, val accLength: Int)
+
+  @OptIn(ExperimentalStdlibApi::class)
   private fun ConsoleLog.applyTo(
     missingBindingComponentExtractor: MissingBindingComponentExtractor
-  ) = lineSequence()
-    .map { it.trim() }
-    .flatMap { missingBindingComponentExtractor.extract(it, it.length).asSequence() }
-    .toSet()
+  ): Set<DaggerComponent> {
+    return lineSequence()
+      .map { LineInfo(it, 0) }
+      .scanReduce { acc, line ->
+        acc.copy(line = line.line, accLength = acc.accLength + line.line.length)
+      }.flatMap { missingBindingComponentExtractor.extract(it.line, it.accLength).asSequence() }
+      .toSet()
+  }
 
   @Test
   fun `assert dagger component with supertype is extracted from missing binding stream of logs`() {
@@ -41,7 +48,7 @@ class DefaultMissingBindingComponentExtractorTest {
 """.trimMargin()
     val daggerComponents = consoleLog.applyTo(missingBindingComponentExtractor)
     Truth.assertThat(daggerComponents)
-      .containsExactly("AppComponent")
+      .containsExactly(DaggerComponent(446, 458, "AppComponent"))
   }
 
   @Test
@@ -64,6 +71,6 @@ class DefaultMissingBindingComponentExtractorTest {
 """.trimMargin()
     val daggerComponents = consoleLog.applyTo(missingBindingComponentExtractor)
     Truth.assertThat(daggerComponents)
-      .containsExactly("AppComponent")
+      .containsExactly(DaggerComponent(446, 458, "AppComponent"))
   }
 }
