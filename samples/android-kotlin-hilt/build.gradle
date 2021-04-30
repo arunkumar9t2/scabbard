@@ -42,12 +42,10 @@ dependencies {
   implementation "androidx.core:core-ktx:${versions.androidx.core}"
   implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
 
-  implementation "com.google.dagger:dagger:${versions.dagger}"
   implementation "androidx.appcompat:appcompat:${versions.appcompat}"
   implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
   implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycleViewmodelKtx}"
 
-  kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
   implementation "com.google.dagger:hilt-android:${versions.hilt}"
   kapt "com.google.dagger:hilt-android-compiler:${versions.hilt}"
 
