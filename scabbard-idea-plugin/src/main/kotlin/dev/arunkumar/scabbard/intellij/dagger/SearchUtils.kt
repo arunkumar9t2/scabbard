@@ -70,6 +70,6 @@ internal fun searchGeneratedDaggerFiles(
       ).asSequence()
     }.filter { psiFile ->
       // Ensure files present only in sources
-      projectFileIndex.isInSource(psiFile.virtualFile) || true
+      projectFileIndex.isInSource(psiFile.virtualFile)
     }.toList()
 }
