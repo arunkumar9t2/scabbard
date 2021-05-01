@@ -6,7 +6,7 @@ interface MissingBindingComponentExtractor {
 
 class DefaultMissingBindingComponentExtractor : MissingBindingComponentExtractor {
   companion object {
-    private const val DAGGER_MISSING_BINDING = "[Dagger/MissingBinding]"
+    private val DAGGER_ERROR_FORMAT = "error: \\[Dagger/[a-zA-Z]+]".toRegex()
     private const val EXTENDS = "extends"
     private const val IMPLEMENTS = "implements"
   }
@@ -14,7 +14,7 @@ class DefaultMissingBindingComponentExtractor : MissingBindingComponentExtractor
   private var isDaggerLog = false
 
   override fun extract(line: String, entireLength: Int): Set<DaggerComponent> {
-    if (line.contains(DAGGER_MISSING_BINDING)) {
+    if (line.contains(DAGGER_ERROR_FORMAT)) {
       isDaggerLog = true
       return emptySet()
     }

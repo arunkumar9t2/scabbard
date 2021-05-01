@@ -92,4 +92,28 @@ class DefaultMissingBindingComponentExtractorTest {
     Truth.assertThat(daggerComponents)
       .containsExactly(DaggerComponent(705, 715, "SingletonC"))
   }
+
+  @Test
+  fun `assert component name is extracted in new dagger error message format`() {
+    val consoleLog = """
+      |C:\Users\arunk\AndroidProjects\personal\scabbard\samples\kotlin-anvil\build\tmp\kapt3\stubs\main\dev\arukumar\scabbard\anvil\AnvilComponent.java:8: error: [Dagger/Validation] 
+      |public abstract interface AnvilComponent extends dev.arukumar.scabbard.anvil.ComponentInterface {
+      |                ^
+      |  [Dagger/MissingBinding] Binding cannot be provided without an @Provides-annotated method.
+      |      Binding is requested at
+      |          ComponentInterface.binding()
+      |  
+      |  ======================
+      |  Full classname legend:
+      |  ======================
+      |  Binding:            dev.arukumar.scabbard.anvil.Binding
+      |  ComponentInterface: dev.arukumar.scabbard.anvil.ComponentInterface
+      |  ========================
+      |  End of classname legend:
+      |  ========================
+    """.trimIndent()
+    val daggerComponents = consoleLog.applyTo(missingBindingComponentExtractor)
+    Truth.assertThat(daggerComponents)
+      .containsExactly(DaggerComponent(27, 41, "AnvilComponent"))
+  }
 }
