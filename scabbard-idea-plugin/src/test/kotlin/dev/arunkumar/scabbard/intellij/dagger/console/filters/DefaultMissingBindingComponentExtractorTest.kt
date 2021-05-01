@@ -73,4 +73,23 @@ class DefaultMissingBindingComponentExtractorTest {
     Truth.assertThat(daggerComponents)
       .containsExactly(DaggerComponent(446, 458, "AppComponent"))
   }
+
+  @Test
+  fun `assert dagger hilt component with interface supertype is extracted from missing binding stream of logs`() {
+    val consoleLog = """
+      |> Task :samples:android-kotlin-hilt:kaptDebugKotlin
+      |[WARN] Issue detected with dagger.internal.codegen.ComponentProcessor. Expected 1 originating source file when generating C:\Users\arunk\AndroidProjects\personal\scabbard\samples\android-kotlin-hilt\build\generated\source\kapt\debug\scabbard\full_dev.arunkumar.scabbard.sample.hilt.HiltCustomModule.dot, but detected 0: [].
+      |C:\Users\arunk\AndroidProjects\personal\scabbard\samples\android-kotlin-hilt\build\generated\source\kapt\debug\dev\arunkumar\scabbard\sample\hilt\HiltSampleApp_HiltComponents.java:131: error: [Dagger/MissingBinding] dev.arunkumar.scabbard.sample.hilt.SingletonBinding cannot be provided without an @Inject constructor or an @Provides-annotated method.
+      |  public abstract static class SingletonC implements HiltWrapper_ActivityRetainedComponentManager_ActivityRetainedComponentBuilderEntryPoint,
+      |                         ^
+      |      dev.arunkumar.scabbard.sample.hilt.SingletonBinding is injected at
+      |          dev.arunkumar.scabbard.sample.hilt.HiltSampleApp.singletonBinding
+      |      dev.arunkumar.scabbard.sample.hilt.HiltSampleApp is injected at
+      |          dev.arunkumar.scabbard.sample.hilt.HiltSampleApp_GeneratedInjector.injectHiltSampleApp(dev.arunkumar.scabbard.sample.hilt.HiltSampleApp)
+      |> Task :samples:android-kotlin-hilt:kaptDebugKotlin FAILED
+    """.trimMargin()
+    val daggerComponents = consoleLog.applyTo(missingBindingComponentExtractor)
+    Truth.assertThat(daggerComponents)
+      .containsExactly(DaggerComponent(705, 715, "SingletonC"))
+  }
 }
