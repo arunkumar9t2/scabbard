@@ -8,6 +8,7 @@ class DefaultMissingBindingComponentExtractor : MissingBindingComponentExtractor
   companion object {
     private const val DAGGER_MISSING_BINDING = "[Dagger/MissingBinding]"
     private const val EXTENDS = "extends"
+    private const val IMPLEMENTS = "implements"
   }
 
   private var isDaggerLog = false
@@ -20,9 +21,10 @@ class DefaultMissingBindingComponentExtractor : MissingBindingComponentExtractor
     if (isDaggerLog) {
       val lineStart = entireLength - line.length
       // Parse the component simple name from dagger component error line
-      if (line.contains("{")) {
+      if (line.endsWith("{") || line.endsWith(",")) {
         val classNameWithModifiers = when {
           line.contains(EXTENDS) -> line.split(EXTENDS).first()
+          line.contains(IMPLEMENTS) -> line.split(IMPLEMENTS).first()
           else -> line.split("{").first()
         }
         // parse class name from string such as "public abstract class AppComponent"
