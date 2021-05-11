@@ -18,26 +18,26 @@ class BindingsRenderer(
 
   private fun DotGraphBuilder.missingBinding(missingBinding: MissingBinding) {
     missingBinding.id {
-      "label" eq missingBinding.key().toString() // TODO(arun) Update label calculation for MissingBinding
-      "color" eq "firebrick1"
+      "label" `=` missingBinding.key().toString() // TODO(arun) Update label calculation for MissingBinding
+      "color" `=` "firebrick1"
     }
   }
 
   private fun DotGraphBuilder.binding(binding: Binding) {
     binding.id {
-      "label" eq binding.label
-      "color" eq binding.color
+      "label" `=` binding.label
+      "color" `=` binding.color
       when {
         binding.kind().isMultibinding -> {
-          "shape" eq "tab"
+          "shape" `=` "tab"
         }
         binding.kind() == BOUND_INSTANCE -> {
-          "shape" eq "parallelogram"
+          "shape" `=` "parallelogram"
         }
         binding.isEntryPoint -> {
-          "shape" eq "component"
+          "shape" `=` "component"
           if (binding.kind() == MEMBERS_INJECTION) {
-            "label" eq "inject (${binding.label})"
+            "label" `=` "inject (${binding.label})"
           }
         }
       }
@@ -52,10 +52,10 @@ class BindingsRenderer(
         val name = renderingContext.typeNameExtractor.extractName(multiBinding.key().type())
         cluster(name) {
           graphAttributes {
-            "label" eq name
-            "labeljust" eq "c"
-            "style" eq "rounded"
-            "color" eq "black"
+            "label" `=` name
+            "labeljust" `=` "c"
+            "style" `=` "rounded"
+            "color" `=` "black"
           }
 
           binding(multiBinding)

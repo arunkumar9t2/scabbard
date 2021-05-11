@@ -45,6 +45,7 @@ allprojects {
   tasks.withType(KotlinJvmCompile).configureEach { task ->
     task.kotlinOptions {
       jvmTarget = "1.8"
+      freeCompilerArgs += ["-XXLanguage:+InlineClasses"]
     }
   }
 

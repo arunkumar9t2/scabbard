@@ -22,6 +22,10 @@ android {
       variant.setIgnore(true)
     }
   }
+
+  lintOptions {
+    abortOnError false
+  }
 }
 
 scabbard {

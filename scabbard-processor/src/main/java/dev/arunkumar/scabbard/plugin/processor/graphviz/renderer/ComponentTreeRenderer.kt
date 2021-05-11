@@ -18,11 +18,11 @@ class ComponentTreeRenderer(
     renderElement.nodes()
       .forEach { componentNode ->
         componentNode.id {
-          "label" eq componentNode.label
-          "href" eq renderingContext.href(componentNode)
+          "label" `=` componentNode.label
+          "href" `=` renderingContext.href(componentNode)
           // TODO(arun) will multiple scopes be present? If yes, can it be visualized?
           componentNode.scopes().forEach { scope ->
-            "color" eq renderingContext.scopeColor(scope.name)
+            "color" `=` renderingContext.scopeColor(scope.name)
           }
         }
       }

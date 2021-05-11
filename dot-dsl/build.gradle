@@ -15,9 +15,3 @@ dependencies {
   testImplementation "junit:junit:${versions.junit}"
   testImplementation "com.google.truth:truth:${versions.truth}"
 }
-
-compileKotlin {
-  kotlinOptions {
-    // freeCompilerArgs = ["-XXLanguage:+InlineClasses"]
-  }
-}

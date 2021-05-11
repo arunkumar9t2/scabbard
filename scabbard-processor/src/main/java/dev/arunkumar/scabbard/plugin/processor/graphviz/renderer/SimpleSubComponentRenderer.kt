@@ -16,17 +16,17 @@ class SimpleSubComponentRenderer(
   override fun DotGraphBuilder.build(renderElement: List<BindingGraph.ComponentNode>) {
     cluster("Subcomponents") {
       graphAttributes {
-        "labeljust" eq "l"
-        "shape" eq "folder"
-        "label" eq "Subcomponents"
+        "labeljust" `=` "l"
+        "shape" `=` "folder"
+        "label" `=` "Subcomponents"
       }
       renderElement.forEach { subcomponent ->
         subcomponent.id {
-          "label" eq subcomponent.label
-          "href" eq renderingContext.href(subcomponent)
+          "label" `=` subcomponent.label
+          "href" `=` renderingContext.href(subcomponent)
           // TODO(arun) will multiple scopes be present? If yes, can it be visualized?
           subcomponent.scopes().forEach { scope ->
-            "color" eq renderingContext.scopeColor(scope.name)
+            "color" `=` renderingContext.scopeColor(scope.name)
           }
         }
       }

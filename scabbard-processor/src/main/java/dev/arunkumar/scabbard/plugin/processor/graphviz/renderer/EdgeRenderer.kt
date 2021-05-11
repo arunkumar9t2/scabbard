@@ -33,30 +33,30 @@ class EdgeRenderer(
           (source.id link target.id) {
             if ((source as? Binding)?.kind() == BindingKind.DELEGATE) {
               // Delegate edges i.e usually using @Binds
-              "style" eq "dotted"
-              "label" eq "delegates"
+              "style" `=` "dotted"
+              "label" `=` "delegates"
             }
             // Handle missing binding
             if (source is MissingBinding || target is MissingBinding) {
-              "style" eq "dashed"
-              "arrowType" eq "empty"
+              "style" `=` "dashed"
+              "arrowType" `=` "empty"
               val labelLocation = if (source is MissingBinding) "taillabel" else "headlabel"
-              labelLocation eq "Missing binding"
+              labelLocation `=` "Missing binding"
             }
           }
         }
       }
       is ChildFactoryMethodEdge -> {
         (source.id link target.id) {
-          "style" eq "dashed"
-          "taillabel" eq edge.factoryMethod()
+          "style" `=` "dashed"
+          "taillabel" `=` edge.factoryMethod()
         }
       }
       is SubcomponentCreatorBindingEdge -> {
         (source.id link target.id) {
-          "style" eq "dashed"
-          "label" eq "subcomponent"
-          "headport" eq "w"
+          "style" `=` "dashed"
+          "label" `=` "subcomponent"
+          "headport" `=` "w"
         }
       }
     }

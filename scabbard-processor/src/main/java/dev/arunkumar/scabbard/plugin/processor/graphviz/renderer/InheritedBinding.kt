@@ -32,12 +32,12 @@ data class InheritedBinding(
         }
         cluster(typeNameExtractor.extractName(currentComponentPath)) {
           graphAttributes {
-            "labeljust" eq "c"
-            "label" eq "Inherited from $componentName"
-            "style" eq "dashed"
-            "href" eq renderingContext.href(componentNode)
+            "labeljust" `=` "c"
+            "label" `=` "Inherited from $componentName"
+            "style" `=` "dashed"
+            "href" `=` renderingContext.href(componentNode)
             componentNode.scopes().map(Scope::name).forEach { scope ->
-              "color" eq renderingContext.scopeColor(scope)
+              "color" `=` renderingContext.scopeColor(scope)
             }
           }
 

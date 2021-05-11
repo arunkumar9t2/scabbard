@@ -114,16 +114,16 @@ constructor(
    */
   private fun DotGraphBuilder.defaultGraphAttributes(currentComponentPath: ComponentPath) {
     graphAttributes {
-      "rankdir" eq "LR"
-      "labeljust" eq "l"
-      "label" eq typeNameExtractor.extractName(currentComponentPath)
-      "pad" eq 0.2
-      "compound" eq true
+      "rankdir" `=` "LR"
+      "labeljust" `=` "l"
+      "label" `=` typeNameExtractor.extractName(currentComponentPath)
+      "pad" `=` 0.2
+      "compound" `=` true
     }
     nodeAttributes {
-      "shape" eq "rectangle"
-      "style" eq "filled"
-      "color" eq "turquoise"
+      "shape" `=` "rectangle"
+      "style" `=` "filled"
+      "color" `=` "turquoise"
     }
   }
 }

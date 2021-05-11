@@ -18,9 +18,9 @@ class DotStatementTest {
   @Test
   fun `test attributes are rendered correctly after base`() {
     val statement = dotStatement().apply {
-      "label" eq "dot"
-      "color" eq "yellow"
-      "compound" eq true
+      "label" `=` "dot"
+      "color" `=` "yellow"
+      "compound" `=` true
     }
     assertThat(statement.toString()).contains("graph [label=\"dot\", color=\"yellow\", compound=\"true\"]$NEWLN")
   }

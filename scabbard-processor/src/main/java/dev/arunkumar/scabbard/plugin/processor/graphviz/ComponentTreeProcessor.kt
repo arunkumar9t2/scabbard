@@ -43,16 +43,16 @@ constructor(
 
     val dotGraphBuilder = directedGraph(rootComponentNode.componentPath().toString()) {
       graphAttributes {
-        "rankdir" eq "TB"
-        "label" eq typeNameExtractor.extractName(rootComponentNode.componentPath())
-        "compound" eq true
-        "labeljust" eq "l"
-        "pad" eq 0.2
+        "rankdir" `=` "TB"
+        "label" `=` typeNameExtractor.extractName(rootComponentNode.componentPath())
+        "compound" `=` true
+        "labeljust" `=` "l"
+        "pad" `=` 0.2
       }
       nodeAttributes {
-        "shape" eq "rectangle"
-        "style" eq "filled"
-        "color" eq "turquoise"
+        "shape" `=` "rectangle"
+        "style" `=` "filled"
+        "color" `=` "turquoise"
       }
     }
 

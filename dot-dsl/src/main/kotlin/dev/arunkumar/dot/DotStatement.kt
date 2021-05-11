@@ -3,7 +3,6 @@
 package dev.arunkumar.dot
 
 import java.io.PrintWriter
-import java.util.*
 import java.util.regex.Matcher
 
 fun Any.quote() = '"' + toString().replace("\"".toRegex(), Matcher.quoteReplacement("\\\"")) + '"'
@@ -18,7 +17,7 @@ open class DotStatement(
     attributes[name] = value
   }
 
-  infix fun String.eq(value: Any) {
+  infix fun String.`=`(value: Any) {
     attributes[this] = value
   }
 

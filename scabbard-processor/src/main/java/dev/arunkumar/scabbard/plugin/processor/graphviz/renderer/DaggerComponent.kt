@@ -25,20 +25,20 @@ data class DaggerComponent(
     override fun DotGraphBuilder.build(renderElement: DaggerComponent) {
       cluster("Entry Points") {
         graphAttributes {
-          "labeljust" eq "l"
-          "label" eq "Entry Points"
+          "labeljust" `=` "l"
+          "label" `=` "Entry Points"
         }
         nodeAttributes {
-          "shape" eq "component"
-          "penwidth" eq 2
+          "shape" `=` "component"
+          "penwidth" `=` 2
         }
         BindingsRenderer(renderingContext).render(this, renderElement.entryPointBindings)
       }
 
       cluster("Dependency Graph") {
         graphAttributes {
-          "labeljust" eq "l"
-          "label" eq "Dependency Graph"
+          "labeljust" `=` "l"
+          "label" `=` "Dependency Graph"
         }
         BindingsRenderer(renderingContext).render(this, renderElement.dependencyBindings)
       }
