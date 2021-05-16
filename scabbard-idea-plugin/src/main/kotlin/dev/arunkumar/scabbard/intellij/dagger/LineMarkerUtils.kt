@@ -9,6 +9,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.PsiShortNamesCache
 import com.intellij.psi.util.PsiUtilCore
+import dev.arunkumar.scabbard.intellij.dagger.psi.SvgLightElement
 
 private const val DEPENDENCY_GRAPH = "dependency graph"
 
@@ -105,6 +106,17 @@ private class PsiElementToDaggerComponentNameCellRenderer : DefaultPsiElementCel
 }
 
 /**
+ * Adds couple of additional navigation elements for certain file types.
+ *
+ * For example, for SVG adds a navigation element to open svg in browserS
+ */
+private fun addAdditionalNavigationElements(original: List<PsiFile>): List<PsiElement> {
+  val result = original.toMutableList()
+  val additional: List<PsiElement> = original.filter { it.virtualFile.extension == "svg" }.map(::SvgLightElement)
+  return result + additional
+}
+
+/**
  * Prepares a [RelatedItemLineMarkerInfo] instance for gutter icon by searching for [componentFqcn] in different scopes.
  * By default, [GENERATED_DAGGER_FILES] will be used as a base for searching generated component graphs.
  *
@@ -120,10 +132,11 @@ internal fun prepareDaggerComponentLineMarkerWithFileName(
 ): RelatedItemLineMarkerInfo<PsiElement>? {
   val project = element.project
   val matchedFiles: List<PsiFile> = searchGeneratedDaggerFiles(project, componentFqcn)
+  val targets = addAdditionalNavigationElements(matchedFiles)
   val title = "Open $componentName's $DEPENDENCY_GRAPH"
   return if (matchedFiles.isNotEmpty()) {
     NavigationGutterIconBuilder.create(SCABBARD_ICON)
-      .setTargets(matchedFiles)
+      .setTargets(targets)
       .setPopupTitle(title)
       .setTooltipText(title)
       .setCellRenderer(PsiElementToDaggerComponentNameCellRenderer())
