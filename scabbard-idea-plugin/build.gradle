@@ -34,7 +34,7 @@ intellij {
   ]
   pluginName "Scabbard - Dagger 2 Visualizer"
 
-  alternativeIdePath = "C:\\Users\\arunk\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-2\\202.7351085"
+  //alternativeIdePath = "C:\\Users\\arunk\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-2\\202.7351085"
 }
 
 patchPluginXml {

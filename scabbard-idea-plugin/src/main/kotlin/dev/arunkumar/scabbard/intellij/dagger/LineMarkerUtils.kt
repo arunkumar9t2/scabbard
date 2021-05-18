@@ -9,7 +9,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.PsiShortNamesCache
 import com.intellij.psi.util.PsiUtilCore
-import dev.arunkumar.scabbard.intellij.dagger.psi.SvgLightElement
+import dev.arunkumar.scabbard.intellij.dagger.psi.BrowsableSvgElement
 
 private const val DEPENDENCY_GRAPH = "dependency graph"
 
@@ -112,8 +112,8 @@ private class PsiElementToDaggerComponentNameCellRenderer : DefaultPsiElementCel
  */
 private fun addAdditionalNavigationElements(original: List<PsiFile>): List<PsiElement> {
   val result = original.toMutableList()
-  val additional: List<PsiElement> = original.filter { it.virtualFile.extension == "svg" }.map(::SvgLightElement)
-  return result + additional
+  val additional: List<PsiElement> = original.filter { it.virtualFile.extension == "svg" }.map(::BrowsableSvgElement)
+  return (result + additional).sortedBy { (it as? PsiFile)?.name ?: it.toString() }
 }
 
 /**
