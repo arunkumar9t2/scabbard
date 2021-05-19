@@ -4,14 +4,17 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet
 import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
+import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.GraphVizRenderingModule
 
-@Module
+@Module(
+  includes = [GraphVizRenderingModule::class]
+)
 interface GraphvizVisualizationModule {
   @Binds
   @IntoSet
-  fun DefaultBindingGraphProcessor.bindingGraphProcessor(): BindingGraphProcessor
+  fun ComponentVisualizationProcessor.bindingGraphProcessor(): BindingGraphProcessor
 
   @Binds
   @IntoSet
-  fun ComponentTreeProcessor.componentTreeProcessor(): BindingGraphProcessor
+  fun ComponentTreeVisualizationProcessor.componentTreeProcessor(): BindingGraphProcessor
 }

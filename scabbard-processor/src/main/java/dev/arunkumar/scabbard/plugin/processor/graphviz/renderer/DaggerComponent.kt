@@ -3,7 +3,6 @@ package dev.arunkumar.scabbard.plugin.processor.graphviz.renderer
 import dagger.model.BindingGraph
 import dagger.model.ComponentPath
 import dev.arunkumar.dot.dsl.DotGraphBuilder
-import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
 /**
  * Data structure for holding data about a given component

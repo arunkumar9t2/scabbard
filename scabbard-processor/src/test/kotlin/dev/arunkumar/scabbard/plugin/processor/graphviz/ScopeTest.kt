@@ -1,8 +1,10 @@
-package dev.arunkumar.scabbard.plugin
+package dev.arunkumar.scabbard.plugin.processor.graphviz
 
 import com.google.common.truth.Truth.assertThat
 import dagger.Component
 import dagger.Subcomponent
+import dev.arunkumar.scabbard.plugin.generatedDot
+import dev.arunkumar.scabbard.plugin.generatedGraph
 import guru.nidi.graphviz.model.MutableGraph
 import org.junit.Before
 import org.junit.Test

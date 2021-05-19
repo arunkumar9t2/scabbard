@@ -5,7 +5,6 @@ import com.google.common.graph.Graph
 import dagger.model.BindingGraph
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.parser.name
-import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 import dev.arunkumar.scabbard.plugin.util.component1
 import dev.arunkumar.scabbard.plugin.util.component2
 

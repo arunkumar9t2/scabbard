@@ -1,8 +1,9 @@
-package dev.arunkumar.scabbard.plugin
+package dev.arunkumar.scabbard.plugin.processor.graphviz
 
 import com.google.common.truth.Truth.assertThat
 import dagger.Component
 import dagger.Subcomponent
+import dev.arunkumar.scabbard.plugin.generatedComponentTreeDotFile
 import guru.nidi.graphviz.parse.Parser
 import org.junit.Before
 import org.junit.Test
@@ -14,7 +15,7 @@ import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @RunWith(JUnit4::class)
-class ComponentRendererTest {
+class ComponentTreeRendererTest {
   class NodeA @Inject constructor()
 
   @Singleton
@@ -65,8 +66,8 @@ class ComponentRendererTest {
 
   @Test
   fun `test default graph attributes on component tree dot file`() {
-    assertThat(componentTreeDotContents).contains("digraph \"dev.arunkumar.scabbard.plugin.ComponentRendererTest.SimpleComponent\"")
-    assertThat(componentTreeDotContents).contains("graph [rankdir=\"TB\", label=\"ComponentRendererTest.SimpleComponent\", compound=\"true\", labeljust=\"l\", pad=\"0.2\"")
+    assertThat(componentTreeDotContents).contains("digraph \"dev.arunkumar.scabbard.plugin.processor.graphviz.ComponentTreeRendererTest.SimpleComponent\"")
+    assertThat(componentTreeDotContents).contains("graph [rankdir=\"TB\", label=\"ComponentTreeRendererTest.SimpleComponent\", compound=\"true\", labeljust=\"l\", pad=\"0.2\"")
     assertThat(componentTreeDotContents).contains("node [shape=\"rectangle\", style=\"filled\", color=\"turquoise\"]")
     val graph = Parser().read(simpleComponentTreeDotFile)
     assertThat(graph.nodes()).hasSize(2)

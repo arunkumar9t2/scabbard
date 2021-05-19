@@ -12,30 +12,32 @@ import dev.arunkumar.scabbard.plugin.parser.subcomponentsOf
 import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.DaggerComponent
 import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.InheritedBinding
+import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.RenderingContext
 import dev.arunkumar.scabbard.plugin.util.processingBlock
 import javax.inject.Inject
+import javax.inject.Provider
 import javax.lang.model.element.TypeElement
 import kotlin.collections.component1
 import kotlin.collections.component2
 
 @Suppress("UnstableApiUsage")
 @VisitGraphScope
-class DefaultBindingGraphProcessor
+class ComponentVisualizationProcessor
 @Inject
 constructor(
   override val bindingGraph: BindingGraph,
   private val scabbardOptions: ScabbardOptions,
   private val outputWriters: Set<@JvmSuppressWildcards OutputWriter>,
-  private val renderingContext: RenderingContext
+  private val renderingContextProvider: Provider<RenderingContext>
 ) : BindingGraphProcessor {
 
   override fun process() = processingBlock(scabbardOptions) {
     val network = bindingGraph.network()
-
     // Group all the nodes by their component
     network.nodes()
       .groupBy(BindingGraph.Node::componentPath)
       .map { (componentPath, nodes) ->
+        val renderingContext = renderingContextProvider.get()
         val currentComponent = componentPath.currentComponent()
 
         val subcomponents = bindingGraph.subcomponentsOf(currentComponent)
@@ -47,14 +49,10 @@ constructor(
 
         val dotGraphBuilder = renderingContext.createRootDotGraphBuilder(componentPath)
 
-        // Drop the id cache to render only nodes present in this component/subcomponent
-        // TODO Make renderingContext scoped to component via factory
-        renderingContext.dropIdCache()
-
         // Render this component's graph
         DaggerComponent.GraphRenderer(renderingContext).render(
-          dotGraphBuilder,
-          DaggerComponent(
+          dotGraphBuilder = dotGraphBuilder,
+          element = DaggerComponent(
             componentPath,
             entryPoints,
             dependencyBindings,

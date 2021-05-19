@@ -1,9 +1,9 @@
-package dev.arunkumar.scabbard.plugin
+package dev.arunkumar.scabbard.plugin.processor.graphviz
 
 import com.google.common.truth.Truth.assertThat
 import dagger.Component
 import dagger.Subcomponent
-import guru.nidi.graphviz.model.MutableGraph
+import dev.arunkumar.scabbard.plugin.generatedDot
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -13,7 +13,7 @@ import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @RunWith(JUnit4::class)
-class SubcomponentCreatorBindingEdgeTest {
+class SubComponentDefaultAttributesTest {
 
   class NodeA @Inject constructor()
 
@@ -46,19 +46,22 @@ class SubcomponentCreatorBindingEdgeTest {
     }
   }
 
-  private lateinit var generatedGraph: MutableGraph
-  private lateinit var generatedText: String
+  private lateinit var simpleComponentGeneratedText: String
+  private lateinit var subComponentGeneratedText: String
 
   @Before
   fun setup() {
-    generatedGraph = generatedGraph<SimpleComponent>()
-    generatedText = generatedDot<SimpleComponent>()
+    simpleComponentGeneratedText = generatedDot<SimpleComponent>()
+    subComponentGeneratedText = generatedDot<SimpleSubComponent>()
   }
 
   @Test
-  fun `assert edge between component and subcomponent creator is rendered with dashed lines and label`() {
-    assertThat(generatedText).contains(" subgraph \"cluster_Subcomponents\" {")
-    assertThat(generatedText).contains("[style=\"dashed\", label=\"subcomponent\", headport=\"w\"]")
-    assertThat(generatedText).contains("[label=\"SubcomponentCreatorBindingEdgeTest.NodeA\", color=\"turquoise\"]")
+  fun `assert subcomponent hierarchy is set as label`() {
+    assertThat(subComponentGeneratedText).contains("label=\"SubComponentDefaultAttributesTest.SimpleComponent → SubComponentDefaultAttributesTest.SimpleSubComponent\"")
+  }
+
+  @Test
+  fun `assert parent component's subcomponent cluster has hrefs to subcomponent generated files`() {
+    assertThat(simpleComponentGeneratedText).contains("href=\"dev.arunkumar.scabbard.plugin.processor.graphviz.SubComponentDefaultAttributesTest.SimpleSubComponent.png\"")
   }
 }

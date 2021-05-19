@@ -6,7 +6,6 @@ import dagger.model.Scope
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.parser.NewLine
 import dev.arunkumar.scabbard.plugin.parser.name
-import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
 data class InheritedBinding(
   private val componentNode: BindingGraph.ComponentNode,

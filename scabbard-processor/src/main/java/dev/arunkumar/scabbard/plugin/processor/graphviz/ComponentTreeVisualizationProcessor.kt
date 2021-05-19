@@ -13,6 +13,7 @@ import dev.arunkumar.scabbard.plugin.output.OutputWriter
 import dev.arunkumar.scabbard.plugin.parser.TypeNameExtractor
 import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.ComponentTreeRenderer
+import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.DefaultRenderingContext
 import dev.arunkumar.scabbard.plugin.util.processingBlock
 import javax.inject.Inject
 import javax.lang.model.element.TypeElement
@@ -22,13 +23,13 @@ import javax.lang.model.element.TypeElement
  */
 @Suppress("UnstableApiUsage")
 @VisitGraphScope
-class ComponentTreeProcessor
+class ComponentTreeVisualizationProcessor
 @Inject
 constructor(
   override val bindingGraph: BindingGraph,
   private val scabbardOptions: ScabbardOptions,
   private val outputWriters: Set<@JvmSuppressWildcards OutputWriter>,
-  private val renderingContext: RenderingContext,
+  private val renderingContext: DefaultRenderingContext,
   private val typeNameExtractor: TypeNameExtractor
 ) : BindingGraphProcessor {
 

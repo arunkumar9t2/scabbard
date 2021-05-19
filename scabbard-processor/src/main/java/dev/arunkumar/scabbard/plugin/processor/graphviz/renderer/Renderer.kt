@@ -4,7 +4,6 @@ import dagger.model.Binding
 import dagger.model.BindingGraph.MaybeBinding
 import dagger.model.BindingGraph.Node
 import dev.arunkumar.dot.dsl.DotGraphBuilder
-import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
 /**
  * Base definition for a class that takes a element of type `T` and renders the dot definition using the given

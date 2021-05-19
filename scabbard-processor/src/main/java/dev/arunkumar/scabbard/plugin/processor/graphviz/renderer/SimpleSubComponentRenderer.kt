@@ -3,7 +3,6 @@ package dev.arunkumar.scabbard.plugin.processor.graphviz.renderer
 import dagger.model.BindingGraph
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.parser.name
-import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
 /**
  * A renderer for all subcomponents that simply adds a Node with customized scope colors. This renderer does not expand

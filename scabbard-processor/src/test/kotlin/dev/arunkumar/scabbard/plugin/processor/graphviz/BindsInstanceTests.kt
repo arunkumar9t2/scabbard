@@ -1,8 +1,9 @@
-package dev.arunkumar.scabbard.plugin
+package dev.arunkumar.scabbard.plugin.processor.graphviz
 
 import com.google.common.truth.Truth.assertThat
 import dagger.BindsInstance
 import dagger.Component
+import dev.arunkumar.scabbard.plugin.generatedDot
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
