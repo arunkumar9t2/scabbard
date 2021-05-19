@@ -13,7 +13,7 @@ import dev.arunkumar.scabbard.plugin.output.OutputWriter
 import dev.arunkumar.scabbard.plugin.parser.TypeNameExtractor
 import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.ComponentTreeRenderer
-import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.DefaultRenderingContext
+import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.RenderingContext
 import dev.arunkumar.scabbard.plugin.util.processingBlock
 import javax.inject.Inject
 import javax.lang.model.element.TypeElement
@@ -29,7 +29,7 @@ constructor(
   override val bindingGraph: BindingGraph,
   private val scabbardOptions: ScabbardOptions,
   private val outputWriters: Set<@JvmSuppressWildcards OutputWriter>,
-  private val renderingContext: DefaultRenderingContext,
+  private val renderingContext: RenderingContext,
   private val typeNameExtractor: TypeNameExtractor
 ) : BindingGraphProcessor {
 
