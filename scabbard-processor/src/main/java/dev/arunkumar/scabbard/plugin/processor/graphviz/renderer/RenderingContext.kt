@@ -1,5 +1,7 @@
-package dev.arunkumar.scabbard.plugin.processor.graphviz
+package dev.arunkumar.scabbard.plugin.processor.graphviz.renderer
 
+import dagger.Binds
+import dagger.Module
 import dagger.model.Binding
 import dagger.model.BindingGraph
 import dagger.model.BindingGraph.Node
@@ -9,29 +11,63 @@ import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.dot.dsl.directedGraph
 import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.output.OutputManager
-import dev.arunkumar.scabbard.plugin.parser.*
+import dev.arunkumar.scabbard.plugin.parser.TypeNameExtractor
+import dev.arunkumar.scabbard.plugin.parser.buildLabel
+import dev.arunkumar.scabbard.plugin.parser.name
+import dev.arunkumar.scabbard.plugin.parser.scopeName
 import dev.arunkumar.scabbard.plugin.store.DaggerScopeColors
 import java.util.*
 import javax.inject.Inject
 
-/**
- * A data structure for `Renderer`s to hold intermediate state or scoped state and share between multiple renderers.
- * The default implementation creates a globally available instance that shares the same `BindingGraph` instance.
- * It is upto the `Renderer` to customize the context when passing to other instances.
- */
-class RenderingContext
+interface RenderingContext {
+  val rootBindingGraph: BindingGraph
+
+  val typeNameExtractor: TypeNameExtractor
+
+  fun isEntryPoint(binding: BindingGraph.MaybeBinding): Boolean
+  fun color(binding: Binding): String
+  fun nodeId(node: Node): String
+
+  /**
+   * @return `true` if both `source` and `target` were already rendered in current context.
+   */
+  fun validInContext(source: Node, target: Node): Boolean
+
+  fun scopeColor(scopeName: String): String
+
+  fun nodeLabel(node: Node): String
+
+  fun href(componentNode: BindingGraph.ComponentNode): String
+
+  fun createRootDotGraphBuilder(currentComponentPath: ComponentPath): DotGraphBuilder
+
+  /**
+   * The default attributes for root graph.
+   */
+  fun DotGraphBuilder.defaultGraphAttributes(currentComponentPath: ComponentPath)
+}
+
+@Module
+interface GraphVizRenderingModule {
+  @Binds
+  fun DefaultRenderingContext.bind(): RenderingContext
+}
+
+class DefaultRenderingContext
 @Inject
 constructor(
-  val bindingGraph: BindingGraph,
-  val typeNameExtractor: TypeNameExtractor,
+  override val rootBindingGraph: BindingGraph,
+  override val typeNameExtractor: TypeNameExtractor,
   private val scabbardOptions: ScabbardOptions,
   private val daggerScopeColors: DaggerScopeColors,
   private val outputManager: OutputManager
-) {
+) : RenderingContext {
 
-  fun isEntryPoint(binding: BindingGraph.MaybeBinding) = bindingGraph.entryPointBindings().contains(binding)
+  override fun isEntryPoint(binding: BindingGraph.MaybeBinding) = rootBindingGraph
+    .entryPointBindings()
+    .contains(binding)
 
-  fun color(binding: Binding) = scopeColor(binding.scopeName() ?: "")
+  override fun color(binding: Binding) = scopeColor(binding.scopeName() ?: "")
 
   /**
    * Cache of `id` generated for Nodes rendered so far. This is essential to identify nodes on graph for further mutation
@@ -39,26 +75,18 @@ constructor(
    */
   private val nodeIdCache = mutableMapOf<Node, String>()
 
-  fun nodeId(node: Node) = nodeIdCache.getOrPut(node) { UUID.randomUUID().toString() }
+  override fun nodeId(node: Node) = nodeIdCache.getOrPut(node) { UUID.randomUUID().toString() }
 
   /**
    * @return `true` if both `source` and `target` has been already rendered in current context.
    */
-  fun validInContext(source: Node, target: Node): Boolean {
+  override fun validInContext(source: Node, target: Node): Boolean {
     return nodeIdCache.containsKey(source) && nodeIdCache.containsKey(target)
   }
 
-  /**
-   * Should be used carefully. Drops the id cache of all the nodes rendered so far. Directly affects subsequent
-   * `validInContext` calls
-   */
-  fun dropIdCache() {
-    nodeIdCache.clear()
-  }
+  override fun scopeColor(scopeName: String): String = daggerScopeColors[scopeName]
 
-  fun scopeColor(scopeName: String): String = daggerScopeColors[scopeName]
-
-  fun nodeLabel(node: Node) = node.run {
+  override fun nodeLabel(node: Node) = node.run {
     when (this) {
       is Binding -> {
         try {
@@ -95,15 +123,15 @@ constructor(
     }
   }
 
-  fun href(componentNode: BindingGraph.ComponentNode): String {
+  override fun href(componentNode: BindingGraph.ComponentNode): String {
     return outputManager.outputFileNameFor(
       scabbardOptions.outputImageFormat,
       componentNode.componentPath().currentComponent(),
-      bindingGraph.isFullBindingGraph
+      rootBindingGraph.isFullBindingGraph
     )
   }
 
-  fun createRootDotGraphBuilder(currentComponentPath: ComponentPath): DotGraphBuilder {
+  override fun createRootDotGraphBuilder(currentComponentPath: ComponentPath): DotGraphBuilder {
     return directedGraph(currentComponentPath.toString()) {
       defaultGraphAttributes(currentComponentPath)
     }
@@ -112,7 +140,7 @@ constructor(
   /**
    * The default attributes for root graph.
    */
-  private fun DotGraphBuilder.defaultGraphAttributes(currentComponentPath: ComponentPath) {
+  override fun DotGraphBuilder.defaultGraphAttributes(currentComponentPath: ComponentPath) {
     graphAttributes {
       "rankdir" `=` "LR"
       "labeljust" `=` "l"

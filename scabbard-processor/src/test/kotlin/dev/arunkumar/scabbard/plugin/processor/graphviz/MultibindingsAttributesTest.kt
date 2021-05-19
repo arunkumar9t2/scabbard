@@ -1,10 +1,12 @@
-package dev.arunkumar.scabbard.plugin
+package dev.arunkumar.scabbard.plugin.processor.graphviz
 
 import com.google.common.truth.Truth.assertThat
 import dagger.Component
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ElementsIntoSet
+import dev.arunkumar.scabbard.plugin.generatedDot
+import dev.arunkumar.scabbard.plugin.generatedGraph
 import guru.nidi.graphviz.attribute.Label
 import guru.nidi.graphviz.model.MutableGraph
 import org.junit.Before

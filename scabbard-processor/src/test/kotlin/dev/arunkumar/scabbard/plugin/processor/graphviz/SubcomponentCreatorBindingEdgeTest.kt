@@ -1,8 +1,11 @@
-package dev.arunkumar.scabbard.plugin
+package dev.arunkumar.scabbard.plugin.processor.graphviz
 
 import com.google.common.truth.Truth.assertThat
 import dagger.Component
 import dagger.Subcomponent
+import dev.arunkumar.scabbard.plugin.generatedDot
+import dev.arunkumar.scabbard.plugin.generatedGraph
+import guru.nidi.graphviz.model.MutableGraph
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -12,7 +15,7 @@ import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @RunWith(JUnit4::class)
-class SubComponentDefaultAttributesTest {
+class SubcomponentCreatorBindingEdgeTest {
 
   class NodeA @Inject constructor()
 
@@ -45,22 +48,19 @@ class SubComponentDefaultAttributesTest {
     }
   }
 
-  private lateinit var simpleComponentGeneratedText: String
-  private lateinit var subComponentGeneratedText: String
+  private lateinit var generatedGraph: MutableGraph
+  private lateinit var generatedText: String
 
   @Before
   fun setup() {
-    simpleComponentGeneratedText = generatedDot<SimpleComponent>()
-    subComponentGeneratedText = generatedDot<SimpleSubComponent>()
+    generatedGraph = generatedGraph<SimpleComponent>()
+    generatedText = generatedDot<SimpleComponent>()
   }
 
   @Test
-  fun `assert subcomponent hierarchy is set as label`() {
-    assertThat(subComponentGeneratedText).contains("label=\"SubComponentDefaultAttributesTest.SimpleComponent → SubComponentDefaultAttributesTest.SimpleSubComponent\"")
-  }
-
-  @Test
-  fun `assert parent component's subcomponent cluster has hrefs to subcomponent generated files`() {
-    assertThat(simpleComponentGeneratedText).contains("href=\"dev.arunkumar.scabbard.plugin.SubComponentDefaultAttributesTest.SimpleSubComponent.png\"")
+  fun `assert edge between component and subcomponent creator is rendered with dashed lines and label`() {
+    assertThat(generatedText).contains(" subgraph \"cluster_Subcomponents\" {")
+    assertThat(generatedText).contains("[style=\"dashed\", label=\"subcomponent\", headport=\"w\"]")
+    assertThat(generatedText).contains("[label=\"SubcomponentCreatorBindingEdgeTest.NodeA\", color=\"turquoise\"]")
   }
 }

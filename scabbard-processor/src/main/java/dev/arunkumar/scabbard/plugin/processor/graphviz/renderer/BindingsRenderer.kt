@@ -6,7 +6,6 @@ import dagger.model.BindingGraph.MissingBinding
 import dagger.model.BindingKind.BOUND_INSTANCE
 import dagger.model.BindingKind.MEMBERS_INJECTION
 import dev.arunkumar.dot.dsl.DotGraphBuilder
-import dev.arunkumar.scabbard.plugin.processor.graphviz.RenderingContext
 
 /**
  * Renders the actual dependency graph nodes in the current context accounting for missing nodes, multibindings and
@@ -63,7 +62,7 @@ class BindingsRenderer(
           if (!multiBinding.isEntryPoint) {
             // If multbinding node was present as an entry point does not make sense to render its' content in
             // entry point cluster.
-            renderingContext.bindingGraph
+            renderingContext.rootBindingGraph
               .requestedBindings(multiBinding)
               .forEach { binding -> binding(binding) }
           }

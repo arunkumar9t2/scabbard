@@ -1,7 +1,9 @@
-package dev.arunkumar.scabbard.plugin
+package dev.arunkumar.scabbard.plugin.processor.graphviz
 
 import com.google.common.truth.Truth.assertThat
 import dagger.Component
+import dev.arunkumar.scabbard.plugin.generatedDot
+import dev.arunkumar.scabbard.plugin.generatedGraph
 import guru.nidi.graphviz.model.MutableGraph
 import org.junit.Before
 import org.junit.Test
@@ -37,7 +39,7 @@ class RootComponentDefaultAttributesTest {
   fun `assert root component has default graph attributes set`() {
     // Test graph name
     assertThat(generatedText)
-      .contains("digraph \"dev.arunkumar.scabbard.plugin.RootComponentDefaultAttributesTest.SimpleComponent\" {")
+      .contains("digraph \"dev.arunkumar.scabbard.plugin.processor.graphviz.RootComponentDefaultAttributesTest.SimpleComponent\" {")
     // Default graph attributes
     assertThat(generatedText).contains("graph [rankdir=\"LR\", labeljust=\"l\", label=\"RootComponentDefaultAttributesTest.SimpleComponent\", pad=\"0.2\", compound=\"true\"]")
     // Default node attributes

@@ -9,7 +9,9 @@ import dev.arunkumar.scabbard.plugin.processor.graphviz.GraphvizVisualizationMod
 
 @VisitGraphScope
 @Subcomponent(
-  modules = [GraphvizVisualizationModule::class]
+  modules = [
+    GraphvizVisualizationModule::class,
+  ]
 )
 interface BindingGraphVisitorComponent {
   fun bindingGraphProcessors(): Set<BindingGraphProcessor>
