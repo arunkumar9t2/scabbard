@@ -75,6 +75,7 @@ constructor(
 
   /**
    * Constructs a component tree from `BindingGraph`. For example consider graph like this:
+   * ```
    *                   +------+
    *                   | Root |
    *                   +--+-+-+
@@ -87,6 +88,7 @@ constructor(
    *                        +------+--------+
    *                        |Subcomponent C |
    *                        +---------------+
+   * ```
    * This information of component relationships is already present via `componentPath`s in each `ComponentNode` i.e,
    * `componentPath.components` will give ordered list representing the hierarchy. For example, for the above component,
    *  * Root
