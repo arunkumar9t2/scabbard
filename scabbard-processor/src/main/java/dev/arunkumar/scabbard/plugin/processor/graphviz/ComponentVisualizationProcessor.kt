@@ -44,7 +44,7 @@ constructor(
         val bindings = nodes.filterIsInstance<MaybeBinding>()
         val entryPoints = bindings.filter(renderingContext::isEntryPoint)
         val dependencyBindings = bindings.filterNot(renderingContext::isEntryPoint)
-        val edges = nodes.flatMap(network::incidentEdges).distinct()
+        val edges = nodes.flatMap { network.incidentEdges(it) }.distinct()
         val inheritedBindings = inheritedBindings(componentPath, bindings)
 
         val dotGraphBuilder = renderingContext.createRootDotGraphBuilder(componentPath)

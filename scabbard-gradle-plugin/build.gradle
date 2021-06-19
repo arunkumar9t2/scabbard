@@ -1,7 +1,7 @@
 plugins {
   id "java-gradle-plugin"
   id "com.gradle.plugin-publish" version "0.11.0"
-  id "org.gradle.kotlin.kotlin-dsl" version "1.4.9"
+  id "org.gradle.kotlin.kotlin-dsl" version "2.1.4"
 }
 
 apply from: "../constants.gradle"

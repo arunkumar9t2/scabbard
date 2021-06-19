@@ -1,3 +1,4 @@
+return  // pending migration to maven central
 apply plugin: "maven-publish"
 apply plugin: "com.novoda.bintray-release"
 
