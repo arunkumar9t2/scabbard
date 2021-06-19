@@ -4,9 +4,9 @@ import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
-import dev.arunkumar.scabbard.intellij.dagger.isDaggerAnnotationIdentifier
-import dev.arunkumar.scabbard.intellij.dagger.isSubClassOf
 import dev.arunkumar.scabbard.intellij.dagger.prepareDaggerComponentLineMarkerWithFileName
+import dev.arunkumar.scabbard.intellij.dagger.psi.isDaggerAnnotationIdentifier
+import dev.arunkumar.scabbard.intellij.dagger.psi.isSubClassOf
 import org.jetbrains.kotlin.j2k.getContainingClass
 
 class JavaHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {

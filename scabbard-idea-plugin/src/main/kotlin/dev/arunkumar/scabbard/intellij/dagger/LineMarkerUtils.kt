@@ -112,7 +112,8 @@ private class PsiElementToDaggerComponentNameCellRenderer : DefaultPsiElementCel
  */
 private fun addAdditionalNavigationElements(original: List<PsiFile>): List<PsiElement> {
   val result = original.toMutableList()
-  val additional: List<PsiElement> = original.filter { it.virtualFile.extension == "svg" }.map(::BrowsableSvgElement)
+  val additional: List<PsiElement> =
+    original.filter { it.virtualFile.extension == "svg" }.map(::BrowsableSvgElement)
   return (result + additional).sortedBy { (it as? PsiFile)?.name ?: it.toString() }
 }
 

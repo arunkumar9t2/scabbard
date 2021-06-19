@@ -3,8 +3,8 @@ package dev.arunkumar.scabbard.intellij.dagger.hilt
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
-import dev.arunkumar.scabbard.intellij.dagger.isDaggerAnnotationIdentifier
 import dev.arunkumar.scabbard.intellij.dagger.prepareDaggerComponentLineMarkerWithFileName
+import dev.arunkumar.scabbard.intellij.dagger.psi.isDaggerAnnotationIdentifier
 import org.jetbrains.kotlin.j2k.getContainingClass
 
 class JavaHiltCustomComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {

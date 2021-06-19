@@ -1,8 +1,11 @@
-package dev.arunkumar.scabbard.intellij.dagger
+package dev.arunkumar.scabbard.intellij.dagger.psi
 
 import com.intellij.psi.*
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.psi.search.GlobalSearchScope
+import dev.arunkumar.scabbard.intellij.dagger.DAGGER_COMPONENT
+import dev.arunkumar.scabbard.intellij.dagger.DAGGER_MODULE
+import dev.arunkumar.scabbard.intellij.dagger.DAGGER_SUBCOMPONENT
 import dev.arunkumar.scabbard.intellij.dagger.anvil.ANVIL_MERGE_COMPONENT
 import dev.arunkumar.scabbard.intellij.dagger.anvil.ANVIL_MERGE_SUBCOMPONENT
 import org.jetbrains.kotlin.idea.util.findAnnotation

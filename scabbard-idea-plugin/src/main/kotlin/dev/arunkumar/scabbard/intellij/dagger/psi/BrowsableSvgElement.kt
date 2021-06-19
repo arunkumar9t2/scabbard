@@ -19,7 +19,9 @@ import com.intellij.psi.PsiFile
  *  @see [EditSourceUtil]
  *  @param svgFile The `PsiFile` instance pointing to the svg file which should be opened in browser.
  */
-class BrowsableSvgElement(val svgFile: PsiFile) : PsiFile by svgFile, PomTargetPsiElement, PomTarget {
+class BrowsableSvgElement(
+  val svgFile: PsiFile
+) : PsiFile by svgFile, PomTargetPsiElement, PomTarget {
 
   override fun toString() = "Browsable Svg File: $svgFile"
 

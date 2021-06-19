@@ -4,6 +4,9 @@ import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import dev.arunkumar.scabbard.intellij.dagger.psi.DAGGER_COMPONENT_ANNOTATIONS
+import dev.arunkumar.scabbard.intellij.dagger.psi.hasAnnotation
+import dev.arunkumar.scabbard.intellij.dagger.psi.ktClassOrObject
 import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
 import org.jetbrains.kotlin.psi.KtClassOrObject
 

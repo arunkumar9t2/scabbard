@@ -14,7 +14,8 @@ import dev.arunkumar.scabbard.intellij.dagger.hilt.HiltComponent.*
 
 internal const val DAGGER_HILT_ANDROID_ENTRY_POINT = "dagger.hilt.android.AndroidEntryPoint"
 internal const val DAGGER_HILT_ANDROID_APP = "dagger.hilt.android.HiltAndroidApp"
-internal const val DAGGER_HILT_ANDROID_WITH_FRAGMENT_BINDINGS = "dagger.hilt.android.WithFragmentBindings"
+internal const val DAGGER_HILT_ANDROID_WITH_FRAGMENT_BINDINGS =
+  "dagger.hilt.android.WithFragmentBindings"
 internal const val DAGGER_HILT_DEFINE_COMPONENT = "dagger.hilt.DefineComponent"
 internal const val DAGGER_HILT_ENTRY_POINT = "dagger.hilt.EntryPoint"
 internal const val DAGGER_HILT_GENERATED_COMPONENT_SUFFIX = "HiltComponents"
@@ -30,10 +31,17 @@ internal enum class HiltComponent {
   ViewC
 }
 
-internal fun PsiShortNamesCache.findHiltComponentByClassName(project: Project, shortClassName: String): PsiClass? {
+internal fun PsiShortNamesCache.findHiltComponentByClassName(
+  project: Project,
+  shortClassName: String
+): PsiClass? {
   val searchScope = GlobalSearchScope.projectScope(project)
   return getClassesByName(shortClassName, searchScope)
-    .firstOrNull { it.containingClass?.qualifiedName?.endsWith(DAGGER_HILT_GENERATED_COMPONENT_SUFFIX) == true }
+    .firstOrNull {
+      it.containingClass?.qualifiedName?.endsWith(
+        DAGGER_HILT_GENERATED_COMPONENT_SUFFIX
+      ) == true
+    }
 }
 
 /**
@@ -61,7 +69,8 @@ internal fun <T : PsiElement> findGeneratedStandardHiltComponent(
     return shortNamesCache.findHiltComponentByClassName(project, name)
   }
   return when {
-    componentClass.hasAnnotation(DAGGER_HILT_ANDROID_APP) -> SingletonC.findClass() ?: ApplicationC.findClass()
+    componentClass.hasAnnotation(DAGGER_HILT_ANDROID_APP) -> SingletonC.findClass()
+      ?: ApplicationC.findClass()
     componentClass.hasAnnotation(DAGGER_HILT_ANDROID_ENTRY_POINT) -> {
       when {
         componentClass.isSubClassOf(ANDROIDX_COMPONENT_ACTIVITY) -> ActivityC.findClass()
@@ -88,5 +97,9 @@ internal fun <T : PsiElement> findGeneratedStandardHiltComponent(
 internal fun findGeneratedCustomHiltComponent(customComponentDefinition: PsiClass): PsiClass? {
   return ClassInheritorsSearch.search(customComponentDefinition)
     .findAll()
-    .firstOrNull { it.containingClass?.qualifiedName?.endsWith(DAGGER_HILT_GENERATED_COMPONENT_SUFFIX) == true }
+    .firstOrNull {
+      it.containingClass?.qualifiedName?.endsWith(
+        DAGGER_HILT_GENERATED_COMPONENT_SUFFIX
+      ) == true
+    }
 }

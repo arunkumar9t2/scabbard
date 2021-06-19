@@ -5,10 +5,10 @@ import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
-import dev.arunkumar.scabbard.intellij.dagger.hasAnnotation
-import dev.arunkumar.scabbard.intellij.dagger.ktClassOrObject
 import dev.arunkumar.scabbard.intellij.dagger.prepareDaggerComponentLineMarkerWithFileName
-import dev.arunkumar.scabbard.intellij.dagger.toPsiClass
+import dev.arunkumar.scabbard.intellij.dagger.psi.hasAnnotation
+import dev.arunkumar.scabbard.intellij.dagger.psi.ktClassOrObject
+import dev.arunkumar.scabbard.intellij.dagger.psi.toPsiClass
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 /**
