@@ -5,6 +5,7 @@ buildscript {
   repositories {
     google()
     mavenCentral()
+    gradlePluginPortal()
     jcenter()
   }
   dependencies {
@@ -12,13 +13,14 @@ buildscript {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     classpath "dev.arunkumar:scabbard-gradle-plugin:${publishVersion}"
     classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
-    classpath "com.novoda:bintray-release:${versions.bintray}"
     classpath "com.diffplug.spotless:spotless-plugin-gradle:${versions.spotless}"
     classpath "com.squareup.anvil:gradle-plugin:${versions.anvil}"
+    classpath "io.github.gradle-nexus:publish-plugin:${versions.gradleNexus}"
   }
 }
 apply from: "gradle/local-properties.gradle"
 apply from: "docker/resolve-dependencies.gradle"
+apply from: "gradle/publish-root.gradle"
 
 allprojects {
   repositories {
@@ -127,9 +129,9 @@ tasks.register("publishSampleImages") {
 tasks.register("publishAllArtifacts") {
   group = "publishing"
   description = "Publishes all artifiacts"
-  dependsOn tasks.named("publishSampleImages")
+/*  dependsOn tasks.named("publishSampleImages")
   dependsOn project("scabbard-idea-plugin").tasks.named("publishPlugin")
   dependsOn gradle.includedBuild("scabbard-gradle-plugin").task(":publishPlugins")
   dependsOn project("dot-dsl").tasks.named("bintrayUpload")
-  dependsOn project("scabbard-processor").tasks.named("bintrayUpload")
+  dependsOn project("scabbard-processor").tasks.named("bintrayUpload")*/
 }

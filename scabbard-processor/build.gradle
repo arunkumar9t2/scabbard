@@ -4,7 +4,7 @@ plugins {
   id "kotlin-kapt"
 }
 description = "Visualize Dagger 2 dependency graphs with ease"
-apply from: "../publishing.gradle"
+apply from: "../gradle/publishing.gradle"
 
 repositories {
   jcenter()
