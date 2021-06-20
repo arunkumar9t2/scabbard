@@ -35,13 +35,15 @@ More advanced [examples](https://arunkumar9t2.github.io/scabbard/examples/).
 
 ## Features
 
-* **Visualize** entry points, dependency graph, component relationships and scopes in your [Dagger 2](https://github.com/google/dagger) setup.
+* **Visualize** entry points, dependency graph, dagger errors, component relationships and scopes in your [Dagger 2](https://github.com/google/dagger) setup.
 
 * **Minimal setup** - Scabbard's Gradle plugin prepares your project for graph generation and provides ability to customize graph generation behavior.
 
-* **IDE integration** - Easily view a `@Component` or a `@Subcomponent` graph directly from source code via gutter icons (IntelliJ/Android Studio).
+* **IDE integration** - Easily view a `@Component` or a `@Subcomponnet` graph directly from source code via gutter icons (IntelliJ/Android Studio).
 
 * **Supports** both Kotlin and Java.
+
+* Supports **Dagger Hilt** and **Anvil**
 
 ## Getting Started
 

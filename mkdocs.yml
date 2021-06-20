@@ -29,11 +29,11 @@ extra:
 
 nav:
   - Overview: index.md
+  - Features: features.md
   - Configuration: configuration.md
   - FAQ: faq.md
   - Examples: examples.md
   - Cheat Sheet: cheat-sheet.md
-  - Tips: tips.md
   - Contributing: contributing.md
 
 plugins:

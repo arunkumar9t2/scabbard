@@ -97,15 +97,15 @@ Supported output formats for generated images are `png` and `svg`.
     
 ## Other build systems
 
-Although Scabbard integrates well with Gradle, other build systems are supported in limited capacity. The majority of the work is done by Scabbard's annotation processor available on `jcenter` with the following maven coordinates: `dev.arunkumar:scabbard-processor:0.4.0`. 
+Although Scabbard integrates well with Gradle, other build systems are supported in limited capacity. The majority of the work is done by Scabbard's annotation processor available on `jcenter` with the following maven coordinates: `dev.arunkumar:scabbard-processor:0.5.0`. 
 
 The annotation processor behavior can be customized by passing the following Java compiler properties.
 
-Java Compiler Property       | Values          | Behavior
--------------------------    | ----------------| ----------
- -Ascabbard.failOnError    | `true`, `false` | [Link](#fail-build-on-any-error-in-scabbard-processor)
- -Ascabbard.qualifiedNames | `true`, `false` | [Link](#qualified-names)
- -Ascabbard.outputFormat   | `png`, `svg`    | [Link](#output-format)
+| Java Compiler Property    | Values          | Behavior                                               |
+| ------------------------- | --------------- | ------------------------------------------------------ |
+| -Ascabbard.failOnError    | `true`, `false` | [Link](#fail-build-on-any-error-in-scabbard-processor) |
+| -Ascabbard.qualifiedNames | `true`, `false` | [Link](#qualified-names)                               |
+| -Ascabbard.outputFormat   | `png`, `svg`    | [Link](#output-format)                                 |
  
 !!! info
     When using the Gradle plugin, all these options are abstracted into type safe plugin configuration DSL, hence most of them this is of less concern for Gradle users.
@@ -139,7 +139,7 @@ For Maven projects, add Scabbard's annotation processor dependency alongside Dag
                     <path>
                         <groupId>dev.arunkumar</groupId>
                         <artifactId>scabbard-processor</artifactId>
-                        <version>0.4.0</version>
+                        <version>0.5.0</version>
                     </path>
                 </annotationProcessorPaths>
                 <compilerArgs>
