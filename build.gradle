@@ -16,6 +16,7 @@ buildscript {
     classpath "com.diffplug.spotless:spotless-plugin-gradle:${versions.spotless}"
     classpath "com.squareup.anvil:gradle-plugin:${versions.anvil}"
     classpath "io.github.gradle-nexus:publish-plugin:${versions.gradleNexus}"
+    classpath "org.jetbrains.dokka:dokka-gradle-plugin:${versions.dokka}"
   }
 }
 apply from: "gradle/local-properties.gradle"

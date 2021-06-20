@@ -28,7 +28,8 @@ ext {
     "robolectric"   : "4.3",
     "spotless"      : "5.11.0",
     "ktlint"        : "0.41.0",
-    "anvil"         : "2.2.1"
+    "anvil"         : "2.2.1",
+    "dokka"         : "1.4.32"
   ]
 
   groupId = "dev.arunkumar"
