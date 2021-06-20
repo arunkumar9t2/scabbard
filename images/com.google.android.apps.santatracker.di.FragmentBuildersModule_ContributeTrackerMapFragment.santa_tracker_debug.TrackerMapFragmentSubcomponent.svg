@@ -1,0 +1,24 @@
+<svg width="1383px" height="194px"
+ viewBox="0.00 0.00 1382.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.android.apps.santatracker.di.AppComponent → com.google.android.apps.santatracker.di.AndroidModule_ContributeTrackerActivity$santa_tracker_debug.TrackerActivitySubcomponent → com.google.android.apps.santatracker.di.FragmentBuildersModule_ContributeTrackerMapFragment$santa_tracker_debug.TrackerMapFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1368.4,-179.4 1368.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="677" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → AndroidModule_ContributeTrackerActivity$santa_tracker_debug.TrackerActivitySubcomponent → FragmentBuildersModule_ContributeTrackerMapFragment$santa_tracker_debug.TrackerMapFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="579,-31 579,-106 775,-106 775,-31 579,-31"/>
+<text text-anchor="middle" x="622" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="615.2,-114 615.2,-157 739.8,-157 739.8,-114 615.2,-114"/>
+<text text-anchor="middle" x="677.7" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 0597711b&#45;17b3&#45;4e42&#45;b5f3&#45;9021c2b8f17b -->
+<g id="node1" class="node"><title>0597711b&#45;17b3&#45;4e42&#45;b5f3&#45;9021c2b8f17b</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="767,-75 587,-75 587,-71 583,-71 583,-67 587,-67 587,-47 583,-47 583,-43 587,-43 587,-39 767,-39 767,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="587,-71 591,-71 591,-67 587,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="587,-47 591,-47 591,-43 587,-43 "/>
+<text text-anchor="middle" x="677" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (TrackerMapFragment)</text>
+</g>
+<!-- 029d4ea5&#45;5dfe&#45;4ef6&#45;9f14&#45;f41bbf4f69f8 -->
+</g>
+</svg>

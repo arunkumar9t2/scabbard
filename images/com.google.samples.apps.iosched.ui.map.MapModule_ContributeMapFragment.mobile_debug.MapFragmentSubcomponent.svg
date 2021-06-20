@@ -1,0 +1,24 @@
+<svg width="1101px" height="194px"
+ viewBox="0.00 0.00 1100.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → com.google.samples.apps.iosched.ui.map.MapModule_ContributeMapFragment$mobile_debug.MapFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1086.4,-179.4 1086.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="536" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → MapModule_ContributeMapFragment$mobile_debug.MapFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="459.5,-31 459.5,-106 612.5,-106 612.5,-31 459.5,-31"/>
+<text text-anchor="middle" x="502.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="474.2,-114 474.2,-157 598.8,-157 598.8,-114 474.2,-114"/>
+<text text-anchor="middle" x="536.7" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 9e9c8b3a&#45;28a2&#45;438a&#45;94c8&#45;49b9a6f4bc70 -->
+<g id="node1" class="node"><title>9e9c8b3a&#45;28a2&#45;438a&#45;94c8&#45;49b9a6f4bc70</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="604.5,-75 467.5,-75 467.5,-71 463.5,-71 463.5,-67 467.5,-67 467.5,-47 463.5,-47 463.5,-43 467.5,-43 467.5,-39 604.5,-39 604.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="467.5,-71 471.5,-71 471.5,-67 467.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="467.5,-47 471.5,-47 471.5,-43 467.5,-43 "/>
+<text text-anchor="middle" x="536" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (MapFragment)</text>
+</g>
+<!-- 3edb6908&#45;068d&#45;4dd4&#45;b61b&#45;a4bb95730039 -->
+</g>
+</svg>

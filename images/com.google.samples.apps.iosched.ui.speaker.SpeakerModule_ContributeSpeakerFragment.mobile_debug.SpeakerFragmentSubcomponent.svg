@@ -1,0 +1,36 @@
+<svg width="1159px" height="182px"
+ viewBox="0.00 0.00 1158.80 181.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 167.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → com.google.samples.apps.iosched.ui.speaker.SpeakerModule_ContributeSpeakerFragment$mobile_debug.SpeakerFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-167.4 1144.4,-167.4 1144.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="565" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → SpeakerModule_ContributeSpeakerFragment$mobile_debug.SpeakerFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="358,-40 358,-115 530,-115 530,-40 358,-40"/>
+<text text-anchor="middle" x="401" y="-99.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="550,-31 550,-145 772,-145 772,-31 550,-31"/>
+<text text-anchor="middle" x="612.5" y="-129.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- a014d410&#45;3585&#45;46d5&#45;bf50&#45;caf06fffaa18 -->
+<g id="node1" class="node"><title>a014d410&#45;3585&#45;46d5&#45;bf50&#45;caf06fffaa18</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="522,-84 366,-84 366,-80 362,-80 362,-76 366,-76 366,-56 362,-56 362,-52 366,-52 366,-48 522,-48 522,-84"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="366,-80 370,-80 370,-76 366,-76 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="366,-56 370,-56 370,-52 366,-52 "/>
+<text text-anchor="middle" x="444" y="-62.3" font-family="Times New Roman,serif" font-size="14.00">inject (SpeakerFragment)</text>
+</g>
+<!-- 109c6c88&#45;58bf&#45;4a9e&#45;9106&#45;cba88ca307c9 -->
+<g id="node3" class="node"><title>109c6c88&#45;58bf&#45;4a9e&#45;9106&#45;cba88ca307c9</title>
+<polygon fill="coral" stroke="coral" points="764,-92.5 558,-92.5 558,-39.5 764,-39.5 764,-92.5"/>
+<text text-anchor="middle" x="661" y="-77.3" font-family="Times New Roman,serif" font-size="14.00">@Named(&quot;tagViewPool&quot;)</text>
+<text text-anchor="middle" x="661" y="-62.3" font-family="Times New Roman,serif" font-size="14.00">@FragmentScoped</text>
+<text text-anchor="middle" x="661" y="-47.3" font-family="Times New Roman,serif" font-size="14.00">RecyclerView.RecycledViewPool</text>
+</g>
+<!-- a014d410&#45;3585&#45;46d5&#45;bf50&#45;caf06fffaa18&#45;&gt;109c6c88&#45;58bf&#45;4a9e&#45;9106&#45;cba88ca307c9 -->
+<g id="edge1" class="edge"><title>a014d410&#45;3585&#45;46d5&#45;bf50&#45;caf06fffaa18&#45;&gt;109c6c88&#45;58bf&#45;4a9e&#45;9106&#45;cba88ca307c9</title>
+<path fill="none" stroke="black" d="M522.013,-66C530.327,-66 538.906,-66 547.528,-66"/>
+<polygon fill="black" stroke="black" points="547.655,-69.5001 557.655,-66 547.655,-62.5001 547.655,-69.5001"/>
+</g>
+<!-- c39aba75&#45;fb2e&#45;43cb&#45;ad58&#45;b8d84356d1d7 -->
+</g>
+</svg>

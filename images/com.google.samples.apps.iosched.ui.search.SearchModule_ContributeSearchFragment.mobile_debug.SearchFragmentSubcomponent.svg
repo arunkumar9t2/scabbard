@@ -1,0 +1,24 @@
+<svg width="1139px" height="194px"
+ viewBox="0.00 0.00 1138.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → com.google.samples.apps.iosched.ui.search.SearchModule_ContributeSearchFragment$mobile_debug.SearchFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1124.4,-179.4 1124.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="555" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → SearchModule_ContributeSearchFragment$mobile_debug.SearchFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="472.5,-31 472.5,-106 637.5,-106 637.5,-31 472.5,-31"/>
+<text text-anchor="middle" x="515.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="493.2,-114 493.2,-157 617.8,-157 617.8,-114 493.2,-114"/>
+<text text-anchor="middle" x="555.7" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 5da77d70&#45;621b&#45;4bdd&#45;a5d9&#45;f989ecf889be -->
+<g id="node1" class="node"><title>5da77d70&#45;621b&#45;4bdd&#45;a5d9&#45;f989ecf889be</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="629.5,-75 480.5,-75 480.5,-71 476.5,-71 476.5,-67 480.5,-67 480.5,-47 476.5,-47 476.5,-43 480.5,-43 480.5,-39 629.5,-39 629.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="480.5,-71 484.5,-71 484.5,-67 480.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="480.5,-47 484.5,-47 484.5,-43 480.5,-43 "/>
+<text text-anchor="middle" x="555" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (SearchFragment)</text>
+</g>
+<!-- e93ece58&#45;31d6&#45;4581&#45;894f&#45;3bccc4f766a9 -->
+</g>
+</svg>

@@ -1,0 +1,44 @@
+<svg width="1507px" height="219px"
+ viewBox="0.00 0.00 1506.80 218.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 204.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_OnboardingActivity$mobile_debug.OnboardingActivitySubcomponent → com.google.samples.apps.iosched.ui.signin.SignInDialogModule_ContributeNotificationsPreferenceDialogFragment$mobile_debug.NotificationsPreferenceDialogFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-204.4 1492.4,-204.4 1492.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="739" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_OnboardingActivity$mobile_debug.OnboardingActivitySubcomponent → SignInDialogModule_ContributeNotificationsPreferenceDialogFragment$mobile_debug.NotificationsPreferenceDialogFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="455.5,-45 455.5,-120 749.5,-120 749.5,-45 455.5,-45"/>
+<text text-anchor="middle" x="498.5" y="-104.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="769.5,-31 769.5,-182 1022.5,-182 1022.5,-31 769.5,-31"/>
+<text text-anchor="middle" x="832" y="-166.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 54b62ebd&#45;a143&#45;4af6&#45;aba7&#45;d246690c594e -->
+<g id="node1" class="node"><title>54b62ebd&#45;a143&#45;4af6&#45;aba7&#45;d246690c594e</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="741.5,-89 463.5,-89 463.5,-85 459.5,-85 459.5,-81 463.5,-81 463.5,-61 459.5,-61 459.5,-57 463.5,-57 463.5,-53 741.5,-53 741.5,-89"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="463.5,-85 467.5,-85 467.5,-81 463.5,-81 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="463.5,-61 467.5,-61 467.5,-57 463.5,-57 "/>
+<text text-anchor="middle" x="602.5" y="-67.3" font-family="Times New Roman,serif" font-size="14.00">inject (NotificationsPreferenceDialogFragment)</text>
+</g>
+<!-- 80236827&#45;7582&#45;4ba8&#45;8da5&#45;2786832cb0b2 -->
+<g id="node3" class="node"><title>80236827&#45;7582&#45;4ba8&#45;8da5&#45;2786832cb0b2</title>
+<polygon fill="turquoise" stroke="turquoise" points="1008.5,-129 783.5,-129 783.5,-93 1008.5,-93 1008.5,-129"/>
+<text text-anchor="middle" x="896" y="-107.3" font-family="Times New Roman,serif" font-size="14.00">NotificationsPrefSaveActionUseCase</text>
+</g>
+<!-- 54b62ebd&#45;a143&#45;4af6&#45;aba7&#45;d246690c594e&#45;&gt;80236827&#45;7582&#45;4ba8&#45;8da5&#45;2786832cb0b2 -->
+<g id="edge1" class="edge"><title>54b62ebd&#45;a143&#45;4af6&#45;aba7&#45;d246690c594e&#45;&gt;80236827&#45;7582&#45;4ba8&#45;8da5&#45;2786832cb0b2</title>
+<path fill="none" stroke="black" d="M734.753,-89.0107C747.512,-90.7615 760.42,-92.5328 773.082,-94.2703"/>
+<polygon fill="black" stroke="black" points="772.793,-97.7633 783.176,-95.6554 773.745,-90.8283 772.793,-97.7633"/>
+</g>
+<!-- ba761fa0&#45;d6b0&#45;4d42&#45;aea8&#45;630bed41c7b2 -->
+<g id="node4" class="node"><title>ba761fa0&#45;d6b0&#45;4d42&#45;aea8&#45;630bed41c7b2</title>
+<polygon fill="turquoise" stroke="turquoise" points="1014.5,-75 777.5,-75 777.5,-39 1014.5,-39 1014.5,-75"/>
+<text text-anchor="middle" x="896" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">NotificationsPrefShownActionUseCase</text>
+</g>
+<!-- 54b62ebd&#45;a143&#45;4af6&#45;aba7&#45;d246690c594e&#45;&gt;ba761fa0&#45;d6b0&#45;4d42&#45;aea8&#45;630bed41c7b2 -->
+<g id="edge2" class="edge"><title>54b62ebd&#45;a143&#45;4af6&#45;aba7&#45;d246690c594e&#45;&gt;ba761fa0&#45;d6b0&#45;4d42&#45;aea8&#45;630bed41c7b2</title>
+<path fill="none" stroke="black" d="M741.567,-64.369C750.041,-63.962 758.55,-63.5533 766.979,-63.1485"/>
+<polygon fill="black" stroke="black" points="767.392,-66.6328 777.212,-62.6571 767.056,-59.6409 767.392,-66.6328"/>
+</g>
+<!-- 98a55121&#45;1825&#45;4104&#45;9455&#45;0e7155a95777 -->
+</g>
+</svg>

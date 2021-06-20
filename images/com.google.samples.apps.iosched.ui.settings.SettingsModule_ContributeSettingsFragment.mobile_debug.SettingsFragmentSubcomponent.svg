@@ -1,0 +1,24 @@
+<svg width="1157px" height="194px"
+ viewBox="0.00 0.00 1156.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → com.google.samples.apps.iosched.ui.settings.SettingsModule_ContributeSettingsFragment$mobile_debug.SettingsFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1142.4,-179.4 1142.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="564" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → SettingsModule_ContributeSettingsFragment$mobile_debug.SettingsFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="478.5,-31 478.5,-106 649.5,-106 649.5,-31 478.5,-31"/>
+<text text-anchor="middle" x="521.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="502.2,-114 502.2,-157 626.8,-157 626.8,-114 502.2,-114"/>
+<text text-anchor="middle" x="564.7" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 6cd5af89&#45;e7b4&#45;4a92&#45;a295&#45;4f66b36b93ac -->
+<g id="node1" class="node"><title>6cd5af89&#45;e7b4&#45;4a92&#45;a295&#45;4f66b36b93ac</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="641.5,-75 486.5,-75 486.5,-71 482.5,-71 482.5,-67 486.5,-67 486.5,-47 482.5,-47 482.5,-43 486.5,-43 486.5,-39 641.5,-39 641.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="486.5,-71 490.5,-71 490.5,-67 486.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="486.5,-47 490.5,-47 490.5,-43 486.5,-43 "/>
+<text text-anchor="middle" x="564" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (SettingsFragment)</text>
+</g>
+<!-- 0faff94b&#45;3154&#45;499e&#45;ba49&#45;22c903fc60ee -->
+</g>
+</svg>

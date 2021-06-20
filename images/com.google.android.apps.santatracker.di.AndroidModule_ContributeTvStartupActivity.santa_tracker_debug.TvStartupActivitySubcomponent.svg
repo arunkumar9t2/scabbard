@@ -1,0 +1,44 @@
+<svg width="726px" height="219px"
+ viewBox="0.00 0.00 725.80 218.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 204.4)">
+<title>com.google.android.apps.santatracker.di.AppComponent → com.google.android.apps.santatracker.di.AndroidModule_ContributeTvStartupActivity$santa_tracker_debug.TvStartupActivitySubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-204.4 711.4,-204.4 711.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="348.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → AndroidModule_ContributeTvStartupActivity$santa_tracker_debug.TvStartupActivitySubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="123,-45 123,-120 297,-120 297,-45 123,-45"/>
+<text text-anchor="middle" x="166" y="-104.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="317,-31 317,-182 574,-182 574,-31 317,-31"/>
+<text text-anchor="middle" x="379.5" y="-166.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 5ce19cd0&#45;c3ac&#45;4669&#45;b0c0&#45;32e86ccd2829 -->
+<g id="node1" class="node"><title>5ce19cd0&#45;c3ac&#45;4669&#45;b0c0&#45;32e86ccd2829</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="289,-89 131,-89 131,-85 127,-85 127,-81 131,-81 131,-61 127,-61 127,-57 131,-57 131,-53 289,-53 289,-89"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="131,-85 135,-85 135,-81 131,-81 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="131,-61 135,-61 135,-57 131,-57 "/>
+<text text-anchor="middle" x="210" y="-67.3" font-family="Times New Roman,serif" font-size="14.00">inject (TvStartupActivity)</text>
+</g>
+<!-- 58bd9c13&#45;0924&#45;4d71&#45;81b2&#45;4779f14fdede -->
+<g id="node3" class="node"><title>58bd9c13&#45;0924&#45;4d71&#45;81b2&#45;4779f14fdede</title>
+<polygon fill="turquoise" stroke="turquoise" points="558.5,-129 332.5,-129 332.5,-93 558.5,-93 558.5,-129"/>
+<text text-anchor="middle" x="445.5" y="-107.3" font-family="Times New Roman,serif" font-size="14.00">DispatchingAndroidInjector&lt;Object&gt;</text>
+</g>
+<!-- 5ce19cd0&#45;c3ac&#45;4669&#45;b0c0&#45;32e86ccd2829&#45;&gt;58bd9c13&#45;0924&#45;4d71&#45;81b2&#45;4779f14fdede -->
+<g id="edge1" class="edge"><title>5ce19cd0&#45;c3ac&#45;4669&#45;b0c0&#45;32e86ccd2829&#45;&gt;58bd9c13&#45;0924&#45;4d71&#45;81b2&#45;4779f14fdede</title>
+<path fill="none" stroke="black" d="M289.077,-84.375C301.986,-86.5864 315.605,-88.9196 329.199,-91.2482"/>
+<polygon fill="black" stroke="black" points="328.635,-94.7025 339.082,-92.9413 329.817,-87.803 328.635,-94.7025"/>
+</g>
+<!-- ca49bc3f&#45;f80a&#45;49a4&#45;9c42&#45;a075d1423454 -->
+<g id="node4" class="node"><title>ca49bc3f&#45;f80a&#45;49a4&#45;9c42&#45;a075d1423454</title>
+<polygon fill="turquoise" stroke="turquoise" points="566,-75 325,-75 325,-39 566,-39 566,-75"/>
+<text text-anchor="middle" x="445.5" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">DispatchingAndroidInjector&lt;Fragment&gt;</text>
+</g>
+<!-- 5ce19cd0&#45;c3ac&#45;4669&#45;b0c0&#45;32e86ccd2829&#45;&gt;ca49bc3f&#45;f80a&#45;49a4&#45;9c42&#45;a075d1423454 -->
+<g id="edge2" class="edge"><title>5ce19cd0&#45;c3ac&#45;4669&#45;b0c0&#45;32e86ccd2829&#45;&gt;ca49bc3f&#45;f80a&#45;49a4&#45;9c42&#45;a075d1423454</title>
+<path fill="none" stroke="black" d="M289.077,-66.3187C297.367,-65.8217 305.951,-65.307 314.632,-64.7865"/>
+<polygon fill="black" stroke="black" points="315.084,-68.2658 324.857,-64.1735 314.665,-61.2783 315.084,-68.2658"/>
+</g>
+<!-- 79210cbd&#45;4ab0&#45;494d&#45;8754&#45;84326542732f -->
+</g>
+</svg>

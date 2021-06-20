@@ -1,0 +1,24 @@
+<svg width="805px" height="194px"
+ viewBox="0.00 0.00 804.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.shared.di.ServiceBindingModule_IoschedMessagingService$shared_debug.IoschedFirebaseMessagingServiceSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 790.4,-179.4 790.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="388" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ServiceBindingModule_IoschedMessagingService$shared_debug.IoschedFirebaseMessagingServiceSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="254.5,-31 254.5,-106 521.5,-106 521.5,-31 254.5,-31"/>
+<text text-anchor="middle" x="297.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="326.2,-114 326.2,-157 450.8,-157 450.8,-114 326.2,-114"/>
+<text text-anchor="middle" x="388.7" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 76d06c47&#45;aa6a&#45;433e&#45;a353&#45;51d5feaf2d3a -->
+<g id="node1" class="node"><title>76d06c47&#45;aa6a&#45;433e&#45;a353&#45;51d5feaf2d3a</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="513.5,-75 262.5,-75 262.5,-71 258.5,-71 258.5,-67 262.5,-67 262.5,-47 258.5,-47 258.5,-43 262.5,-43 262.5,-39 513.5,-39 513.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="262.5,-71 266.5,-71 266.5,-67 262.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="262.5,-47 266.5,-47 266.5,-43 262.5,-43 "/>
+<text text-anchor="middle" x="388" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (IoschedFirebaseMessagingService)</text>
+</g>
+<!-- f9b0756e&#45;48d7&#45;4f96&#45;8813&#45;253603bbd3b4 -->
+</g>
+</svg>

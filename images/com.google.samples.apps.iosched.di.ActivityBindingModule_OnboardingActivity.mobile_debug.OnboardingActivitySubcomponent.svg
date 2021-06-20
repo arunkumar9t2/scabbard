@@ -1,0 +1,490 @@
+<svg width="3218px" height="1550px"
+ viewBox="0.00 0.00 3217.80 1549.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 1535.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_OnboardingActivity$mobile_debug.OnboardingActivitySubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-1535.4 3203.4,-1535.4 3203.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="330.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_OnboardingActivity$mobile_debug.OnboardingActivitySubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="8,-1030 8,-1105 193,-1105 193,-1030 8,-1030"/>
+<text text-anchor="middle" x="51" y="-1089.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="214,-452 214,-1513 3181,-1513 3181,-452 214,-452"/>
+<text text-anchor="middle" x="276.5" y="-1497.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<g id="clust3" class="cluster"><title>cluster_Map&lt;Class&lt;?&gt;, Provider&lt;AndroidInjector.Factory&lt;?&gt;&gt;&gt;</title>
+<path fill="none" stroke="black" d="M540,-460C540,-460 1507,-460 1507,-460 1513,-460 1519,-466 1519,-472 1519,-472 1519,-1279 1519,-1279 1519,-1285 1513,-1291 1507,-1291 1507,-1291 540,-1291 540,-1291 534,-1291 528,-1285 528,-1279 528,-1279 528,-472 528,-472 528,-466 534,-460 540,-460"/>
+<text text-anchor="middle" x="1023.5" y="-1275.8" font-family="Times New Roman,serif" font-size="14.00">Map&lt;Class&lt;?&gt;, Provider&lt;AndroidInjector.Factory&lt;?&gt;&gt;&gt;</text>
+</g>
+<g id="clust4" class="cluster"><title>cluster_Map&lt;Class&lt;? extends androidx.lifecycle.ViewModel&gt;, Provider&lt;ViewModel&gt;&gt;</title>
+<path fill="none" stroke="black" d="M984.5,-1299C984.5,-1299 1976,-1299 1976,-1299 1982,-1299 1988,-1305 1988,-1311 1988,-1311 1988,-1470 1988,-1470 1988,-1476 1982,-1482 1976,-1482 1976,-1482 984.5,-1482 984.5,-1482 978.5,-1482 972.5,-1476 972.5,-1470 972.5,-1470 972.5,-1311 972.5,-1311 972.5,-1305 978.5,-1299 984.5,-1299"/>
+<text text-anchor="middle" x="1480.25" y="-1466.8" font-family="Times New Roman,serif" font-size="14.00">Map&lt;Class&lt;? extends androidx.lifecycle.ViewModel&gt;, Provider&lt;ViewModel&gt;&gt;</text>
+</g>
+<g id="clust5" class="cluster"><title>cluster_Subcomponents</title>
+<polygon fill="none" stroke="black" points="2092,-31 2092,-444 2920,-444 2920,-31 2092,-31"/>
+<text text-anchor="middle" x="2146" y="-428.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponents</text>
+</g>
+<!-- 74956e8b&#45;9a05&#45;4462&#45;aaa9&#45;879a94a2cfe0 -->
+<g id="node1" class="node"><title>74956e8b&#45;9a05&#45;4462&#45;aaa9&#45;879a94a2cfe0</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="185,-1074 16,-1074 16,-1070 12,-1070 12,-1066 16,-1066 16,-1046 12,-1046 12,-1042 16,-1042 16,-1038 185,-1038 185,-1074"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-1070 20,-1070 20,-1066 16,-1066 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-1046 20,-1046 20,-1042 16,-1042 "/>
+<text text-anchor="middle" x="100.5" y="-1052.3" font-family="Times New Roman,serif" font-size="14.00">inject (OnboardingActivity)</text>
+</g>
+<!-- 7932c628&#45;8e0c&#45;4601&#45;b5ae&#45;09cbeef2ec8a -->
+<g id="node3" class="node"><title>7932c628&#45;8e0c&#45;4601&#45;b5ae&#45;09cbeef2ec8a</title>
+<polygon fill="turquoise" stroke="turquoise" points="448,-1005 222,-1005 222,-969 448,-969 448,-1005"/>
+<text text-anchor="middle" x="335" y="-983.3" font-family="Times New Roman,serif" font-size="14.00">DispatchingAndroidInjector&lt;Object&gt;</text>
+</g>
+<!-- 74956e8b&#45;9a05&#45;4462&#45;aaa9&#45;879a94a2cfe0&#45;&gt;7932c628&#45;8e0c&#45;4601&#45;b5ae&#45;09cbeef2ec8a -->
+<g id="edge1" class="edge"><title>74956e8b&#45;9a05&#45;4462&#45;aaa9&#45;879a94a2cfe0&#45;&gt;7932c628&#45;8e0c&#45;4601&#45;b5ae&#45;09cbeef2ec8a</title>
+<path fill="none" stroke="black" d="M162.283,-1037.96C193.254,-1028.77 231.085,-1017.54 263.348,-1007.97"/>
+<polygon fill="black" stroke="black" points="264.578,-1011.25 273.168,-1005.05 262.586,-1004.54 264.578,-1011.25"/>
+</g>
+<!-- 5b873505&#45;67fa&#45;48d6&#45;88dd&#45;253e3bb1cf79 -->
+<g id="node4" class="node"><title>5b873505&#45;67fa&#45;48d6&#45;88dd&#45;253e3bb1cf79</title>
+<polygon fill="turquoise" stroke="turquoise" points="423,-1259 247,-1259 247,-1223 423,-1223 423,-1259"/>
+<text text-anchor="middle" x="335" y="-1237.3" font-family="Times New Roman,serif" font-size="14.00">ViewModelProvider.Factory</text>
+</g>
+<!-- 74956e8b&#45;9a05&#45;4462&#45;aaa9&#45;879a94a2cfe0&#45;&gt;5b873505&#45;67fa&#45;48d6&#45;88dd&#45;253e3bb1cf79 -->
+<g id="edge2" class="edge"><title>74956e8b&#45;9a05&#45;4462&#45;aaa9&#45;879a94a2cfe0&#45;&gt;5b873505&#45;67fa&#45;48d6&#45;88dd&#45;253e3bb1cf79</title>
+<path fill="none" stroke="black" d="M124.216,-1074.08C166.147,-1107.44 255.739,-1178.73 303.131,-1216.44"/>
+<polygon fill="black" stroke="black" points="301.187,-1219.36 311.191,-1222.85 305.546,-1213.89 301.187,-1219.36"/>
+</g>
+<!-- ac165b15&#45;0836&#45;48f1&#45;81b9&#45;5a6ce0de4d48 -->
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8 -->
+<g id="node25" class="node"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8</title>
+<polygon fill="turquoise" stroke="turquoise" points="879,-897 548,-897 548,-901 536,-901 536,-861 879,-861 879,-897"/>
+<polyline fill="none" stroke="turquoise" points="536,-897 548,-897 "/>
+<text text-anchor="middle" x="707.5" y="-875.3" font-family="Times New Roman,serif" font-size="14.00">Map&lt;Class&lt;?&gt;, Provider&lt;AndroidInjector.Factory&lt;?&gt;&gt;&gt;</text>
+</g>
+<!-- 7932c628&#45;8e0c&#45;4601&#45;b5ae&#45;09cbeef2ec8a&#45;&gt;bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8 -->
+<g id="edge3" class="edge"><title>7932c628&#45;8e0c&#45;4601&#45;b5ae&#45;09cbeef2ec8a&#45;&gt;bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8</title>
+<path fill="none" stroke="black" d="M368.178,-968.983C405.441,-948.987 469.245,-917.38 528,-901 529.706,-900.524 531.424,-900.059 533.153,-899.604"/>
+<polygon fill="black" stroke="black" points="534.306,-902.923 543.16,-897.105 532.61,-896.132 534.306,-902.923"/>
+</g>
+<!-- f66573ab&#45;ae4b&#45;43db&#45;a674&#45;80eb6ad7d6d5 -->
+<g id="node12" class="node"><title>f66573ab&#45;ae4b&#45;43db&#45;a674&#45;80eb6ad7d6d5</title>
+<polygon fill="turquoise" stroke="turquoise" points="795,-1352 620,-1352 620,-1316 795,-1316 795,-1352"/>
+<text text-anchor="middle" x="707.5" y="-1330.3" font-family="Times New Roman,serif" font-size="14.00">IOSchedViewModelFactory</text>
+</g>
+<!-- 5b873505&#45;67fa&#45;48d6&#45;88dd&#45;253e3bb1cf79&#45;&gt;f66573ab&#45;ae4b&#45;43db&#45;a674&#45;80eb6ad7d6d5 -->
+<g id="edge19" class="edge"><title>5b873505&#45;67fa&#45;48d6&#45;88dd&#45;253e3bb1cf79&#45;&gt;f66573ab&#45;ae4b&#45;43db&#45;a674&#45;80eb6ad7d6d5</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M396.717,-1259.07C434.369,-1270.02 483.822,-1283.97 528,-1295 554.335,-1301.57 583.007,-1308.11 609.513,-1313.9"/>
+<polygon fill="black" stroke="black" points="609.041,-1317.38 619.556,-1316.08 610.526,-1310.54 609.041,-1317.38"/>
+<text text-anchor="middle" x="492" y="-1296.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- f7f4b91e&#45;693c&#45;414d&#45;97bd&#45;bae6266244b0 -->
+<g id="node5" class="node"><title>f7f4b91e&#45;693c&#45;414d&#45;97bd&#45;bae6266244b0</title>
+<polygon fill="turquoise" stroke="turquoise" points="1454.5,-774 972.5,-774 972.5,-738 1454.5,-738 1454.5,-774"/>
+<text text-anchor="middle" x="1213.5" y="-752.3" font-family="Times New Roman,serif" font-size="14.00">OnboardingModule_ContributeOnboardingFragment.bindAndroidInjectorFactory()</text>
+</g>
+<!-- 076d25a8&#45;d0c4&#45;4a7b&#45;9749&#45;d9d6de691fc0 -->
+<g id="node15" class="node"><title>076d25a8&#45;d0c4&#45;4a7b&#45;9749&#45;d9d6de691fc0</title>
+<polygon fill="turquoise" stroke="turquoise" points="1924,-874 1655,-874 1655,-820 1924,-820 1924,-874"/>
+<text text-anchor="middle" x="1789.5" y="-858.8" font-family="Times New Roman,serif" font-size="14.00">OnboardingFragmentSubcomponent.Factory</text>
+<text text-anchor="middle" x="1789.5" y="-827.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponent Creator</text>
+</g>
+<!-- f7f4b91e&#45;693c&#45;414d&#45;97bd&#45;bae6266244b0&#45;&gt;076d25a8&#45;d0c4&#45;4a7b&#45;9749&#45;d9d6de691fc0 -->
+<g id="edge24" class="edge"><title>f7f4b91e&#45;693c&#45;414d&#45;97bd&#45;bae6266244b0&#45;&gt;076d25a8&#45;d0c4&#45;4a7b&#45;9749&#45;d9d6de691fc0</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1454.7,-771.664C1476.55,-774.783 1498.25,-778.522 1519,-783 1555.82,-790.947 1562.62,-801.235 1599,-811 1613.72,-814.952 1629.21,-818.637 1644.71,-822.025"/>
+<polygon fill="black" stroke="black" points="1644.38,-825.534 1654.89,-824.208 1645.85,-818.689 1644.38,-825.534"/>
+<text text-anchor="middle" x="1555" y="-809.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- 53412138&#45;300d&#45;4796&#45;a354&#45;8d31f2fd31ed -->
+<g id="node6" class="node"><title>53412138&#45;300d&#45;4796&#45;a354&#45;8d31f2fd31ed</title>
+<polygon fill="turquoise" stroke="turquoise" points="1489.5,-720 937.5,-720 937.5,-684 1489.5,-684 1489.5,-720"/>
+<text text-anchor="middle" x="1213.5" y="-698.3" font-family="Times New Roman,serif" font-size="14.00">OnboardingModule_ContributeWelcomePreConferenceFragment.bindAndroidInjectorFactory()</text>
+</g>
+<!-- deb461b0&#45;b7eb&#45;4c96&#45;b483&#45;0a128dac39bf -->
+<g id="node16" class="node"><title>deb461b0&#45;b7eb&#45;4c96&#45;b483&#45;0a128dac39bf</title>
+<polygon fill="turquoise" stroke="turquoise" points="1958.5,-802 1620.5,-802 1620.5,-748 1958.5,-748 1958.5,-802"/>
+<text text-anchor="middle" x="1789.5" y="-786.8" font-family="Times New Roman,serif" font-size="14.00">WelcomePreConferenceFragmentSubcomponent.Factory</text>
+<text text-anchor="middle" x="1789.5" y="-755.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponent Creator</text>
+</g>
+<!-- 53412138&#45;300d&#45;4796&#45;a354&#45;8d31f2fd31ed&#45;&gt;deb461b0&#45;b7eb&#45;4c96&#45;b483&#45;0a128dac39bf -->
+<g id="edge26" class="edge"><title>53412138&#45;300d&#45;4796&#45;a354&#45;8d31f2fd31ed&#45;&gt;deb461b0&#45;b7eb&#45;4c96&#45;b483&#45;0a128dac39bf</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1440.87,-720.031C1467.24,-722.736 1493.74,-725.729 1519,-729 1556.05,-733.797 1595.8,-739.993 1633.08,-746.274"/>
+<polygon fill="black" stroke="black" points="1632.57,-749.737 1643.01,-747.96 1633.74,-742.836 1632.57,-749.737"/>
+<text text-anchor="middle" x="1555" y="-741.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- 931f5b11&#45;544c&#45;471f&#45;b022&#45;b5a98951071b -->
+<g id="node7" class="node"><title>931f5b11&#45;544c&#45;471f&#45;b022&#45;b5a98951071b</title>
+<polygon fill="turquoise" stroke="turquoise" points="1499,-666 928,-666 928,-630 1499,-630 1499,-666"/>
+<text text-anchor="middle" x="1213.5" y="-644.3" font-family="Times New Roman,serif" font-size="14.00">OnboardingModule_ContributeWelcomeDuringConferenceFragment.bindAndroidInjectorFactory()</text>
+</g>
+<!-- 0a5c12b1&#45;a9f6&#45;4e04&#45;8c6f&#45;080b619b2e4e -->
+<g id="node17" class="node"><title>0a5c12b1&#45;a9f6&#45;4e04&#45;8c6f&#45;080b619b2e4e</title>
+<polygon fill="turquoise" stroke="turquoise" points="1968,-730 1611,-730 1611,-676 1968,-676 1968,-730"/>
+<text text-anchor="middle" x="1789.5" y="-714.8" font-family="Times New Roman,serif" font-size="14.00">WelcomeDuringConferenceFragmentSubcomponent.Factory</text>
+<text text-anchor="middle" x="1789.5" y="-683.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponent Creator</text>
+</g>
+<!-- 931f5b11&#45;544c&#45;471f&#45;b022&#45;b5a98951071b&#45;&gt;0a5c12b1&#45;a9f6&#45;4e04&#45;8c6f&#45;080b619b2e4e -->
+<g id="edge28" class="edge"><title>931f5b11&#45;544c&#45;471f&#45;b022&#45;b5a98951071b&#45;&gt;0a5c12b1&#45;a9f6&#45;4e04&#45;8c6f&#45;080b619b2e4e</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1422.56,-666.028C1454.86,-668.947 1487.83,-671.999 1519,-675 1545.48,-677.55 1573.41,-680.339 1600.87,-683.138"/>
+<polygon fill="black" stroke="black" points="1600.65,-686.634 1610.95,-684.169 1601.36,-679.671 1600.65,-686.634"/>
+<text text-anchor="middle" x="1555" y="-684.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- cd2e92b2&#45;8b3c&#45;408e&#45;9acd&#45;187c0fc10420 -->
+<g id="node8" class="node"><title>cd2e92b2&#45;8b3c&#45;408e&#45;9acd&#45;187c0fc10420</title>
+<polygon fill="turquoise" stroke="turquoise" points="1472.5,-612 954.5,-612 954.5,-576 1472.5,-576 1472.5,-612"/>
+<text text-anchor="middle" x="1213.5" y="-590.3" font-family="Times New Roman,serif" font-size="14.00">OnboardingModule_ContributeOnboardingSignInFragment.bindAndroidInjectorFactory()</text>
+</g>
+<!-- ed67ad8f&#45;06e9&#45;44ba&#45;8880&#45;a72c324483d4 -->
+<g id="node18" class="node"><title>ed67ad8f&#45;06e9&#45;44ba&#45;8880&#45;a72c324483d4</title>
+<polygon fill="turquoise" stroke="turquoise" points="1942,-658 1637,-658 1637,-604 1942,-604 1942,-658"/>
+<text text-anchor="middle" x="1789.5" y="-642.8" font-family="Times New Roman,serif" font-size="14.00">OnboardingSignInFragmentSubcomponent.Factory</text>
+<text text-anchor="middle" x="1789.5" y="-611.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponent Creator</text>
+</g>
+<!-- cd2e92b2&#45;8b3c&#45;408e&#45;9acd&#45;187c0fc10420&#45;&gt;ed67ad8f&#45;06e9&#45;44ba&#45;8880&#45;a72c324483d4 -->
+<g id="edge30" class="edge"><title>cd2e92b2&#45;8b3c&#45;408e&#45;9acd&#45;187c0fc10420&#45;&gt;ed67ad8f&#45;06e9&#45;44ba&#45;8880&#45;a72c324483d4</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1472.54,-610.633C1524.94,-614.011 1578.65,-617.473 1626.58,-620.562"/>
+<polygon fill="black" stroke="black" points="1626.51,-624.065 1636.71,-621.216 1626.96,-617.08 1626.51,-624.065"/>
+<text text-anchor="middle" x="1555" y="-621.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- 7c03c61b&#45;4fe2&#45;41b0&#45;bb83&#45;b242153f1d0a -->
+<g id="node9" class="node"><title>7c03c61b&#45;4fe2&#45;41b0&#45;bb83&#45;b242153f1d0a</title>
+<polygon fill="turquoise" stroke="turquoise" points="1460,-558 967,-558 967,-522 1460,-522 1460,-558"/>
+<text text-anchor="middle" x="1213.5" y="-536.3" font-family="Times New Roman,serif" font-size="14.00">SignInDialogModule_ContributeSignInDialogFragment.bindAndroidInjectorFactory()</text>
+</g>
+<!-- bfa8c799&#45;3571&#45;49b9&#45;877a&#45;2d0f0319f68d -->
+<g id="node19" class="node"><title>bfa8c799&#45;3571&#45;49b9&#45;877a&#45;2d0f0319f68d</title>
+<polygon fill="turquoise" stroke="turquoise" points="1926.5,-586 1652.5,-586 1652.5,-532 1926.5,-532 1926.5,-586"/>
+<text text-anchor="middle" x="1789.5" y="-570.8" font-family="Times New Roman,serif" font-size="14.00">SignInDialogFragmentSubcomponent.Factory</text>
+<text text-anchor="middle" x="1789.5" y="-539.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponent Creator</text>
+</g>
+<!-- 7c03c61b&#45;4fe2&#45;41b0&#45;bb83&#45;b242153f1d0a&#45;&gt;bfa8c799&#45;3571&#45;49b9&#45;877a&#45;2d0f0319f68d -->
+<g id="edge32" class="edge"><title>7c03c61b&#45;4fe2&#45;41b0&#45;bb83&#45;b242153f1d0a&#45;&gt;bfa8c799&#45;3571&#45;49b9&#45;877a&#45;2d0f0319f68d</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1460.01,-548.127C1522.07,-550.181 1586.78,-552.323 1642.18,-554.157"/>
+<polygon fill="black" stroke="black" points="1642.31,-557.663 1652.42,-554.496 1642.54,-550.667 1642.31,-557.663"/>
+<text text-anchor="middle" x="1555" y="-556.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- 3346fb2d&#45;57a6&#45;477e&#45;8fe5&#45;52000b0c6c30 -->
+<g id="node10" class="node"><title>3346fb2d&#45;57a6&#45;477e&#45;8fe5&#45;52000b0c6c30</title>
+<polygon fill="turquoise" stroke="turquoise" points="1465,-504 962,-504 962,-468 1465,-468 1465,-504"/>
+<text text-anchor="middle" x="1213.5" y="-482.3" font-family="Times New Roman,serif" font-size="14.00">SignInDialogModule_ContributeSignOutDialogFragment.bindAndroidInjectorFactory()</text>
+</g>
+<!-- 71701e25&#45;5bbf&#45;4f26&#45;bf6e&#45;5f2aaa590a0f -->
+<g id="node20" class="node"><title>71701e25&#45;5bbf&#45;4f26&#45;bf6e&#45;5f2aaa590a0f</title>
+<polygon fill="turquoise" stroke="turquoise" points="1931.5,-514 1647.5,-514 1647.5,-460 1931.5,-460 1931.5,-514"/>
+<text text-anchor="middle" x="1789.5" y="-498.8" font-family="Times New Roman,serif" font-size="14.00">SignOutDialogFragmentSubcomponent.Factory</text>
+<text text-anchor="middle" x="1789.5" y="-467.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponent Creator</text>
+</g>
+<!-- 3346fb2d&#45;57a6&#45;477e&#45;8fe5&#45;52000b0c6c30&#45;&gt;71701e25&#45;5bbf&#45;4f26&#45;bf6e&#45;5f2aaa590a0f -->
+<g id="edge34" class="edge"><title>3346fb2d&#45;57a6&#45;477e&#45;8fe5&#45;52000b0c6c30&#45;&gt;71701e25&#45;5bbf&#45;4f26&#45;bf6e&#45;5f2aaa590a0f</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1465.01,-486.436C1523.72,-486.539 1584.5,-486.645 1637.3,-486.737"/>
+<polygon fill="black" stroke="black" points="1637.41,-490.237 1647.41,-486.754 1637.42,-483.237 1637.41,-490.237"/>
+<text text-anchor="middle" x="1555" y="-490.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- 4d10e0e2&#45;5fe2&#45;4d64&#45;8d86&#45;38971c63cab8 -->
+<g id="node11" class="node"><title>4d10e0e2&#45;5fe2&#45;4d64&#45;8d86&#45;38971c63cab8</title>
+<polygon fill="turquoise" stroke="turquoise" points="1507,-1260 920,-1260 920,-1224 1507,-1224 1507,-1260"/>
+<text text-anchor="middle" x="1213.5" y="-1238.3" font-family="Times New Roman,serif" font-size="14.00">SignInDialogModule_ContributeNotificationsPreferenceDialogFragment.bindAndroidInjectorFactory()</text>
+</g>
+<!-- e6bad1d1&#45;ca00&#45;4404&#45;88a4&#45;c84f9787b577 -->
+<g id="node21" class="node"><title>e6bad1d1&#45;ca00&#45;4404&#45;88a4&#45;c84f9787b577</title>
+<polygon fill="turquoise" stroke="turquoise" points="1973.5,-1027 1605.5,-1027 1605.5,-973 1973.5,-973 1973.5,-1027"/>
+<text text-anchor="middle" x="1789.5" y="-1011.8" font-family="Times New Roman,serif" font-size="14.00">NotificationsPreferenceDialogFragmentSubcomponent.Factory</text>
+<text text-anchor="middle" x="1789.5" y="-980.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponent Creator</text>
+</g>
+<!-- 4d10e0e2&#45;5fe2&#45;4d64&#45;8d86&#45;38971c63cab8&#45;&gt;e6bad1d1&#45;ca00&#45;4404&#45;88a4&#45;c84f9787b577 -->
+<g id="edge36" class="edge"><title>4d10e0e2&#45;5fe2&#45;4d64&#45;8d86&#45;38971c63cab8&#45;&gt;e6bad1d1&#45;ca00&#45;4404&#45;88a4&#45;c84f9787b577</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1493.64,-1223.99C1502.27,-1221.29 1510.75,-1218.3 1519,-1215 1619.21,-1174.87 1711.98,-1084.57 1758.06,-1034.71"/>
+<polygon fill="black" stroke="black" points="1760.88,-1036.81 1765.05,-1027.07 1755.72,-1032.09 1760.88,-1036.81"/>
+<text text-anchor="middle" x="1555" y="-1211.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- 140a09f7&#45;bc03&#45;484f&#45;a62b&#45;965a81bef353 -->
+<g id="node34" class="node"><title>140a09f7&#45;bc03&#45;484f&#45;a62b&#45;965a81bef353</title>
+<polygon fill="turquoise" stroke="turquoise" points="1446.5,-1370 992.5,-1370 992.5,-1374 980.5,-1374 980.5,-1334 1446.5,-1334 1446.5,-1370"/>
+<polyline fill="none" stroke="turquoise" points="980.5,-1370 992.5,-1370 "/>
+<text text-anchor="middle" x="1213.5" y="-1348.3" font-family="Times New Roman,serif" font-size="14.00">Map&lt;Class&lt;? extends androidx.lifecycle.ViewModel&gt;, Provider&lt;ViewModel&gt;&gt;</text>
+</g>
+<!-- f66573ab&#45;ae4b&#45;43db&#45;a674&#45;80eb6ad7d6d5&#45;&gt;140a09f7&#45;bc03&#45;484f&#45;a62b&#45;965a81bef353 -->
+<g id="edge20" class="edge"><title>f66573ab&#45;ae4b&#45;43db&#45;a674&#45;80eb6ad7d6d5&#45;&gt;140a09f7&#45;bc03&#45;484f&#45;a62b&#45;965a81bef353</title>
+<path fill="none" stroke="black" d="M795.141,-1337.09C843.896,-1338.84 907.438,-1341.1 970.178,-1343.35"/>
+<polygon fill="black" stroke="black" points="970.12,-1346.85 980.238,-1343.7 970.37,-1339.85 970.12,-1346.85"/>
+</g>
+<!-- b342eeb8&#45;4ae3&#45;4e57&#45;89f2&#45;581a0a4e9250 -->
+<g id="node13" class="node"><title>b342eeb8&#45;4ae3&#45;4e57&#45;89f2&#45;581a0a4e9250</title>
+<polygon fill="turquoise" stroke="turquoise" points="1980,-1451 1599,-1451 1599,-1415 1980,-1415 1980,-1451"/>
+<text text-anchor="middle" x="1789.5" y="-1429.3" font-family="Times New Roman,serif" font-size="14.00">OnboardingModule.bindOnboardingViewModel$mobile_debug()</text>
+</g>
+<!-- 33a6a0b8&#45;9f44&#45;4c5b&#45;9398&#45;2e7b34b4b33d -->
+<g id="node22" class="node"><title>33a6a0b8&#45;9f44&#45;4c5b&#45;9398&#45;2e7b34b4b33d</title>
+<polygon fill="turquoise" stroke="turquoise" points="2580,-1451 2432,-1451 2432,-1415 2580,-1415 2580,-1451"/>
+<text text-anchor="middle" x="2506" y="-1429.3" font-family="Times New Roman,serif" font-size="14.00">OnboardingViewModel</text>
+</g>
+<!-- b342eeb8&#45;4ae3&#45;4e57&#45;89f2&#45;581a0a4e9250&#45;&gt;33a6a0b8&#45;9f44&#45;4c5b&#45;9398&#45;2e7b34b4b33d -->
+<g id="edge38" class="edge"><title>b342eeb8&#45;4ae3&#45;4e57&#45;89f2&#45;581a0a4e9250&#45;&gt;33a6a0b8&#45;9f44&#45;4c5b&#45;9398&#45;2e7b34b4b33d</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1980.1,-1433C2123.68,-1433 2313.99,-1433 2421.57,-1433"/>
+<polygon fill="black" stroke="black" points="2421.72,-1436.5 2431.72,-1433 2421.72,-1429.5 2421.72,-1436.5"/>
+<text text-anchor="middle" x="2040" y="-1436.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- e5246d21&#45;1086&#45;4008&#45;b79e&#45;d750a08f94d2 -->
+<g id="node14" class="node"><title>e5246d21&#45;1086&#45;4008&#45;b79e&#45;d750a08f94d2</title>
+<polygon fill="turquoise" stroke="turquoise" points="1924,-1343 1655,-1343 1655,-1307 1924,-1307 1924,-1343"/>
+<text text-anchor="middle" x="1789.5" y="-1321.3" font-family="Times New Roman,serif" font-size="14.00">SignInDialogModule.bindSignInViewModel()</text>
+</g>
+<!-- bb4d7eba&#45;33f2&#45;4418&#45;b842&#45;76dff968d5f8 -->
+<g id="node24" class="node"><title>bb4d7eba&#45;33f2&#45;4418&#45;b842&#45;76dff968d5f8</title>
+<polygon fill="turquoise" stroke="turquoise" points="2564.5,-1343 2447.5,-1343 2447.5,-1307 2564.5,-1307 2564.5,-1343"/>
+<text text-anchor="middle" x="2506" y="-1321.3" font-family="Times New Roman,serif" font-size="14.00">SignInViewModel</text>
+</g>
+<!-- e5246d21&#45;1086&#45;4008&#45;b79e&#45;d750a08f94d2&#45;&gt;bb4d7eba&#45;33f2&#45;4418&#45;b842&#45;76dff968d5f8 -->
+<g id="edge40" class="edge"><title>e5246d21&#45;1086&#45;4008&#45;b79e&#45;d750a08f94d2&#45;&gt;bb4d7eba&#45;33f2&#45;4418&#45;b842&#45;76dff968d5f8</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1924.05,-1325C2076.38,-1325 2319.48,-1325 2437,-1325"/>
+<polygon fill="black" stroke="black" points="2437.29,-1328.5 2447.29,-1325 2437.29,-1321.5 2437.29,-1328.5"/>
+<text text-anchor="middle" x="2040" y="-1328.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- 3077ef8f&#45;729f&#45;4dd7&#45;9e7b&#45;dc5af79e72f0 -->
+<g id="node36" class="node"><title>3077ef8f&#45;729f&#45;4dd7&#45;9e7b&#45;dc5af79e72f0</title>
+<g id="a_node36"><a xlink:href="com.google.samples.apps.iosched.ui.onboarding.OnboardingModule_ContributeOnboardingFragment.mobile_debug.OnboardingFragmentSubcomponent.svg" xlink:title="@FragmentScoped\nOnboardingModule_ContributeOnboardingFragment$mobile_debug.OnboardingFragmentSubcomponent">
+<polygon fill="coral" stroke="coral" points="2809.5,-357 2202.5,-357 2202.5,-319 2809.5,-319 2809.5,-357"/>
+<text text-anchor="middle" x="2506" y="-341.8" font-family="Times New Roman,serif" font-size="14.00">@FragmentScoped</text>
+<text text-anchor="middle" x="2506" y="-326.8" font-family="Times New Roman,serif" font-size="14.00">OnboardingModule_ContributeOnboardingFragment$mobile_debug.OnboardingFragmentSubcomponent</text>
+</a>
+</g>
+</g>
+<!-- 076d25a8&#45;d0c4&#45;4a7b&#45;9749&#45;d9d6de691fc0&#45;&gt;3077ef8f&#45;729f&#45;4dd7&#45;9e7b&#45;dc5af79e72f0 -->
+<g id="edge25" class="edge"><title>076d25a8&#45;d0c4&#45;4a7b&#45;9749&#45;d9d6de691fc0&#45;&gt;3077ef8f&#45;729f&#45;4dd7&#45;9e7b&#45;dc5af79e72f0:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1924.03,-846.966C1948.37,-840.769 1971.3,-829.728 1988,-811 1999.19,-798.451 1993.89,-676.303 1998,-660 2020,-572.836 2058.94,-562.888 2082,-476 2088.3,-452.276 2076.09,-384.694 2092,-366 2122.13,-330.585 2147.22,-336.819 2190.79,-337.871"/>
+<polygon fill="black" stroke="black" points="2190.96,-341.373 2201,-338 2191.05,-334.373 2190.96,-341.373"/>
+<text text-anchor="middle" x="2040" y="-663.8" font-family="Times New Roman,serif" font-size="14.00">subcomponent</text>
+</g>
+<!-- 96bfbbca&#45;247c&#45;45be&#45;82e8&#45;856441003f37 -->
+<g id="node37" class="node"><title>96bfbbca&#45;247c&#45;45be&#45;82e8&#45;856441003f37</title>
+<g id="a_node37"><a xlink:href="com.google.samples.apps.iosched.ui.onboarding.OnboardingModule_ContributeWelcomePreConferenceFragment.mobile_debug.WelcomePreConferenceFragmentSubcomponent.svg" xlink:title="@FragmentScoped\nOnboardingModule_ContributeWelcomePreConferenceFragment$mobile_debug.WelcomePreConferenceFragmentSubcomponent">
+<polygon fill="coral" stroke="coral" points="2879,-301 2133,-301 2133,-263 2879,-263 2879,-301"/>
+<text text-anchor="middle" x="2506" y="-285.8" font-family="Times New Roman,serif" font-size="14.00">@FragmentScoped</text>
+<text text-anchor="middle" x="2506" y="-270.8" font-family="Times New Roman,serif" font-size="14.00">OnboardingModule_ContributeWelcomePreConferenceFragment$mobile_debug.WelcomePreConferenceFragmentSubcomponent</text>
+</a>
+</g>
+</g>
+<!-- deb461b0&#45;b7eb&#45;4c96&#45;b483&#45;0a128dac39bf&#45;&gt;96bfbbca&#45;247c&#45;45be&#45;82e8&#45;856441003f37 -->
+<g id="edge27" class="edge"><title>deb461b0&#45;b7eb&#45;4c96&#45;b483&#45;0a128dac39bf&#45;&gt;96bfbbca&#45;247c&#45;45be&#45;82e8&#45;856441003f37:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1958.74,-762.205C1969.71,-756.23 1979.68,-748.621 1988,-739 2008.22,-715.625 1987.7,-490.142 1998,-461 2018.73,-402.334 2055.09,-405.102 2082,-349 2089.74,-332.866 2081.81,-324.712 2092,-310 2102.13,-295.364 2107.96,-285.899 2121.7,-282.97"/>
+<polygon fill="black" stroke="black" points="2122.37,-286.422 2132,-282 2121.72,-279.453 2122.37,-286.422"/>
+<text text-anchor="middle" x="2040" y="-464.8" font-family="Times New Roman,serif" font-size="14.00">subcomponent</text>
+</g>
+<!-- 5c143f7e&#45;06fb&#45;41a0&#45;86e3&#45;97f96cb150f4 -->
+<g id="node38" class="node"><title>5c143f7e&#45;06fb&#45;41a0&#45;86e3&#45;97f96cb150f4</title>
+<g id="a_node38"><a xlink:href="com.google.samples.apps.iosched.ui.onboarding.OnboardingModule_ContributeWelcomeDuringConferenceFragment.mobile_debug.WelcomeDuringConferenceFragmentSubcomponent.svg" xlink:title="@FragmentScoped\nOnboardingModule_ContributeWelcomeDuringConferenceFragment$mobile_debug.WelcomeDuringConferenceFragmentSubcomponent">
+<polygon fill="coral" stroke="coral" points="2898,-245 2114,-245 2114,-207 2898,-207 2898,-245"/>
+<text text-anchor="middle" x="2506" y="-229.8" font-family="Times New Roman,serif" font-size="14.00">@FragmentScoped</text>
+<text text-anchor="middle" x="2506" y="-214.8" font-family="Times New Roman,serif" font-size="14.00">OnboardingModule_ContributeWelcomeDuringConferenceFragment$mobile_debug.WelcomeDuringConferenceFragmentSubcomponent</text>
+</a>
+</g>
+</g>
+<!-- 0a5c12b1&#45;a9f6&#45;4e04&#45;8c6f&#45;080b619b2e4e&#45;&gt;5c143f7e&#45;06fb&#45;41a0&#45;86e3&#45;97f96cb150f4 -->
+<g id="edge29" class="edge"><title>0a5c12b1&#45;a9f6&#45;4e04&#45;8c6f&#45;080b619b2e4e&#45;&gt;5c143f7e&#45;06fb&#45;41a0&#45;86e3&#45;97f96cb150f4:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1968.42,-684.389C1975.6,-679.492 1982.21,-673.738 1988,-667 2012.14,-638.934 1982.59,-367.656 1998,-334 2019.09,-287.953 2045.42,-292.025 2082,-257 2093,-246.472 2093.84,-233.473 2102.97,-228.29"/>
+<polygon fill="black" stroke="black" points="2104.03,-231.639 2113,-226 2102.47,-224.814 2104.03,-231.639"/>
+<text text-anchor="middle" x="2040" y="-337.8" font-family="Times New Roman,serif" font-size="14.00">subcomponent</text>
+</g>
+<!-- c42ba163&#45;f353&#45;4aa4&#45;af8b&#45;fc86253494e8 -->
+<g id="node39" class="node"><title>c42ba163&#45;f353&#45;4aa4&#45;af8b&#45;fc86253494e8</title>
+<g id="a_node39"><a xlink:href="com.google.samples.apps.iosched.ui.onboarding.OnboardingModule_ContributeOnboardingSignInFragment.mobile_debug.OnboardingSignInFragmentSubcomponent.svg" xlink:title="@FragmentScoped\nOnboardingModule_ContributeOnboardingSignInFragment$mobile_debug.OnboardingSignInFragmentSubcomponent">
+<polygon fill="coral" stroke="coral" points="2845.5,-189 2166.5,-189 2166.5,-151 2845.5,-151 2845.5,-189"/>
+<text text-anchor="middle" x="2506" y="-173.8" font-family="Times New Roman,serif" font-size="14.00">@FragmentScoped</text>
+<text text-anchor="middle" x="2506" y="-158.8" font-family="Times New Roman,serif" font-size="14.00">OnboardingModule_ContributeOnboardingSignInFragment$mobile_debug.OnboardingSignInFragmentSubcomponent</text>
+</a>
+</g>
+</g>
+<!-- ed67ad8f&#45;06e9&#45;44ba&#45;8880&#45;a72c324483d4&#45;&gt;c42ba163&#45;f353&#45;4aa4&#45;af8b&#45;fc86253494e8 -->
+<g id="edge31" class="edge"><title>ed67ad8f&#45;06e9&#45;44ba&#45;8880&#45;a72c324483d4&#45;&gt;c42ba163&#45;f353&#45;4aa4&#45;af8b&#45;fc86253494e8:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1942.45,-625.803C1959.87,-619.138 1975.74,-609.28 1988,-595 2013.56,-565.228 1976.47,-274.807 1998,-242 2018.52,-210.718 2109.54,-175.648 2155,-170.614"/>
+<polygon fill="black" stroke="black" points="2155.23,-174.107 2165,-170 2154.8,-167.12 2155.23,-174.107"/>
+<text text-anchor="middle" x="2040" y="-245.8" font-family="Times New Roman,serif" font-size="14.00">subcomponent</text>
+</g>
+<!-- f2894df2&#45;f812&#45;46eb&#45;be82&#45;96fe3e68328f -->
+<g id="node40" class="node"><title>f2894df2&#45;f812&#45;46eb&#45;be82&#45;96fe3e68328f</title>
+<g id="a_node40"><a xlink:href="com.google.samples.apps.iosched.ui.signin.SignInDialogModule_ContributeSignInDialogFragment.mobile_debug.SignInDialogFragmentSubcomponent.svg" xlink:title="@ChildFragmentScoped\nSignInDialogModule_ContributeSignInDialogFragment$mobile_debug.SignInDialogFragmentSubcomponent">
+<polygon fill="cornflowerblue" stroke="cornflowerblue" points="2817.5,-133 2194.5,-133 2194.5,-95 2817.5,-95 2817.5,-133"/>
+<text text-anchor="middle" x="2506" y="-117.8" font-family="Times New Roman,serif" font-size="14.00">@ChildFragmentScoped</text>
+<text text-anchor="middle" x="2506" y="-102.8" font-family="Times New Roman,serif" font-size="14.00">SignInDialogModule_ContributeSignInDialogFragment$mobile_debug.SignInDialogFragmentSubcomponent</text>
+</a>
+</g>
+</g>
+<!-- bfa8c799&#45;3571&#45;49b9&#45;877a&#45;2d0f0319f68d&#45;&gt;f2894df2&#45;f812&#45;46eb&#45;be82&#45;96fe3e68328f -->
+<g id="edge33" class="edge"><title>bfa8c799&#45;3571&#45;49b9&#45;877a&#45;2d0f0319f68d&#45;&gt;f2894df2&#45;f812&#45;46eb&#45;be82&#45;96fe3e68328f:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1926.61,-558.921C1950.14,-552.593 1972.11,-541.513 1988,-523 2013.7,-493.058 1973.67,-199.066 1998,-168 2023.83,-135.02 2131.76,-116.622 2182.75,-114.26"/>
+<polygon fill="black" stroke="black" points="2183.09,-117.753 2193,-114 2182.91,-110.755 2183.09,-117.753"/>
+<text text-anchor="middle" x="2040" y="-171.8" font-family="Times New Roman,serif" font-size="14.00">subcomponent</text>
+</g>
+<!-- 6536612f&#45;296d&#45;40a2&#45;b895&#45;a13d5ebef429 -->
+<g id="node41" class="node"><title>6536612f&#45;296d&#45;40a2&#45;b895&#45;a13d5ebef429</title>
+<g id="a_node41"><a xlink:href="com.google.samples.apps.iosched.ui.signin.SignInDialogModule_ContributeSignOutDialogFragment.mobile_debug.SignOutDialogFragmentSubcomponent.svg" xlink:title="@ChildFragmentScoped\nSignInDialogModule_ContributeSignOutDialogFragment$mobile_debug.SignOutDialogFragmentSubcomponent">
+<polygon fill="cornflowerblue" stroke="cornflowerblue" points="2827,-77 2185,-77 2185,-39 2827,-39 2827,-77"/>
+<text text-anchor="middle" x="2506" y="-61.8" font-family="Times New Roman,serif" font-size="14.00">@ChildFragmentScoped</text>
+<text text-anchor="middle" x="2506" y="-46.8" font-family="Times New Roman,serif" font-size="14.00">SignInDialogModule_ContributeSignOutDialogFragment$mobile_debug.SignOutDialogFragmentSubcomponent</text>
+</a>
+</g>
+</g>
+<!-- 71701e25&#45;5bbf&#45;4f26&#45;bf6e&#45;5f2aaa590a0f&#45;&gt;6536612f&#45;296d&#45;40a2&#45;b895&#45;a13d5ebef429 -->
+<g id="edge35" class="edge"><title>71701e25&#45;5bbf&#45;4f26&#45;bf6e&#45;5f2aaa590a0f&#45;&gt;6536612f&#45;296d&#45;40a2&#45;b895&#45;a13d5ebef429:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1796.94,-459.936C1815.19,-389.322 1874.19,-198.377 1998,-103 2062.62,-53.226 2096.14,-57.5327 2173.79,-57.9697"/>
+<polygon fill="black" stroke="black" points="2173.99,-61.4702 2184,-58 2174.01,-54.4702 2173.99,-61.4702"/>
+<text text-anchor="middle" x="2040" y="-106.8" font-family="Times New Roman,serif" font-size="14.00">subcomponent</text>
+</g>
+<!-- 64d2b5e5&#45;28c6&#45;46b2&#45;8f5a&#45;69931f9ae587 -->
+<g id="node42" class="node"><title>64d2b5e5&#45;28c6&#45;46b2&#45;8f5a&#45;69931f9ae587</title>
+<g id="a_node42"><a xlink:href="com.google.samples.apps.iosched.ui.signin.SignInDialogModule_ContributeNotificationsPreferenceDialogFragment.mobile_debug.NotificationsPreferenceDialogFragmentSubcomponent.svg" xlink:title="@ChildFragmentScoped\nSignInDialogModule_ContributeNotificationsPreferenceDialogFragment$mobile_debug.NotificationsPreferenceDialogFragmentSubcomponent">
+<polygon fill="cornflowerblue" stroke="cornflowerblue" points="2912,-413 2100,-413 2100,-375 2912,-375 2912,-413"/>
+<text text-anchor="middle" x="2506" y="-397.8" font-family="Times New Roman,serif" font-size="14.00">@ChildFragmentScoped</text>
+<text text-anchor="middle" x="2506" y="-382.8" font-family="Times New Roman,serif" font-size="14.00">SignInDialogModule_ContributeNotificationsPreferenceDialogFragment$mobile_debug.NotificationsPreferenceDialogFragmentSubcomponent</text>
+</a>
+</g>
+</g>
+<!-- e6bad1d1&#45;ca00&#45;4404&#45;88a4&#45;c84f9787b577&#45;&gt;64d2b5e5&#45;28c6&#45;46b2&#45;8f5a&#45;69931f9ae587 -->
+<g id="edge37" class="edge"><title>e6bad1d1&#45;ca00&#45;4404&#45;88a4&#45;c84f9787b577&#45;&gt;64d2b5e5&#45;28c6&#45;46b2&#45;8f5a&#45;69931f9ae587:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1857.57,-972.939C1899.54,-953.204 1952.25,-922.936 1988,-883 2055.67,-807.419 2058.45,-773.676 2082,-675 2085.23,-661.481 2083.79,-450.074 2094.41,-403.17"/>
+<polygon fill="black" stroke="black" points="2097.65,-404.509 2099,-394 2091.39,-401.375 2097.65,-404.509"/>
+<text text-anchor="middle" x="2040" y="-873.8" font-family="Times New Roman,serif" font-size="14.00">subcomponent</text>
+</g>
+<!-- a6418617&#45;ba24&#45;4fcc&#45;8e35&#45;7c0812b69cc6 -->
+<g id="node23" class="node"><title>a6418617&#45;ba24&#45;4fcc&#45;8e35&#45;7c0812b69cc6</title>
+<polygon fill="turquoise" stroke="turquoise" points="3173,-1451 2949,-1451 2949,-1415 3173,-1415 3173,-1451"/>
+<text text-anchor="middle" x="3061" y="-1429.3" font-family="Times New Roman,serif" font-size="14.00">OnboardingCompleteActionUseCase</text>
+</g>
+<!-- 33a6a0b8&#45;9f44&#45;4c5b&#45;9398&#45;2e7b34b4b33d&#45;&gt;a6418617&#45;ba24&#45;4fcc&#45;8e35&#45;7c0812b69cc6 -->
+<g id="edge39" class="edge"><title>33a6a0b8&#45;9f44&#45;4c5b&#45;9398&#45;2e7b34b4b33d&#45;&gt;a6418617&#45;ba24&#45;4fcc&#45;8e35&#45;7c0812b69cc6</title>
+<path fill="none" stroke="black" d="M2580.15,-1433C2671.52,-1433 2829.16,-1433 2938.71,-1433"/>
+<polygon fill="black" stroke="black" points="2938.83,-1436.5 2948.83,-1433 2938.83,-1429.5 2938.83,-1436.5"/>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;f7f4b91e&#45;693c&#45;414d&#45;97bd&#45;bae6266244b0 -->
+<g id="edge12" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;f7f4b91e&#45;693c&#45;414d&#45;97bd&#45;bae6266244b0</title>
+<path fill="none" stroke="black" d="M738.877,-860.88C778.232,-838.377 849.676,-800.791 916,-783 930.987,-778.98 946.536,-775.531 962.31,-772.576"/>
+<polygon fill="black" stroke="black" points="962.937,-776.019 972.157,-770.798 961.694,-769.13 962.937,-776.019"/>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;53412138&#45;300d&#45;4796&#45;a354&#45;8d31f2fd31ed -->
+<g id="edge13" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;53412138&#45;300d&#45;4796&#45;a354&#45;8d31f2fd31ed</title>
+<path fill="none" stroke="black" d="M726.198,-860.918C759.719,-827.981 836.284,-758.857 916,-729 921.659,-726.88 927.42,-724.898 933.261,-723.045"/>
+<polygon fill="black" stroke="black" points="934.607,-726.294 943.164,-720.047 932.578,-719.595 934.607,-726.294"/>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;931f5b11&#45;544c&#45;471f&#45;b022&#45;b5a98951071b -->
+<g id="edge14" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;931f5b11&#45;544c&#45;471f&#45;b022&#45;b5a98951071b</title>
+<path fill="none" stroke="black" d="M720.36,-860.708C748.494,-819.101 823.866,-717.685 916,-675 919.957,-673.167 923.976,-671.425 928.047,-669.771"/>
+<polygon fill="black" stroke="black" points="929.57,-672.934 937.639,-666.067 927.049,-666.404 929.57,-672.934"/>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;cd2e92b2&#45;8b3c&#45;408e&#45;9acd&#45;187c0fc10420 -->
+<g id="edge15" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;cd2e92b2&#45;8b3c&#45;408e&#45;9acd&#45;187c0fc10420</title>
+<path fill="none" stroke="black" d="M716.702,-860.796C739.845,-811.857 810.882,-677.358 916,-621 925.235,-616.049 934.866,-611.713 944.773,-607.925"/>
+<polygon fill="black" stroke="black" points="946.14,-611.153 954.352,-604.459 943.758,-604.57 946.14,-611.153"/>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;7c03c61b&#45;4fe2&#45;41b0&#45;bb83&#45;b242153f1d0a -->
+<g id="edge16" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;7c03c61b&#45;4fe2&#45;41b0&#45;bb83&#45;b242153f1d0a</title>
+<path fill="none" stroke="black" d="M714.283,-860.774C732.973,-805.233 797.526,-637.592 916,-567 929.022,-559.241 942.951,-552.905 957.41,-547.769"/>
+<polygon fill="black" stroke="black" points="958.611,-551.057 966.983,-544.563 956.389,-544.419 958.611,-551.057"/>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;3346fb2d&#45;57a6&#45;477e&#45;8fe5&#45;52000b0c6c30 -->
+<g id="edge17" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;3346fb2d&#45;57a6&#45;477e&#45;8fe5&#45;52000b0c6c30</title>
+<path fill="none" stroke="black" d="M712.505,-860.824C727.109,-799.355 783.727,-598.33 916,-513 927.336,-505.687 939.441,-499.585 952.042,-494.523"/>
+<polygon fill="black" stroke="black" points="953.651,-497.657 961.77,-490.851 951.179,-491.108 953.651,-497.657"/>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;4d10e0e2&#45;5fe2&#45;4d64&#45;8d86&#45;38971c63cab8 -->
+<g id="edge18" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;4d10e0e2&#45;5fe2&#45;4d64&#45;8d86&#45;38971c63cab8</title>
+<path fill="none" stroke="black" d="M874.788,-897.028C876.231,-898.297 877.636,-899.621 879,-901 903.703,-925.977 890.832,-1190.49 916,-1215 968.305,-1265.94 1053.15,-1268.88 1118.71,-1261.29"/>
+<polygon fill="black" stroke="black" points="1119.16,-1264.76 1128.65,-1260.04 1118.29,-1257.82 1119.16,-1264.76"/>
+</g>
+<!-- 4ca8b734&#45;a114&#45;414e&#45;a9ad&#45;97858fd6fd55 -->
+<g id="node26" class="node"><title>4ca8b734&#45;a114&#45;414e&#45;a9ad&#45;97858fd6fd55</title>
+<polygon fill="turquoise" stroke="turquoise" points="1511,-828 916,-828 916,-792 1511,-792 1511,-828"/>
+<text text-anchor="middle" x="1213.5" y="-806.3" font-family="Times New Roman,serif" font-size="14.00">BroadcastReceiverBindingModule_CancelNotificationBroadcastReceiver.bindAndroidInjectorFactory()</text>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;4ca8b734&#45;a114&#45;414e&#45;a9ad&#45;97858fd6fd55 -->
+<g id="edge9" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;4ca8b734&#45;a114&#45;414e&#45;a9ad&#45;97858fd6fd55</title>
+<path fill="none" stroke="black" d="M787.465,-860.911C826.049,-852.612 873.268,-843.251 916,-837 935.559,-834.139 955.89,-831.53 976.328,-829.162"/>
+<polygon fill="black" stroke="black" points="976.827,-832.628 986.366,-828.018 976.034,-825.673 976.827,-832.628"/>
+</g>
+<!-- 7249caae&#45;1544&#45;4a55&#45;9be4&#45;1ddb2b9ba992 -->
+<g id="node27" class="node"><title>7249caae&#45;1544&#45;4a55&#45;9be4&#45;1ddb2b9ba992</title>
+<polygon fill="turquoise" stroke="turquoise" points="1430.5,-882 996.5,-882 996.5,-846 1430.5,-846 1430.5,-882"/>
+<text text-anchor="middle" x="1213.5" y="-860.3" font-family="Times New Roman,serif" font-size="14.00">ActivityBindingModule_OnboardingActivity.bindAndroidInjectorFactory()</text>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;7249caae&#45;1544&#45;4a55&#45;9be4&#45;1ddb2b9ba992 -->
+<g id="edge5" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;7249caae&#45;1544&#45;4a55&#45;9be4&#45;1ddb2b9ba992</title>
+<path fill="none" stroke="black" d="M879.131,-873.922C913.588,-872.896 950.318,-871.803 986.336,-870.731"/>
+<polygon fill="black" stroke="black" points="986.582,-874.225 996.474,-870.429 986.374,-867.228 986.582,-874.225"/>
+</g>
+<!-- e892377a&#45;8bce&#45;4a47&#45;8079&#45;5675633d557a -->
+<g id="node28" class="node"><title>e892377a&#45;8bce&#45;4a47&#45;8079&#45;5675633d557a</title>
+<polygon fill="turquoise" stroke="turquoise" points="1423,-936 1004,-936 1004,-900 1423,-900 1423,-936"/>
+<text text-anchor="middle" x="1213.5" y="-914.3" font-family="Times New Roman,serif" font-size="14.00">ActivityBindingModule_LauncherActivity.bindAndroidInjectorFactory()</text>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;e892377a&#45;8bce&#45;4a47&#45;8079&#45;5675633d557a -->
+<g id="edge4" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;e892377a&#45;8bce&#45;4a47&#45;8079&#45;5675633d557a</title>
+<path fill="none" stroke="black" d="M879.131,-892.204C915.832,-895.044 955.112,-898.083 993.365,-901.043"/>
+<polygon fill="black" stroke="black" points="993.352,-904.553 1003.59,-901.835 993.892,-897.573 993.352,-904.553"/>
+</g>
+<!-- 7ba3578e&#45;4f9d&#45;4633&#45;820d&#45;fa673d8b7656 -->
+<g id="node29" class="node"><title>7ba3578e&#45;4f9d&#45;4633&#45;820d&#45;fa673d8b7656</title>
+<polygon fill="turquoise" stroke="turquoise" points="1461.5,-990 965.5,-990 965.5,-954 1461.5,-954 1461.5,-990"/>
+<text text-anchor="middle" x="1213.5" y="-968.3" font-family="Times New Roman,serif" font-size="14.00">ServiceBindingModule_ProvideConferenceDataService.bindAndroidInjectorFactory()</text>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;7ba3578e&#45;4f9d&#45;4633&#45;820d&#45;fa673d8b7656 -->
+<g id="edge11" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;7ba3578e&#45;4f9d&#45;4633&#45;820d&#45;fa673d8b7656</title>
+<path fill="none" stroke="black" d="M871.392,-897.131C873.973,-898.352 876.512,-899.641 879,-901 901.423,-913.249 893.351,-933.174 916,-945 928.657,-951.609 942.036,-957.106 955.832,-961.654"/>
+<polygon fill="black" stroke="black" points="954.858,-965.017 965.446,-964.653 956.942,-958.334 954.858,-965.017"/>
+</g>
+<!-- 5633a734&#45;d79b&#45;4b50&#45;bc0a&#45;bef64bacdf6a -->
+<g id="node30" class="node"><title>5633a734&#45;d79b&#45;4b50&#45;bc0a&#45;bef64bacdf6a</title>
+<polygon fill="turquoise" stroke="turquoise" points="1447,-1044 980,-1044 980,-1008 1447,-1008 1447,-1044"/>
+<text text-anchor="middle" x="1213.5" y="-1022.3" font-family="Times New Roman,serif" font-size="14.00">ServiceBindingModule_IoschedMessagingService.bindAndroidInjectorFactory()</text>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;5633a734&#45;d79b&#45;4b50&#45;bc0a&#45;bef64bacdf6a -->
+<g id="edge10" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;5633a734&#45;d79b&#45;4b50&#45;bc0a&#45;bef64bacdf6a</title>
+<path fill="none" stroke="black" d="M873.606,-897.02C875.445,-898.286 877.244,-899.612 879,-901 915.519,-929.877 878.946,-970.813 916,-999 932.351,-1011.44 950.772,-1020.66 970.226,-1027.38"/>
+<polygon fill="black" stroke="black" points="969.263,-1030.74 979.855,-1030.47 971.406,-1024.08 969.263,-1030.74"/>
+</g>
+<!-- ed57a70d&#45;ecad&#45;4541&#45;bca6&#45;3493177bdd2d -->
+<g id="node31" class="node"><title>ed57a70d&#45;ecad&#45;4541&#45;bca6&#45;3493177bdd2d</title>
+<polygon fill="turquoise" stroke="turquoise" points="1434.5,-1098 992.5,-1098 992.5,-1062 1434.5,-1062 1434.5,-1098"/>
+<text text-anchor="middle" x="1213.5" y="-1076.3" font-family="Times New Roman,serif" font-size="14.00">ActivityBindingModule_SessionDetailActivity.bindAndroidInjectorFactory()</text>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;ed57a70d&#45;ecad&#45;4541&#45;bca6&#45;3493177bdd2d -->
+<g id="edge7" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;ed57a70d&#45;ecad&#45;4541&#45;bca6&#45;3493177bdd2d</title>
+<path fill="none" stroke="black" d="M874.557,-897.271C876.073,-898.464 877.555,-899.706 879,-901 904.901,-924.188 889.668,-1030.3 916,-1053 966.437,-1096.48 1041.2,-1103.03 1103.03,-1098.82"/>
+<polygon fill="black" stroke="black" points="1103.53,-1102.29 1113.23,-1098.02 1102.99,-1095.31 1103.53,-1102.29"/>
+</g>
+<!-- 3a04b4fb&#45;acb4&#45;4f0a&#45;889b&#45;b8ccdab1f035 -->
+<g id="node32" class="node"><title>3a04b4fb&#45;acb4&#45;4f0a&#45;889b&#45;b8ccdab1f035</title>
+<polygon fill="turquoise" stroke="turquoise" points="1411,-1152 1016,-1152 1016,-1116 1411,-1116 1411,-1152"/>
+<text text-anchor="middle" x="1213.5" y="-1130.3" font-family="Times New Roman,serif" font-size="14.00">ActivityBindingModule_MainActivity.bindAndroidInjectorFactory()</text>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;3a04b4fb&#45;acb4&#45;4f0a&#45;889b&#45;b8ccdab1f035 -->
+<g id="edge6" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;3a04b4fb&#45;acb4&#45;4f0a&#45;889b&#45;b8ccdab1f035</title>
+<path fill="none" stroke="black" d="M874.671,-897.147C876.151,-898.379 877.595,-899.663 879,-901 912.69,-933.066 881.715,-1075.57 916,-1107 967.81,-1154.49 1048.23,-1159.15 1112.25,-1153.08"/>
+<polygon fill="black" stroke="black" points="1112.8,-1156.54 1122.38,-1152.02 1112.07,-1149.58 1112.8,-1156.54"/>
+</g>
+<!-- 8d1f5ca8&#45;4570&#45;44c0&#45;9005&#45;f4c84340c32f -->
+<g id="node33" class="node"><title>8d1f5ca8&#45;4570&#45;44c0&#45;9005&#45;f4c84340c32f</title>
+<polygon fill="turquoise" stroke="turquoise" points="1476,-1206 951,-1206 951,-1170 1476,-1170 1476,-1206"/>
+<text text-anchor="middle" x="1213.5" y="-1184.3" font-family="Times New Roman,serif" font-size="14.00">BroadcastReceiverBindingModule_AlarmBroadcastReceiver.bindAndroidInjectorFactory()</text>
+</g>
+<!-- bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;8d1f5ca8&#45;4570&#45;44c0&#45;9005&#45;f4c84340c32f -->
+<g id="edge8" class="edge"><title>bf90f7a2&#45;6f9e&#45;43c0&#45;aa7b&#45;65edf5c266d8&#45;&gt;8d1f5ca8&#45;4570&#45;44c0&#45;9005&#45;f4c84340c32f</title>
+<path fill="none" stroke="black" d="M874.741,-897.075C876.199,-898.329 877.619,-899.637 879,-901 899.767,-921.498 894.852,-1140.89 916,-1161 968.183,-1210.61 1051.36,-1214.23 1116.36,-1207.21"/>
+<polygon fill="black" stroke="black" points="1117.11,-1210.65 1126.63,-1206 1116.29,-1203.7 1117.11,-1210.65"/>
+</g>
+<!-- 140a09f7&#45;bc03&#45;484f&#45;a62b&#45;965a81bef353&#45;&gt;b342eeb8&#45;4ae3&#45;4e57&#45;89f2&#45;581a0a4e9250 -->
+<g id="edge22" class="edge"><title>140a09f7&#45;bc03&#45;484f&#45;a62b&#45;965a81bef353&#45;&gt;b342eeb8&#45;4ae3&#45;4e57&#45;89f2&#45;581a0a4e9250</title>
+<path fill="none" stroke="black" d="M1342.25,-1370.03C1433.72,-1382.94 1556.78,-1400.3 1650.51,-1413.53"/>
+<polygon fill="black" stroke="black" points="1650.24,-1417.02 1660.63,-1414.96 1651.22,-1410.09 1650.24,-1417.02"/>
+</g>
+<!-- 140a09f7&#45;bc03&#45;484f&#45;a62b&#45;965a81bef353&#45;&gt;e5246d21&#45;1086&#45;4008&#45;b79e&#45;d750a08f94d2 -->
+<g id="edge23" class="edge"><title>140a09f7&#45;bc03&#45;484f&#45;a62b&#45;965a81bef353&#45;&gt;e5246d21&#45;1086&#45;4008&#45;b79e&#45;d750a08f94d2</title>
+<path fill="none" stroke="black" d="M1446.73,-1341.08C1513.6,-1337.93 1584.59,-1334.59 1644.45,-1331.78"/>
+<polygon fill="black" stroke="black" points="1644.9,-1335.26 1654.72,-1331.29 1644.57,-1328.27 1644.9,-1335.26"/>
+</g>
+<!-- 46c4efe1&#45;a5c9&#45;4f7d&#45;b8a6&#45;b1c36f53f43e -->
+<g id="node35" class="node"><title>46c4efe1&#45;a5c9&#45;4f7d&#45;b8a6&#45;b1c36f53f43e</title>
+<polygon fill="turquoise" stroke="turquoise" points="1966.5,-1397 1612.5,-1397 1612.5,-1361 1966.5,-1361 1966.5,-1397"/>
+<text text-anchor="middle" x="1789.5" y="-1375.3" font-family="Times New Roman,serif" font-size="14.00">ThemedActivityDelegateModule.provideThemeViewModel()</text>
+</g>
+<!-- 140a09f7&#45;bc03&#45;484f&#45;a62b&#45;965a81bef353&#45;&gt;46c4efe1&#45;a5c9&#45;4f7d&#45;b8a6&#45;b1c36f53f43e -->
+<g id="edge21" class="edge"><title>140a09f7&#45;bc03&#45;484f&#45;a62b&#45;965a81bef353&#45;&gt;46c4efe1&#45;a5c9&#45;4f7d&#45;b8a6&#45;b1c36f53f43e</title>
+<path fill="none" stroke="black" d="M1446.73,-1362.92C1498.36,-1365.35 1552.46,-1367.9 1601.98,-1370.23"/>
+<polygon fill="black" stroke="black" points="1602,-1373.73 1612.15,-1370.7 1602.33,-1366.74 1602,-1373.73"/>
+</g>
+</g>
+</svg>

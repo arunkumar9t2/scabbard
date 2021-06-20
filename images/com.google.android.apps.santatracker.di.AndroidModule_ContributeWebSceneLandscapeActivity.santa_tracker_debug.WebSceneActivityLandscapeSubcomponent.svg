@@ -1,0 +1,24 @@
+<svg width="854px" height="194px"
+ viewBox="0.00 0.00 853.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.android.apps.santatracker.di.AppComponent → com.google.android.apps.santatracker.di.AndroidModule_ContributeWebSceneLandscapeActivity$santa_tracker_debug.WebSceneActivityLandscapeSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 839.4,-179.4 839.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="412.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → AndroidModule_ContributeWebSceneLandscapeActivity$santa_tracker_debug.WebSceneActivityLandscapeSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="292.5,-31 292.5,-106 532.5,-106 532.5,-31 292.5,-31"/>
+<text text-anchor="middle" x="335.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="350.7,-114 350.7,-157 475.3,-157 475.3,-114 350.7,-114"/>
+<text text-anchor="middle" x="413.2" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 8a2360d4&#45;2d71&#45;4a4e&#45;8820&#45;1514fbf3f76a -->
+<g id="node1" class="node"><title>8a2360d4&#45;2d71&#45;4a4e&#45;8820&#45;1514fbf3f76a</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="524.5,-75 300.5,-75 300.5,-71 296.5,-71 296.5,-67 300.5,-67 300.5,-47 296.5,-47 296.5,-43 300.5,-43 300.5,-39 524.5,-39 524.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="300.5,-71 304.5,-71 304.5,-67 300.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="300.5,-47 304.5,-47 304.5,-43 300.5,-43 "/>
+<text text-anchor="middle" x="412.5" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (WebSceneActivityLandscape)</text>
+</g>
+<!-- bc5ffd88&#45;0e67&#45;4793&#45;8c70&#45;081c8706f0cf -->
+</g>
+</svg>

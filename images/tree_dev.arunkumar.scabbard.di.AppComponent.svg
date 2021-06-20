@@ -1,0 +1,59 @@
+<svg width="633px" height="238px"
+ viewBox="0.00 0.00 632.80 237.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 223.4)">
+<title>isDirected: true, allowsSelfLoops: false, nodes: [dev.arunkumar.scabbard.di.AppComponent, dev.arunkumar.scabbard.di.AppComponent → dev.arunkumar.scabbard.home.HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent, dev.arunkumar.scabbard.di.AppComponent → dev.arunkumar.scabbard.home.simple.SimpleSubcomponent, dev.arunkumar.scabbard.di.AppComponent → dev.arunkumar.scabbard.home.HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent → dev.arunkumar.scabbard.home.fragment.ModuleHolder_HomeFragmentBuilder_HomeFragment.HomeFragmentSubcomponent], edges: [&lt;dev.arunkumar.scabbard.di.AppComponent &#45;&gt; dev.arunkumar.scabbard.di.AppComponent → dev.arunkumar.scabbard.home.simple.SimpleSubcomponent&gt;, &lt;dev.arunkumar.scabbard.di.AppComponent &#45;&gt; dev.arunkumar.scabbard.di.AppComponent → dev.arunkumar.scabbard.home.HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent&gt;, &lt;dev.arunkumar.scabbard.di.AppComponent → dev.arunkumar.scabbard.home.HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent &#45;&gt; dev.arunkumar.scabbard.di.AppComponent → dev.arunkumar.scabbard.home.HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent → dev.arunkumar.scabbard.home.fragment.ModuleHolder_HomeFragmentBuilder_HomeFragment.HomeFragmentSubcomponent&gt;]</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-223.4 618.4,-223.4 618.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="53.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent</text>
+<!-- 388c705d&#45;ad9d&#45;4859&#45;9996&#45;7b41e75225ad -->
+<g id="node1" class="node"><title>388c705d&#45;ad9d&#45;4859&#45;9996&#45;7b41e75225ad</title>
+<g id="a_node1"><a xlink:href="dev.arunkumar.scabbard.di.AppComponent.svg" xlink:title="@Singleton\nAppComponent">
+<polygon fill="aquamarine" stroke="aquamarine" points="445.5,-209 338.5,-209 338.5,-171 445.5,-171 445.5,-209"/>
+<text text-anchor="middle" x="392" y="-193.8" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
+<text text-anchor="middle" x="392" y="-178.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent</text>
+</a>
+</g>
+</g>
+<!-- e3b14d79&#45;39eb&#45;47aa&#45;9870&#45;91d103a83bd2 -->
+<g id="node2" class="node"><title>e3b14d79&#45;39eb&#45;47aa&#45;9870&#45;91d103a83bd2</title>
+<g id="a_node2"><a xlink:href="dev.arunkumar.scabbard.home.HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent.svg" xlink:title="@ActivityScope\nHomeActivity_Builder_HomeActivity.HomeActivitySubcomponent">
+<polygon fill="bisque" stroke="bisque" points="446,-135 54,-135 54,-97 446,-97 446,-135"/>
+<text text-anchor="middle" x="250" y="-119.8" font-family="Times New Roman,serif" font-size="14.00">@ActivityScope</text>
+<text text-anchor="middle" x="250" y="-104.8" font-family="Times New Roman,serif" font-size="14.00">HomeActivity_Builder_HomeActivity.HomeActivitySubcomponent</text>
+</a>
+</g>
+</g>
+<!-- 388c705d&#45;ad9d&#45;4859&#45;9996&#45;7b41e75225ad&#45;&gt;e3b14d79&#45;39eb&#45;47aa&#45;9870&#45;91d103a83bd2 -->
+<g id="edge2" class="edge"><title>388c705d&#45;ad9d&#45;4859&#45;9996&#45;7b41e75225ad&#45;&gt;e3b14d79&#45;39eb&#45;47aa&#45;9870&#45;91d103a83bd2</title>
+<path fill="none" stroke="black" d="M356.167,-170.831C337.584,-161.409 314.701,-149.806 294.944,-139.788"/>
+<polygon fill="black" stroke="black" points="296.323,-136.564 285.821,-135.163 293.157,-142.807 296.323,-136.564"/>
+</g>
+<!-- 459a5242&#45;2a29&#45;4e14&#45;8d0d&#45;a1d1283e018d -->
+<g id="node3" class="node"><title>459a5242&#45;2a29&#45;4e14&#45;8d0d&#45;a1d1283e018d</title>
+<g id="a_node3"><a xlink:href="dev.arunkumar.scabbard.home.simple.SimpleSubcomponent.svg" xlink:title="@SimpleScope\nSimpleSubcomponent">
+<polygon fill="#ffff00" stroke="#ffff00" points="604,-135 464,-135 464,-97 604,-97 604,-135"/>
+<text text-anchor="middle" x="534" y="-119.8" font-family="Times New Roman,serif" font-size="14.00">@SimpleScope</text>
+<text text-anchor="middle" x="534" y="-104.8" font-family="Times New Roman,serif" font-size="14.00">SimpleSubcomponent</text>
+</a>
+</g>
+</g>
+<!-- 388c705d&#45;ad9d&#45;4859&#45;9996&#45;7b41e75225ad&#45;&gt;459a5242&#45;2a29&#45;4e14&#45;8d0d&#45;a1d1283e018d -->
+<g id="edge1" class="edge"><title>388c705d&#45;ad9d&#45;4859&#45;9996&#45;7b41e75225ad&#45;&gt;459a5242&#45;2a29&#45;4e14&#45;8d0d&#45;a1d1283e018d</title>
+<path fill="none" stroke="black" d="M427.833,-170.831C446.416,-161.409 469.299,-149.806 489.056,-139.788"/>
+<polygon fill="black" stroke="black" points="490.843,-142.807 498.179,-135.163 487.677,-136.564 490.843,-142.807"/>
+</g>
+<!-- 8ab3d814&#45;f77a&#45;44e8&#45;8aa3&#45;d0f61dd8a33d -->
+<g id="node4" class="node"><title>8ab3d814&#45;f77a&#45;44e8&#45;8aa3&#45;d0f61dd8a33d</title>
+<g id="a_node4"><a xlink:href="dev.arunkumar.scabbard.home.fragment.ModuleHolder_HomeFragmentBuilder_HomeFragment.HomeFragmentSubcomponent.svg" xlink:title="@FragmentScope\nModuleHolder_HomeFragmentBuilder_HomeFragment.HomeFragmentSubcomponent">
+<polygon fill="#76ee00" stroke="#76ee00" points="500,-61 0,-61 0,-23 500,-23 500,-61"/>
+<text text-anchor="middle" x="250" y="-45.8" font-family="Times New Roman,serif" font-size="14.00">@FragmentScope</text>
+<text text-anchor="middle" x="250" y="-30.8" font-family="Times New Roman,serif" font-size="14.00">ModuleHolder_HomeFragmentBuilder_HomeFragment.HomeFragmentSubcomponent</text>
+</a>
+</g>
+</g>
+<!-- e3b14d79&#45;39eb&#45;47aa&#45;9870&#45;91d103a83bd2&#45;&gt;8ab3d814&#45;f77a&#45;44e8&#45;8aa3&#45;d0f61dd8a33d -->
+<g id="edge3" class="edge"><title>e3b14d79&#45;39eb&#45;47aa&#45;9870&#45;91d103a83bd2&#45;&gt;8ab3d814&#45;f77a&#45;44e8&#45;8aa3&#45;d0f61dd8a33d</title>
+<path fill="none" stroke="black" d="M250,-96.8314C250,-89.131 250,-79.9743 250,-71.4166"/>
+<polygon fill="black" stroke="black" points="253.5,-71.4132 250,-61.4133 246.5,-71.4133 253.5,-71.4132"/>
+</g>
+</g>
+</svg>

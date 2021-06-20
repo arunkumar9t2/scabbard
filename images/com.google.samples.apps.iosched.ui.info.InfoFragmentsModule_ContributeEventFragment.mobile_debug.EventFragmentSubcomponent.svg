@@ -1,0 +1,24 @@
+<svg width="1650px" height="194px"
+ viewBox="0.00 0.00 1649.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → com.google.samples.apps.iosched.ui.info.InfoModule_ContributeInfoFragment$mobile_debug.InfoFragmentSubcomponent → com.google.samples.apps.iosched.ui.info.InfoFragmentsModule_ContributeEventFragment$mobile_debug.EventFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1635.4,-179.4 1635.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="810.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → InfoModule_ContributeInfoFragment$mobile_debug.InfoFragmentSubcomponent → InfoFragmentsModule_ContributeEventFragment$mobile_debug.EventFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="731,-31 731,-106 890,-106 890,-31 731,-31"/>
+<text text-anchor="middle" x="774" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="748.7,-114 748.7,-157 873.3,-157 873.3,-114 748.7,-114"/>
+<text text-anchor="middle" x="811.2" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 1fc26381&#45;473e&#45;488f&#45;ad09&#45;bf89f552cd38 -->
+<g id="node1" class="node"><title>1fc26381&#45;473e&#45;488f&#45;ad09&#45;bf89f552cd38</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="882,-75 739,-75 739,-71 735,-71 735,-67 739,-67 739,-47 735,-47 735,-43 739,-43 739,-39 882,-39 882,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="739,-71 743,-71 743,-67 739,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="739,-47 743,-47 743,-43 739,-43 "/>
+<text text-anchor="middle" x="810.5" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (EventFragment)</text>
+</g>
+<!-- 324f573d&#45;9864&#45;4130&#45;a83e&#45;700652b45e77 -->
+</g>
+</svg>

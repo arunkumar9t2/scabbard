@@ -1,0 +1,54 @@
+<svg width="699px" height="161px"
+ viewBox="0.00 0.00 698.80 160.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 146.4)">
+<title>com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-146.4 684.4,-146.4 684.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="107" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">ApplicationC → ActivityRetainedC</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="8,-40 8,-115 190,-115 190,-40 8,-40"/>
+<text text-anchor="middle" x="51" y="-99.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="262,-31 262,-124 426,-124 426,-31 262,-31"/>
+<text text-anchor="middle" x="324.5" y="-108.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<g id="clust3" class="cluster"><title>cluster_Subcomponents</title>
+<polygon fill="none" stroke="black" points="530,-39 530,-116 662,-116 662,-39 530,-39"/>
+<text text-anchor="middle" x="584" y="-100.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponents</text>
+</g>
+<!-- 5ca46c64&#45;fe2e&#45;4dc6&#45;becb&#45;e49cf3d79986 -->
+<g id="node1" class="node"><title>5ca46c64&#45;fe2e&#45;4dc6&#45;becb&#45;e49cf3d79986</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="182,-84 16,-84 16,-80 12,-80 12,-76 16,-76 16,-56 12,-56 12,-52 16,-52 16,-48 182,-48 182,-84"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-80 20,-80 20,-76 16,-76 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="16,-56 20,-56 20,-52 16,-52 "/>
+<text text-anchor="middle" x="99" y="-62.3" font-family="Times New Roman,serif" font-size="14.00">ActivityComponentBuilder</text>
+</g>
+<!-- af2c673d&#45;0955&#45;4652&#45;9451&#45;86d47229dc22 -->
+<g id="node2" class="node"><title>af2c673d&#45;0955&#45;4652&#45;9451&#45;86d47229dc22</title>
+<polygon fill="turquoise" stroke="turquoise" points="418,-93 270,-93 270,-39 418,-39 418,-93"/>
+<text text-anchor="middle" x="344" y="-77.8" font-family="Times New Roman,serif" font-size="14.00">ActivityC.Builder</text>
+<text text-anchor="middle" x="344" y="-46.8" font-family="Times New Roman,serif" font-size="14.00">Subcomponent Creator</text>
+</g>
+<!-- 5ca46c64&#45;fe2e&#45;4dc6&#45;becb&#45;e49cf3d79986&#45;&gt;af2c673d&#45;0955&#45;4652&#45;9451&#45;86d47229dc22 -->
+<g id="edge1" class="edge"><title>5ca46c64&#45;fe2e&#45;4dc6&#45;becb&#45;e49cf3d79986&#45;&gt;af2c673d&#45;0955&#45;4652&#45;9451&#45;86d47229dc22</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M182.269,-66C207.198,-66 234.595,-66 259.598,-66"/>
+<polygon fill="black" stroke="black" points="259.783,-69.5001 269.783,-66 259.783,-62.5001 259.783,-69.5001"/>
+<text text-anchor="middle" x="226" y="-69.8" font-family="Times New Roman,serif" font-size="14.00">delegates</text>
+</g>
+<!-- 3b3d05cc&#45;9a89&#45;4334&#45;8d07&#45;e687c8ab5bc8 -->
+<g id="node3" class="node"><title>3b3d05cc&#45;9a89&#45;4334&#45;8d07&#45;e687c8ab5bc8</title>
+<g id="a_node3"><a xlink:href="com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC.svg" xlink:title="@ActivityScoped\nActivityC">
+<polygon fill="#76ee00" stroke="#76ee00" points="654,-85 538,-85 538,-47 654,-47 654,-85"/>
+<text text-anchor="middle" x="596" y="-69.8" font-family="Times New Roman,serif" font-size="14.00">@ActivityScoped</text>
+<text text-anchor="middle" x="596" y="-54.8" font-family="Times New Roman,serif" font-size="14.00">ActivityC</text>
+</a>
+</g>
+</g>
+<!-- af2c673d&#45;0955&#45;4652&#45;9451&#45;86d47229dc22&#45;&gt;3b3d05cc&#45;9a89&#45;4334&#45;8d07&#45;e687c8ab5bc8 -->
+<g id="edge2" class="edge"><title>af2c673d&#45;0955&#45;4652&#45;9451&#45;86d47229dc22&#45;&gt;3b3d05cc&#45;9a89&#45;4334&#45;8d07&#45;e687c8ab5bc8:w</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M418.394,-66C451.098,-66 490.387,-66 526.811,-66"/>
+<polygon fill="black" stroke="black" points="527,-69.5001 537,-66 527,-62.5001 527,-69.5001"/>
+<text text-anchor="middle" x="478" y="-69.8" font-family="Times New Roman,serif" font-size="14.00">subcomponent</text>
+</g>
+</g>
+</svg>

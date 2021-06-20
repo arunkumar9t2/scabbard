@@ -1,0 +1,24 @@
+<svg width="1107px" height="194px"
+ viewBox="0.00 0.00 1106.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → com.google.samples.apps.iosched.ui.feed.FeedModule_ContributeFeedFragment$mobile_debug.FeedFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1092.4,-179.4 1092.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="539" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → FeedModule_ContributeFeedFragment$mobile_debug.FeedFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="461.5,-31 461.5,-106 616.5,-106 616.5,-31 461.5,-31"/>
+<text text-anchor="middle" x="504.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="477.2,-114 477.2,-157 601.8,-157 601.8,-114 477.2,-114"/>
+<text text-anchor="middle" x="539.7" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- a21f89f7&#45;f509&#45;4900&#45;ae8f&#45;e61940bab796 -->
+<g id="node1" class="node"><title>a21f89f7&#45;f509&#45;4900&#45;ae8f&#45;e61940bab796</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="608.5,-75 469.5,-75 469.5,-71 465.5,-71 465.5,-67 469.5,-67 469.5,-47 465.5,-47 465.5,-43 469.5,-43 469.5,-39 608.5,-39 608.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="469.5,-71 473.5,-71 473.5,-67 469.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="469.5,-47 473.5,-47 473.5,-43 469.5,-43 "/>
+<text text-anchor="middle" x="539" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (FeedFragment)</text>
+</g>
+<!-- bb22f90e&#45;c38e&#45;4e19&#45;bf65&#45;8e0b1c3bae4c -->
+</g>
+</svg>

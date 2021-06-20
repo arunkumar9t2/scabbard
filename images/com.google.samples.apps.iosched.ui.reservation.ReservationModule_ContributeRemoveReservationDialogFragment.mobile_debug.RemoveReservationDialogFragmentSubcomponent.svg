@@ -1,0 +1,24 @@
+<svg width="1387px" height="194px"
+ viewBox="0.00 0.00 1386.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → com.google.samples.apps.iosched.ui.reservation.ReservationModule_ContributeRemoveReservationDialogFragment$mobile_debug.RemoveReservationDialogFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1372.4,-179.4 1372.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="679" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → ReservationModule_ContributeRemoveReservationDialogFragment$mobile_debug.RemoveReservationDialogFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="541,-31 541,-106 817,-106 817,-31 541,-31"/>
+<text text-anchor="middle" x="584" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="617.2,-114 617.2,-157 741.8,-157 741.8,-114 617.2,-114"/>
+<text text-anchor="middle" x="679.7" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- d5828b7f&#45;c5ca&#45;4cae&#45;8160&#45;d68c52c38452 -->
+<g id="node1" class="node"><title>d5828b7f&#45;c5ca&#45;4cae&#45;8160&#45;d68c52c38452</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="809,-75 549,-75 549,-71 545,-71 545,-67 549,-67 549,-47 545,-47 545,-43 549,-43 549,-39 809,-39 809,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="549,-71 553,-71 553,-67 549,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="549,-47 553,-47 553,-43 549,-43 "/>
+<text text-anchor="middle" x="679" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (RemoveReservationDialogFragment)</text>
+</g>
+<!-- b93a89ad&#45;cea1&#45;450e&#45;95a1&#45;13afd747ebf6 -->
+</g>
+</svg>

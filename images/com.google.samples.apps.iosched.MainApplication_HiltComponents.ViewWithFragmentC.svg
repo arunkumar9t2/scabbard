@@ -1,0 +1,8 @@
+<svg width="541px" height="52px"
+ viewBox="0.00 0.00 540.80 51.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 37.4)">
+<title>com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC → com.google.samples.apps.iosched.MainApplication_HiltComponents.FragmentC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ViewWithFragmentC</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-37.4 526.4,-37.4 526.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="256" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">ApplicationC → ActivityRetainedC → ActivityC → FragmentC → ViewWithFragmentC</text>
+</g>
+</svg>
