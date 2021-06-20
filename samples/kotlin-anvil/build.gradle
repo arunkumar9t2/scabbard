@@ -16,6 +16,10 @@ scabbard {
 
 apply from: "../../gradle/scabbard-local-processor.gradle"
 
+sourceSets {
+  main.java.srcDir "build/generated/source/kapt"
+}
+
 dependencies {
   implementation "com.google.dagger:dagger:${versions.dagger}"
   kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
