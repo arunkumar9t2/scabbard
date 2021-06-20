@@ -10,7 +10,7 @@
 
     <br>
 
-    <img src="https://github.com/arunkumar9t2/scabbard/raw/master/docs/images/scabbard-demo.gif" width="500">
+    <img src="https://github.com/arunkumar9t2/scabbard/blob/main/docs/images/scabbard-demo.gif?raw=true" width="500">
 
     <br>
 
@@ -57,18 +57,18 @@
             language="kotlin" />
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.hilt.JavaHiltAndroidToDaggerGraphLineMarker"
-            language="JAVA"/>
+            language="JAVA" />
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.JavaComponentToDaggerGraphLineMarker"
-            language="JAVA"/>
+            language="JAVA" />
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.android.JavaContributesAndroidInjectorLineMarker"
-            language="JAVA"/>
+            language="JAVA" />
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
         <consoleFilterProvider
             implementation="dev.arunkumar.scabbard.intellij.dagger.console.ScabbardConsoleFilterProvider"
-            order="last"/>
+            order="last" />
     </extensions>
 </idea-plugin>
