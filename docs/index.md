@@ -77,6 +77,8 @@ Scabbard has two major components:
 
 <a href="https://plugins.gradle.org/plugin/scabbard.gradle"><img src="https://img.shields.io/maven-metadata/v/https/plugins.gradle.org/m2/scabbard/gradle/scabbard.gradle.gradle.plugin/maven-metadata.xml.svg?style=flat-square&label=Gradle&logo=gradle&colorB=fb7b21&logoColor=06A0CE"/></a>
 
+Sample PR to add Scabbard to a project: https://github.com/arunkumar9t2/scabbard-sample/pull/1/files
+
 Using the plugins DSL:
 
 === "Groovy"
