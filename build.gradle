@@ -133,7 +133,7 @@ tasks.register("publishAllArtifacts") {
   // Docs
   dependsOn tasks.named("publishSampleImages")
   // Idea
-  // dependsOn project("scabbard-idea-plugin").tasks.named("publishPlugin")
+  dependsOn project("scabbard-idea-plugin").tasks.named("publishPlugin")
   // Gradle plugin
   dependsOn gradle.includedBuild("scabbard-gradle-plugin").task(":publishPlugins")
 
