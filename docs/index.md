@@ -75,10 +75,6 @@ Scabbard has two major components:
 
 ### [Gradle Plugin](https://plugins.gradle.org/plugin/scabbard.gradle)
 
-#### Repositories
-
-Scabbard artifacts are served via `jcenter()`. Please ensure `jcenter()` is added to your root `build.gradle`.
-
 <a href="https://plugins.gradle.org/plugin/scabbard.gradle"><img src="https://img.shields.io/maven-metadata/v/https/plugins.gradle.org/m2/scabbard/gradle/scabbard.gradle.gradle.plugin/maven-metadata.xml.svg?style=flat-square&label=Gradle&logo=gradle&colorB=fb7b21&logoColor=06A0CE"/></a>
 
 Using the plugins DSL:

@@ -151,4 +151,4 @@ For Maven projects, add Scabbard's annotation processor dependency alongside Dag
 </build>
 ```
 
-After running a build, the images should be available in `target/classes/scabbard`.
+After running a build, the images should be available in `build/generated/sources/annotationProcessor/java/main`.
