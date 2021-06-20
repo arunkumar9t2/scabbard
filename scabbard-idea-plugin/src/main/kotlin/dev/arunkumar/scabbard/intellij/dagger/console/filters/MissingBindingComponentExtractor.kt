@@ -21,7 +21,7 @@ class DefaultMissingBindingComponentExtractor : MissingBindingComponentExtractor
     if (isDaggerLog) {
       val lineStart = entireLength - line.length
       // Parse the component simple name from dagger component error line
-      if (line.endsWith("{") || line.endsWith(",")) {
+      if (line.trim().endsWith("{") || line.trim().endsWith(",")) {
         val classNameWithModifiers = when {
           line.contains(EXTENDS) -> line.split(EXTENDS).first()
           line.contains(IMPLEMENTS) -> line.split(IMPLEMENTS).first()
