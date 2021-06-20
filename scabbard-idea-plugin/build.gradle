@@ -39,6 +39,15 @@ intellij {
 patchPluginXml {
   changeNotes.set(provider {
     """
+      0.5.0
+      Square Anvil support
+      Visualize Missing Binding error directly from console logs
+      Support latest Hilt and Dagger changes
+      Provide gutter icon option to open SVG files directly in system web browser
+      Migrate artifacts to mavenCentral
+      Support Android Studio 4.2.1
+      0.4.0
+      Dagger Hilt and Visualizing component hierarchy support
       0.3.0
       New Gutter Icon, inherited bindings support in subcomponent graphs, and ability to open multiple images via gutter popup
       0.2.0
