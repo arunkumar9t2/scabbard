@@ -9,7 +9,7 @@ import org.gradle.testkit.runner.TaskOutcome
 import org.junit.Test
 import java.io.File
 
-class CompilerPropertiesTest : ScabbardFunctionalTest() {
+class CompilerPropertiesFunctionalTest : ScabbardFunctionalTest() {
 
   @Test
   fun `assert compiler properties are applied in kotlin project`() {
@@ -50,7 +50,7 @@ class CompilerPropertiesTest : ScabbardFunctionalTest() {
     assertThat(
       File(
         testProjectDir.root,
-        "/build/tmp/kapt3/classes/main/scabbard/scabbard.SimpleComponent.svg"
+        "/build/generated/source/kapt/main/scabbard/scabbard.SimpleComponent.svg"
       ).exists()
     ).isTrue()
   }
@@ -134,7 +134,7 @@ class CompilerPropertiesTest : ScabbardFunctionalTest() {
     assertThat(
       File(
         testProjectDir.root,
-        "build/classes/java/main/scabbard/scabbard.ScabbardSample.SimpleComponent.svg"
+        "build/generated/sources/annotationProcessor/java/main/scabbard/scabbard.ScabbardSample.SimpleComponent.svg"
       ).exists()
     ).isTrue()
   }

@@ -9,3 +9,6 @@ build
 /.idea/vcs.xml
 /.idea/jarRepositories.xml
 /.idea/workspace.xml
+/.idea/libraries
+.idea/modules.xml
+.idea/runConfigurations.xml

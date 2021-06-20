@@ -3,7 +3,7 @@ plugins {
   id "org.jetbrains.kotlin.jvm"
 }
 description = "Build dot files easily with Kotlin"
-apply from: "../publishing.gradle"
+apply from: "../gradle/publishing.gradle"
 
 repositories {
   jcenter()

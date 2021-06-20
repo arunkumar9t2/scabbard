@@ -13,6 +13,7 @@ ext {
     ],
     "kotlin"        : "1.5.10",
     "graphviz"      : "0.12.1",
+    "gradleNexus"   : "1.1.0",
     "slf4jNop"      : "1.7.30",
     "dagger"        : "2.37",
     "hilt"          : "2.37",
@@ -27,11 +28,12 @@ ext {
     "robolectric"   : "4.3",
     "spotless"      : "5.11.0",
     "ktlint"        : "0.41.0",
-    "anvil"         : "2.2.1"
+    "anvil"         : "2.2.1",
+    "dokka"         : "1.4.32"
   ]
 
   groupId = "dev.arunkumar"
   scabbardGradlePlugin = "scabbard.gradle"
-  publishVersion = "0.4.0"
+  publishVersion = "0.5.0-alpha02"
   website = "https://github.com/arunkumar9t2/scabbard"
 }

@@ -1,6 +1,6 @@
 plugins {
   id "java-gradle-plugin"
-  id "com.gradle.plugin-publish" version "0.11.0"
+  id "com.gradle.plugin-publish" version "0.14.0"
   id "org.gradle.kotlin.kotlin-dsl" version "2.1.4"
 }
 
@@ -22,7 +22,7 @@ repositories {
 dependencies {
   implementation platform("org.jetbrains.kotlin:kotlin-bom")
   implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-  implementation "com.android.tools.build:gradle:${versions.agp}"
+  compileOnly "com.android.tools.build:gradle:${versions.agp}"
 
   testImplementation "junit:junit:${versions.junit}"
   testImplementation "com.google.truth:truth:${versions.truth}"
@@ -38,6 +38,12 @@ gradlePlugin {
       implementationClass = "dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin"
     }
   }
+}
+
+pluginBundle {
+  website = project.findProperty("website")
+  vcsUrl = project.findProperty("website")
+  tags = ["dagger 2", "dependency injection", "visualize dependency graph"]
 }
 
 sourceSets {
@@ -57,12 +63,6 @@ task functionalTest(type: Test) {
 
 check {
   dependsOn(tasks.functionalTest)
-}
-
-pluginBundle {
-  website = project.findProperty("website")
-  vcsUrl = project.findProperty("website")
-  tags = ["dagger 2", "dependency injection", "visualize dependency graph"]
 }
 
 def generatePluginVersion = tasks.register("generatePluginVersion") {
