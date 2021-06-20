@@ -34,6 +34,6 @@ ext {
 
   groupId = "dev.arunkumar"
   scabbardGradlePlugin = "scabbard.gradle"
-  publishVersion = "0.5.0-alpha01"
+  publishVersion = "0.5.0-alpha02"
   website = "https://github.com/arunkumar9t2/scabbard"
 }
