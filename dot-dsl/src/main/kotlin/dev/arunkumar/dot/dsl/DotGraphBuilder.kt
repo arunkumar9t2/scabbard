@@ -6,7 +6,8 @@ import dev.arunkumar.dot.*
 annotation class DotDslScope
 
 @DotDslScope
-inline class DotGraphBuilder(val dotGraph: DotGraph) {
+@JvmInline
+value class DotGraphBuilder(val dotGraph: DotGraph) {
 
   inline fun graphAttributes(builder: DotStatement.() -> Unit) {
     dotGraph.add(DotStatement("graph").apply(builder))
