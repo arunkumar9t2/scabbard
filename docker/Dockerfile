@@ -1,4 +1,4 @@
-FROM rreactivecircus/android-sdk-30
+FROM reactivecircus/android-sdk-30
 
 MAINTAINER Arunkumar "hi@arunkumar.dev"
 
