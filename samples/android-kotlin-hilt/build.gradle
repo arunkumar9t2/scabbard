@@ -6,13 +6,12 @@ apply plugin: scabbardGradlePlugin
 apply plugin: "dagger.hilt.android.plugin"
 
 android {
-  compileSdkVersion 29
-  buildToolsVersion "29.0.3"
+  compileSdkVersion 30
 
   defaultConfig {
     applicationId "dev.arunkumar.scabbard.sample.hilt"
     minSdkVersion 21
-    targetSdkVersion 29
+    targetSdkVersion 30
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

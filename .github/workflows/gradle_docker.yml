@@ -31,6 +31,7 @@ jobs:
       - name: Prepare gradle cache
         run: |
           export GRADLE_USER_HOME="$(pwd)/docker/cache/.gradle"
+          ./gradlew --version --no-daemon -g $GRADLE_USER_HOME
           ./gradlew resolveDependencies --no-daemon -g $GRADLE_USER_HOME
           cd scabbard-gradle-plugin
           ./gradlew resolveDependencies --no-daemon -g $GRADLE_USER_HOME
