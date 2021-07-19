@@ -11,6 +11,7 @@ jobs:
 
       - name: Set gradle permissions
         run: |
+          echo $GRADLE_USER_HOME
           chmod +x ./gradlew
           cd scabbard-gradle-plugin
           chmod +x ./gradlew
