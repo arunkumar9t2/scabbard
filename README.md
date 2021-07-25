@@ -51,7 +51,7 @@ For samples, guide and usage instructions please visit the [project website](htt
 
 ## License
 
-    Copyright 2020 Arunkumar
+    Copyright 2021 Arunkumar
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
