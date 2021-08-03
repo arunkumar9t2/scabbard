@@ -1,34 +1,66 @@
-name: Build workflow
+name: Default CI Workflow
 
-on: [push]
+on: [ push,pull_request ]
+
+env:
+  TERM: dumb
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
-    container: registry.hub.docker.com/arunkumar9t2/scabbard:latest
+    container:
+      image: ghcr.io/${{ github.repository }}:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - uses: burrunan/gradle-cache-action@v1
+        name: lint
+        with:
+          debug: false
+          job-id: lint
+          read-only: ${{ github.ref != 'refs/heads/main' }}
+          gradle-dependencies-cache-key: |
+          constants.gradle
+          arguments: spotlessCheck
+  scabbard-test:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: burrunan/gradle-cache-action@v1
+        name: scabbard-test
+        with:
+          debug: false
+          job-id: scabbard-test
+          read-only: ${{ github.ref != 'refs/heads/main' }}
+          gradle-dependencies-cache-key: |
+          constants.gradle
+          arguments: check --scan
+  scabbard-gradle-test:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
 
-      - name: Set gradle permissions
         run: |
-          chmod +x ./gradlew
-          cd scabbard-gradle-plugin
-          chmod +x ./gradlew
+        cd scabbard-gradle-plugin
 
-      - name: Build scabbard project
-        run: |
-          ./gradlew assemble
-
-      - name: Build scabbard gradle plugin
-        run: |
-          cd scabbard-gradle-plugin
-          ./gradlew assemble
-
-      - name: Test scabbard project
-        run: |
-          ./gradlew check
-
-      - name: Test scabbard gradle plugin
-        run: |
-          cd scabbard-gradle-plugin
-          ./gradlew check
+      - uses: burrunan/gradle-cache-action@v1
+        name: scabbard-gradle-test
+        with:
+          debug: false
+          job-id: scabbard-gradle-test
+          read-only: ${{ github.ref != 'refs/heads/main' }}
+          gradle-dependencies-cache-key: |
+          ../constants.gradle
+          arguments: check --scan
