@@ -22,7 +22,7 @@ jobs:
           job-id: lint
           read-only: ${{ github.ref != 'refs/heads/main' }}
           gradle-dependencies-cache-key: |
-          constants.gradle
+            constants.gradle
           arguments: spotlessCheck
   scabbard-test:
     runs-on: ubuntu-latest
@@ -40,7 +40,7 @@ jobs:
           job-id: scabbard-test
           read-only: ${{ github.ref != 'refs/heads/main' }}
           gradle-dependencies-cache-key: |
-          constants.gradle
+            constants.gradle
           arguments: check --scan
   scabbard-gradle-test:
     runs-on: ubuntu-latest
@@ -52,15 +52,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-        run: |
-        cd scabbard-gradle-plugin
-
       - uses: burrunan/gradle-cache-action@v1
         name: scabbard-gradle-test
         with:
           debug: false
           job-id: scabbard-gradle-test
           read-only: ${{ github.ref != 'refs/heads/main' }}
+          build-root-directory: scabbard-gradle-plugin
           gradle-dependencies-cache-key: |
-          ../constants.gradle
+            ../constants.gradle
           arguments: check --scan
