@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 LABEL org.opencontainers.image.authors="hi@arunkumar.dev"
-LABEL org.opencontainers.image.source="https://github.com/arunkumar9t2/relic"
+LABEL org.opencontainers.image.source="https://github.com/arunkumar9t2/scabbard"
 
 # Install common software
 RUN apt-get update && apt-get install -y --no-install-recommends \
