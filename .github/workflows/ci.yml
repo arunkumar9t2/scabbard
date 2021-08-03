@@ -41,7 +41,7 @@ jobs:
           read-only: ${{ github.ref != 'refs/heads/main' }}
           gradle-dependencies-cache-key: |
             constants.gradle
-          arguments: check --scan
+          arguments: test --scan
   scabbard-gradle-test:
     runs-on: ubuntu-latest
     container:
