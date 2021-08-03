@@ -60,5 +60,5 @@ jobs:
           read-only: ${{ github.ref != 'refs/heads/main' }}
           build-root-directory: scabbard-gradle-plugin
           gradle-dependencies-cache-key: |
-            ../constants.gradle
+            constants.gradle
           arguments: check --scan
