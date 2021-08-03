@@ -36,7 +36,6 @@ buildscript {
   }
 }
 apply from: "gradle/local-properties.gradle"
-apply from: "docker/resolve-dependencies.gradle"
 apply from: "gradle/publish-root.gradle"
 
 allprojects {

@@ -21,7 +21,6 @@ plugins {
 }
 
 apply from: "../constants.gradle"
-apply from: "../docker/resolve-dependencies.gradle"
 
 group groupId
 version publishVersion
