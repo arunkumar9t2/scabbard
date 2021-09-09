@@ -25,10 +25,6 @@ apply from: "../constants.gradle"
 group groupId
 version publishVersion
 
-kotlinDslPluginOptions {
-  experimentalWarning.set(false)
-}
-
 repositories {
   jcenter()
   google()
