@@ -42,6 +42,7 @@ class CompilerPropertiesFunctionalTest : ScabbardFunctionalTest() {
               | 
               | repositories {
               |   mavenCentral()
+              |   google()
               |   jcenter()
               | }
               | 
@@ -92,6 +93,7 @@ class CompilerPropertiesFunctionalTest : ScabbardFunctionalTest() {
               | 
               | repositories {
               |   mavenCentral()
+              |   google()
               |   jcenter()
               | }
               | 
@@ -128,6 +130,7 @@ class CompilerPropertiesFunctionalTest : ScabbardFunctionalTest() {
               | 
               | repositories {
               |   mavenCentral()
+              |   google()
               |   jcenter()
               | }
               | 

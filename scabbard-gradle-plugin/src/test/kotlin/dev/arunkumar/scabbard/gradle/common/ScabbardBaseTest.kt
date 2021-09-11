@@ -31,11 +31,14 @@ abstract class ScabbardBaseTest {
   protected val scabbardExtension: ScabbardPluginExtension
     get() = project.extensions.getByType()
 
-  internal fun scabbardExtension(block: ScabbardPluginExtension.() -> Unit) = scabbardExtension.apply(block)
+  internal fun scabbardExtension(
+    block: ScabbardPluginExtension.() -> Unit
+  ) = scabbardExtension.apply(block)
 
   internal fun Project.baseSetup() {
     repositories {
       jcenter()
+      google()
       mavenCentral()
     }
   }
