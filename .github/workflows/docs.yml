@@ -1,4 +1,4 @@
-name: Publish docs workflow
+name: Docs
 
 on:
   push:
