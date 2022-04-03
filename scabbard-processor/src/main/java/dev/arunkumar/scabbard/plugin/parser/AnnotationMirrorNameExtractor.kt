@@ -52,7 +52,7 @@ private fun AnnotationValue.extractName(): String {
       .toList()
       .joinToString(separator = ", ", prefix = "{", postfix = "}")
   }
-  return accept<String, Void>(visitor, null)
+  return accept(visitor, null)
 }
 
 /**

@@ -18,6 +18,7 @@ package dev.arunkumar.scabbard.plugin.options
 
 import dev.arunkumar.scabbard.plugin.options.SupportedOptions.*
 import dev.arunkumar.scabbard.plugin.output.OutputManager.Format
+import java.util.*
 
 data class ScabbardOptions(
   val singleGraph: Boolean = false,
@@ -40,7 +41,7 @@ private fun Map<String, String>.booleanValue(key: String): Boolean {
 }
 
 private fun Map<String, String>.parseImageFormat() = try {
-  Format.valueOf(this[IMAGE_FORMAT.key]!!.toUpperCase())
+  Format.valueOf(this[IMAGE_FORMAT.key]!!.uppercase(Locale.getDefault()))
 } catch (ignored: Exception) {
   Format.PNG
 }

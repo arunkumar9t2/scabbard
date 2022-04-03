@@ -51,7 +51,6 @@ interface TypeNameExtractor {
 @Module
 object TypeNameExtractorModule {
   @Provides
-  @JvmStatic
   @ProcessorScope
   fun typeNameExtractor(
     scabbardOptions: ScabbardOptions,

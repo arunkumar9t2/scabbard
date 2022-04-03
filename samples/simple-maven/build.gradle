@@ -38,4 +38,3 @@ dependencies {
 group = "dev.arunkumar.scabbard"
 version = "1.0-SNAPSHOT"
 description = "simple-maven"
-sourceCompatibility = "1.8"

@@ -71,7 +71,7 @@ constructor(private val outputManager: OutputManager) : OutputWriter {
     isComponentTree: Boolean
   ) = outputManager.createOutputFiles(DOT, component, isFull, isComponentTree)
     .flatMap { fileObject ->
-      Result.of<Boolean, Exception> {
+      Result.of {
         fileObject.openOutputStream().use { it.write(dotString.toByteArray()) }
         true
       }
@@ -90,7 +90,7 @@ constructor(private val outputManager: OutputManager) : OutputWriter {
     isComponentTree: Boolean
   ) = outputManager.createOutputFiles(PNG, component, isFull, isComponentTree)
     .flatMap { fileObject ->
-      Result.of<Boolean, Exception> {
+      Result.of {
         fileObject.openOutputStream().use { stream ->
           Graphviz.fromString(dotString)
             .render(Format.PNG)
@@ -112,7 +112,7 @@ constructor(private val outputManager: OutputManager) : OutputWriter {
     isComponentTree: Boolean
   ) = outputManager.createOutputFiles(SVG, component, isFull, isComponentTree)
     .flatMap { fileObject ->
-      Result.of<Boolean, Exception> {
+      Result.of {
         fileObject.openOutputStream().use { stream ->
           Graphviz.fromString(dotString)
             .render(Format.SVG)
