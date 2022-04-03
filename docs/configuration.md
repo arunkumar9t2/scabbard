@@ -97,7 +97,7 @@ Supported output formats for generated images are `png` and `svg`.
     
 ## Other build systems
 
-Although Scabbard integrates well with Gradle, other build systems are supported in limited capacity. The majority of the work is done by Scabbard's annotation processor available on `jcenter` with the following maven coordinates: `dev.arunkumar:scabbard-processor:0.5.0`. 
+Although Scabbard integrates well with Gradle, other build systems are supported in limited capacity. The majority of the work is done by Scabbard's annotation processor available on `mavenCentral` with the following maven coordinates: `dev.arunkumar:scabbard-processor:0.5.0`. 
 
 The annotation processor behavior can be customized by passing the following Java compiler properties.
 
@@ -117,8 +117,10 @@ For Maven projects, add Scabbard's annotation processor dependency alongside Dag
 ```xml hl_lines="1 2 3 4 5 6 22 23 24 25 26 28 29 30"
 <repositories>
     <repository>
-        <id>jcenter</id>
-        <url>https://jcenter.bintray.com</url>
+        <id>central</id>
+        <name>Maven Central</name>
+        <layout>default</layout>
+        <url>https://repo1.maven.org/maven2</url>
     </repository>
 </repositories>
 <build>

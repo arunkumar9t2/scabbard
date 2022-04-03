@@ -37,7 +37,6 @@ abstract class ScabbardBaseTest {
 
   internal fun Project.baseSetup() {
     repositories {
-      jcenter()
       google()
       mavenCentral()
     }

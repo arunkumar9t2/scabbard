@@ -22,7 +22,6 @@ buildscript {
     google()
     mavenCentral()
     gradlePluginPortal()
-    jcenter()
   }
   dependencies {
     classpath "com.android.tools.build:gradle:${versions.agp}"
@@ -42,7 +41,6 @@ allprojects {
   repositories {
     google()
     mavenCentral()
-    jcenter()
   }
   group groupId
   version publishVersion

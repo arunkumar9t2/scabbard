@@ -22,10 +22,6 @@ plugins {
 description = "Visualize Dagger 2 dependency graphs with ease"
 apply from: "../gradle/publishing.gradle"
 
-repositories {
-  jcenter()
-}
-
 sourceSets {
   main.java.srcDirs("build/generated/source/kapt/main")
   test.java.srcDirs("build/generated/source/kapt/test")
