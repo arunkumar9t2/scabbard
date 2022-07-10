@@ -18,15 +18,15 @@ import org.junit.Before
 
 abstract class ScabbardBaseTest {
   /**
-   * Current gradle [Project] instance. This instance is setup in [setUp] and cleaned up after the
-   * current unit of test finishes.
+   * Current gradle [Project] instance. This instance is setup in
+   * [setUp] and cleaned up after the current unit of test finishes.
    */
   protected lateinit var project: Project
 
   /**
-   * Get the [ScabbardPluginExtension] instance associated with the plugin. Modifying this extension
-   * mimics gradle configuration phase and as per default logic, should have effect on [project]
-   * instance.
+   * Get the [ScabbardPluginExtension] instance associated with the
+   * plugin. Modifying this extension mimics gradle configuration phase
+   * and as per default logic, should have effect on [project] instance.
    */
   protected val scabbardExtension: ScabbardPluginExtension
     get() = project.extensions.getByType()
@@ -42,9 +42,7 @@ abstract class ScabbardBaseTest {
     }
   }
 
-  /**
-   * Setup the [project] instance as a kotlin project.
-   */
+  /** Setup the [project] instance as a kotlin project. */
   internal fun Project.setupAsKotlin() {
     baseSetup()
     plugins.apply {
@@ -54,9 +52,7 @@ abstract class ScabbardBaseTest {
     }
   }
 
-  /**
-   * Setup the [project] instance as a pure java project.
-   */
+  /** Setup the [project] instance as a pure java project. */
   internal fun Project.setupAsJava() {
     baseSetup()
     plugins.apply {
@@ -76,9 +72,7 @@ abstract class ScabbardBaseTest {
     project = ProjectBuilder.builder().build()
   }
 
-  /**
-   * Delete all plugins from [project] instance
-   */
+  /** Delete all plugins from [project] instance */
   @After
   fun tearDown() {
     project.plugins.removeIf { true }
