@@ -20,10 +20,6 @@ plugins {
   id "kotlin-kapt"
 }
 
-repositories {
-  jcenter()
-}
-
 kapt {
   arguments {
     arg("scabbard.failOnError", true)

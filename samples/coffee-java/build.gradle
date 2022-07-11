@@ -34,10 +34,6 @@ scabbard {
 
 apply from: "../../gradle/scabbard-local-processor.gradle"
 
-repositories {
-  jcenter()
-}
-
 dependencies {
   implementation "com.google.dagger:dagger:${versions.dagger}"
   annotationProcessor "com.google.dagger:dagger-compiler:${versions.dagger}"

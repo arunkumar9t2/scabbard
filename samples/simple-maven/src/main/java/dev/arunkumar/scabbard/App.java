@@ -17,9 +17,9 @@
 package dev.arunkumar.scabbard;
 
 
-import dagger.Component;
-
 import javax.inject.Inject;
+
+import dagger.Component;
 
 
 public class App {

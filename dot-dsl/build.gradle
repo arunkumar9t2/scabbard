@@ -21,10 +21,6 @@ plugins {
 description = "Build dot files easily with Kotlin"
 apply from: "../gradle/publishing.gradle"
 
-repositories {
-  jcenter()
-}
-
 dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
 

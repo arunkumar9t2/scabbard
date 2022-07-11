@@ -19,10 +19,6 @@ plugins {
 }
 apply plugin: scabbardGradlePlugin
 
-repositories {
-  jcenter()
-}
-
 scabbard {
   enabled true
 }
