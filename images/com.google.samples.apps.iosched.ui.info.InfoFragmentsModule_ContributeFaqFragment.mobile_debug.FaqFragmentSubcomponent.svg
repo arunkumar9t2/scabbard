@@ -1,0 +1,24 @@
+<svg width="1631px" height="194px"
+ viewBox="0.00 0.00 1630.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → com.google.samples.apps.iosched.ui.info.InfoModule_ContributeInfoFragment$mobile_debug.InfoFragmentSubcomponent → com.google.samples.apps.iosched.ui.info.InfoFragmentsModule_ContributeFaqFragment$mobile_debug.FaqFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1616.4,-179.4 1616.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="801" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → InfoModule_ContributeInfoFragment$mobile_debug.InfoFragmentSubcomponent → InfoFragmentsModule_ContributeFaqFragment$mobile_debug.FaqFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="726.5,-31 726.5,-106 875.5,-106 875.5,-31 726.5,-31"/>
+<text text-anchor="middle" x="769.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="739.2,-114 739.2,-157 863.8,-157 863.8,-114 739.2,-114"/>
+<text text-anchor="middle" x="801.7" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- 2666b4be&#45;a3b9&#45;4136&#45;bdaf&#45;1a4993b0ba97 -->
+<g id="node1" class="node"><title>2666b4be&#45;a3b9&#45;4136&#45;bdaf&#45;1a4993b0ba97</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="867.5,-75 734.5,-75 734.5,-71 730.5,-71 730.5,-67 734.5,-67 734.5,-47 730.5,-47 730.5,-43 734.5,-43 734.5,-39 867.5,-39 867.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="734.5,-71 738.5,-71 738.5,-67 734.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="734.5,-47 738.5,-47 738.5,-43 734.5,-43 "/>
+<text text-anchor="middle" x="801" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (FaqFragment)</text>
+</g>
+<!-- 48879015&#45;bc2c&#45;4422&#45;8ddc&#45;a3f9d2e5e649 -->
+</g>
+</svg>

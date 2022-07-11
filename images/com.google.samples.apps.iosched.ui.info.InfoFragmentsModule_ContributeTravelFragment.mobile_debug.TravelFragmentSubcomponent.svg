@@ -1,0 +1,24 @@
+<svg width="1657px" height="194px"
+ viewBox="0.00 0.00 1656.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.di.ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → com.google.samples.apps.iosched.ui.info.InfoModule_ContributeInfoFragment$mobile_debug.InfoFragmentSubcomponent → com.google.samples.apps.iosched.ui.info.InfoFragmentsModule_ContributeTravelFragment$mobile_debug.TravelFragmentSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 1642.4,-179.4 1642.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="814" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → ActivityBindingModule_MainActivity$mobile_debug.MainActivitySubcomponent → InfoModule_ContributeInfoFragment$mobile_debug.InfoFragmentSubcomponent → InfoFragmentsModule_ContributeTravelFragment$mobile_debug.TravelFragmentSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="733,-31 733,-106 895,-106 895,-31 733,-31"/>
+<text text-anchor="middle" x="776" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="752.2,-114 752.2,-157 876.8,-157 876.8,-114 752.2,-114"/>
+<text text-anchor="middle" x="814.7" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- efbfa5d5&#45;9e3b&#45;433e&#45;8c80&#45;05822d6ff9ac -->
+<g id="node1" class="node"><title>efbfa5d5&#45;9e3b&#45;433e&#45;8c80&#45;05822d6ff9ac</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="887,-75 741,-75 741,-71 737,-71 737,-67 741,-67 741,-47 737,-47 737,-43 741,-43 741,-39 887,-39 887,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="741,-71 745,-71 745,-67 741,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="741,-47 745,-47 745,-43 741,-43 "/>
+<text text-anchor="middle" x="814" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (TravelFragment)</text>
+</g>
+<!-- 5dd21472&#45;78af&#45;46b9&#45;9017&#45;81466032842a -->
+</g>
+</svg>

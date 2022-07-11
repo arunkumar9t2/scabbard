@@ -1,0 +1,101 @@
+<svg width="376px" height="386px"
+ viewBox="0.00 0.00 375.80 385.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 371.4)">
+<title>isDirected: true, allowsSelfLoops: false, nodes: [com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC, com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC, com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ServiceC, com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC, com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC → com.google.samples.apps.iosched.MainApplication_HiltComponents.FragmentC, com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ViewC, com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC → com.google.samples.apps.iosched.MainApplication_HiltComponents.FragmentC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ViewWithFragmentC], edges: [&lt;com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC &#45;&gt; com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ServiceC&gt;, &lt;com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC &#45;&gt; com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC&gt;, &lt;com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC &#45;&gt; com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC&gt;, &lt;com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC &#45;&gt; com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ViewC&gt;, &lt;com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC &#45;&gt; com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC → com.google.samples.apps.iosched.MainApplication_HiltComponents.FragmentC&gt;, &lt;com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC → com.google.samples.apps.iosched.MainApplication_HiltComponents.FragmentC &#45;&gt; com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC → com.google.samples.apps.iosched.MainApplication_HiltComponents.FragmentC → com.google.samples.apps.iosched.MainApplication_HiltComponents.ViewWithFragmentC&gt;]</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-371.4 361.4,-371.4 361.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="45.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">ApplicationC</text>
+<!-- 021a555e&#45;08a3&#45;400e&#45;8cb4&#45;00207ce9b60a -->
+<g id="node1" class="node"><title>021a555e&#45;08a3&#45;400e&#45;8cb4&#45;00207ce9b60a</title>
+<g id="a_node1"><a xlink:href="com.google.samples.apps.iosched.MainApplication_HiltComponents.ApplicationC.svg" xlink:title="@Singleton\nApplicationC">
+<polygon fill="aquamarine" stroke="aquamarine" points="256.5,-357 165.5,-357 165.5,-319 256.5,-319 256.5,-357"/>
+<text text-anchor="middle" x="211" y="-341.8" font-family="Times New Roman,serif" font-size="14.00">@Singleton</text>
+<text text-anchor="middle" x="211" y="-326.8" font-family="Times New Roman,serif" font-size="14.00">ApplicationC</text>
+</a>
+</g>
+</g>
+<!-- 78109591&#45;a25f&#45;448a&#45;a58b&#45;d4a05f4e8fa8 -->
+<g id="node2" class="node"><title>78109591&#45;a25f&#45;448a&#45;a58b&#45;d4a05f4e8fa8</title>
+<g id="a_node2"><a xlink:href="com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityRetainedC.svg" xlink:title="@ActivityRetainedScoped\nActivityRetainedC">
+<polygon fill="bisque" stroke="bisque" points="214.5,-283 49.5,-283 49.5,-245 214.5,-245 214.5,-283"/>
+<text text-anchor="middle" x="132" y="-267.8" font-family="Times New Roman,serif" font-size="14.00">@ActivityRetainedScoped</text>
+<text text-anchor="middle" x="132" y="-252.8" font-family="Times New Roman,serif" font-size="14.00">ActivityRetainedC</text>
+</a>
+</g>
+</g>
+<!-- 021a555e&#45;08a3&#45;400e&#45;8cb4&#45;00207ce9b60a&#45;&gt;78109591&#45;a25f&#45;448a&#45;a58b&#45;d4a05f4e8fa8 -->
+<g id="edge2" class="edge"><title>021a555e&#45;08a3&#45;400e&#45;8cb4&#45;00207ce9b60a&#45;&gt;78109591&#45;a25f&#45;448a&#45;a58b&#45;d4a05f4e8fa8</title>
+<path fill="none" stroke="black" d="M191.065,-318.831C181.522,-310.134 169.94,-299.578 159.569,-290.127"/>
+<polygon fill="black" stroke="black" points="161.677,-287.312 151.929,-283.163 156.962,-292.486 161.677,-287.312"/>
+</g>
+<!-- 6918f187&#45;52cd&#45;4bfb&#45;af5b&#45;1706cb5045e1 -->
+<g id="node3" class="node"><title>6918f187&#45;52cd&#45;4bfb&#45;af5b&#45;1706cb5045e1</title>
+<g id="a_node3"><a xlink:href="com.google.samples.apps.iosched.MainApplication_HiltComponents.ServiceC.svg" xlink:title="@ServiceScoped\nServiceC">
+<polygon fill="#ffff00" stroke="#ffff00" points="347,-283 233,-283 233,-245 347,-245 347,-283"/>
+<text text-anchor="middle" x="290" y="-267.8" font-family="Times New Roman,serif" font-size="14.00">@ServiceScoped</text>
+<text text-anchor="middle" x="290" y="-252.8" font-family="Times New Roman,serif" font-size="14.00">ServiceC</text>
+</a>
+</g>
+</g>
+<!-- 021a555e&#45;08a3&#45;400e&#45;8cb4&#45;00207ce9b60a&#45;&gt;6918f187&#45;52cd&#45;4bfb&#45;af5b&#45;1706cb5045e1 -->
+<g id="edge1" class="edge"><title>021a555e&#45;08a3&#45;400e&#45;8cb4&#45;00207ce9b60a&#45;&gt;6918f187&#45;52cd&#45;4bfb&#45;af5b&#45;1706cb5045e1</title>
+<path fill="none" stroke="black" d="M230.935,-318.831C240.478,-310.134 252.06,-299.578 262.431,-290.127"/>
+<polygon fill="black" stroke="black" points="265.038,-292.486 270.071,-283.163 260.323,-287.312 265.038,-292.486"/>
+</g>
+<!-- c41abbcb&#45;86bd&#45;427f&#45;affb&#45;c7489ee9e6fd -->
+<g id="node4" class="node"><title>c41abbcb&#45;86bd&#45;427f&#45;affb&#45;c7489ee9e6fd</title>
+<g id="a_node4"><a xlink:href="com.google.samples.apps.iosched.MainApplication_HiltComponents.ActivityC.svg" xlink:title="@ActivityScoped\nActivityC">
+<polygon fill="#76ee00" stroke="#76ee00" points="190,-209 74,-209 74,-171 190,-171 190,-209"/>
+<text text-anchor="middle" x="132" y="-193.8" font-family="Times New Roman,serif" font-size="14.00">@ActivityScoped</text>
+<text text-anchor="middle" x="132" y="-178.8" font-family="Times New Roman,serif" font-size="14.00">ActivityC</text>
+</a>
+</g>
+</g>
+<!-- 78109591&#45;a25f&#45;448a&#45;a58b&#45;d4a05f4e8fa8&#45;&gt;c41abbcb&#45;86bd&#45;427f&#45;affb&#45;c7489ee9e6fd -->
+<g id="edge3" class="edge"><title>78109591&#45;a25f&#45;448a&#45;a58b&#45;d4a05f4e8fa8&#45;&gt;c41abbcb&#45;86bd&#45;427f&#45;affb&#45;c7489ee9e6fd</title>
+<path fill="none" stroke="black" d="M132,-244.831C132,-237.131 132,-227.974 132,-219.417"/>
+<polygon fill="black" stroke="black" points="135.5,-219.413 132,-209.413 128.5,-219.413 135.5,-219.413"/>
+</g>
+<!-- 9a0c5b58&#45;46eb&#45;4716&#45;a951&#45;4e3ea4c37f9f -->
+<g id="node5" class="node"><title>9a0c5b58&#45;46eb&#45;4716&#45;a951&#45;4e3ea4c37f9f</title>
+<g id="a_node5"><a xlink:href="com.google.samples.apps.iosched.MainApplication_HiltComponents.FragmentC.svg" xlink:title="@FragmentScoped\nFragmentC">
+<polygon fill="coral" stroke="coral" points="129.5,-135 4.5,-135 4.5,-97 129.5,-97 129.5,-135"/>
+<text text-anchor="middle" x="67" y="-119.8" font-family="Times New Roman,serif" font-size="14.00">@FragmentScoped</text>
+<text text-anchor="middle" x="67" y="-104.8" font-family="Times New Roman,serif" font-size="14.00">FragmentC</text>
+</a>
+</g>
+</g>
+<!-- c41abbcb&#45;86bd&#45;427f&#45;affb&#45;c7489ee9e6fd&#45;&gt;9a0c5b58&#45;46eb&#45;4716&#45;a951&#45;4e3ea4c37f9f -->
+<g id="edge5" class="edge"><title>c41abbcb&#45;86bd&#45;427f&#45;affb&#45;c7489ee9e6fd&#45;&gt;9a0c5b58&#45;46eb&#45;4716&#45;a951&#45;4e3ea4c37f9f</title>
+<path fill="none" stroke="black" d="M115.598,-170.831C107.958,-162.369 98.7317,-152.149 90.3793,-142.897"/>
+<polygon fill="black" stroke="black" points="92.9221,-140.491 83.6231,-135.413 87.7262,-145.181 92.9221,-140.491"/>
+</g>
+<!-- dd52e3e8&#45;4eca&#45;47cb&#45;bf5b&#45;ae2600cfb201 -->
+<g id="node6" class="node"><title>dd52e3e8&#45;4eca&#45;47cb&#45;bf5b&#45;ae2600cfb201</title>
+<g id="a_node6"><a xlink:href="com.google.samples.apps.iosched.MainApplication_HiltComponents.ViewC.svg" xlink:title="@ViewScoped\nViewC">
+<polygon fill="#bfefff" stroke="#bfefff" points="248.5,-135 147.5,-135 147.5,-97 248.5,-97 248.5,-135"/>
+<text text-anchor="middle" x="198" y="-119.8" font-family="Times New Roman,serif" font-size="14.00">@ViewScoped</text>
+<text text-anchor="middle" x="198" y="-104.8" font-family="Times New Roman,serif" font-size="14.00">ViewC</text>
+</a>
+</g>
+</g>
+<!-- c41abbcb&#45;86bd&#45;427f&#45;affb&#45;c7489ee9e6fd&#45;&gt;dd52e3e8&#45;4eca&#45;47cb&#45;bf5b&#45;ae2600cfb201 -->
+<g id="edge4" class="edge"><title>c41abbcb&#45;86bd&#45;427f&#45;affb&#45;c7489ee9e6fd&#45;&gt;dd52e3e8&#45;4eca&#45;47cb&#45;bf5b&#45;ae2600cfb201</title>
+<path fill="none" stroke="black" d="M148.655,-170.831C156.411,-162.369 165.78,-152.149 174.261,-142.897"/>
+<polygon fill="black" stroke="black" points="176.944,-145.15 181.121,-135.413 171.784,-140.42 176.944,-145.15"/>
+</g>
+<!-- ece557dc&#45;6359&#45;462c&#45;9272&#45;f291f249eece -->
+<g id="node7" class="node"><title>ece557dc&#45;6359&#45;462c&#45;9272&#45;f291f249eece</title>
+<g id="a_node7"><a xlink:href="com.google.samples.apps.iosched.MainApplication_HiltComponents.ViewWithFragmentC.svg" xlink:title="@ViewScoped\nViewWithFragmentC">
+<polygon fill="#bfefff" stroke="#bfefff" points="134,-61 0,-61 0,-23 134,-23 134,-61"/>
+<text text-anchor="middle" x="67" y="-45.8" font-family="Times New Roman,serif" font-size="14.00">@ViewScoped</text>
+<text text-anchor="middle" x="67" y="-30.8" font-family="Times New Roman,serif" font-size="14.00">ViewWithFragmentC</text>
+</a>
+</g>
+</g>
+<!-- 9a0c5b58&#45;46eb&#45;4716&#45;a951&#45;4e3ea4c37f9f&#45;&gt;ece557dc&#45;6359&#45;462c&#45;9272&#45;f291f249eece -->
+<g id="edge6" class="edge"><title>9a0c5b58&#45;46eb&#45;4716&#45;a951&#45;4e3ea4c37f9f&#45;&gt;ece557dc&#45;6359&#45;462c&#45;9272&#45;f291f249eece</title>
+<path fill="none" stroke="black" d="M67,-96.8314C67,-89.131 67,-79.9743 67,-71.4166"/>
+<polygon fill="black" stroke="black" points="70.5001,-71.4132 67,-61.4133 63.5001,-71.4133 70.5001,-71.4132"/>
+</g>
+</g>
+</svg>

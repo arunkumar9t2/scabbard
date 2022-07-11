@@ -1,0 +1,24 @@
+<svg width="950px" height="194px"
+ viewBox="0.00 0.00 949.80 193.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 179.4)">
+<title>com.google.samples.apps.iosched.di.AppComponent → com.google.samples.apps.iosched.shared.di.BroadcastReceiverBindingModule_CancelNotificationBroadcastReceiver$shared_debug.CancelNotificationBroadcastReceiverSubcomponent</title>
+<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-179.4 935.4,-179.4 935.4,14.4 -14.4,14.4"/>
+<text text-anchor="middle" x="460.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent → BroadcastReceiverBindingModule_CancelNotificationBroadcastReceiver$shared_debug.CancelNotificationBroadcastReceiverSubcomponent</text>
+<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
+<polygon fill="none" stroke="black" points="318.5,-31 318.5,-106 602.5,-106 602.5,-31 318.5,-31"/>
+<text text-anchor="middle" x="361.5" y="-90.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+</g>
+<g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
+<polygon fill="none" stroke="black" points="398.7,-114 398.7,-157 523.3,-157 523.3,-114 398.7,-114"/>
+<text text-anchor="middle" x="461.2" y="-141.8" font-family="Times New Roman,serif" font-size="14.00">Dependency Graph</text>
+</g>
+<!-- a14b5c58&#45;e940&#45;4230&#45;9455&#45;0a1b71448ad1 -->
+<g id="node1" class="node"><title>a14b5c58&#45;e940&#45;4230&#45;9455&#45;0a1b71448ad1</title>
+<polygon fill="turquoise" stroke="turquoise" stroke-width="2" points="594.5,-75 326.5,-75 326.5,-71 322.5,-71 322.5,-67 326.5,-67 326.5,-47 322.5,-47 322.5,-43 326.5,-43 326.5,-39 594.5,-39 594.5,-75"/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="326.5,-71 330.5,-71 330.5,-67 326.5,-67 "/>
+<polyline fill="none" stroke="turquoise" stroke-width="2" points="326.5,-47 330.5,-47 330.5,-43 326.5,-43 "/>
+<text text-anchor="middle" x="460.5" y="-53.3" font-family="Times New Roman,serif" font-size="14.00">inject (CancelNotificationBroadcastReceiver)</text>
+</g>
+<!-- d114a2af&#45;8e26&#45;4aee&#45;9ecf&#45;bbb981fc48de -->
+</g>
+</svg>
