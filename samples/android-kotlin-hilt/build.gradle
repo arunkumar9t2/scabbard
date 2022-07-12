@@ -47,6 +47,11 @@ scabbard {
   outputFormat "svg"
 }
 
+hilt {
+  // https://github.com/google/dagger/issues/3464
+  enableAggregatingTask true
+}
+
 apply from: "../../gradle/scabbard-local-processor.gradle"
 
 dependencies {
