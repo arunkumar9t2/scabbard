@@ -49,7 +49,7 @@ scabbard {
 
 hilt {
   // https://github.com/google/dagger/issues/3464
-  enableAggregatingTask true
+  enableAggregatingTask false
 }
 
 apply from: "../../gradle/scabbard-local-processor.gradle"
