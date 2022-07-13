@@ -65,6 +65,15 @@ allprojects {
     }
   }
 
+  pluginManager.withPlugin("kotlin-kapt") {
+    kapt {
+      arguments {
+        // TODO(arun) Ensure scabbard does not rely on @Component subclassing and remove this.
+        arg("dagger.generatedClassExtendsComponent", "ENABLED")
+      }
+    }
+  }
+
   apply plugin: "com.diffplug.spotless"
   spotless {
     kotlin {
