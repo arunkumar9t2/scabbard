@@ -1,12 +1,34 @@
-<svg width="1291px" height="239px"
- viewBox="0.00 0.00 1290.80 238.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 224.4)">
-<title>io.plaidapp.core.dagger.designernews.UpvoteStoryServiceComponent</title>
-<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-224.4 1276.4,-224.4 1276.4,14.4 -14.4,14.4"/>
-<text text-anchor="middle" x="98" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">UpvoteStoryServiceComponent</text>
-<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
-<polygon fill="none" stroke="black" points="8,-67 8,-142 196,-142 196,-67 8,-67"/>
-<text text-anchor="middle" x="51" y="-126.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+<!--
+  - Copyright 2022 Arunkumar
+  -
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  -
+  -     http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
+  -->
+
+<svg width="1291px" height="239px" viewBox="0.00 0.00 1290.80 238.80"
+    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 224.4)">
+        <title>io.plaidapp.core.dagger.designernews.UpvoteStoryServiceComponent</title>
+        <polygon fill="white" stroke="none"
+            points="-14.4,14.4 -14.4,-224.4 1276.4,-224.4 1276.4,14.4 -14.4,14.4" />
+        <text text-anchor="middle" x="98" y="-7.8" font-family="Times New Roman,serif"
+            font-size="14.00">UpvoteStoryServiceComponent
+        </text>
+        <g id="clust1" class="cluster">
+            <title>cluster_Entry Points</title>
+            <polygon fill="none" stroke="black" points="8,-67 8,-142 196,-142 196,-67 8,-67" />
+            <text text-anchor="middle" x="51" y="-126.8" font-family="Times New Roman,serif"
+                font-size="14.00">Entry Points
+            </text>
 </g>
 <g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
 <polygon fill="none" stroke="black" points="216,-31 216,-202 1254,-202 1254,-31 216,-31"/>

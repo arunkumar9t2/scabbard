@@ -1,12 +1,34 @@
-<svg width="2295px" height="579px"
- viewBox="0.00 0.00 2294.80 578.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 564.4)">
-<title>dev.arunkumar.scabbard.di.AppComponent</title>
-<polygon fill="white" stroke="none" points="-14.4,14.4 -14.4,-564.4 2280.4,-564.4 2280.4,14.4 -14.4,14.4"/>
-<text text-anchor="middle" x="53.5" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">AppComponent</text>
-<g id="clust1" class="cluster"><title>cluster_Entry Points</title>
-<polygon fill="none" stroke="black" points="8,-87 8,-288 213,-288 213,-87 8,-87"/>
-<text text-anchor="middle" x="51" y="-272.8" font-family="Times New Roman,serif" font-size="14.00">Entry Points</text>
+<!--
+  - Copyright 2022 Arunkumar
+  -
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  -
+  -     http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
+  -->
+
+<svg width="2295px" height="579px" viewBox="0.00 0.00 2294.80 578.80"
+    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(14.4 564.4)">
+        <title>dev.arunkumar.scabbard.di.AppComponent</title>
+        <polygon fill="white" stroke="none"
+            points="-14.4,14.4 -14.4,-564.4 2280.4,-564.4 2280.4,14.4 -14.4,14.4" />
+        <text text-anchor="middle" x="53.5" y="-7.8" font-family="Times New Roman,serif"
+            font-size="14.00">AppComponent
+        </text>
+        <g id="clust1" class="cluster">
+            <title>cluster_Entry Points</title>
+            <polygon fill="none" stroke="black" points="8,-87 8,-288 213,-288 213,-87 8,-87" />
+            <text text-anchor="middle" x="51" y="-272.8" font-family="Times New Roman,serif"
+                font-size="14.00">Entry Points
+            </text>
 </g>
 <g id="clust2" class="cluster"><title>cluster_Dependency Graph</title>
 <polygon fill="none" stroke="black" points="234,-81 234,-542 1746,-542 1746,-81 234,-81"/>
