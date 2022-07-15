@@ -58,8 +58,8 @@ private fun AnnotationValue.extractName(): String {
 /**
  * Parse an [AnnotationMirror] and return the string representation.
  *
- * @param typeParser Uses this function to compute the annotation name. The default the implementation
- * simple calls [toString]
+ * @param typeParser Uses this function to compute the annotation name.
+ *     The default the implementation simple calls [toString]
  */
 fun AnnotationMirror.extractName(typeParser: (TypeMirror) -> String = { it.toString() }): String {
   val annotationName = typeParser(annotationType.asElement().asType())

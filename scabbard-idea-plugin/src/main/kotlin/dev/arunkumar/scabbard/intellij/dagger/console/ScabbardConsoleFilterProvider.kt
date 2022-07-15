@@ -22,7 +22,8 @@ import com.intellij.openapi.project.Project
 import dev.arunkumar.scabbard.intellij.dagger.console.filters.MissingBindingFilter
 
 /**
- * [ConsoleFilterProvider] that adds links to generated images by parsing console  logs
+ * [ConsoleFilterProvider] that adds links to generated images by
+ * parsing console logs
  */
 class ScabbardConsoleFilterProvider : ConsoleFilterProvider {
   override fun getDefaultFilters(project: Project): Array<Filter> {

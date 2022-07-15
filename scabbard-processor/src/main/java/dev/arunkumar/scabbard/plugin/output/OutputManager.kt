@@ -26,7 +26,8 @@ import javax.tools.FileObject
 import javax.tools.StandardLocation
 
 /**
- * Output files abstraction to create [FileObject] instance for given component and extensions
+ * Output files abstraction to create [FileObject] instance for given
+ * component and extensions
  */
 interface OutputManager {
 
@@ -37,12 +38,14 @@ interface OutputManager {
   }
 
   /**
-   * Return the output file name, taking into account the format, component name and it if is a
-   * full graph.
+   * Return the output file name, taking into account the format,
+   * component name and it if is a full graph.
    *
    * @param format The extension of the generated file.
-   * @param currentComponent the component for which files should be created.
-   * @param isFullGraph Whether the current graph is a full binding graph.
+   * @param currentComponent the component for which files should be
+   *     created.
+   * @param isFullGraph Whether the current graph is a full binding
+   *     graph.
    * @param isComponentTree Whether the output is for component tree.
    */
   fun outputFileNameFor(
@@ -56,8 +59,10 @@ interface OutputManager {
    * Create output files for the [currentComponent]
    *
    * @param format The extension of the generated file.
-   * @param currentComponent the component for which files should be created.
-   * @param isFullGraph Whether the current graph is a full binding graph.
+   * @param currentComponent the component for which files should be
+   *     created.
+   * @param isFullGraph Whether the current graph is a full binding
+   *     graph.
    * @param isComponentTree Whether the output is for component tree.
    */
   fun createOutputFiles(
@@ -68,9 +73,7 @@ interface OutputManager {
   ): Result<FileObject, Exception>
 }
 
-/**
- * OutputManager implementation backed by a [Filer]
- */
+/** OutputManager implementation backed by a [Filer] */
 interface FilerOutputManager : OutputManager {
   val filer: Filer
 }
@@ -91,7 +94,8 @@ constructor(
   }
 
   /**
-   * Attempts to crate a `FileObject` for `fileName` and wraps any `FilerException`
+   * Attempts to crate a `FileObject` for `fileName` and wraps any
+   * `FilerException`
    *
    * //TODO Better design to track created resources.
    */

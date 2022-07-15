@@ -27,9 +27,7 @@ import dev.arunkumar.scabbard.intellij.dagger.psi.ktClassOrObject
 import dev.arunkumar.scabbard.intellij.dagger.psi.toPsiClass
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
-/**
- * Provides gutters for `@DefineComponent` and `@EntryPoint`.
- */
+/** Provides gutters for `@DefineComponent` and `@EntryPoint`. */
 class KotlinHiltCustomComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
   private fun KtClassOrObject.hasCustomHiltComponentAnnotations(): Boolean {

@@ -21,7 +21,8 @@ import dev.arunkumar.scabbard.plugin.di.VisitGraphScope
 import javax.inject.Inject
 
 /**
- * Class to cache and assign colors to Dagger scopes. The colors are assigned in cyclic order.
+ * Class to cache and assign colors to Dagger scopes. The colors are
+ * assigned in cyclic order.
  */
 @VisitGraphScope
 class DaggerScopeColors @Inject constructor() {

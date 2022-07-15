@@ -49,9 +49,7 @@ class SingletonBinding @Inject constructor()
 
 class CustomBinding @Inject constructor(@param:Named(NUMBER) private val number: Int)
 
-/**
- * Entry point for exposing `HiltCustomComponent`'s bindings
- */
+/** Entry point for exposing `HiltCustomComponent`'s bindings */
 @EntryPoint
 @InstallIn(HiltCustomComponent::class)
 interface HiltCustomEntryPoint {

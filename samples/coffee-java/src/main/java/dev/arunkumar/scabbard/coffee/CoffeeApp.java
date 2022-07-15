@@ -16,9 +16,9 @@
 
 package dev.arunkumar.scabbard.coffee;
 
-import dagger.Component;
-
 import javax.inject.Singleton;
+
+import dagger.Component;
 
 public class CoffeeApp {
   public static void main(String[] args) {

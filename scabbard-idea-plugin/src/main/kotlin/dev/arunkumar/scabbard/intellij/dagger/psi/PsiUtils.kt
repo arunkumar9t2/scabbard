@@ -31,7 +31,8 @@ import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 /**
- * List of fully qualified annotations that correspond to a Dagger component.
+ * List of fully qualified annotations that correspond to a Dagger
+ * component.
  */
 val DAGGER_COMPONENT_ANNOTATIONS = listOf(
   DAGGER_COMPONENT,
@@ -45,8 +46,9 @@ val DAGGER_COMPONENT_ANNOTATIONS = listOf(
  * @return `true` only when
  * 1. The given PSI element is an `PsiIdentifier` in `Java` language.
  * 2. and is a dagger annotation entry (present in `daggerAnnotations`).
- * For example, for `@Component` annotation on a class or an interface, this method will return `true` only for
- * `Component` part when it is represented as a `PsiIdentifier`.
+ *    For example, for `@Component` annotation on a class or
+ *    an interface, this method will return `true` only for
+ *    `Component` part when it is represented as a `PsiIdentifier`.
  *
  * @param daggerAnnotations the list of dagger annotation to look for.
  * @see DAGGER_COMPONENT_ANNOTATIONS
@@ -78,7 +80,8 @@ fun KtClassOrObject.hasAnnotation(qualifiedAnnotationName: String): Boolean {
 }
 
 /**
- * Converts a Kotlin class object to `PsiClass` instance. Null if unsuccessful.
+ * Converts a Kotlin class object to `PsiClass` instance. Null if
+ * unsuccessful.
  */
 fun KtClassOrObject.toPsiClass(): PsiClass? {
   val javaPsiFacade = JavaPsiFacade.getInstance(project)

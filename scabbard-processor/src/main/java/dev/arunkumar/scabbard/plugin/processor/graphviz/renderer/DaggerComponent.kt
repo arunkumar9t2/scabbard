@@ -20,9 +20,7 @@ import dagger.model.BindingGraph
 import dagger.model.ComponentPath
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 
-/**
- * Data structure for holding data about a given component
- */
+/** Data structure for holding data about a given component */
 data class DaggerComponent(
   val componentPath: ComponentPath,
   val entryPointBindings: List<BindingGraph.MaybeBinding>,
@@ -32,7 +30,8 @@ data class DaggerComponent(
   val edges: List<BindingGraph.Edge>
 ) {
   /**
-   * Renders the given component's dependency graph by delegating for appropriate `Renderer` instances.
+   * Renders the given component's dependency graph by delegating for
+   * appropriate `Renderer` instances.
    */
   class GraphRenderer(
     override val renderingContext: RenderingContext

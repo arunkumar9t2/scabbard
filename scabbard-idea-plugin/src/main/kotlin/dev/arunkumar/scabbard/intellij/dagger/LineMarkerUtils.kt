@@ -30,17 +30,20 @@ import dev.arunkumar.scabbard.intellij.dagger.psi.BrowsableSvgElement
 private const val DEPENDENCY_GRAPH = "dependency graph"
 
 /**
- * Adds a gutter icon to open the dependency graph for the Subcomponent that `@ContributesAndroidInjector`
- * would be generating.
+ * Adds a gutter icon to open the dependency graph for the Subcomponent
+ * that `@ContributesAndroidInjector` would be generating.
  *
- * All parameters of this function are related to the method that has the `@ContributesAndroidInjector`
- * annotation.
+ * All parameters of this function are related to the method that has
+ * the `@ContributesAndroidInjector` annotation.
  *
- * @param contributesAndroidInjectorElement PsiElement representing the `@ContributesAndroidInjector`
+ * @param contributesAndroidInjectorElement PsiElement representing the
+ *     `@ContributesAndroidInjector`
  * @param packageName The package name of the containing file
- * @param qualifiedPath The full path to class that contains the method with the annotation.
+ * @param qualifiedPath The full path to class that contains the method
+ *     with the annotation.
  * @param methodName The name of the method that has the annotation
- * @param returnTypeSimpleName The simple name of the method's return type.
+ * @param returnTypeSimpleName The simple name of the method's return
+ *     type.
  */
 internal fun prepareContributesAndroidInjectorLineMarker(
   contributesAndroidInjectorElement: PsiElement,
@@ -90,7 +93,8 @@ internal fun prepareContributesAndroidInjectorLineMarker(
 }
 
 /**
- * Custom cell renderer that simple updates the generated graph file name's entry to use the actual class name.
+ * Custom cell renderer that simple updates the generated graph file
+ * name's entry to use the actual class name.
  */
 private class PsiElementToDaggerComponentNameCellRenderer : DefaultPsiElementCellRenderer() {
 
@@ -124,7 +128,8 @@ private class PsiElementToDaggerComponentNameCellRenderer : DefaultPsiElementCel
 /**
  * Adds couple of additional navigation elements for certain file types.
  *
- * For example, for SVG adds a navigation element to open svg in browserS
+ * For example, for SVG adds a navigation element to open svg in
+ * browserS
  */
 private fun addAdditionalNavigationElements(original: List<PsiFile>): List<PsiElement> {
   val result = original.toMutableList()
@@ -134,12 +139,17 @@ private fun addAdditionalNavigationElements(original: List<PsiFile>): List<PsiEl
 }
 
 /**
- * Prepares a [RelatedItemLineMarkerInfo] instance for gutter icon by searching for [componentFqcn] in different scopes.
- * By default, [GENERATED_DAGGER_FILES] will be used as a base for searching generated component graphs.
+ * Prepares a [RelatedItemLineMarkerInfo] instance for gutter icon
+ * by searching for [componentFqcn] in different scopes. By default,
+ * [GENERATED_DAGGER_FILES] will be used as a base for searching
+ * generated component graphs.
  *
- * @return [RelatedItemLineMarkerInfo] instance with popup to navigate to all matched files
- * @param element [PsiElement] for which the Gutter icon should be targeted
- * @param componentName Simple name of the Dagger component that will be used in tooltip of the gutter icon.
+ * @return [RelatedItemLineMarkerInfo] instance with popup to navigate
+ *     to all matched files
+ * @param element [PsiElement] for which the Gutter icon should be
+ *     targeted
+ * @param componentName Simple name of the Dagger component that will be
+ *     used in tooltip of the gutter icon.
  * @param componentFqcn Fully qualified name of the dagger component
  */
 internal fun prepareDaggerComponentLineMarkerWithFileName(

@@ -16,10 +16,10 @@
 
 package dev.arunkumar.scabbard.coffee;
 
+import javax.inject.Singleton;
+
 import dagger.Binds;
 import dagger.Module;
-
-import javax.inject.Singleton;
 
 @Module(includes = PumpModule.class)
 abstract class DripCoffeeModule {

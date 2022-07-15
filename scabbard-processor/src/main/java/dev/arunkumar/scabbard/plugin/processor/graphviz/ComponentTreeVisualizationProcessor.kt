@@ -35,7 +35,8 @@ import javax.inject.Inject
 import javax.lang.model.element.TypeElement
 
 /**
- * A [BindingGraphProcessor] that generates image of component hierarchy.
+ * A [BindingGraphProcessor] that generates image of component
+ * hierarchy.
  */
 @Suppress("UnstableApiUsage")
 @VisitGraphScope
@@ -90,7 +91,9 @@ constructor(
   }
 
   /**
-   * Constructs a component tree from `BindingGraph`. For example consider graph like this:
+   * Constructs a component tree from `BindingGraph`. For example
+   * consider graph like this:
+   *
    * ```
    *                   +------+
    *                   | Root |
@@ -105,13 +108,17 @@ constructor(
    *                        |Subcomponent C |
    *                        +---------------+
    * ```
-   * This information of component relationships is already present via `componentPath`s in each `ComponentNode` i.e,
-   * `componentPath.components` will give ordered list representing the hierarchy. For example, for the above component,
-   *  * Root
-   *  * Root -> Subcomponent A
-   *  * Root -> Subcomponent A -> Subcomponent C
    *
-   *  From such ordered lists, this function constructs a [Graph] instance and returns it.
+   * This information of component relationships is already
+   * present via `componentPath`s in each `ComponentNode` i.e,
+   * `componentPath.components` will give ordered list representing the
+   * hierarchy. For example, for the above component,
+   * * Root
+   * * Root -> Subcomponent A
+   * * Root -> Subcomponent A -> Subcomponent C
+   *
+   *   From such ordered lists, this function constructs a [Graph]
+   *   instance and returns it.
    */
   @ExperimentalStdlibApi
   private fun constructComponentTree(): Graph<BindingGraph.ComponentNode> {
@@ -125,7 +132,8 @@ constructor(
       .expectedNodeCount(componentNodes.size)
       .build()
 
-    val componentNodeTypeCache = componentNodes.associateBy { it.componentPath().currentComponent() }
+    val componentNodeTypeCache =
+      componentNodes.associateBy { it.componentPath().currentComponent() }
 
     componentNodes
       .map { it.componentPath().components() }

@@ -20,8 +20,8 @@ import com.intellij.execution.filters.Filter
 import com.intellij.openapi.project.Project
 
 /**
- * [Filter] to create links to Dagger component's full dependency graph by parsing Dagger's
- * MissingBinding error on the console.
+ * [Filter] to create links to Dagger component's full dependency graph
+ * by parsing Dagger's MissingBinding error on the console.
  */
 class MissingBindingFilter(
   private val project: Project,

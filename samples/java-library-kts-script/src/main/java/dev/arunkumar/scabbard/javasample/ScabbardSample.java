@@ -16,9 +16,9 @@
 
 package dev.arunkumar.scabbard.javasample;
 
-import dagger.Component;
-
 import javax.inject.Inject;
+
+import dagger.Component;
 
 public class ScabbardSample {
 

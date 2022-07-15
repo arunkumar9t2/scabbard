@@ -43,9 +43,7 @@ internal val DEFAULT_DAGGER_GRAPH_FILES = listOf(
   "%s.svg",
 )
 
-/**
- * All known scabbard processor generated files.
- */
+/** All known scabbard processor generated files. */
 internal val GENERATED_DAGGER_FILES = (
   DEFAULT_DAGGER_GRAPH_FILES +
     COMPONENT_HIERARCHY_GRAPH_FILES +
@@ -63,11 +61,14 @@ private fun String.sanitize(format: String): String {
 }
 
 /**
- * Searches the file system using `FilenameIndex` and returns all matching formats in `GENERATED_DAGGER_FILES`.
+ * Searches the file system using `FilenameIndex` and returns all
+ * matching formats in `GENERATED_DAGGER_FILES`.
  *
  * @param project IntelliJ Project
- * @param componentFqcn The fully qualified class name of Dagger component for which the files should be searched.
- * @param formats The list of the fill extension format that should be searched. Default `GENERATED_DAGGER_FILES`.
+ * @param componentFqcn The fully qualified class name of Dagger
+ *     component for which the files should be searched.
+ * @param formats The list of the fill extension format that should be
+ *     searched. Default `GENERATED_DAGGER_FILES`.
  */
 internal fun searchGeneratedDaggerFiles(
   project: Project,

@@ -39,12 +39,14 @@ internal const val DAGGER_HILT_ANDROID_COMPILER = "hilt-android-compiler"
 internal const val DAGGER_HILT_COMPILER = "hilt-compiler"
 
 /**
- * @return `true` if the [Dependency] is Scabbard's annotation processor dependency
+ * @return `true` if the [Dependency] is Scabbard's annotation processor
+ *     dependency
  */
 internal fun Dependency.isScabbardDependency() = group == SCABBARD_GROUP && name == SCABBARD_NAME
 
 /**
- * @return `true` if the [Dependency] is Dagger's main annotation processor dependency or hilt's compiler dependency
+ * @return `true` if the [Dependency] is Dagger's main annotation
+ *     processor dependency or hilt's compiler dependency
  */
 internal fun Dependency.isDaggerCompilerDependency(): Boolean {
   return group == DAGGER_GROUP && (
@@ -60,11 +62,11 @@ internal fun configName(isKapt: Boolean) = when {
 }
 
 /**
- * Removes the Scabbard annotation processor dependency from this project. [isKapt] controls which
- * config to remove from.
+ * Removes the Scabbard annotation processor dependency from this
+ * project. [isKapt] controls which config to remove from.
  *
- * @param isKapt when true the dependency is removed from `kapt`, if not it is removed from
- * `annotationProcessor`
+ * @param isKapt when true the dependency is removed from `kapt`, if not
+ *     it is removed from `annotationProcessor`
  */
 private fun Project.removeScabbard(isKapt: Boolean = false) {
   configurations.findByName(configName(isKapt))?.withDependencies {
@@ -75,11 +77,12 @@ private fun Project.removeScabbard(isKapt: Boolean = false) {
 }
 
 /**
- * Add scabbard processor dependency to the project in either `annotationProcessor` or `kapt`
- * configuration as determined by [isKapt]
+ * Add scabbard processor dependency to the project in either
+ * `annotationProcessor` or `kapt` configuration as determined by
+ * [isKapt]
  *
- * The dependency is added only if the configuration itself is already available, if not it is not
- * added.
+ * The dependency is added only if the configuration itself is already
+ * available, if not it is not added.
  */
 private fun Project.addScabbard(isKapt: Boolean = false) {
   val configName = configName(isKapt)
@@ -92,18 +95,23 @@ private fun Project.addScabbard(isKapt: Boolean = false) {
 }
 
 /**
- * Responsible for adding Scabbard's annotation processor to the Project based on project properties
- * such as if it is as `java`, `kotlin`, `android` or a mixed project.
+ * Responsible for adding Scabbard's annotation processor to the Project
+ * based on project properties such as if it is as `java`, `kotlin`,
+ * `android` or a mixed project.
  *
- * The logic relies on callback's from Gradle's [PluginManager] API to determine the course of action
- * to avoid reliance on plugin application order to determine other applied plugins. Relying on plugin
- * application order can have issue when using `subprojects` or `allprojects`
+ * The logic relies on callback's from Gradle's [PluginManager] API
+ * to determine the course of action to avoid reliance on plugin
+ * application order to determine other applied plugins. Relying on
+ * plugin application order can have issue when using `subprojects` or
+ * `allprojects`
  *
- * The dependency is added without forcing any resolution of other dependencies.
+ * The dependency is added without forcing any resolution of other
+ * dependencies.
  *
- * @param enabled control whether the processor to be added to this project. If `false` any dependency
- * on Scabbard's annotation processor will be removed from this project. Even if it was not added by
- * this plugin.
+ * @param enabled control whether the processor to be added to this
+ *     project. If `false` any dependency on Scabbard's
+ *     annotation processor will be removed from this
+ *     project. Even if it was not added by this plugin.
  */
 internal fun Project.manageScabbardProcessor(enabled: Boolean) {
   if (enabled) {

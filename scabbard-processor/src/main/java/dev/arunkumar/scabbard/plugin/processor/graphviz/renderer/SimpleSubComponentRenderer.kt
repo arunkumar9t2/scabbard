@@ -21,8 +21,10 @@ import dev.arunkumar.dot.dsl.DotGraphBuilder
 import dev.arunkumar.scabbard.plugin.parser.name
 
 /**
- * A renderer for all subcomponents that simply adds a Node with customized scope colors. This renderer does not expand
- * the subcomponent i.e does not render any nodes present inside the subcomponent.
+ * A renderer for all subcomponents that simply adds a Node with
+ * customized scope colors. This renderer does not expand the
+ * subcomponent i.e does not render any nodes present inside the
+ * subcomponent.
  */
 class SimpleSubComponentRenderer(
   override val renderingContext: RenderingContext

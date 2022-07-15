@@ -45,7 +45,8 @@ interface RenderingContext {
   fun nodeId(node: Node): String
 
   /**
-   * @return `true` if both `source` and `target` were already rendered in current context.
+   * @return `true` if both `source` and `target` were already rendered
+   *     in current context.
    */
   fun validInContext(source: Node, target: Node): Boolean
 
@@ -57,9 +58,7 @@ interface RenderingContext {
 
   fun createRootDotGraphBuilder(currentComponentPath: ComponentPath): DotGraphBuilder
 
-  /**
-   * The default attributes for root graph.
-   */
+  /** The default attributes for root graph. */
   fun DotGraphBuilder.defaultGraphAttributes(currentComponentPath: ComponentPath)
 }
 
@@ -86,15 +85,17 @@ constructor(
   override fun color(binding: Binding) = scopeColor(binding.scopeName() ?: "")
 
   /**
-   * Cache of `id` generated for Nodes rendered so far. This is essential to identify nodes on graph for further mutation
-   * operations like adding edges or applying styling.
+   * Cache of `id` generated for Nodes rendered so far. This
+   * is essential to identify nodes on graph for further
+   * mutation operations like adding edges or applying styling.
    */
   private val nodeIdCache = mutableMapOf<Node, String>()
 
   override fun nodeId(node: Node) = nodeIdCache.getOrPut(node) { UUID.randomUUID().toString() }
 
   /**
-   * @return `true` if both `source` and `target` has been already rendered in current context.
+   * @return `true` if both `source` and `target` has been already
+   *     rendered in current context.
    */
   override fun validInContext(source: Node, target: Node): Boolean {
     return nodeIdCache.containsKey(source) && nodeIdCache.containsKey(target)
@@ -132,7 +133,8 @@ constructor(
       }
       is BindingGraph.ComponentNode -> {
         val name = typeNameExtractor.extractName(componentPath().currentComponent().asType())
-        val scopeName = scopes().takeIf { it.isNotEmpty() }?.joinToString(separator = "|") { it.name }
+        val scopeName =
+          scopes().takeIf { it.isNotEmpty() }?.joinToString(separator = "|") { it.name }
         buildLabel(name = name, scopeName = scopeName)
       }
       else -> toString()
@@ -153,9 +155,7 @@ constructor(
     }
   }
 
-  /**
-   * The default attributes for root graph.
-   */
+  /** The default attributes for root graph. */
   override fun DotGraphBuilder.defaultGraphAttributes(currentComponentPath: ComponentPath) {
     graphAttributes {
       "rankdir" `=` "LR"

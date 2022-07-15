@@ -14,12 +14,16 @@ class HiltComponentNamesTest {
   @Test
   fun `test hilt component path do not contain HiltComponents suffix`() {
     // View with the fragment is the leaf component so it should have all components
-    val fragmentWithViewDot = generatedDot<HiltSampleApp_HiltComponents.ViewWithFragmentC>(sourceSet = SOURCE_SET)
+    val fragmentWithViewDot = generatedDot<HiltSampleApp_HiltComponents.ViewWithFragmentC>(
+      sourceSet = SOURCE_SET
+    )
     assertTrue(fragmentWithViewDot.contains("SingletonC → ActivityRetainedC → ActivityC → FragmentC → ViewWithFragmentC"))
   }
 
   fun `test binding graph nodes do not contain HiltComponents suffix`() {
-    val singletonCDot = generatedDot<HiltSampleApp_HiltComponents.SingletonC>(sourceSet = SOURCE_SET)
+    val singletonCDot = generatedDot<HiltSampleApp_HiltComponents.SingletonC>(
+      sourceSet = SOURCE_SET
+    )
     assertTrue(singletonCDot.contains("label=\"HiltCustomComponent.Builder\""))
     assertTrue(singletonCDot.contains("label=\"ActivityRetainedC.Builder"))
     assertTrue(singletonCDot.contains("label=\"ServiceC.Builder"))

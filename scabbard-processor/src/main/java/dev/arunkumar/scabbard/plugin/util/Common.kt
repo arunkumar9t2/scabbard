@@ -20,8 +20,9 @@ import dev.arunkumar.scabbard.plugin.options.ScabbardOptions
 import dev.arunkumar.scabbard.plugin.processor.BindingGraphProcessor
 
 /**
- * Function that executes the actual processing operations usually by a [BindingGraphProcessor]. The
- * execution of the [block] is customized by [scabbardOptions]
+ * Function that executes the actual processing operations usually by a
+ * [BindingGraphProcessor]. The execution of the [block] is customized
+ * by [scabbardOptions]
  */
 inline fun processingBlock(
   scabbardOptions: ScabbardOptions = ScabbardOptions(),
@@ -29,7 +30,8 @@ inline fun processingBlock(
 ) = scabbardOptions.exceptionHandler(block)
 
 /**
- * Wraps the given [block] in a `try catch` block and handles exception based on [ScabbardOptions.failOnError]
+ * Wraps the given [block] in a `try catch` block and handles exception
+ * based on [ScabbardOptions.failOnError]
  *
  * @see ScabbardOptions.handleException
  */
@@ -42,7 +44,8 @@ inline fun ScabbardOptions.exceptionHandler(block: () -> Unit) {
 }
 
 /**
- * Extensions to handle exceptions based on options specified by the user.
+ * Extensions to handle exceptions based on options specified by the
+ * user.
  */
 @Suppress("NOTHING_TO_INLINE")
 inline fun ScabbardOptions.handleException(exception: Exception) {

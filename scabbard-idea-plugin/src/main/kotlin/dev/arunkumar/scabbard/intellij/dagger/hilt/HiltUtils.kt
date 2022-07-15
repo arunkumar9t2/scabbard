@@ -61,12 +61,14 @@ internal fun PsiShortNamesCache.findHiltComponentByClassName(
 }
 
 /**
- * Utility function to find the Hilt generated component of the given `@AndroidEntryPoint` or `@HiltAndroidApp` annotated
- * class.
+ * Utility function to find the Hilt generated component of the given
+ * `@AndroidEntryPoint` or `@HiltAndroidApp` annotated class.
  *
- * Note: This only finds the standard in-built hilt components and does not find custom hilt components.s
+ * Note: This only finds the standard in-built hilt components and does
+ * not find custom hilt components.s
  *
- * @param T The class for which the generated component needs to be found. It is either `PsiClass` or `KtClassOrObject`
+ * @param T The class for which the generated component needs to be
+ *     found. It is either `PsiClass` or `KtClassOrObject`
  * @param hasAnnotation Check if `T` has the given annotation
  * @param isSubClassOf Check if `T` is a subclass of given class name.
  */
@@ -79,7 +81,8 @@ internal fun <T : PsiElement> findGeneratedStandardHiltComponent(
   val shortNamesCache = PsiShortNamesCache.getInstance(project)
 
   /**
-   * Find the `PsiClass` of the `HiltComponent` using the `shortNamesCache`.
+   * Find the `PsiClass` of the `HiltComponent` using the
+   * `shortNamesCache`.
    */
   fun HiltComponent.findClass(): PsiClass? {
     return shortNamesCache.findHiltComponentByClassName(project, name)
@@ -107,8 +110,8 @@ internal fun <T : PsiElement> findGeneratedStandardHiltComponent(
 }
 
 /**
- * Given a class annotated with `@DefineComponent` or `EntryPoint` will try to find the generated hilt component and
- * return it as `PsiClass`.
+ * Given a class annotated with `@DefineComponent` or `EntryPoint` will
+ * try to find the generated hilt component and return it as `PsiClass`.
  */
 internal fun findGeneratedCustomHiltComponent(customComponentDefinition: PsiClass): PsiClass? {
   return ClassInheritorsSearch.search(customComponentDefinition)

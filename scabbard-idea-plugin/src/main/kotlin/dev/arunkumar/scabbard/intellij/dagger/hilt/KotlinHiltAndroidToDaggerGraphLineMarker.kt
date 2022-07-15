@@ -29,9 +29,7 @@ import org.jetbrains.kotlin.psi.KtClassOrObject
 
 class KotlinHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
-  /***
-   * @return true when the given class has Hilt Annotations.
-   */
+  /** @return true when the given class has Hilt Annotations. */
   private fun KtClassOrObject.hasHiltAnnotations(): Boolean {
     return hasAnnotation(DAGGER_HILT_ANDROID_ENTRY_POINT) || hasAnnotation(DAGGER_HILT_ANDROID_APP)
   }
@@ -43,7 +41,8 @@ class KotlinHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider()
   )
 
   /**
-   * @return `true` when the given `ktClassOrObject` is a subclass of `className`.
+   * @return `true` when the given `ktClassOrObject` is a subclass of
+   *     `className`.
    */
   private fun isSubClassOf(ktClassOrObject: KtClassOrObject, qualifiedClassName: String): Boolean {
     return ktClassOrObject.toPsiClass()?.superClass.isSubClassOf(qualifiedClassName)

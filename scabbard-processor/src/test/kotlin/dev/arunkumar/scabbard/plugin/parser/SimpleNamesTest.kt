@@ -71,9 +71,7 @@ class SimpleNamesTest {
     fun provideBooleanSet(): Set<Boolean> = emptySet()
   }
 
-  /**
-   * Contains _Contribute to mimix dagger.Android generated classes
-   */
+  /** Contains _Contribute to mimix dagger.Android generated classes */
   @Suppress("ClassName")
   @Module
   object Module_ContributeSomeActivity {

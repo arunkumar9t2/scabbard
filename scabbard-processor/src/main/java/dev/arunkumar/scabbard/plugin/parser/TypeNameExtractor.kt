@@ -37,14 +37,12 @@ interface TypeNameExtractor {
   fun extractName(annotationMirror: AnnotationMirror): String
 
   /**
-   * @return the component hierarchy in string representation. For example:
-   * "AppComponent → SubComponent"
+   * @return the component hierarchy in string representation. For
+   *     example: "AppComponent → SubComponent"
    */
   fun extractName(componentPath: ComponentPath): String
 
-  /**
-   * @return the multibinding contribution info as string
-   */
+  /** @return the multibinding contribution info as string */
   fun extractName(identifier: Key.MultibindingContributionIdentifier): String
 }
 
@@ -65,8 +63,9 @@ object TypeNameExtractorModule {
 }
 
 /**
- * A [TypeNameExtractor] implementation that returns the fully qualified name of the type. For other
- * types, the implementation simply calls [toString]
+ * A [TypeNameExtractor] implementation that returns the fully qualified
+ * name of the type. For other types, the implementation simply calls
+ * [toString]
  *
  * Example for [List] the result would be [java.util.List]
  */
@@ -81,7 +80,8 @@ class QualifiedTypeNameExtractor @Inject constructor() : TypeNameExtractor {
 }
 
 /**
- * A [TypeNameExtractor] implementation that returns the simple name of the type
+ * A [TypeNameExtractor] implementation that returns the simple name of
+ * the type
  */
 @Suppress("DEPRECATION")
 class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
@@ -108,7 +108,8 @@ class SimpleTypeNameExtractor @Inject constructor() : TypeNameExtractor {
   }
 
   /**
-   * Recursively traverses each type in the given [typeMirror] and calculates simple name.
+   * Recursively traverses each type in the given [typeMirror] and
+   * calculates simple name.
    *
    * Based on
    * [https://github.com/square/dagger/blob/master/compiler/src/main/java/dagger/internal/codegen/Util.java#L123]

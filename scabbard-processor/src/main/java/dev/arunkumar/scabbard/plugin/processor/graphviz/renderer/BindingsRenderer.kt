@@ -24,8 +24,8 @@ import dagger.model.BindingKind.MEMBERS_INJECTION
 import dev.arunkumar.dot.dsl.DotGraphBuilder
 
 /**
- * Renders the actual dependency graph nodes in the current context accounting for missing nodes, multibindings and
- * entry points.
+ * Renders the actual dependency graph nodes in the current context
+ * accounting for missing nodes, multibindings and entry points.
  */
 class BindingsRenderer(
   override val renderingContext: RenderingContext
@@ -33,7 +33,8 @@ class BindingsRenderer(
 
   private fun DotGraphBuilder.missingBinding(missingBinding: MissingBinding) {
     missingBinding.id {
-      "label" `=` missingBinding.key().toString() // TODO(arun) Update label calculation for MissingBinding
+      "label" `=` missingBinding.key()
+        .toString() // TODO(arun) Update label calculation for MissingBinding
       "color" `=` "firebrick1"
     }
   }

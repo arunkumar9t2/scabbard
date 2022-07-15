@@ -24,9 +24,12 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 /**
- * A gradle plugin that configures the project for Dagger 2 graph visualization generation during build.
+ * A gradle plugin that configures the project for Dagger 2 graph
+ * visualization generation during build.
  *
- * Usage: The plugin can be configured by adding the following extension block.
+ * Usage: The plugin can be configured by adding the following extension
+ * block.
+ *
  * ```
  * scabbard {
  *    enabled = true
@@ -34,16 +37,20 @@ import org.gradle.api.Project
  * ```
  *
  * How it works:
- * - It works by adding Scabbard's annotation processor to your project's dependencies in either
- * `annotationProcessor` or `kapt` configuration based on the project type.
- * - Enables configuring the annotation processor behavior by delegating user defined values received
- * via [ScabbardPluginExtension] to [JavaCompile] or [KotlinCompile] tasks
- * - At the moment, the plugin does not add any new tasks to the project.
+ * - It works by adding Scabbard's annotation processor to your
+ *   project's dependencies in either `annotationProcessor`
+ *   or `kapt` configuration based on the project type.
+ * - Enables configuring the annotation processor behavior by delegating
+ *   user defined values received via [ScabbardPluginExtension]
+ *   to [JavaCompile] or [KotlinCompile] tasks
+ * - At the moment, the plugin does not add any new tasks to the
+ *   project.
  *
- * Most of the work happens lazily by confirming to task configuration avoidance.
+ * Most of the work happens lazily by confirming to task configuration
+ * avoidance.
  *
- * Results:
- * After a successful build, the generated dagger visualization images should be present in
+ * Results: After a successful build, the generated dagger visualization
+ * images should be present in
  * - Java : `build/classes/java/$sourceSet/scabbard`
  * - Kotlin: `build/tmp/kapt3/classes/$sourceSet/scabbard`
  */
@@ -62,8 +69,8 @@ class ScabbardGradlePlugin : Plugin<Project> {
   }
 
   /**
-   * Callback to configure Scabbard's annotation processor dependency when gradle configures
-   * [ScabbardPluginExtension]
+   * Callback to configure Scabbard's annotation processor dependency
+   * when gradle configures [ScabbardPluginExtension]
    */
   private fun Project.onScabbardStatusChanged() {
     setupProjects {
@@ -72,8 +79,8 @@ class ScabbardGradlePlugin : Plugin<Project> {
   }
 
   /**
-   * Applies the given [compilerProperty] to all projects defined by [setupProjects] based on
-   * whether the plugin is enabled or not.
+   * Applies the given [compilerProperty] to all projects defined by
+   * [setupProjects] based on whether the plugin is enabled or not.
    */
   private fun onCompilerPropertySet(compilerProperty: CompilerProperty<*>) {
     scabbardPluginExtension.ifEnabled {
@@ -84,8 +91,9 @@ class ScabbardGradlePlugin : Plugin<Project> {
   }
 
   /**
-   * Simple extension to handle setting up different project modules based on where the plugin is applied.
-   * If it is a root project, all the subprojects are automatically configured.
+   * Simple extension to handle setting up different project modules
+   * based on where the plugin is applied. If it is a root project, all
+   * the subprojects are automatically configured.
    */
   private fun Project.setupProjects(block: Project.() -> Unit) {
     block(this)
