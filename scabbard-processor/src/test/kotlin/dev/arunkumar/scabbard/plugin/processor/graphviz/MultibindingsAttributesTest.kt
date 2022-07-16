@@ -49,7 +49,7 @@ class MultibindingsAttributesTest {
 
   @Test
   fun `assert multibindings in dependency graph are rendered in different cluster`() {
-    val dependencyGraph = generatedGraph.graphs().firstOrNull() { it.name() == "Dependency Graph" }
+    val dependencyGraph = generatedGraph.graphs().firstOrNull { it.name() == "Dependency Graph" }
     assertThat(dependencyGraph).isNotNull()
     val multibindingsCluster = dependencyGraph!!.graphs().firstOrNull()
     assertThat(multibindingsCluster).isNotNull()
@@ -58,7 +58,7 @@ class MultibindingsAttributesTest {
   @Test
   fun `assert multibindings nodes have correct attributes`() {
     val multibindingsCluster = generatedGraph.graphs()
-      .firstOrNull() { it.name() == "Dependency Graph" }
+      .firstOrNull { it.name() == "Dependency Graph" }
       ?.graphs()
       ?.firstOrNull()
 

@@ -56,7 +56,7 @@ class DependencyGraphTest {
   fun `assert dependency graph nodes have default attributes applied`() {
     val dependencyGraph = simpleComponentGraph
       .graphs()
-      .firstOrNull() { it.name() == "Dependency Graph" }
+      .firstOrNull { it.name() == "Dependency Graph" }
     val dependencyGraphNodes = dependencyGraph!!.nodes()
     assertThat(dependencyGraphNodes).hasSize(2)
     assertThat(simpleComponentDot).contains(" graph [labeljust=\"l\", label=\"Dependency Graph\"]")

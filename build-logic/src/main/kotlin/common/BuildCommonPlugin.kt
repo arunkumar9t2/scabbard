@@ -78,15 +78,18 @@ private fun Project.configureSpotless() {
   apply<SpotlessPlugin>()
   configure<SpotlessExtension> {
     kotlin {
+      target("**/*.kt")
       targetExclude("$buildDir/**/*.kt", "bin/**/*.kt")
 
-      ktlint(deps.version("ktlint")).userData(
-        mapOf(
-          "indent_size" to "2",
-          "continuation_indent_size" to "2",
-          "disabled_rules" to "no-wildcard-imports"
+      ktlint(deps.version("ktlint"))
+        .setUseExperimental(true)
+        .editorConfigOverride(
+          mapOf(
+            "indent_size" to "2",
+            "continuation_indent_size" to "2",
+            "disabled_rules" to "no-wildcard-imports,filename",
+          )
         )
-      )
     }
   }
 }

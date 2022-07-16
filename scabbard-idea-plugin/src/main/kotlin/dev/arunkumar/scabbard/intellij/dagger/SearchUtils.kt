@@ -35,12 +35,12 @@ internal val FULL_BINDING_GRAPH_FILES = listOf(
 
 internal val COMPONENT_HIERARCHY_GRAPH_FILES = listOf(
   "$TREE_GRAPH_FILE_NAME.png",
-  "$TREE_GRAPH_FILE_NAME.svg",
+  "$TREE_GRAPH_FILE_NAME.svg"
 )
 
 internal val DEFAULT_DAGGER_GRAPH_FILES = listOf(
   "%s.png",
-  "%s.svg",
+  "%s.svg"
 )
 
 /** All known scabbard processor generated files. */

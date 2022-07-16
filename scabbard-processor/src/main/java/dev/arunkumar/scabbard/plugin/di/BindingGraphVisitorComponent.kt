@@ -26,7 +26,7 @@ import dev.arunkumar.scabbard.plugin.processor.graphviz.GraphvizVisualizationMod
 @VisitGraphScope
 @Subcomponent(
   modules = [
-    GraphvizVisualizationModule::class,
+    GraphvizVisualizationModule::class
   ]
 )
 interface BindingGraphVisitorComponent {

@@ -45,7 +45,7 @@ class DefaultMissingBindingComponentExtractorTest {
     |  It is also requested at:
     |      dev.arunkumar.scabbard.di.ComplexMultiBinding(provisionBinding)
     |> Task :samples:android-kotlin:kaptDebugKotlin FAILED
-""".trimMargin()
+    """.trimMargin()
     val daggerComponents = consoleLog.applyTo(missingBindingComponentExtractor)
     Truth.assertThat(daggerComponents)
       .containsExactly(DaggerComponent(446, 458, "AppComponent"))
@@ -68,7 +68,7 @@ class DefaultMissingBindingComponentExtractorTest {
     |  It is also requested at:
     |      dev.arunkumar.scabbard.di.ComplexMultiBinding(provisionBinding)
     |> Task :samples:android-kotlin:kaptDebugKotlin FAILED
-""".trimMargin()
+    """.trimMargin()
     val daggerComponents = consoleLog.applyTo(missingBindingComponentExtractor)
     Truth.assertThat(daggerComponents)
       .containsExactly(DaggerComponent(446, 458, "AppComponent"))

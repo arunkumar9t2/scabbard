@@ -1,6 +1,6 @@
 [versions]
 compose = "1.2.0-rc02"
-ktlint = "0.41.0"
+ktlint = "0.46.1"
 dokka = "1.5.0"
 kotlin = "1.6.21"
 coroutines = "1.5.0"
@@ -21,7 +21,7 @@ compose-ui-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-toolingpreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 
-spotless = "com.diffplug.spotless:spotless-plugin-gradle:5.11.0"
+spotless = "com.diffplug.spotless:spotless-plugin-gradle:6.8.0"
 
 dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 nexus-publish = "io.github.gradle-nexus:publish-plugin:1.1.0"

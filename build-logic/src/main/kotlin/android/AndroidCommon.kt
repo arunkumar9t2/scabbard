@@ -23,6 +23,7 @@ import ANDROID_TARGET_SDK
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import gradle.deps
 import gradle.version
+import kt.kotlinCommon
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

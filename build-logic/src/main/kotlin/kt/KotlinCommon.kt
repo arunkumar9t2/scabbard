@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package kotlin
+package kt
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
