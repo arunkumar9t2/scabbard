@@ -20,14 +20,18 @@ import ANDROID_COMPILE_SDK
 import ANDROID_MIN_SDK
 import ANDROID_RELEASE_VARIANT
 import ANDROID_TARGET_SDK
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import gradle.deps
 import gradle.version
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.configure
 
 internal fun Project.androidCommon() {
   apply(plugin = "org.jetbrains.kotlin.android")
+
+  kotlinCommon()
 
   android {
     compileSdkVersion(ANDROID_COMPILE_SDK)
@@ -44,6 +48,13 @@ internal fun Project.androidCommon() {
       testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
       vectorDrawables {
         useSupportLibrary = true
+      }
+
+      configure<LibraryAndroidComponentsExtension> {
+        val release = selector().withBuildType("release")
+        beforeVariants(release) { variant ->
+          variant.enable = false
+        }
       }
     }
 
@@ -69,5 +80,10 @@ internal fun Project.androidCommon() {
     }
   }
 
-  kotlinCommon()
+  androidComponents {
+    val release = selector().withBuildType("release")
+    beforeVariants(release) { variant ->
+      variant.enable = false
+    }
+  }
 }

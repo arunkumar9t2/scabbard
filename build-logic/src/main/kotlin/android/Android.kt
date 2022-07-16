@@ -16,10 +16,21 @@
 
 package android
 
+import com.android.build.api.variant.AndroidComponentsExtension
+import com.android.build.api.variant.ApplicationAndroidComponentsExtension
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 
 public fun Project.android(builder: BaseExtension.() -> Unit) {
   configure(builder)
+}
+
+internal fun Project.androidComponents(
+  builder: AndroidComponentsExtension<*, *, *>.() -> Unit
+) {
+  configure<LibraryAndroidComponentsExtension> { builder(this) }
+  configure<ApplicationAndroidComponentsExtension> { builder(this) }
+  // TODO(arun) Add test and dynamic features?
 }
