@@ -27,7 +27,7 @@ ext {
       "constraintLayout"     : "2.0.4",
       "lifecycleViewmodelKtx": "2.3.1"
     ],
-    "kotlin"        : "1.5.10",
+    "kotlin"        : "1.6.21",
     "graphviz"      : "0.12.1",
     "gradleNexus"   : "1.1.0",
     "slf4jNop"      : "1.7.30",
@@ -44,7 +44,7 @@ ext {
     "robolectric"   : "4.3",
     "spotless"      : "5.11.0",
     "ktlint"        : "0.41.0",
-    "anvil"         : "2.3.2",
+    "anvil"         : "2.4.1-1-6",
     "dokka"         : "1.4.32"
   ]
 

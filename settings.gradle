@@ -13,18 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+pluginManagement {
+  includeBuild "build-logic"
+  repositories {
+    gradlePluginPortal()
+    google()
+    mavenCentral()
+  }
+  plugins {
+    // TODO Replace with version catalogs once plugins are supported ready
+    id "com.gradle.enterprise" version "3.6.3"
+  }
+}
 plugins {
-  id "com.gradle.enterprise" version "3.6.3"
+  id "com.gradle.enterprise"
 }
 
-def isCiServer = System.getenv().containsKey("CI")
-if (isCiServer) {
-  gradleEnterprise {
-    buildScan {
-      termsOfServiceUrl = "https://gradle.com/terms-of-service"
-      termsOfServiceAgree = "yes"
-      tag("CI")
-    }
+enableFeaturePreview("VERSION_CATALOGS")
+
+dependencyResolutionManagement {
+  // repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  defaultLibrariesExtensionName.set("deps")
+  repositories {
+    google()
+    mavenCentral()
   }
 }
 
