@@ -25,8 +25,6 @@ import gradle.version
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 internal fun Project.androidCommon() {
   apply(plugin = "org.jetbrains.kotlin.android")
@@ -71,17 +69,5 @@ internal fun Project.androidCommon() {
     }
   }
 
-  tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-      jvmTarget = "1.8"
-      freeCompilerArgs += listOf(
-        "-Xopt-in=kotlin.ExperimentalStdlibApi",
-        "-Xopt-in=kotlin.RequiresOptIn",
-        "-Xopt-in=kotlin.time.ExperimentalTime",
-        "-Xopt-in=kotlin.experimental.ExperimentalTypeInference",
-        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-        //"-Xexplicit-api=strict" // TODO Uncomment if strict API is needed
-      )
-    }
-  }
+  kotlinCommon()
 }

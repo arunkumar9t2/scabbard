@@ -35,7 +35,7 @@ public const val ANDROID_MIN_SDK: Int = 25
 public const val ANDROID_TARGET_SDK: Int = 30
 
 // TODO Update Android package name
-public const val ANDROID_PACKAGE_NAME: String = "dev.arunkumar.relic"
+public const val ANDROID_PACKAGE_NAME: String = "dev.arunkumar.scabbard"
 public const val ANDROID_RELEASE_VARIANT: String = "release"
 public const val ANDROID_DEBUG_VARIANT: String = "debug"
 public const val ANDROID_VERSION_CODE: Int = 1

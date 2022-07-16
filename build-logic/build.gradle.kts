@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 
 plugins {
   id("java-gradle-plugin")
@@ -21,10 +20,24 @@ plugins {
   id("org.jetbrains.kotlinx.binary-compatibility-validator")
 }
 
-kotlin {
-  explicitApi = ExplicitApiMode.Strict
+java {
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+  kotlinOptions {
+    jvmTarget = "1.8"
+    freeCompilerArgs += listOf(
+      "-Xopt-in=kotlin.ExperimentalStdlibApi",
+      "-Xopt-in=kotlin.RequiresOptIn",
+      "-Xopt-in=kotlin.time.ExperimentalTime",
+      "-Xopt-in=kotlin.experimental.ExperimentalTypeInference",
+      "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+      "-Xexplicit-api=strict"
+    )
+  }
+}
 gradlePlugin {
   plugins {
     create("androidLibrary") {
