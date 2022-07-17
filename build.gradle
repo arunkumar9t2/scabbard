@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 buildscript {
-  apply from: "constants.gradle"
   dependencies {
     classpath "dev.arunkumar:scabbard-gradle-plugin:${publishVersion}"
   }

@@ -20,8 +20,6 @@ plugins {
   id "org.gradle.kotlin.kotlin-dsl" version "2.1.7"
 }
 
-apply from: "../constants.gradle"
-
 group groupId
 version publishVersion
 
