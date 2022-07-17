@@ -1,6 +1,10 @@
 name: CI
 
-on: [ push,pull_request ]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 env:
   TERM: dumb
@@ -15,14 +19,15 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - uses: burrunan/gradle-cache-action@v1
+      - uses: burrunan/gradle-cache-action@v1.12
         name: lint
         with:
           debug: false
           job-id: lint
           read-only: ${{ github.ref != 'refs/heads/main' }}
           gradle-dependencies-cache-key: |
-            constants.gradle
+            gradle/libs.versions.toml
+            build-logic/**/Constants.kt
           arguments: spotlessCheck
   scabbard-test:
     runs-on: ubuntu-latest
@@ -40,7 +45,8 @@ jobs:
           job-id: scabbard-test
           read-only: ${{ github.ref != 'refs/heads/main' }}
           gradle-dependencies-cache-key: |
-            constants.gradle
+            gradle/libs.versions.toml
+            build-logic/**/Constants.kt
           arguments: test --scan
   scabbard-gradle-test:
     runs-on: ubuntu-latest
@@ -51,8 +57,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-
-      - uses: burrunan/gradle-cache-action@v1
+      - uses: burrunan/gradle-cache-action@v1.12
         name: scabbard-gradle-test
         with:
           debug: false
@@ -60,5 +65,6 @@ jobs:
           read-only: ${{ github.ref != 'refs/heads/main' }}
           build-root-directory: scabbard-gradle-plugin
           gradle-dependencies-cache-key: |
-            constants.gradle
+            gradle/libs.versions.toml
+            build-logic/**/Constants.kt
           arguments: check --scan
