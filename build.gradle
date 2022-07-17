@@ -15,15 +15,8 @@
  */
 buildscript {
   apply from: "constants.gradle"
-  repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()
-  }
   dependencies {
     classpath "dev.arunkumar:scabbard-gradle-plugin:${publishVersion}"
-    classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
-    classpath "com.squareup.anvil:gradle-plugin:${versions.anvil}"
   }
 }
 plugins {

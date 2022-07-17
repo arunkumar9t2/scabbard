@@ -21,7 +21,7 @@ apply plugin: "kotlin-kapt"
 apply plugin: scabbardGradlePlugin
 
 android {
-  compileSdkVersion 30
+  compileSdk 32
 
   defaultConfig {
     applicationId "dev.arunkumar.scabbard.sample"
@@ -56,16 +56,16 @@ apply from: "../../gradle/scabbard-local-processor.gradle"
 dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
 
-  implementation "androidx.appcompat:appcompat:${versions.androidx.appcompat}"
-  implementation "androidx.fragment:fragment-ktx:${versions.androidx.fragment.ktx}"
-  implementation "androidx.core:core-ktx:${versions.androidx.core}"
-  implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
+  implementation deps.androidx.appcompat
+  implementation deps.androidx.fragment
+  implementation deps.androidx.core
+  implementation deps.androidx.clayout
 
-  implementation "com.google.dagger:dagger:${versions.dagger}"
-  kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-  implementation "com.google.dagger:dagger-android:${versions.dagger}"
-  implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
-  kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+  implementation deps.dagger
+  kapt deps.dagger.compiler
+  implementation deps.dagger.android
+  implementation deps.dagger.android.support
+  kapt deps.dagger.android.processor
 
-  testImplementation "junit:junit:${versions.junit}"
+  testImplementation deps.junit
 }

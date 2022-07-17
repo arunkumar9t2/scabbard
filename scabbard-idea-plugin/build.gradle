@@ -39,8 +39,8 @@ tasks.withType(KotlinCompile).configureEach {
 }
 
 dependencies {
-  testImplementation "junit:junit:${versions.junit}"
-  testImplementation "com.google.truth:truth:${versions.truth}"
+  testImplementation deps.junit
+  testImplementation deps.truth
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/

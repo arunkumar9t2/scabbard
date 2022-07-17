@@ -71,4 +71,6 @@ dependencies {
   implementation(deps.dokka)
   implementation(deps.nexus.publish)
   implementation(deps.kotlinx.binaryvalidator)
+  implementation(deps.dagger.hilt.gradle)
+  implementation(deps.dagger.anvil)
 }
