@@ -24,6 +24,6 @@ apply from: "../gradle/publishing.gradle"
 dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
 
-  testImplementation "junit:junit:${versions.junit}"
-  testImplementation "com.google.truth:truth:${versions.truth}"
+  testImplementation deps.junit
+  testImplementation deps.truth
 }
