@@ -1,0 +1,37 @@
+name: Buildscript
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/build-logic.yml'
+      - 'build-logic/**'
+  pull_request:
+    paths:
+      - '.github/workflows/build-logic.yml'
+      - 'build-logic/**'
+env:
+  TERM: dumb
+
+jobs:
+  build-logic:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: burrunan/gradle-cache-action@v1.12
+        name: build-logic
+        with:
+          debug: false
+          job-id: build-logic
+          read-only: ${{ github.ref != 'refs/heads/main' }}
+          build-root-directory: build-logic
+          gradle-dependencies-cache-key: |
+            gradle/libs.versions.toml
+          arguments: build
