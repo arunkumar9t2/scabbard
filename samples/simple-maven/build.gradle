@@ -26,9 +26,9 @@ scabbard {
 apply from: "../../gradle/scabbard-local-processor.gradle"
 
 dependencies {
-  implementation "com.google.dagger:dagger:${versions.dagger}"
-  annotationProcessor "com.google.dagger:dagger-compiler:${versions.dagger}"
-  testImplementation "junit:junit:${versions.junit}"
+  implementation deps.dagger
+  annotationProcessor deps.dagger.compiler
+  testImplementation deps.junit
 }
 
 group = "dev.arunkumar.scabbard"

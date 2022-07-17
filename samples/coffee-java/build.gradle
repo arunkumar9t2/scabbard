@@ -35,10 +35,10 @@ scabbard {
 apply from: "../../gradle/scabbard-local-processor.gradle"
 
 dependencies {
-  implementation "com.google.dagger:dagger:${versions.dagger}"
-  annotationProcessor "com.google.dagger:dagger-compiler:${versions.dagger}"
+  implementation deps.dagger
+  annotationProcessor deps.dagger.compiler
+  implementation deps.guava
 
-  implementation "com.google.guava:guava:${versions.guava}"
-  testImplementation "junit:junit:${versions.junit}"
+  testImplementation deps.junit
 }
 

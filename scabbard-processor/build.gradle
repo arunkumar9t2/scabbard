@@ -28,29 +28,28 @@ sourceSets {
 }
 
 dependencies {
-  testImplementation "junit:junit:${versions.junit}"
-  testImplementation "com.google.testing.compile:compile-testing:${versions.compileTesting}"
-  testCompileOnly "com.google.auto.service:auto-service:${versions.autoService}"
-  kaptTest "com.google.auto.service:auto-service:${versions.autoService}"
-  kaptTest "com.google.dagger:dagger-compiler:${versions.dagger}"
-
+  testImplementation deps.junit
+  testImplementation deps.compile.testing
+  testCompileOnly deps.auto.service
+  kaptTest deps.auto.service
+  kaptTest deps.dagger.compiler
   testImplementation project(path: ":scabbard-processor-tests:common")
 
   implementation project(path: ":dot-dsl")
 
-  implementation "guru.nidi:graphviz-java:${versions.graphviz}"
-  implementation "org.slf4j:slf4j-nop:${versions.slf4jNop}"
+  implementation deps.graphviz
+  implementation deps.sl4j.noop
 
-  implementation "com.google.dagger:dagger-spi:${versions.dagger}"
-  implementation "com.google.dagger:dagger:${versions.dagger}"
-  kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+  implementation deps.dagger.spi
+  implementation deps.dagger
+  kapt deps.dagger.compiler
 
-  implementation "com.google.auto:auto-common:${versions.autoCommon}"
+  implementation deps.auto.common
 
-  compileOnly "com.google.auto.service:auto-service:${versions.autoService}"
-  kapt "com.google.auto.service:auto-service:${versions.autoService}"
+  compileOnly deps.auto.service
+  kapt deps.auto.service
 
-  implementation "com.google.guava:guava:${versions.guava}"
+  implementation deps.guava
 
-  implementation "com.github.kittinunf.result:result:${versions.result}"
+  implementation deps.result
 }

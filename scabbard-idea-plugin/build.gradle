@@ -22,6 +22,10 @@ plugins {
   id "org.jetbrains.kotlin.jvm"
 }
 
+repositories {
+  mavenCentral()
+}
+
 java {
   sourceCompatibility = JavaVersion.VERSION_1_8
   targetCompatibility = JavaVersion.VERSION_1_8
@@ -35,8 +39,8 @@ tasks.withType(KotlinCompile).configureEach {
 }
 
 dependencies {
-  testImplementation "junit:junit:${versions.junit}"
-  testImplementation "com.google.truth:truth:${versions.truth}"
+  testImplementation deps.junit
+  testImplementation deps.truth
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/

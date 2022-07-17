@@ -13,12 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+rootProject.name = "build-logic"
+
 pluginManagement {
-  includeBuild "../build-logic"
   repositories {
     gradlePluginPortal()
     google()
     mavenCentral()
+  }
+  plugins {
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.6.0"
   }
 }
 enableFeaturePreview("VERSION_CATALOGS")
@@ -35,5 +39,3 @@ dependencyResolutionManagement {
     }
   }
 }
-
-rootProject.name = "scabbard-gradle-plugin"

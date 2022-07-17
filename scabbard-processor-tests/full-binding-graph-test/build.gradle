@@ -33,19 +33,18 @@ sourceSets {
 }
 
 dependencies {
-  testImplementation "junit:junit:${versions.junit}"
-  testImplementation "com.google.testing.compile:compile-testing:${versions.compileTesting}"
-  testCompileOnly "com.google.auto.service:auto-service:${versions.autoService}"
-  kaptTest "com.google.auto.service:auto-service:${versions.autoService}"
-  kaptTest "com.google.dagger:dagger-compiler:${versions.dagger}"
-
   testImplementation project(path: ":scabbard-processor-tests:common")
-
-  implementation "guru.nidi:graphviz-java:${versions.graphviz}"
-
-  implementation "com.google.dagger:dagger-spi:${versions.dagger}"
-  implementation "com.google.dagger:dagger:${versions.dagger}"
-  kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-
+  testImplementation deps.junit
+  testImplementation deps.compile.testing
+  testCompileOnly deps.auto.service
+  kaptTest deps.auto.service
+  kaptTest deps.dagger.compiler
   kaptTest project(path: ":scabbard-processor")
+
+
+  implementation project(path: ":scabbard-processor")
+  implementation deps.graphviz
+  implementation deps.dagger.spi
+  implementation deps.dagger
+  kapt deps.dagger.compiler
 }

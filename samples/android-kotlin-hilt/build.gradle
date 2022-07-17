@@ -22,7 +22,7 @@ apply plugin: scabbardGradlePlugin
 apply plugin: "dagger.hilt.android.plugin"
 
 android {
-  compileSdkVersion 30
+  compileSdk 32
 
   defaultConfig {
     applicationId "dev.arunkumar.scabbard.sample.hilt"
@@ -57,21 +57,18 @@ apply from: "../../gradle/scabbard-local-processor.gradle"
 dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
 
-  implementation "androidx.appcompat:appcompat:${versions.androidx.appcompat}"
-  implementation "androidx.fragment:fragment-ktx:${versions.androidx.fragment.ktx}"
-  implementation "androidx.core:core-ktx:${versions.androidx.core}"
-  implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
+  implementation deps.androidx.appcompat
+  implementation deps.androidx.fragment
+  implementation deps.androidx.core
+  implementation deps.androidx.clayout
 
-  implementation "androidx.appcompat:appcompat:${versions.appcompat}"
-  implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
-  implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycleViewmodelKtx}"
+  implementation deps.dagger.hilt
+  kapt deps.dagger.hilt.android
 
-  implementation "com.google.dagger:hilt-android:${versions.hilt}"
-  kapt "com.google.dagger:hilt-android-compiler:${versions.hilt}"
-
-  testImplementation "junit:junit:${versions.junit}"
-  testImplementation "androidx.test:core:${versions.androidx.test}"
-  testImplementation "org.robolectric:robolectric:${versions.robolectric}"
+  testImplementation(deps.junit)
+  testImplementation(deps.kotlin.test)
+  testImplementation(deps.kotlinx.coroutines.test)
+  testImplementation(deps.robolectric)
   testImplementation project(path: ":scabbard-processor-tests:common")
   kaptTest project(path: ":scabbard-processor")
 }

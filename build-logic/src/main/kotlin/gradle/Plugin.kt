@@ -13,27 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
-  includeBuild "../build-logic"
-  repositories {
-    gradlePluginPortal()
-    google()
-    mavenCentral()
-  }
-}
-enableFeaturePreview("VERSION_CATALOGS")
 
-dependencyResolutionManagement {
-  repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()
-  }
-  versionCatalogs {
-    create("deps") {
-      from(files("../gradle/libs.versions.toml"))
-    }
-  }
-}
+package gradle
 
-rootProject.name = "scabbard-gradle-plugin"
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+
+public open class ConfigurablePlugin(
+  private val configuration: Project.() -> Unit
+) : Plugin<Project> {
+  override fun apply(project: Project): Unit = configuration(project)
+}

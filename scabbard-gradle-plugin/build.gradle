@@ -17,7 +17,7 @@
 plugins {
   id "java-gradle-plugin"
   id "com.gradle.plugin-publish" version "0.14.0"
-  id "org.gradle.kotlin.kotlin-dsl" version "2.1.4"
+  id "org.gradle.kotlin.kotlin-dsl" version "2.1.7"
 }
 
 apply from: "../constants.gradle"
@@ -32,11 +32,11 @@ repositories {
 
 dependencies {
   implementation platform("org.jetbrains.kotlin:kotlin-bom")
-  implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-  compileOnly "com.android.tools.build:gradle:${versions.agp}"
+  implementation deps.kotlin
+  compileOnly deps.agp
 
-  testImplementation "junit:junit:${versions.junit}"
-  testImplementation "com.google.truth:truth:${versions.truth}"
+  testImplementation deps.junit
+  testImplementation deps.truth
   testImplementation gradleTestKit()
 }
 

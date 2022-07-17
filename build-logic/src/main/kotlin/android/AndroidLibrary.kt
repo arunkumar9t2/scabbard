@@ -13,27 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
-  includeBuild "../build-logic"
-  repositories {
-    gradlePluginPortal()
-    google()
-    mavenCentral()
-  }
-}
-enableFeaturePreview("VERSION_CATALOGS")
 
-dependencyResolutionManagement {
-  repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()
-  }
-  versionCatalogs {
-    create("deps") {
-      from(files("../gradle/libs.versions.toml"))
-    }
-  }
-}
+package android
 
-rootProject.name = "scabbard-gradle-plugin"
+import gradle.ConfigurablePlugin
+import org.gradle.kotlin.dsl.apply
+
+public class AndroidLibrary : ConfigurablePlugin({
+  apply(plugin = "com.android.library")
+
+  androidCommon()
+})

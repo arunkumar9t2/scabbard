@@ -13,35 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile
-
 buildscript {
   apply from: "constants.gradle"
-  repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()
-  }
   dependencies {
-    classpath "com.android.tools.build:gradle:${versions.agp}"
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     classpath "dev.arunkumar:scabbard-gradle-plugin:${publishVersion}"
-    classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
-    classpath "com.diffplug.spotless:spotless-plugin-gradle:${versions.spotless}"
-    classpath "com.squareup.anvil:gradle-plugin:${versions.anvil}"
-    classpath "io.github.gradle-nexus:publish-plugin:${versions.gradleNexus}"
-    classpath "org.jetbrains.dokka:dokka-gradle-plugin:${versions.dokka}"
   }
+}
+plugins {
+  id "build-common"
 }
 apply from: "gradle/local-properties.gradle"
 apply from: "gradle/publish-root.gradle"
 
 allprojects {
-  repositories {
-    google()
-    mavenCentral()
-  }
   group groupId
   version publishVersion
 
@@ -58,34 +42,12 @@ allprojects {
     task.targetCompatibility = JavaVersion.VERSION_1_8
   }
 
-  tasks.withType(KotlinJvmCompile).configureEach { task ->
-    task.kotlinOptions {
-      jvmTarget = "1.8"
-      freeCompilerArgs += ["-XXLanguage:+InlineClasses"]
-    }
-  }
-
   pluginManager.withPlugin("kotlin-kapt") {
     kapt {
       arguments {
         // TODO(arun) Ensure scabbard does not rely on @Component subclassing and remove this.
         arg("dagger.generatedClassExtendsComponent", "ENABLED")
       }
-    }
-  }
-
-  apply plugin: "com.diffplug.spotless"
-  spotless {
-    kotlin {
-      target "**/src/**/*.kt", "**/src/**/*.kt"
-      targetExclude("$buildDir/**/*.kt")
-      targetExclude("bin/**/*.kt")
-
-      ktlint(versions.ktlint).userData([
-        "indent_size"             : "2",
-        "continuation_indent_size": "2",
-        "disabled_rules"          : "no-wildcard-imports"
-      ])
     }
   }
 }

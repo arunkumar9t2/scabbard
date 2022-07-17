@@ -32,7 +32,7 @@ import javax.lang.model.util.Types
   modules = [
     OutputModule::class,
     ProcessingEnvModule::class,
-    TypeNameExtractorModule::class,
+    TypeNameExtractorModule::class
   ]
 )
 interface ScabbardComponent {
@@ -42,7 +42,7 @@ interface ScabbardComponent {
   @Component.Factory
   interface Factory {
     fun create(
-      processingEnvModule: ProcessingEnvModule,
+      processingEnvModule: ProcessingEnvModule
     ): ScabbardComponent
   }
 }
