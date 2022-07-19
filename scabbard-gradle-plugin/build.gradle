@@ -16,7 +16,7 @@
 
 plugins {
   id "java-gradle-plugin"
-  id "com.gradle.plugin-publish" version "0.14.0"
+  alias(deps.plugins.gradle.publish)
   id "org.gradle.kotlin.kotlin-dsl" version "2.1.7"
 }
 
