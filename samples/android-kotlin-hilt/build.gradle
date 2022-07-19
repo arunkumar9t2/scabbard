@@ -13,30 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-apply plugin: "com.android.application"
-apply plugin: "kotlin-android"
-apply plugin: "kotlin-android-extensions"
-apply plugin: "kotlin-kapt"
+plugins {
+  id "android-binary-plugin"
+  id "kotlin-kapt"
+}
 apply plugin: scabbardGradlePlugin
 apply plugin: "dagger.hilt.android.plugin"
 
 android {
-  compileSdk 32
-
   defaultConfig {
     applicationId "dev.arunkumar.scabbard.sample.hilt"
-    minSdkVersion 21
-    targetSdkVersion 30
-    versionCode 1
-    versionName "1.0"
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-  }
-
-  variantFilter { variant ->
-    if (variant.buildType.name == "release") {
-      variant.setIgnore(true)
-    }
   }
 }
 

@@ -23,8 +23,8 @@ plugins {
 apply(plugin = "scabbard.gradle")
 apply(from = "../../gradle/scabbard-local-processor.gradle")
 
-configure<ApplicationPluginConvention> {
-  mainClassName = "dev.arunkumar.scabbard.javasample.ScabbardSample"
+configure<JavaApplication> {
+  mainClass.set("dev.arunkumar.scabbard.javasample.ScabbardSample")
 }
 
 configure<ScabbardPluginExtension> {
@@ -36,7 +36,6 @@ configure<ScabbardPluginExtension> {
 }
 
 dependencies {
-  // TODO(arun) migrate to kts constants for versions
   implementation(deps.dagger)
   annotationProcessor(deps.dagger.compiler)
 }
