@@ -66,3 +66,6 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
 turbine = "app.cash.turbine:turbine:0.7.0"
 truth = "com.google.truth:truth:1.0"
+
+[plugins]
+gradle-publish = { id = "com.gradle.plugin-publish", version = "0.14.0" }

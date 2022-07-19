@@ -50,6 +50,9 @@ public class PublishingLibrary : ConfigurablePlugin({
   }
 
   val website = findProperty("website").toString()
+  val desc = if (description.isNullOrEmpty()) {
+    findProperty("description").toString()
+  } else description
 
   // Setup publishing
   afterEvaluate {
@@ -71,20 +74,18 @@ public class PublishingLibrary : ConfigurablePlugin({
 
           pom {
             name.set(project.name)
-            description.set(findProperty("description").toString())
+            description.set(desc)
             url.set(website)
 
             licenses {
               license {
                 name.set("Apache License, Version 2.0")
-                //TODO Update License URL
-                url.set("")
+                url.set("https://raw.githubusercontent.com/arunkumar9t2/scabbard/main/LICENSE")
               }
             }
 
             developers {
               developer {
-                //TODO Update developer details
                 id.set("arunkumar9t2")
                 name.set("Arunkumar")
                 email.set("hi@arunkumar.dev")
@@ -123,13 +124,12 @@ private fun Project.registerJavaDocsTask(): TaskProvider<Jar> {
 private fun Project.registerSourceJarTask(): TaskProvider<Jar> {
   val sourcesJar = "sourcesJar"
   val isAndroid = project.plugins.hasPlugin("com.android.library")
-  val android = extensions.getByType<BaseExtension>()
 
   return tasks.register<Jar>(sourcesJar) {
     archiveClassifier.set("sources")
     if (isAndroid) {
       from(project.provider {
-        android
+        extensions.getByType<BaseExtension>()
           .sourceSets
           .matching { it.name == "main" }
           .flatMap { it.java.srcDirs + (it.kotlin as AndroidSourceDirectorySet).srcDirs }

@@ -17,9 +17,9 @@
 plugins {
   id "java-library"
   id "org.jetbrains.kotlin.jvm"
+  id "publish"
 }
 description = "Build dot files easily with Kotlin"
-apply from: "../gradle/publishing.gradle"
 
 dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])

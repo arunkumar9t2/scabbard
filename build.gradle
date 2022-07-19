@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 buildscript {
-  apply from: "constants.gradle"
   dependencies {
     classpath "dev.arunkumar:scabbard-gradle-plugin:${publishVersion}"
   }
 }
 plugins {
   id "build-common"
+  id "publish-common"
 }
 apply from: "gradle/local-properties.gradle"
-apply from: "gradle/publish-root.gradle"
 
 allprojects {
   group groupId

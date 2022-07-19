@@ -18,9 +18,9 @@ plugins {
   id "java-library"
   id "org.jetbrains.kotlin.jvm"
   id "kotlin-kapt"
+  id "publish"
 }
 description = "Visualize Dagger 2 dependency graphs with ease"
-apply from: "../gradle/publishing.gradle"
 
 sourceSets {
   main.java.srcDirs("build/generated/source/kapt/main")
