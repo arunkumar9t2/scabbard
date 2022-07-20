@@ -54,12 +54,6 @@ class HomeActivity : DaggerAppCompatActivity() {
 
     // Setup simple subcomponent
     application.appComponent.simpleSubcomponentFactory().create()
-
-    // Setup dependant component
-    DaggerDependantComponent.factory()
-      .create(application)
-      .helloWorld()
-      .say()
   }
 
   @Module

@@ -20,7 +20,6 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class HelloWorld @Inject constructor(private val application: Application) {
   fun say() {
@@ -28,7 +27,6 @@ class HelloWorld @Inject constructor(private val application: Application) {
   }
 }
 
-@Singleton
 @Component
 interface DependantComponent {
   fun helloWorld(): HelloWorld

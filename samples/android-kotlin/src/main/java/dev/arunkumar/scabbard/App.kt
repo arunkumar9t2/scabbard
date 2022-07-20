@@ -23,7 +23,14 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class App : DaggerApplication() {
-  val appComponent by lazy { DaggerAppComponent.factory().build(this) }
+
+  val appComponent by lazy {
+    // Setup dependant component
+    val dependantComponent = DaggerDependantComponent.factory().create(this)
+    DaggerAppComponent
+      .factory()
+      .create(this, dependantComponent)
+  }
 
   @Inject
   lateinit var complexSingleton: ComplexSingleton
