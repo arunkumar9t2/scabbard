@@ -22,6 +22,6 @@ import org.gradle.kotlin.dsl.findByType
 /**
  * Configures a gradle extension if it exists and does nothing otherwise
  */
-internal inline fun <reified T : Any> Project.configureIfExist(builder: (T) -> Unit) {
-  extensions.findByType<T>()?.let(builder)
+internal inline fun <reified T : Any> Project.configureIfExist(builder: T.() -> Unit) {
+  extensions.findByType<T>()?.apply(builder)
 }

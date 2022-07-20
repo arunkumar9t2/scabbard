@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
-plugins {
-  id "kotlin-library-plugin"
-  id "publish"
-}
-description = "Build dot files easily with Kotlin"
+package javaplugin
 
-dependencies {
-  implementation fileTree(dir: "libs", include: ["*.jar"])
+import org.gradle.api.JavaVersion
+import org.gradle.api.Project
+import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.kotlin.dsl.configure
 
-  testImplementation deps.junit
-  testImplementation deps.truth
+public fun Project.javaCommon() {
+  configure<JavaPluginExtension> {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+  }
 }

@@ -17,7 +17,7 @@
 import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
 
 plugins {
-  `java-library`
+  id("kotlin-library-plugin")
   application
 }
 apply(plugin = "scabbard.gradle")

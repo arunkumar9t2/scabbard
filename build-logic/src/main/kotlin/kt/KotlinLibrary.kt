@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-plugins {
-  id "kotlin-library-plugin"
-  id "publish"
-}
-description = "Build dot files easily with Kotlin"
+package kt
 
-dependencies {
-  implementation fileTree(dir: "libs", include: ["*.jar"])
+import gradle.ConfigurablePlugin
+import javaplugin.JavaLibrary
+import org.gradle.kotlin.dsl.apply
 
-  testImplementation deps.junit
-  testImplementation deps.truth
-}
+public class KotlinLibrary : ConfigurablePlugin({
+  apply<JavaLibrary>()
+  apply(plugin = "org.jetbrains.kotlin.jvm")
+  kotlinCommon()
+  // TODD(arun) Make kapt configurable from extension
+})
