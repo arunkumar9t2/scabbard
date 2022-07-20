@@ -20,6 +20,7 @@ import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.BaseExtension
+import gradle.configureIfExist
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 
@@ -30,7 +31,7 @@ public fun Project.android(builder: BaseExtension.() -> Unit) {
 internal fun Project.androidComponents(
   builder: AndroidComponentsExtension<*, *, *>.() -> Unit
 ) {
-  configure<LibraryAndroidComponentsExtension> { builder(this) }
-  configure<ApplicationAndroidComponentsExtension> { builder(this) }
+  configureIfExist<LibraryAndroidComponentsExtension>(builder)
+  configureIfExist<ApplicationAndroidComponentsExtension>(builder)
   // TODO(arun) Add test and dynamic features?
 }

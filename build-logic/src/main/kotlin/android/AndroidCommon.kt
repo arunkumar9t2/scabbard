@@ -20,14 +20,12 @@ import ANDROID_COMPILE_SDK
 import ANDROID_MIN_SDK
 import ANDROID_RELEASE_VARIANT
 import ANDROID_TARGET_SDK
-import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import gradle.deps
 import gradle.version
 import kt.kotlinCommon
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.configure
 
 internal fun Project.androidCommon() {
   apply(plugin = "org.jetbrains.kotlin.android")
@@ -50,13 +48,6 @@ internal fun Project.androidCommon() {
       vectorDrawables {
         useSupportLibrary = true
       }
-
-      configure<LibraryAndroidComponentsExtension> {
-        val release = selector().withBuildType("release")
-        beforeVariants(release) { variant ->
-          variant.enable = false
-        }
-      }
     }
 
     buildTypes {
@@ -78,6 +69,10 @@ internal fun Project.androidCommon() {
         "META-INF/LGPL2.1",
         "META-INF/licenses/**"
       )
+    }
+
+    lintOptions {
+      isAbortOnError = false
     }
   }
 

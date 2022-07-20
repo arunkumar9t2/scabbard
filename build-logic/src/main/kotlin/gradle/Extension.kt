@@ -14,28 +14,14 @@
  * limitations under the License.
  */
 
-plugins {
-  id "java-library"
-  id "org.jetbrains.kotlin.jvm"
-  id "kotlin-kapt"
-}
-apply plugin: "com.squareup.anvil"
-apply plugin: scabbardGradlePlugin
+package gradle
 
-scabbard {
-  enabled true
-  failOnError true
-  fullBindingGraphValidation true
-  outputFormat "svg"
-}
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.findByType
 
-apply from: "../../gradle/scabbard-local-processor.gradle"
-
-sourceSets {
-  main.java.srcDir "build/generated/source/kapt"
-}
-
-dependencies {
-  implementation deps.dagger
-  kapt deps.dagger.compiler
+/**
+ * Configures a gradle extension if it exists and does nothing otherwise
+ */
+internal inline fun <reified T : Any> Project.configureIfExist(builder: (T) -> Unit) {
+  extensions.findByType<T>()?.let(builder)
 }
