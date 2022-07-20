@@ -14,15 +14,13 @@
  * limitations under the License.
  */
 
-plugins {
-  id "kotlin-library-plugin"
-  id "publish"
-}
-description = "Build dot files easily with Kotlin"
+package javaplugin
 
-dependencies {
-  implementation fileTree(dir: "libs", include: ["*.jar"])
+import gradle.ConfigurablePlugin
+import org.gradle.api.plugins.JavaPlugin
+import org.gradle.kotlin.dsl.apply
 
-  testImplementation deps.junit
-  testImplementation deps.truth
-}
+public class JavaLibrary : ConfigurablePlugin({
+  apply<JavaPlugin>()
+  javaCommon()
+})

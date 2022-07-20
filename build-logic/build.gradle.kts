@@ -40,6 +40,14 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 }
 gradlePlugin {
   plugins {
+    create("javaLibrary") {
+      id = "java-library-plugin"
+      implementationClass = "javaplugin.JavaLibrary"
+    }
+    create("kotlinLibrary") {
+      id = "kotlin-library-plugin"
+      implementationClass = "kt.KotlinLibrary"
+    }
     create("androidLibrary") {
       id = "android-library-plugin"
       implementationClass = "android.AndroidLibrary"
