@@ -38,7 +38,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - uses: burrunan/gradle-cache-action@v1
+      - uses: burrunan/gradle-cache-action@v1.12
         name: scabbard-test
         with:
           debug: false
