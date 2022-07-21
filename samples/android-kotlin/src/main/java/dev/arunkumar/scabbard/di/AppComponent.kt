@@ -38,7 +38,8 @@ import javax.inject.Singleton
 
     // Activities
     HomeActivity.Builder::class
-  ]
+  ],
+  dependencies = [DependantComponent::class]
 )
 interface AppComponent : AndroidInjector<App> {
 
@@ -46,8 +47,13 @@ interface AppComponent : AndroidInjector<App> {
 
   fun simpleSubcomponentFactory(): SimpleSubcomponent.Factory
 
+  fun helloWorld(): HelloWorld
+
   @Component.Factory
   interface Factory {
-    fun build(@BindsInstance application: Application): AppComponent
+    fun create(
+      @BindsInstance application: Application,
+      dependantComponent: DependantComponent
+    ): AppComponent
   }
 }
