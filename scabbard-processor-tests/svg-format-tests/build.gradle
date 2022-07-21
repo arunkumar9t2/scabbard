@@ -16,18 +16,16 @@
 
 plugins {
   id "kotlin-library-plugin"
-  id "kotlin-kapt"
+}
+
+kt {
+  kapt = true
 }
 
 kapt {
   arguments {
     arg("scabbard.outputFormat", "svg")
   }
-}
-
-sourceSets {
-  main.java.srcDirs("build/generated/source/kapt/main")
-  test.java.srcDirs("build/generated/source/kapt/test")
 }
 
 dependencies {

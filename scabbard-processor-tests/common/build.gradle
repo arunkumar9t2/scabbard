@@ -16,12 +16,10 @@
 
 plugins {
   id "kotlin-library-plugin"
-  id "kotlin-kapt"
 }
 
-sourceSets {
-  main.java.srcDirs("build/generated/source/kapt/main")
-  test.java.srcDirs("build/generated/source/kapt/test")
+kt {
+  kapt = true
 }
 
 dependencies {
