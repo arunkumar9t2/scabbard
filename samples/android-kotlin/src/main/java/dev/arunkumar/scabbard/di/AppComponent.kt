@@ -47,7 +47,7 @@ interface AppComponent : AndroidInjector<App> {
 
   fun simpleSubcomponentFactory(): SimpleSubcomponent.Factory
 
-  fun dependantComponent(): DependantComponent
+  fun helloWorld(): HelloWorld
 
   @Component.Factory
   interface Factory {
