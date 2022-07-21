@@ -16,7 +16,10 @@
 
 plugins {
   id "kotlin-library-plugin"
-  id "kotlin-kapt"
+}
+
+kt {
+  kapt = true
 }
 
 kapt {
@@ -26,10 +29,6 @@ kapt {
   }
 }
 
-sourceSets {
-  main.java.srcDirs("build/generated/source/kapt/main")
-  test.java.srcDirs("build/generated/source/kapt/test")
-}
 
 dependencies {
   testImplementation project(path: ":scabbard-processor-tests:common")

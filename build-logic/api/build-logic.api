@@ -44,6 +44,12 @@ public final class kt/KotlinLibrary : gradle/ConfigurablePlugin {
 	public fun <init> ()V
 }
 
+public class kt/KtExtension {
+	public fun <init> (Lorg/gradle/api/Action;)V
+	public fun getKapt ()Z
+	public fun setKapt (Z)V
+}
+
 public final class publish/PublishingCommon : gradle/ConfigurablePlugin {
 	public fun <init> ()V
 }

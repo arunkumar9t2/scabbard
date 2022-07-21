@@ -15,10 +15,13 @@
  */
 plugins {
   id "android-binary-plugin"
-  id "kotlin-kapt"
 }
 apply plugin: scabbardGradlePlugin
 apply plugin: "dagger.hilt.android.plugin"
+
+kt {
+  kapt = true
+}
 
 android {
   defaultConfig {

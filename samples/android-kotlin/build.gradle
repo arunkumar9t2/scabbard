@@ -15,7 +15,6 @@
  */
 plugins {
   id "android-binary-plugin"
-  id "kotlin-kapt"
 }
 apply plugin: scabbardGradlePlugin
 
@@ -23,6 +22,10 @@ android {
   defaultConfig {
     applicationId "dev.arunkumar.scabbard.sample"
   }
+}
+
+kt {
+  kapt = true
 }
 
 scabbard {

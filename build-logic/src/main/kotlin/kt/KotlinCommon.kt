@@ -16,7 +16,11 @@
 
 package kt
 
+import kotlinx.validation.sourceSets
+import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -34,4 +38,19 @@ internal fun Project.kotlinCommon() {
       )
     }
   }
+
+  val onKaptStatusChanged = Action<Boolean> {
+    if (this) {
+      apply(plugin = "org.jetbrains.kotlin.kapt")
+      sourceSets.configureEach {
+        if (listOf("main", "test").contains(name)) {
+          java {
+            srcDirs("build/generated/source/kapt/$name")
+          }
+        }
+      }
+    }
+  }
+
+  extensions.create<KtExtension>("kt", onKaptStatusChanged)
 }

@@ -16,14 +16,12 @@
 
 plugins {
   id "kotlin-library-plugin"
-  id "kotlin-kapt"
   id "publish"
 }
 description = "Visualize Dagger 2 dependency graphs with ease"
 
-sourceSets {
-  main.java.srcDirs("build/generated/source/kapt/main")
-  test.java.srcDirs("build/generated/source/kapt/test")
+kt {
+  kapt = true
 }
 
 dependencies {

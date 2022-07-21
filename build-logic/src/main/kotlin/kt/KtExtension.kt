@@ -14,27 +14,16 @@
  * limitations under the License.
  */
 
-plugins {
-  id "java-library"
-  id "kotlin-library-plugin"
-}
-apply plugin: "com.squareup.anvil"
-apply plugin: scabbardGradlePlugin
+package kt
 
-kt {
-  kapt = true
-}
+import org.gradle.api.Action
+import kotlin.properties.Delegates.observable
 
-scabbard {
-  enabled true
-  failOnError true
-  fullBindingGraphValidation true
-  outputFormat "svg"
-}
+public open class KtExtension(
+  private val onKaptChanged: Action<Boolean>,
+) {
 
-apply from: "../../gradle/scabbard-local-processor.gradle"
-
-dependencies {
-  implementation deps.dagger
-  kapt deps.dagger.compiler
+  public open var kapt: Boolean by observable(false) { _, _, newValue ->
+    onKaptChanged.execute(newValue)
+  }
 }

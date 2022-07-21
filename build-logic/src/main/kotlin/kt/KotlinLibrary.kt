@@ -24,5 +24,4 @@ public class KotlinLibrary : ConfigurablePlugin({
   apply<JavaLibrary>()
   apply(plugin = "org.jetbrains.kotlin.jvm")
   kotlinCommon()
-  // TODD(arun) Make kapt configurable from extension
 })
