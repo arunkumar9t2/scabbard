@@ -32,7 +32,7 @@ object OutputFormat {
     if (value == SVG || value == PNG) {
       return value
     } else {
-      throw IllegalArgumentException("Illegal output format: $value. Supported formats are 'png' or 'svg")
+      throw IllegalArgumentException("Illegal output format: $value. Supported formats are '$PNG' or '$SVG")
     }
   }
 }

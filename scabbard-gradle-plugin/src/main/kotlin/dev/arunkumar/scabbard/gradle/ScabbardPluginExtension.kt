@@ -16,8 +16,8 @@
 
 package dev.arunkumar.scabbard.gradle
 
-import dev.arunkumar.scabbard.gradle.compilerproperties.*
-import dev.arunkumar.scabbard.gradle.compilerproperties.compilerProperty
+import dev.arunkumar.scabbard.gradle.options.compilerProperty
+import dev.arunkumar.scabbard.gradle.options.mapCompilerProperty
 import dev.arunkumar.scabbard.gradle.output.OutputFormat
 import dev.arunkumar.scabbard.gradle.util.enabledProperty
 import org.gradle.api.Action
@@ -40,7 +40,7 @@ import org.gradle.api.Project
 open class ScabbardPluginExtension(
   val project: Project,
   internal val onEnabledStatusChange: Action<Boolean>,
-  internal val onCompilerPropertyChanged: Action<CompilerProperty<*>>
+  internal val onCompilerPropertyChanged: Action<dev.arunkumar.scabbard.gradle.options.CompilerProperty<*>>
 ) {
 
   /**
@@ -54,13 +54,13 @@ open class ScabbardPluginExtension(
    * in scabbard's processor. Setting this property to `true` will
    * change that behaviour to fail on any error for debugging purposes.
    */
-  open var failOnError by compilerProperty(FAIL_ON_ERROR)
+  open var failOnError by compilerProperty(dev.arunkumar.scabbard.gradle.options.FAIL_ON_ERROR)
 
   /**
    * Flag to control if fully qualified names should be used everywhere
    * in the graph. Default value is `false`
    */
-  open var qualifiedNames by compilerProperty(QUALIFIED_NAMES)
+  open var qualifiedNames by compilerProperty(dev.arunkumar.scabbard.gradle.options.QUALIFIED_NAMES)
 
   /**
    * Configures Dagger processor to do full graph validation which
@@ -71,8 +71,8 @@ open class ScabbardPluginExtension(
    * @see [https://dagger.dev/compiler-options.html]
    */
   open var fullBindingGraphValidation by mapCompilerProperty(
-    compilerProperty = FULL_GRAPH_VALIDATION,
-    valueMapper = FULL_GRAPH_VALIDATION_MAPPER
+    compilerProperty = dev.arunkumar.scabbard.gradle.options.FULL_GRAPH_VALIDATION,
+    valueMapper = dev.arunkumar.scabbard.gradle.options.FULL_GRAPH_VALIDATION_MAPPER
   )
 
   /**
@@ -83,7 +83,7 @@ open class ScabbardPluginExtension(
    *     supplied.
    */
   open var outputFormat by mapCompilerProperty(
-    compilerProperty = OUTPUT_FORMAT,
+    compilerProperty = dev.arunkumar.scabbard.gradle.options.OUTPUT_FORMAT,
     valueMapper = OutputFormat::parse
   )
 

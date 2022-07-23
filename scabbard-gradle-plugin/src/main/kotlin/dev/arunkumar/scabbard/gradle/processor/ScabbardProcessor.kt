@@ -32,6 +32,7 @@ internal const val ANNOTATION_PROCESSOR_CONFIG = "annotationProcessor"
 internal const val SCABBARD_GROUP = "dev.arunkumar"
 internal const val SCABBARD_NAME = "scabbard-processor"
 internal const val SCABBARD_PROCESSOR_DEPENDENCY = "$SCABBARD_GROUP:$SCABBARD_NAME:$VERSION"
+
 internal const val DAGGER_GROUP = "com.google.dagger"
 internal const val DAGGER_COMPILER = "dagger-compiler"
 
@@ -42,20 +43,20 @@ internal const val DAGGER_HILT_COMPILER = "hilt-compiler"
  * @return `true` if the [Dependency] is Scabbard's annotation processor
  *     dependency
  */
-internal fun Dependency.isScabbardDependency() = group == SCABBARD_GROUP && name == SCABBARD_NAME
+internal val Dependency.isScabbard get() = group == SCABBARD_GROUP && name == SCABBARD_NAME
 
 /**
  * @return `true` if the [Dependency] is Dagger's main annotation
  *     processor dependency or hilt's compiler dependency
  */
-internal fun Dependency.isDaggerCompilerDependency(): Boolean {
-  return group == DAGGER_GROUP && (
+internal val Dependency.isDaggerCompiler: Boolean
+  get() = group == DAGGER_GROUP && (
     name == DAGGER_COMPILER ||
       name == DAGGER_HILT_ANDROID_COMPILER ||
       name == DAGGER_HILT_COMPILER
     )
-}
 
+/** TODO(arun) Make this Android variant aware */
 internal fun configName(isKapt: Boolean) = when {
   isKapt -> KAPT_CONFIG
   else -> ANNOTATION_PROCESSOR_CONFIG
@@ -70,7 +71,7 @@ internal fun configName(isKapt: Boolean) = when {
  */
 private fun Project.removeScabbard(isKapt: Boolean = false) {
   configurations.findByName(configName(isKapt))?.withDependencies {
-    if (removeIf(Dependency::isScabbardDependency)) {
+    if (removeIf(Dependency::isScabbard)) {
       logger.info("Removed Scabbard from project:$path")
     }
   }
@@ -87,7 +88,7 @@ private fun Project.removeScabbard(isKapt: Boolean = false) {
 private fun Project.addScabbard(isKapt: Boolean = false) {
   val configName = configName(isKapt)
   configurations.findByName(configName)?.withDependencies {
-    if (none(Dependency::isScabbardDependency) && any(Dependency::isDaggerCompilerDependency)) {
+    if (none(Dependency::isScabbard) && any(Dependency::isDaggerCompiler)) {
       logger.info("Adding scabbard to $configName configuration")
       dependencies.add(configName, SCABBARD_PROCESSOR_DEPENDENCY)
     }

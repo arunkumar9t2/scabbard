@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package dev.arunkumar.scabbard.gradle.compilerproperties
+package dev.arunkumar.scabbard.gradle.options
 
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_LIBRARY_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD
 import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
-import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.FAIL_ON_ERROR_PROPERTY
-import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.FULL_GRAPH_VALIDATION_PROPERTY
-import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.OUTPUT_FORMAT_PROPERTY
-import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty.Companion.QUALIFIED_NAMES_PROPERTY
+import dev.arunkumar.scabbard.gradle.options.CompilerProperty.Companion.FAIL_ON_ERROR_PROPERTY
+import dev.arunkumar.scabbard.gradle.options.CompilerProperty.Companion.FULL_GRAPH_VALIDATION_PROPERTY
+import dev.arunkumar.scabbard.gradle.options.CompilerProperty.Companion.OUTPUT_FORMAT_PROPERTY
+import dev.arunkumar.scabbard.gradle.options.CompilerProperty.Companion.QUALIFIED_NAMES_PROPERTY
 import dev.arunkumar.scabbard.gradle.output.OutputFormat
 import dev.arunkumar.scabbard.gradle.processor.ANNOTATION_PROCESSOR_CONFIG
-import dev.arunkumar.scabbard.gradle.processor.isDaggerCompilerDependency
+import dev.arunkumar.scabbard.gradle.processor.isDaggerCompiler
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.tasks.compile.JavaCompile
@@ -67,14 +67,15 @@ internal val FULL_GRAPH_VALIDATION_MAPPER: (Boolean) -> String? = { enabled ->
 }
 
 /**
- * A pass-through mapper function that forwards value as received
- * without any modification
+ * A mapper function that forwards value as received without any
+ * modification
  */
-internal fun <T> passThroughMapper(): (T) -> T = { it }
+@Suppress("FunctionName")
+internal fun <T> PassThroughMapper(): (T) -> T = { it }
 
 internal fun <T> ScabbardPluginExtension.compilerProperty(
   compilerProperty: CompilerProperty<T>
-) = mapCompilerProperty(compilerProperty, passThroughMapper())
+) = mapCompilerProperty(compilerProperty, PassThroughMapper())
 
 /**
  * A property delegate that calls
@@ -107,7 +108,7 @@ internal fun <T, R> ScabbardPluginExtension.mapCompilerProperty(
  *
  * For `Java` projects, the properties are directly set to
  * [JavaCompile]'s compiler arguments. For `Kotlin` projects, the
- * properties are set tp [KaptExtension]'s arguments.
+ * properties are set in [KaptExtension]'s arguments.
  */
 internal fun Project.applyCompilerProperty(compilerProperty: CompilerProperty<*>) {
   pluginManager.withPlugin(KAPT_PLUGIN_ID) {
@@ -121,7 +122,7 @@ internal fun Project.applyCompilerProperty(compilerProperty: CompilerProperty<*>
   pluginManager.withPlugin(JAVA_LIBRARY_PLUGIN_ID) {
     // For Java projects, forward to Java Compile tasks directly.
     configurations.findByName(ANNOTATION_PROCESSOR_CONFIG)?.withDependencies {
-      if (any(Dependency::isDaggerCompilerDependency)) {
+      if (any(Dependency::isDaggerCompiler)) {
         tasks.withType<JavaCompile>().configureEach {
           options.compilerArgs.apply {
             compilerProperty.value?.let { value ->

@@ -16,8 +16,8 @@
 
 package dev.arunkumar.scabbard.gradle
 
-import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty
-import dev.arunkumar.scabbard.gradle.compilerproperties.applyCompilerProperty
+import dev.arunkumar.scabbard.gradle.options.CompilerProperty
+import dev.arunkumar.scabbard.gradle.options.applyCompilerProperty
 import dev.arunkumar.scabbard.gradle.processor.manageScabbardProcessor
 import org.gradle.api.Action
 import org.gradle.api.Plugin
@@ -43,8 +43,7 @@ import org.gradle.api.Project
  * - Enables configuring the annotation processor behavior by delegating
  *   user defined values received via [ScabbardPluginExtension]
  *   to [JavaCompile] or [KotlinCompile] tasks
- * - At the moment, the plugin does not add any new tasks to the
- *   project.
+ * - The plugin does not add any new tasks to the project.
  *
  * Most of the work happens lazily by confirming to task configuration
  * avoidance.

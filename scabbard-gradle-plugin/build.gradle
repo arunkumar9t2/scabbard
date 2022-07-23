@@ -15,6 +15,7 @@
  */
 
 plugins {
+  id "build-common"
   id "java-gradle-plugin"
   alias(deps.plugins.binary.validator)
   alias(deps.plugins.gradle.publish)

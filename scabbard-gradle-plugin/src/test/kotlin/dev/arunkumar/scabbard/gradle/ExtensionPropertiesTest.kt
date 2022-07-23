@@ -1,9 +1,9 @@
 package dev.arunkumar.scabbard.gradle
 
 import dev.arunkumar.scabbard.gradle.common.ScabbardBaseTest
-import dev.arunkumar.scabbard.gradle.compilerproperties.CompilerProperty
-import dev.arunkumar.scabbard.gradle.compilerproperties.FAIL_ON_ERROR
-import dev.arunkumar.scabbard.gradle.compilerproperties.FULL_GRAPH_VALIDATION
+import dev.arunkumar.scabbard.gradle.options.CompilerProperty
+import dev.arunkumar.scabbard.gradle.options.FAIL_ON_ERROR
+import dev.arunkumar.scabbard.gradle.options.FULL_GRAPH_VALIDATION
 import org.gradle.api.Action
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
