@@ -1,0 +1,21 @@
+public class dev/arunkumar/scabbard/javasample/ScabbardSample {
+	public fun <init> ()V
+	public static fun main ([Ljava/lang/String;)V
+}
+
+public final class dev/arunkumar/scabbard/javasample/ScabbardSample_Hello_Factory : dagger/internal/Factory {
+	public fun <init> (Ljavax/inject/Provider;)V
+	public static fun create (Ljavax/inject/Provider;)Ldev/arunkumar/scabbard/javasample/ScabbardSample_Hello_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/javasample/ScabbardSample$Hello;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance (Ljava/lang/Object;)Ldev/arunkumar/scabbard/javasample/ScabbardSample$Hello;
+}
+
+public final class dev/arunkumar/scabbard/javasample/ScabbardSample_World_Factory : dagger/internal/Factory {
+	public fun <init> ()V
+	public static fun create ()Ldev/arunkumar/scabbard/javasample/ScabbardSample_World_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/javasample/ScabbardSample$World;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance ()Ldev/arunkumar/scabbard/javasample/ScabbardSample$World;
+}
+
