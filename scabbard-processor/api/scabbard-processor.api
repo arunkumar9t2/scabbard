@@ -228,9 +228,6 @@ public final class dev/arunkumar/scabbard/plugin/parser/BindingGraphKt {
 	public static final field NewLine Ljava/lang/String;
 	public static final fun buildLabel (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
 	public static synthetic fun buildLabel$default (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZILjava/lang/Object;)Ljava/lang/String;
-	public static final fun getName (Ldagger/model/Scope;)Ljava/lang/String;
-	public static final fun scopeName (Ldagger/model/Binding;)Ljava/lang/String;
-	public static final fun subcomponentsOf (Ldagger/model/BindingGraph;Ljavax/lang/model/element/TypeElement;)Ljava/util/List;
 }
 
 public final class dev/arunkumar/scabbard/plugin/parser/QualifiedTypeNameExtractor : dev/arunkumar/scabbard/plugin/parser/TypeNameExtractor {

@@ -1,19 +1,13 @@
 public final class dev/arunkumar/scabbard/plugin/TestUtilsKt {
 	public static final field TEST_SOURCE_SET Ljava/lang/String;
 	public static final fun generatedComponentTreeDotFile (Ljava/lang/Class;Ljava/lang/String;)Ljava/io/File;
-	public static final synthetic fun generatedComponentTreeDotFile (Ljava/lang/String;)Ljava/io/File;
 	public static synthetic fun generatedComponentTreeDotFile$default (Ljava/lang/Class;Ljava/lang/String;ILjava/lang/Object;)Ljava/io/File;
-	public static synthetic fun generatedComponentTreeDotFile$default (Ljava/lang/String;ILjava/lang/Object;)Ljava/io/File;
-	public static final synthetic fun generatedDot (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public static synthetic fun generatedDot$default (Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
 	public static final fun generatedDotFile (Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)Ljava/io/File;
 	public static synthetic fun generatedDotFile$default (Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/io/File;
 	public static final fun generatedFile (Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/io/File;
 	public static synthetic fun generatedFile$default (Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/io/File;
 	public static final fun generatedFullDotFile (Ljava/lang/Class;Ljava/lang/String;)Ljava/io/File;
 	public static synthetic fun generatedFullDotFile$default (Ljava/lang/Class;Ljava/lang/String;ILjava/lang/Object;)Ljava/io/File;
-	public static final synthetic fun generatedGraph (Ljava/lang/String;)Lguru/nidi/graphviz/model/MutableGraph;
-	public static synthetic fun generatedGraph$default (Ljava/lang/String;ILjava/lang/Object;)Lguru/nidi/graphviz/model/MutableGraph;
 	public static final fun generatedSvgFile (Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)Ljava/io/File;
 	public static synthetic fun generatedSvgFile$default (Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/io/File;
 	public static final fun parsedGraph (Ljava/lang/Class;Ljava/lang/String;)Lguru/nidi/graphviz/model/MutableGraph;

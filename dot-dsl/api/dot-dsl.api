@@ -14,7 +14,6 @@ public class dev/arunkumar/dot/DotEdge : dev/arunkumar/dot/DotStatement {
 public final class dev/arunkumar/dot/DotGraph : dev/arunkumar/dot/Indented {
 	public fun <init> (Ljava/lang/String;)V
 	public final fun add (Ldev/arunkumar/dot/Indented;)V
-	public fun write$dot_dsl (ILjava/io/PrintWriter;)V
 }
 
 public final class dev/arunkumar/dot/DotNode : dev/arunkumar/dot/DotStatement {
@@ -28,7 +27,6 @@ public class dev/arunkumar/dot/DotStatement : dev/arunkumar/dot/Indented {
 	public final fun addAttributeFormat (Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
 	protected final fun getAttributes ()Ljava/util/LinkedHashMap;
 	protected final fun getBase ()Ljava/lang/String;
-	public fun write$dot_dsl (ILjava/io/PrintWriter;)V
 }
 
 public final class dev/arunkumar/dot/DotStatementKt {
@@ -45,9 +43,7 @@ public final class dev/arunkumar/dot/EdgeOp : java/lang/Enum {
 
 public abstract class dev/arunkumar/dot/Indented {
 	public fun <init> ()V
-	public final fun indent$dot_dsl (ILjava/io/PrintWriter;)Ljava/io/PrintWriter;
 	public fun toString ()Ljava/lang/String;
-	public abstract fun write$dot_dsl (ILjava/io/PrintWriter;)V
 }
 
 public abstract interface annotation class dev/arunkumar/dot/dsl/DotDslScope : java/lang/annotation/Annotation {
