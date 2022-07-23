@@ -1,0 +1,514 @@
+public final class dev/arunkumar/scabbard/plugin/ScabbardBindingGraphPlugin : dagger/spi/BindingGraphPlugin {
+	public fun <init> ()V
+	public fun initElements (Ljavax/lang/model/util/Elements;)V
+	public fun initFiler (Ljavax/annotation/processing/Filer;)V
+	public fun initOptions (Ljava/util/Map;)V
+	public fun initTypes (Ljavax/lang/model/util/Types;)V
+	public fun pluginName ()Ljava/lang/String;
+	public fun supportedOptions ()Ljava/util/Set;
+	public fun visitGraph (Ldagger/model/BindingGraph;Ldagger/spi/DiagnosticReporter;)V
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/di/BindingGraphVisitorComponent {
+	public abstract fun bindingGraphProcessors ()Ljava/util/Set;
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/di/BindingGraphVisitorComponent$Factory {
+	public abstract fun create (Ldagger/model/BindingGraph;Ldagger/spi/DiagnosticReporter;)Ldev/arunkumar/scabbard/plugin/di/BindingGraphVisitorComponent;
+}
+
+public final class dev/arunkumar/scabbard/plugin/di/DaggerScabbardComponent : dev/arunkumar/scabbard/plugin/di/ScabbardComponent {
+	public fun bindingGraphVisitorComponent ()Ldev/arunkumar/scabbard/plugin/di/BindingGraphVisitorComponent$Factory;
+	public static fun factory ()Ldev/arunkumar/scabbard/plugin/di/ScabbardComponent$Factory;
+}
+
+public final class dev/arunkumar/scabbard/plugin/di/ProcessingEnvModule {
+	public fun <init> (Ljavax/annotation/processing/Filer;Ljavax/lang/model/util/Types;Ljavax/lang/model/util/Elements;Ljava/util/Map;)V
+	public final fun elements ()Ljavax/lang/model/util/Elements;
+	public final fun filer ()Ljavax/annotation/processing/Filer;
+	public final fun scabbardOptions ()Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;
+	public final fun types ()Ljavax/lang/model/util/Types;
+}
+
+public final class dev/arunkumar/scabbard/plugin/di/ProcessingEnvModule_ElementsFactory : dagger/internal/Factory {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)V
+	public static fun create (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule_ElementsFactory;
+	public static fun elements (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)Ljavax/lang/model/util/Elements;
+	public synthetic fun get ()Ljava/lang/Object;
+	public fun get ()Ljavax/lang/model/util/Elements;
+}
+
+public final class dev/arunkumar/scabbard/plugin/di/ProcessingEnvModule_FilerFactory : dagger/internal/Factory {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)V
+	public static fun create (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule_FilerFactory;
+	public static fun filer (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)Ljavax/annotation/processing/Filer;
+	public synthetic fun get ()Ljava/lang/Object;
+	public fun get ()Ljavax/annotation/processing/Filer;
+}
+
+public final class dev/arunkumar/scabbard/plugin/di/ProcessingEnvModule_ScabbardOptionsFactory : dagger/internal/Factory {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)V
+	public static fun create (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule_ScabbardOptionsFactory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun scabbardOptions (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;
+}
+
+public final class dev/arunkumar/scabbard/plugin/di/ProcessingEnvModule_TypesFactory : dagger/internal/Factory {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)V
+	public static fun create (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule_TypesFactory;
+	public synthetic fun get ()Ljava/lang/Object;
+	public fun get ()Ljavax/lang/model/util/Types;
+	public static fun types (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)Ljavax/lang/model/util/Types;
+}
+
+public abstract interface annotation class dev/arunkumar/scabbard/plugin/di/ProcessorScope : java/lang/annotation/Annotation {
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/di/ScabbardComponent {
+	public abstract fun bindingGraphVisitorComponent ()Ldev/arunkumar/scabbard/plugin/di/BindingGraphVisitorComponent$Factory;
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/di/ScabbardComponent$Factory {
+	public abstract fun create (Ldev/arunkumar/scabbard/plugin/di/ProcessingEnvModule;)Ldev/arunkumar/scabbard/plugin/di/ScabbardComponent;
+}
+
+public abstract interface annotation class dev/arunkumar/scabbard/plugin/di/VisitGraphScope : java/lang/annotation/Annotation {
+}
+
+public final class dev/arunkumar/scabbard/plugin/options/OptionsKt {
+	public static final fun getSUPPORTED_OPTIONS ()Ljava/util/Set;
+	public static final fun parseOptions (Ljava/util/Map;)Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;
+}
+
+public final class dev/arunkumar/scabbard/plugin/options/ScabbardOptions {
+	public fun <init> ()V
+	public fun <init> (ZZZLdev/arunkumar/scabbard/plugin/output/OutputManager$Format;)V
+	public synthetic fun <init> (ZZZLdev/arunkumar/scabbard/plugin/output/OutputManager$Format;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun component4 ()Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;
+	public final fun copy (ZZZLdev/arunkumar/scabbard/plugin/output/OutputManager$Format;)Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;
+	public static synthetic fun copy$default (Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;ZZZLdev/arunkumar/scabbard/plugin/output/OutputManager$Format;ILjava/lang/Object;)Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFailOnError ()Z
+	public final fun getOutputImageFormat ()Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;
+	public final fun getQualifiedNames ()Z
+	public final fun getSingleGraph ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/options/SupportedOptions : java/lang/Enum {
+	public static final field FAIL_ON_ERROR Ldev/arunkumar/scabbard/plugin/options/SupportedOptions;
+	public static final field IMAGE_FORMAT Ldev/arunkumar/scabbard/plugin/options/SupportedOptions;
+	public static final field QUALIFIED_NAMES Ldev/arunkumar/scabbard/plugin/options/SupportedOptions;
+	public static final field SINGLE_GRAPH Ldev/arunkumar/scabbard/plugin/options/SupportedOptions;
+	public final fun getKey ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/arunkumar/scabbard/plugin/options/SupportedOptions;
+	public static fun values ()[Ldev/arunkumar/scabbard/plugin/options/SupportedOptions;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/DefaultOutputManager : dev/arunkumar/scabbard/plugin/output/FilerOutputManager {
+	public static final field Companion Ldev/arunkumar/scabbard/plugin/output/DefaultOutputManager$Companion;
+	public static final field FULL_GRAPH_PREFIX Ljava/lang/String;
+	public static final field SCABBARD_PACKAGE Ljava/lang/String;
+	public static final field TREE_GRAPH_PREFIX Ljava/lang/String;
+	public fun <init> (Ljavax/annotation/processing/Filer;)V
+	public fun createOutputFiles (Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;Ljavax/lang/model/element/TypeElement;ZZ)Lcom/github/kittinunf/result/Result;
+	public fun getFiler ()Ljavax/annotation/processing/Filer;
+	public fun outputFileNameFor (Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;Ljavax/lang/model/element/TypeElement;ZZ)Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/DefaultOutputManager$Companion {
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/DefaultOutputManager_Factory : dagger/internal/Factory {
+	public fun <init> (Ljavax/inject/Provider;)V
+	public static fun create (Ljavax/inject/Provider;)Ldev/arunkumar/scabbard/plugin/output/DefaultOutputManager_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/output/DefaultOutputManager;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance (Ljavax/annotation/processing/Filer;)Ldev/arunkumar/scabbard/plugin/output/DefaultOutputManager;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/DotWriter : dev/arunkumar/scabbard/plugin/output/OutputWriter {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/output/OutputManager;)V
+	public fun write (Ljava/lang/String;Ljavax/lang/model/element/TypeElement;ZZ)Lcom/github/kittinunf/result/Result;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/DotWriter_Factory : dagger/internal/Factory {
+	public fun <init> (Ljavax/inject/Provider;)V
+	public static fun create (Ljavax/inject/Provider;)Ldev/arunkumar/scabbard/plugin/output/DotWriter_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/output/DotWriter;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance (Ldev/arunkumar/scabbard/plugin/output/OutputManager;)Ldev/arunkumar/scabbard/plugin/output/DotWriter;
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/output/FilerOutputManager : dev/arunkumar/scabbard/plugin/output/OutputManager {
+	public abstract fun getFiler ()Ljavax/annotation/processing/Filer;
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/output/OutputManager {
+	public abstract fun createOutputFiles (Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;Ljavax/lang/model/element/TypeElement;ZZ)Lcom/github/kittinunf/result/Result;
+	public abstract fun outputFileNameFor (Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;Ljavax/lang/model/element/TypeElement;ZZ)Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/OutputManager$DefaultImpls {
+	public static synthetic fun createOutputFiles$default (Ldev/arunkumar/scabbard/plugin/output/OutputManager;Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;Ljavax/lang/model/element/TypeElement;ZZILjava/lang/Object;)Lcom/github/kittinunf/result/Result;
+	public static synthetic fun outputFileNameFor$default (Ldev/arunkumar/scabbard/plugin/output/OutputManager;Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;Ljavax/lang/model/element/TypeElement;ZZILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/OutputManager$Format : java/lang/Enum {
+	public static final field DOT Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;
+	public static final field PNG Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;
+	public static final field SVG Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;
+	public final fun getExtension ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;
+	public static fun values ()[Ldev/arunkumar/scabbard/plugin/output/OutputManager$Format;
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/output/OutputModule {
+	public abstract fun bindOutputManager (Ldev/arunkumar/scabbard/plugin/output/DefaultOutputManager;)Ldev/arunkumar/scabbard/plugin/output/OutputManager;
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/output/OutputWriter {
+	public abstract fun write (Ljava/lang/String;Ljavax/lang/model/element/TypeElement;ZZ)Lcom/github/kittinunf/result/Result;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/OutputWriter$DefaultImpls {
+	public static synthetic fun write$default (Ldev/arunkumar/scabbard/plugin/output/OutputWriter;Ljava/lang/String;Ljavax/lang/model/element/TypeElement;ZZILjava/lang/Object;)Lcom/github/kittinunf/result/Result;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/OutputWriterModule {
+	public static final field INSTANCE Ldev/arunkumar/scabbard/plugin/output/OutputWriterModule;
+	public final fun writers (Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ljava/util/Set;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/OutputWriterModule_WritersFactory : dagger/internal/Factory {
+	public fun <init> (Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+	public static fun create (Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldev/arunkumar/scabbard/plugin/output/OutputWriterModule_WritersFactory;
+	public synthetic fun get ()Ljava/lang/Object;
+	public fun get ()Ljava/util/Set;
+	public static fun writers (Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ljava/util/Set;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/PngWriter : dev/arunkumar/scabbard/plugin/output/OutputWriter {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/output/OutputManager;)V
+	public fun write (Ljava/lang/String;Ljavax/lang/model/element/TypeElement;ZZ)Lcom/github/kittinunf/result/Result;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/PngWriter_Factory : dagger/internal/Factory {
+	public fun <init> (Ljavax/inject/Provider;)V
+	public static fun create (Ljavax/inject/Provider;)Ldev/arunkumar/scabbard/plugin/output/PngWriter_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/output/PngWriter;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance (Ldev/arunkumar/scabbard/plugin/output/OutputManager;)Ldev/arunkumar/scabbard/plugin/output/PngWriter;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/SvgWriter : dev/arunkumar/scabbard/plugin/output/OutputWriter {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/output/OutputManager;)V
+	public fun write (Ljava/lang/String;Ljavax/lang/model/element/TypeElement;ZZ)Lcom/github/kittinunf/result/Result;
+}
+
+public final class dev/arunkumar/scabbard/plugin/output/SvgWriter_Factory : dagger/internal/Factory {
+	public fun <init> (Ljavax/inject/Provider;)V
+	public static fun create (Ljavax/inject/Provider;)Ldev/arunkumar/scabbard/plugin/output/SvgWriter_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/output/SvgWriter;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance (Ldev/arunkumar/scabbard/plugin/output/OutputManager;)Ldev/arunkumar/scabbard/plugin/output/SvgWriter;
+}
+
+public final class dev/arunkumar/scabbard/plugin/parser/AnnotationMirrorNameExtractorKt {
+	public static final fun extractName (Ljavax/lang/model/element/AnnotationMirror;Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
+	public static synthetic fun extractName$default (Ljavax/lang/model/element/AnnotationMirror;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/parser/BindingGraphKt {
+	public static final field NewLine Ljava/lang/String;
+	public static final fun buildLabel (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+	public static synthetic fun buildLabel$default (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/parser/QualifiedTypeNameExtractor : dev/arunkumar/scabbard/plugin/parser/TypeNameExtractor {
+	public fun <init> ()V
+	public fun extractName (Ldagger/model/ComponentPath;)Ljava/lang/String;
+	public fun extractName (Ldagger/model/Key$MultibindingContributionIdentifier;)Ljava/lang/String;
+	public fun extractName (Ljavax/lang/model/element/AnnotationMirror;)Ljava/lang/String;
+	public fun extractName (Ljavax/lang/model/type/TypeMirror;)Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/parser/QualifiedTypeNameExtractor_Factory : dagger/internal/Factory {
+	public fun <init> ()V
+	public static fun create ()Ldev/arunkumar/scabbard/plugin/parser/QualifiedTypeNameExtractor_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/parser/QualifiedTypeNameExtractor;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance ()Ldev/arunkumar/scabbard/plugin/parser/QualifiedTypeNameExtractor;
+}
+
+public final class dev/arunkumar/scabbard/plugin/parser/SimpleTypeNameExtractor : dev/arunkumar/scabbard/plugin/parser/TypeNameExtractor {
+	public fun <init> ()V
+	public fun extractName (Ldagger/model/ComponentPath;)Ljava/lang/String;
+	public fun extractName (Ldagger/model/Key$MultibindingContributionIdentifier;)Ljava/lang/String;
+	public fun extractName (Ljavax/lang/model/element/AnnotationMirror;)Ljava/lang/String;
+	public fun extractName (Ljavax/lang/model/type/TypeMirror;)Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/parser/SimpleTypeNameExtractor_Factory : dagger/internal/Factory {
+	public fun <init> ()V
+	public static fun create ()Ldev/arunkumar/scabbard/plugin/parser/SimpleTypeNameExtractor_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/parser/SimpleTypeNameExtractor;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance ()Ldev/arunkumar/scabbard/plugin/parser/SimpleTypeNameExtractor;
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/parser/TypeNameExtractor {
+	public abstract fun extractName (Ldagger/model/ComponentPath;)Ljava/lang/String;
+	public abstract fun extractName (Ldagger/model/Key$MultibindingContributionIdentifier;)Ljava/lang/String;
+	public abstract fun extractName (Ljavax/lang/model/element/AnnotationMirror;)Ljava/lang/String;
+	public abstract fun extractName (Ljavax/lang/model/type/TypeMirror;)Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/parser/TypeNameExtractorModule {
+	public static final field INSTANCE Ldev/arunkumar/scabbard/plugin/parser/TypeNameExtractorModule;
+	public final fun typeNameExtractor (Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Ldev/arunkumar/scabbard/plugin/parser/QualifiedTypeNameExtractor;Ldev/arunkumar/scabbard/plugin/parser/SimpleTypeNameExtractor;)Ldev/arunkumar/scabbard/plugin/parser/TypeNameExtractor;
+}
+
+public final class dev/arunkumar/scabbard/plugin/parser/TypeNameExtractorModule_TypeNameExtractorFactory : dagger/internal/Factory {
+	public fun <init> (Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+	public static fun create (Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldev/arunkumar/scabbard/plugin/parser/TypeNameExtractorModule_TypeNameExtractorFactory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/parser/TypeNameExtractor;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun typeNameExtractor (Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Ldev/arunkumar/scabbard/plugin/parser/QualifiedTypeNameExtractor;Ldev/arunkumar/scabbard/plugin/parser/SimpleTypeNameExtractor;)Ldev/arunkumar/scabbard/plugin/parser/TypeNameExtractor;
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/processor/BindingGraphProcessor {
+	public abstract fun getBindingGraph ()Ldagger/model/BindingGraph;
+	public abstract fun process ()V
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/ComponentTreeVisualizationProcessor : dev/arunkumar/scabbard/plugin/processor/BindingGraphProcessor {
+	public fun <init> (Ldagger/model/BindingGraph;Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Ljava/util/Set;Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;Ldev/arunkumar/scabbard/plugin/parser/TypeNameExtractor;)V
+	public fun getBindingGraph ()Ldagger/model/BindingGraph;
+	public fun process ()V
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/ComponentTreeVisualizationProcessor_Factory : dagger/internal/Factory {
+	public fun <init> (Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+	public static fun create (Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldev/arunkumar/scabbard/plugin/processor/graphviz/ComponentTreeVisualizationProcessor_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/processor/graphviz/ComponentTreeVisualizationProcessor;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance (Ldagger/model/BindingGraph;Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Ljava/util/Set;Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;Ldev/arunkumar/scabbard/plugin/parser/TypeNameExtractor;)Ldev/arunkumar/scabbard/plugin/processor/graphviz/ComponentTreeVisualizationProcessor;
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/ComponentVisualizationProcessor : dev/arunkumar/scabbard/plugin/processor/BindingGraphProcessor {
+	public fun <init> (Ldagger/model/BindingGraph;Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Ljava/util/Set;Ljavax/inject/Provider;)V
+	public fun getBindingGraph ()Ldagger/model/BindingGraph;
+	public fun process ()V
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/ComponentVisualizationProcessor_Factory : dagger/internal/Factory {
+	public fun <init> (Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+	public static fun create (Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldev/arunkumar/scabbard/plugin/processor/graphviz/ComponentVisualizationProcessor_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/processor/graphviz/ComponentVisualizationProcessor;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance (Ldagger/model/BindingGraph;Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Ljava/util/Set;Ljavax/inject/Provider;)Ldev/arunkumar/scabbard/plugin/processor/graphviz/ComponentVisualizationProcessor;
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/processor/graphviz/GraphvizVisualizationModule {
+	public abstract fun bindingGraphProcessor (Ldev/arunkumar/scabbard/plugin/processor/graphviz/ComponentVisualizationProcessor;)Ldev/arunkumar/scabbard/plugin/processor/BindingGraphProcessor;
+	public abstract fun componentTreeProcessor (Ldev/arunkumar/scabbard/plugin/processor/graphviz/ComponentTreeVisualizationProcessor;)Ldev/arunkumar/scabbard/plugin/processor/BindingGraphProcessor;
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/BindingsRenderer : dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;)V
+	public synthetic fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+	public fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/util/List;)V
+	public fun getColor (Ldagger/model/Binding;)Ljava/lang/String;
+	public fun getId (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getLabel (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getRenderingContext ()Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;
+	public fun isEntryPoint (Ldagger/model/BindingGraph$MaybeBinding;)Z
+	public synthetic fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+	public fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/util/List;)V
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/ComponentTreeRenderer : dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;)V
+	public fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Lcom/google/common/graph/Graph;)V
+	public synthetic fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+	public fun getColor (Ldagger/model/Binding;)Ljava/lang/String;
+	public fun getId (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getLabel (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getRenderingContext ()Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;
+	public fun isEntryPoint (Ldagger/model/BindingGraph$MaybeBinding;)Z
+	public fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Lcom/google/common/graph/Graph;)V
+	public synthetic fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DaggerComponent {
+	public fun <init> (Ldagger/model/ComponentPath;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+	public final fun component1 ()Ldagger/model/ComponentPath;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Ljava/util/List;
+	public final fun component6 ()Ljava/util/List;
+	public final fun copy (Ldagger/model/ComponentPath;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;)Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DaggerComponent;
+	public static synthetic fun copy$default (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DaggerComponent;Ldagger/model/ComponentPath;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DaggerComponent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getComponentPath ()Ldagger/model/ComponentPath;
+	public final fun getDependencyBindings ()Ljava/util/List;
+	public final fun getEdges ()Ljava/util/List;
+	public final fun getEntryPointBindings ()Ljava/util/List;
+	public final fun getInheritedBindings ()Ljava/util/List;
+	public final fun getSubcomponents ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DaggerComponent$GraphRenderer : dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;)V
+	public fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DaggerComponent;)V
+	public synthetic fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+	public fun getColor (Ldagger/model/Binding;)Ljava/lang/String;
+	public fun getId (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getLabel (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getRenderingContext ()Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;
+	public fun isEntryPoint (Ldagger/model/BindingGraph$MaybeBinding;)Z
+	public fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DaggerComponent;)V
+	public synthetic fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DefaultRenderingContext : dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext {
+	public fun <init> (Ldagger/model/BindingGraph;Ldev/arunkumar/scabbard/plugin/parser/TypeNameExtractor;Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Ldev/arunkumar/scabbard/plugin/store/DaggerScopeColors;Ldev/arunkumar/scabbard/plugin/output/OutputManager;)V
+	public fun color (Ldagger/model/Binding;)Ljava/lang/String;
+	public fun createRootDotGraphBuilder-Ds5WxI8 (Ldagger/model/ComponentPath;)Ldev/arunkumar/dot/DotGraph;
+	public fun defaultGraphAttributes-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ldagger/model/ComponentPath;)V
+	public fun getRootBindingGraph ()Ldagger/model/BindingGraph;
+	public fun getTypeNameExtractor ()Ldev/arunkumar/scabbard/plugin/parser/TypeNameExtractor;
+	public fun href (Ldagger/model/BindingGraph$ComponentNode;)Ljava/lang/String;
+	public fun isEntryPoint (Ldagger/model/BindingGraph$MaybeBinding;)Z
+	public fun nodeId (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun nodeLabel (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun scopeColor (Ljava/lang/String;)Ljava/lang/String;
+	public fun validInContext (Ldagger/model/BindingGraph$Node;Ldagger/model/BindingGraph$Node;)Z
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DefaultRenderingContext_Factory : dagger/internal/Factory {
+	public fun <init> (Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)V
+	public static fun create (Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DefaultRenderingContext_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DefaultRenderingContext;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance (Ldagger/model/BindingGraph;Ldev/arunkumar/scabbard/plugin/parser/TypeNameExtractor;Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Ldev/arunkumar/scabbard/plugin/store/DaggerScopeColors;Ldev/arunkumar/scabbard/plugin/output/OutputManager;)Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DefaultRenderingContext;
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/EdgeRenderer : dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;)V
+	public synthetic fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+	public fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/util/List;)V
+	public fun getColor (Ldagger/model/Binding;)Ljava/lang/String;
+	public fun getId (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getLabel (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getRenderingContext ()Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;
+	public fun isEntryPoint (Ldagger/model/BindingGraph$MaybeBinding;)Z
+	public synthetic fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+	public fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/util/List;)V
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/GraphVizRenderingModule {
+	public abstract fun bind (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/DefaultRenderingContext;)Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/InheritedBinding {
+	public fun <init> (Ldagger/model/BindingGraph$ComponentNode;Ljava/util/List;)V
+	public final fun copy (Ldagger/model/BindingGraph$ComponentNode;Ljava/util/List;)Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/InheritedBinding;
+	public static synthetic fun copy$default (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/InheritedBinding;Ldagger/model/BindingGraph$ComponentNode;Ljava/util/List;ILjava/lang/Object;)Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/InheritedBinding;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/InheritedBinding$GraphRenderer : dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;)V
+	public synthetic fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+	public fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/util/List;)V
+	public fun getColor (Ldagger/model/Binding;)Ljava/lang/String;
+	public fun getId (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getLabel (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getRenderingContext ()Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;
+	public fun isEntryPoint (Ldagger/model/BindingGraph$MaybeBinding;)Z
+	public synthetic fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+	public fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/util/List;)V
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer {
+	public abstract fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+	public abstract fun getColor (Ldagger/model/Binding;)Ljava/lang/String;
+	public abstract fun getId (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public abstract fun getLabel (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public abstract fun getRenderingContext ()Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;
+	public abstract fun isEntryPoint (Ldagger/model/BindingGraph$MaybeBinding;)Z
+	public abstract fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer$DefaultImpls {
+	public static fun getColor (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer;Ldagger/model/Binding;)Ljava/lang/String;
+	public static fun getId (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer;Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public static fun getLabel (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer;Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public static fun isEntryPoint (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer;Ldagger/model/BindingGraph$MaybeBinding;)Z
+	public static fun render-2fQOZSk (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer;Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+}
+
+public abstract interface class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext {
+	public abstract fun color (Ldagger/model/Binding;)Ljava/lang/String;
+	public abstract fun createRootDotGraphBuilder-Ds5WxI8 (Ldagger/model/ComponentPath;)Ldev/arunkumar/dot/DotGraph;
+	public abstract fun defaultGraphAttributes-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ldagger/model/ComponentPath;)V
+	public abstract fun getRootBindingGraph ()Ldagger/model/BindingGraph;
+	public abstract fun getTypeNameExtractor ()Ldev/arunkumar/scabbard/plugin/parser/TypeNameExtractor;
+	public abstract fun href (Ldagger/model/BindingGraph$ComponentNode;)Ljava/lang/String;
+	public abstract fun isEntryPoint (Ldagger/model/BindingGraph$MaybeBinding;)Z
+	public abstract fun nodeId (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public abstract fun nodeLabel (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public abstract fun scopeColor (Ljava/lang/String;)Ljava/lang/String;
+	public abstract fun validInContext (Ldagger/model/BindingGraph$Node;Ldagger/model/BindingGraph$Node;)Z
+}
+
+public final class dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/SimpleSubComponentRenderer : dev/arunkumar/scabbard/plugin/processor/graphviz/renderer/Renderer {
+	public fun <init> (Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;)V
+	public synthetic fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+	public fun build-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/util/List;)V
+	public fun getColor (Ldagger/model/Binding;)Ljava/lang/String;
+	public fun getId (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getLabel (Ldagger/model/BindingGraph$Node;)Ljava/lang/String;
+	public fun getRenderingContext ()Ldev/arunkumar/scabbard/plugin/processor/graphviz/renderer/RenderingContext;
+	public fun isEntryPoint (Ldagger/model/BindingGraph$MaybeBinding;)Z
+	public synthetic fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/lang/Object;)V
+	public fun render-2fQOZSk (Ldev/arunkumar/dot/DotGraph;Ljava/util/List;)V
+}
+
+public final class dev/arunkumar/scabbard/plugin/store/DaggerScopeColors {
+	public fun <init> ()V
+	public final fun get (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/plugin/store/DaggerScopeColors_Factory : dagger/internal/Factory {
+	public fun <init> ()V
+	public static fun create ()Ldev/arunkumar/scabbard/plugin/store/DaggerScopeColors_Factory;
+	public fun get ()Ldev/arunkumar/scabbard/plugin/store/DaggerScopeColors;
+	public synthetic fun get ()Ljava/lang/Object;
+	public static fun newInstance ()Ldev/arunkumar/scabbard/plugin/store/DaggerScopeColors;
+}
+
+public final class dev/arunkumar/scabbard/plugin/util/CommonKt {
+	public static final fun exceptionHandler (Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Lkotlin/jvm/functions/Function0;)V
+	public static final fun handleException (Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Ljava/lang/Exception;)V
+	public static final fun processingBlock (Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun processingBlock$default (Ldev/arunkumar/scabbard/plugin/options/ScabbardOptions;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+}
+
+public final class dev/arunkumar/scabbard/plugin/util/GuavaKt {
+	public static final fun component1 (Lcom/google/common/graph/EndpointPair;)Ljava/lang/Object;
+	public static final fun component2 (Lcom/google/common/graph/EndpointPair;)Ljava/lang/Object;
+}
+

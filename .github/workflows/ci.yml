@@ -47,7 +47,7 @@ jobs:
           gradle-dependencies-cache-key: |
             gradle/libs.versions.toml
             build-logic/**/Constants.kt
-          arguments: test --scan
+          arguments: check --scan
   scabbard-gradle-test:
     runs-on: ubuntu-latest
     container:

@@ -1,0 +1,54 @@
+public final class dev/arunkumar/scabbard/gradle/ScabbardGradlePlugin : org/gradle/api/Plugin {
+	public static final field Companion Ldev/arunkumar/scabbard/gradle/ScabbardGradlePlugin$Companion;
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class dev/arunkumar/scabbard/gradle/ScabbardGradlePlugin$Companion {
+}
+
+public class dev/arunkumar/scabbard/gradle/ScabbardPluginExtension {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Action;Lorg/gradle/api/Action;)V
+	public fun getEnabled ()Z
+	public fun getFailOnError ()Z
+	public fun getFullBindingGraphValidation ()Z
+	public fun getOutputFormat ()Ljava/lang/String;
+	public final fun getProject ()Lorg/gradle/api/Project;
+	public fun getQualifiedNames ()Z
+	public final fun ifEnabled (Lkotlin/jvm/functions/Function1;)V
+	public fun setEnabled (Z)V
+	public fun setFailOnError (Z)V
+	public fun setFullBindingGraphValidation (Z)V
+	public fun setOutputFormat (Ljava/lang/String;)V
+	public fun setQualifiedNames (Z)V
+}
+
+public final class dev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty {
+	public static final field Companion Ldev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/Object;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Object;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Object;)Ldev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty;
+	public static synthetic fun copy$default (Ldev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty;Ljava/lang/String;Ljava/lang/Object;ILjava/lang/Object;)Ldev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getValue ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty$Companion {
+}
+
+public final class dev/arunkumar/scabbard/gradle/output/OutputFormat {
+	public static final field INSTANCE Ldev/arunkumar/scabbard/gradle/output/OutputFormat;
+	public static final field PNG Ljava/lang/String;
+	public static final field SVG Ljava/lang/String;
+	public final fun parse (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/gradle/plugin/VersionKt {
+	public static final field VERSION Ljava/lang/String;
+}
+

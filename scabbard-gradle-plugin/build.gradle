@@ -16,6 +16,7 @@
 
 plugins {
   id "java-gradle-plugin"
+  alias(deps.plugins.binary.validator)
   alias(deps.plugins.gradle.publish)
   id "org.gradle.kotlin.kotlin-dsl" version "2.1.7"
 }
