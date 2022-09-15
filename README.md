@@ -39,7 +39,7 @@ More advanced [examples](https://arunkumar9t2.github.io/scabbard/examples/).
 
 * **Minimal setup** - Scabbard's Gradle plugin prepares your project for graph generation and provides ability to customize graph generation behavior.
 
-* **IDE integration** - Easily view a `@Component` or a `@Subcomponnet` graph directly from source code via gutter icons (IntelliJ/Android Studio).
+* **IDE integration** - Easily view a `@Component` or a `@Subcomponent` graph directly from source code via gutter icons (IntelliJ/Android Studio).
 
 * **Supports** both Kotlin and Java.
 
