@@ -33,7 +33,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
       "-Xopt-in=kotlin.RequiresOptIn",
       "-Xopt-in=kotlin.time.ExperimentalTime",
       "-Xopt-in=kotlin.experimental.ExperimentalTypeInference",
-      "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
       "-Xexplicit-api=strict"
     )
   }
