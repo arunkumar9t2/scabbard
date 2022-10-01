@@ -7,6 +7,11 @@ version = 1
 # Instead of "dependabot[bot]" use "dependabot".
 auto_approve_usernames = ["arunkumar9t2"]
 
+[merge]
+# If you're using the "Require signed commits" GitHub Branch Protection setting
+# to require commit signatures, "merge" or "squash" are the only compatible options. "rebase" will cause Kodiak to raise a configuration error.
+method = "squash" # default: first valid merge method in list "merge", "squash", "rebase", options: "merge", "squash", "rebase"
+
 [merge.message]
 title = "pull_request_title" # default: "github_default"
 body = "pull_request_body" # default: "github_default"
