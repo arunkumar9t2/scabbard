@@ -69,13 +69,15 @@ public class BuildCommonPlugin : ConfigurablePlugin({
 private fun Project.configureApiValidation() {
   apply(plugin = "org.jetbrains.kotlinx.binary-compatibility-validator")
   configure<ApiValidationExtension> {
-    ignoredProjects.addAll(
-      listOf(
-        "android-kotlin",
-        "android-kotlin-hilt",
-        "kotlin-anvil"
+    if (name != "scabbard-gradle-plugin") {
+      ignoredProjects.addAll(
+        listOf(
+          "android-kotlin",
+          "android-kotlin-hilt",
+          "kotlin-anvil"
+        )
       )
-    )
+    }
   }
 }
 
