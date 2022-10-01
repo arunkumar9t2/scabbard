@@ -1,1 +1,19 @@
+# Configuration for Kodiak's auto-merge tool
+# see full options: https://kodiakhq.com/docs/config-reference
 version = 1
+
+[approve]
+# note: remove the "[bot]" suffix from GitHub Bot usernames.
+# Instead of "dependabot[bot]" use "dependabot".
+auto_approve_usernames = ["arunkumar9t2"]
+
+[merge.message]
+title = "pull_request_title" # default: "github_default"
+body = "pull_request_body" # default: "github_default"
+# add the PR number to the merge commit title, like GitHub.
+include_pr_number = true # default: true
+# use the default markdown content of the PR for the merge commit.
+body_type = "markdown" # default: "markdown"
+# remove html comments to auto remove PR templates.
+strip_html_comments = true # default: false
+include_pull_request_url = true # default: false
