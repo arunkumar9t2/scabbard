@@ -16,17 +16,16 @@
 
 package dev.arunkumar.scabbard.gradle.options
 
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_LIBRARY_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD
 import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
-import dev.arunkumar.scabbard.gradle.options.CompilerProperty.Companion.FAIL_ON_ERROR_PROPERTY
-import dev.arunkumar.scabbard.gradle.options.CompilerProperty.Companion.FULL_GRAPH_VALIDATION_PROPERTY
-import dev.arunkumar.scabbard.gradle.options.CompilerProperty.Companion.OUTPUT_FORMAT_PROPERTY
-import dev.arunkumar.scabbard.gradle.options.CompilerProperty.Companion.QUALIFIED_NAMES_PROPERTY
+import dev.arunkumar.scabbard.gradle.options.JvmCompilerProperty.Companion.FAIL_ON_ERROR_PROPERTY
+import dev.arunkumar.scabbard.gradle.options.JvmCompilerProperty.Companion.OUTPUT_FORMAT_PROPERTY
+import dev.arunkumar.scabbard.gradle.options.JvmCompilerProperty.Companion.QUALIFIED_NAMES_PROPERTY
 import dev.arunkumar.scabbard.gradle.output.OutputFormat
 import dev.arunkumar.scabbard.gradle.processor.ANNOTATION_PROCESSOR_CONFIG
 import dev.arunkumar.scabbard.gradle.processor.isDaggerCompiler
+import dev.arunkumar.scabbard.gradle.util.JAVA_LIBRARY_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.util.KAPT_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.util.SCABBARD
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.tasks.compile.JavaCompile
@@ -37,15 +36,17 @@ import kotlin.properties.Delegates.observable
 import kotlin.properties.ReadWriteProperty
 
 /**
- * Data structure abstraction to define JVM compiler property in a
- * type-safe way.
+ * Type safe structure to define Java/Kotlin property
  *
  * @param name the name of the property
  * @param value the value for this property. The type is usually
  *     converted to string using [toString] hence care
  *     must for taken when custom object is used.
  */
-data class CompilerProperty<T>(val name: String, val value: T) {
+data class JvmCompilerProperty<T>(
+  val name: String,
+  val value: T
+) {
   companion object {
     // TODO(arun) Share constants via common module
     internal const val FAIL_ON_ERROR_PROPERTY = "$SCABBARD.failOnError"
@@ -55,16 +56,9 @@ data class CompilerProperty<T>(val name: String, val value: T) {
   }
 }
 
-internal val FAIL_ON_ERROR = CompilerProperty(FAIL_ON_ERROR_PROPERTY, false)
-internal val QUALIFIED_NAMES = CompilerProperty(QUALIFIED_NAMES_PROPERTY, false)
-internal val OUTPUT_FORMAT = CompilerProperty(OUTPUT_FORMAT_PROPERTY, OutputFormat.PNG)
-internal val FULL_GRAPH_VALIDATION = CompilerProperty(FULL_GRAPH_VALIDATION_PROPERTY, false)
-internal val FULL_GRAPH_VALIDATION_MAPPER: (Boolean) -> String? = { enabled ->
-  when {
-    enabled -> "WARNING"
-    else -> null
-  }
-}
+internal val FAIL_ON_ERROR = JvmCompilerProperty(FAIL_ON_ERROR_PROPERTY, false)
+internal val QUALIFIED_NAMES = JvmCompilerProperty(QUALIFIED_NAMES_PROPERTY, false)
+internal val OUTPUT_FORMAT = JvmCompilerProperty(OUTPUT_FORMAT_PROPERTY, OutputFormat.PNG)
 
 /**
  * A mapper function that forwards value as received without any
@@ -73,49 +67,49 @@ internal val FULL_GRAPH_VALIDATION_MAPPER: (Boolean) -> String? = { enabled ->
 @Suppress("FunctionName")
 internal fun <T> PassThroughMapper(): (T) -> T = { it }
 
-internal fun <T> ScabbardPluginExtension.compilerProperty(
-  compilerProperty: CompilerProperty<T>
-) = mapCompilerProperty(compilerProperty, PassThroughMapper())
+internal fun <T> ScabbardPluginExtension.jvmCompilerProperty(
+  jvmCompilerProperty: JvmCompilerProperty<T>
+) = mapCompilerProperty(jvmCompilerProperty, PassThroughMapper())
 
 /**
  * A property delegate that calls
- * [ScabbardPluginExtension.onCompilerPropertyChanged] whenever the
+ * [ScabbardPluginExtension.onJvmCompilerPropertyChanged] whenever the
  * backing value changes and broadcasts it as `CompilerProperty<T>`
  * where `T` is the type of the property. Optionally it is possible
  * to convert the property type from one to another by using
- * [valueMapper]. For example, see `[FULL_GRAPH_VALIDATION] and
- * [FULL_GRAPH_VALIDATION_MAPPER].
+ * [valueMapper]. For example, see `[DAGGER_FULL_GRAPH_VALIDATION] and
+ * [DAGGER_FULL_GRAPH_VALIDATION_MAPPER].
  *
  * Note: The change is broadcast only if the value actually changes.
  *
- * @param compilerProperty initial defaults of the compiler property
+ * @param jvmCompilerProperty initial defaults of the compiler property
  * @param valueMapper a value mapper that will be executed before
  *     broadcasting change to
  *     [ScabbardPluginExtension.onCompilerPropertyChanged]
  */
 internal fun <T, R> ScabbardPluginExtension.mapCompilerProperty(
-  compilerProperty: CompilerProperty<T>,
+  jvmCompilerProperty: JvmCompilerProperty<T>,
   valueMapper: (T) -> R
-): ReadWriteProperty<Any?, T> = observable(compilerProperty.value) { _, oldValue, newValue ->
+): ReadWriteProperty<Any?, T> = observable(jvmCompilerProperty.value) { _, oldValue, newValue ->
   if (oldValue != newValue) {
     val mappedValue = valueMapper(newValue)
-    onCompilerPropertyChanged.execute(CompilerProperty(compilerProperty.name, mappedValue))
+    onJvmCompilerPropertyChanged.execute(JvmCompilerProperty(jvmCompilerProperty.name, mappedValue))
   }
 }
 
 /**
- * Applies the given [compilerProperty] to this project.
+ * Applies the given [jvmCompilerProperty] to this project.
  *
  * For `Java` projects, the properties are directly set to
  * [JavaCompile]'s compiler arguments. For `Kotlin` projects, the
  * properties are set in [KaptExtension]'s arguments.
  */
-internal fun Project.applyCompilerProperty(compilerProperty: CompilerProperty<*>) {
+internal fun Project.applyCompilerProperty(jvmCompilerProperty: JvmCompilerProperty<*>) {
   pluginManager.withPlugin(KAPT_PLUGIN_ID) {
     // For Kotlin projects, forward compiler arguments to Kapt
     configure<KaptExtension> {
       arguments {
-        compilerProperty.value?.let { value -> arg(compilerProperty.name, value) }
+        jvmCompilerProperty.value?.let { value -> arg(jvmCompilerProperty.name, value) }
       }
     }
   }
@@ -125,8 +119,8 @@ internal fun Project.applyCompilerProperty(compilerProperty: CompilerProperty<*>
       if (any(Dependency::isDaggerCompiler)) {
         tasks.withType<JavaCompile>().configureEach {
           options.compilerArgs.apply {
-            compilerProperty.value?.let { value ->
-              add("-A${compilerProperty.name}=$value")
+            jvmCompilerProperty.value?.let { value ->
+              add("-A${jvmCompilerProperty.name}=$value")
             }
           }
         }

@@ -16,9 +16,10 @@
 
 package dev.arunkumar.scabbard.gradle
 
-import dev.arunkumar.scabbard.gradle.options.CompilerProperty
+import dev.arunkumar.scabbard.gradle.options.JvmCompilerProperty
 import dev.arunkumar.scabbard.gradle.options.applyCompilerProperty
 import dev.arunkumar.scabbard.gradle.processor.manageScabbardProcessor
+import dev.arunkumar.scabbard.gradle.util.SCABBARD
 import org.gradle.api.Action
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -63,7 +64,7 @@ class ScabbardGradlePlugin : Plugin<Project> {
       ScabbardPluginExtension::class.java,
       project,
       Action<Boolean> { project.onScabbardStatusChanged() },
-      Action<CompilerProperty<*>> { onCompilerPropertySet(this) }
+      Action<JvmCompilerProperty<*>> { onCompilerPropertySet(this) }
     )
   }
 
@@ -78,13 +79,13 @@ class ScabbardGradlePlugin : Plugin<Project> {
   }
 
   /**
-   * Applies the given [compilerProperty] to all projects defined by
+   * Applies the given [jvmCompilerProperty] to all projects defined by
    * [setupProjects] based on whether the plugin is enabled or not.
    */
-  private fun onCompilerPropertySet(compilerProperty: CompilerProperty<*>) {
+  private fun onCompilerPropertySet(jvmCompilerProperty: JvmCompilerProperty<*>) {
     scabbardPluginExtension.ifEnabled {
       project.setupProjects {
-        applyCompilerProperty(compilerProperty)
+        applyCompilerProperty(jvmCompilerProperty)
       }
     }
   }
@@ -99,16 +100,5 @@ class ScabbardGradlePlugin : Plugin<Project> {
     if (this == rootProject) {
       subprojects(block)
     }
-  }
-
-  companion object {
-    internal const val SCABBARD = "scabbard"
-    internal const val SCABBARD_PLUGIN_ID = "scabbard.gradle"
-    internal const val KOTLIN_PLUGIN_ID = "kotlin"
-    internal const val KAPT_PLUGIN_ID = "kotlin-kapt"
-    internal const val JAVA_PLUGIN_ID = "java"
-    internal const val JAVA_LIBRARY_PLUGIN_ID = "java-library"
-    internal const val ANDROID_APP_PLUGIN_ID = "com.android.application"
-    internal const val ANDROID_LIBRARY_PLUGIN_ID = "com.android.library"
   }
 }

@@ -2,7 +2,7 @@ package dev.arunkumar.scabbard.gradle.compilerproperties
 
 import dev.arunkumar.scabbard.gradle.common.ScabbardBaseTest
 import dev.arunkumar.scabbard.gradle.options.FAIL_ON_ERROR
-import dev.arunkumar.scabbard.gradle.options.FULL_GRAPH_VALIDATION
+import dev.arunkumar.scabbard.gradle.options.DAGGER_FULL_GRAPH_VALIDATION
 import dev.arunkumar.scabbard.gradle.options.OUTPUT_FORMAT
 import dev.arunkumar.scabbard.gradle.options.QUALIFIED_NAMES
 import dev.arunkumar.scabbard.gradle.output.OutputFormat.SVG
@@ -96,7 +96,7 @@ class CompilerPropertiesTest : ScabbardBaseTest() {
 
     assertTrue(
       "Binding graph validation key is present",
-      project.kaptOptions().contains(FULL_GRAPH_VALIDATION.name)
+      project.kaptOptions().contains(DAGGER_FULL_GRAPH_VALIDATION.name)
     )
   }
 
@@ -113,7 +113,7 @@ class CompilerPropertiesTest : ScabbardBaseTest() {
     project.javacOptions { options ->
       assertTrue(
         "Javac binding graph validation key is added",
-        options.compilerArgs.contains("-A${FULL_GRAPH_VALIDATION.name}=WARNING")
+        options.compilerArgs.contains("-A${DAGGER_FULL_GRAPH_VALIDATION.name}=WARNING")
       )
     }
   }

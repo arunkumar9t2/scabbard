@@ -1,10 +1,7 @@
 package dev.arunkumar.scabbard.gradle.processor
 
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_LIBRARY_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KOTLIN_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.common.ScabbardBaseTest
+import dev.arunkumar.scabbard.gradle.util.*
 import org.gradle.api.Project
 import org.junit.Assert.assertTrue
 import org.junit.Ignore

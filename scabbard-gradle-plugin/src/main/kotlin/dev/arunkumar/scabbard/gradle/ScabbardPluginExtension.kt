@@ -16,10 +16,14 @@
 
 package dev.arunkumar.scabbard.gradle
 
-import dev.arunkumar.scabbard.gradle.options.compilerProperty
+import dev.arunkumar.scabbard.gradle.options.*
+import dev.arunkumar.scabbard.gradle.options.FAIL_ON_ERROR
+import dev.arunkumar.scabbard.gradle.options.OUTPUT_FORMAT
+import dev.arunkumar.scabbard.gradle.options.QUALIFIED_NAMES
+import dev.arunkumar.scabbard.gradle.options.jvmCompilerProperty
 import dev.arunkumar.scabbard.gradle.options.mapCompilerProperty
 import dev.arunkumar.scabbard.gradle.output.OutputFormat
-import dev.arunkumar.scabbard.gradle.util.enabledProperty
+import dev.arunkumar.scabbard.gradle.util.scabbardEnabledProperty
 import org.gradle.api.Action
 import org.gradle.api.Project
 
@@ -32,35 +36,35 @@ import org.gradle.api.Project
  *
  * @see [ScabbardGradlePlugin] for information.
  * @param project The project instance where the plugin is applied
- * @param onEnabledStatusChange The action to execute when
+ * @param onScabbardEnabledStatusChanged The action to execute when
  *     [ScabbardPluginExtension.enabled] is configured
- * @param onCompilerPropertyChanged The action to execute when any of
+ * @param onJvmCompilerPropertyChanged The action to execute when any of
  *     the compiler property is configured.
  */
 open class ScabbardPluginExtension(
   val project: Project,
-  internal val onEnabledStatusChange: Action<Boolean>,
-  internal val onCompilerPropertyChanged: Action<dev.arunkumar.scabbard.gradle.options.CompilerProperty<*>>
+  internal val onScabbardEnabledStatusChanged: Action<Boolean>,
+  internal val onJvmCompilerPropertyChanged: Action<JvmCompilerProperty<*>>
 ) {
 
   /**
    * Control whether scabbard is enabled or not. Default value is
    * `false`.
    */
-  open var enabled by enabledProperty()
+  open var enabled by scabbardEnabledProperty()
 
   /**
    * By default, scabbard does not fail the build when any error occurs
    * in scabbard's processor. Setting this property to `true` will
    * change that behaviour to fail on any error for debugging purposes.
    */
-  open var failOnError by compilerProperty(dev.arunkumar.scabbard.gradle.options.FAIL_ON_ERROR)
+  open var failOnError by jvmCompilerProperty(FAIL_ON_ERROR)
 
   /**
    * Flag to control if fully qualified names should be used everywhere
    * in the graph. Default value is `false`
    */
-  open var qualifiedNames by compilerProperty(dev.arunkumar.scabbard.gradle.options.QUALIFIED_NAMES)
+  open var qualifiedNames by jvmCompilerProperty(QUALIFIED_NAMES)
 
   /**
    * Configures Dagger processor to do full graph validation which
@@ -70,10 +74,7 @@ open class ScabbardPluginExtension(
    *
    * @see [https://dagger.dev/compiler-options.html]
    */
-  open var fullBindingGraphValidation by mapCompilerProperty(
-    compilerProperty = dev.arunkumar.scabbard.gradle.options.FULL_GRAPH_VALIDATION,
-    valueMapper = dev.arunkumar.scabbard.gradle.options.FULL_GRAPH_VALIDATION_MAPPER
-  )
+  open var fullBindingGraphValidation by daggerFullGraphValidationProperty()
 
   /**
    * The output image format that scabbard generates. Supported values
@@ -83,7 +84,7 @@ open class ScabbardPluginExtension(
    *     supplied.
    */
   open var outputFormat by mapCompilerProperty(
-    compilerProperty = dev.arunkumar.scabbard.gradle.options.OUTPUT_FORMAT,
+    jvmCompilerProperty = OUTPUT_FORMAT,
     valueMapper = OutputFormat::parse
   )
 
