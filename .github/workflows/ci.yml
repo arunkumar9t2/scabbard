@@ -28,7 +28,7 @@ jobs:
           gradle-dependencies-cache-key: |
             gradle/libs.versions.toml
             build-logic/**/Constants.kt
-          arguments: spotlessCheck
+          arguments: spotlessCheck :scabbard-gradle-plugin:spotlessCheck apiCheck
   scabbard-test:
     runs-on: ubuntu-latest
     container:
