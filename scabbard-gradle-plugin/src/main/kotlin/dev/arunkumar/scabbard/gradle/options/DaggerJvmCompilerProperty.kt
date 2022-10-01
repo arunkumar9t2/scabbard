@@ -14,18 +14,23 @@
  * limitations under the License.
  */
 
-package dev.arunkumar.scabbard.gradle.util
+package dev.arunkumar.scabbard.gradle.options
 
 import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
-import kotlin.properties.Delegates.observable
+import dev.arunkumar.scabbard.gradle.options.JvmCompilerProperty.Companion.FULL_GRAPH_VALIDATION_PROPERTY
 
-/**
- * Property delegate that notifies
- * [ScabbardPluginExtension.onScabbardEnabledStatusChanged] whenever the
- * extension is set. The broadcast happens even if value itself did not
- * change.
- */
-internal fun ScabbardPluginExtension.scabbardEnabledProperty() =
-  observable(false) { _, _, newValue ->
-    onScabbardEnabledStatusChanged.execute(newValue)
+internal val DAGGER_FULL_GRAPH_VALIDATION = JvmCompilerProperty(
+  FULL_GRAPH_VALIDATION_PROPERTY,
+  false
+)
+internal val DAGGER_FULL_GRAPH_VALIDATION_MAPPER: (Boolean) -> String? = { enabled ->
+  when {
+    enabled -> "WARNING"
+    else -> null
   }
+}
+
+internal fun ScabbardPluginExtension.daggerFullGraphValidationProperty() = mapCompilerProperty(
+  DAGGER_FULL_GRAPH_VALIDATION,
+  DAGGER_FULL_GRAPH_VALIDATION_MAPPER
+)

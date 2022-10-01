@@ -1,13 +1,13 @@
 package dev.arunkumar.scabbard.gradle.common
 
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_LIBRARY_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KOTLIN_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.SCABBARD_PLUGIN_ID
 import dev.arunkumar.scabbard.gradle.ScabbardPluginExtension
 import dev.arunkumar.scabbard.gradle.processor.DAGGER_COMPILER
 import dev.arunkumar.scabbard.gradle.processor.DAGGER_GROUP
-import dev.arunkumar.scabbard.gradle.processor.configName
+import dev.arunkumar.scabbard.gradle.processor.apConfigName
+import dev.arunkumar.scabbard.gradle.util.JAVA_LIBRARY_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.util.KAPT_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.util.KOTLIN_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.util.SCABBARD_PLUGIN_ID
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
@@ -63,7 +63,7 @@ abstract class ScabbardBaseTest {
 
   internal fun Project.addDagger(isKapt: Boolean = false) {
     dependencies {
-      add(configName(isKapt), "$DAGGER_GROUP:$DAGGER_COMPILER:+")
+      add(apConfigName(isKapt), "$DAGGER_GROUP:$DAGGER_COMPILER:+")
     }
   }
 

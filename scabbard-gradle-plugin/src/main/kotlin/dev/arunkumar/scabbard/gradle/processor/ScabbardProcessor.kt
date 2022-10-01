@@ -16,22 +16,17 @@
 
 package dev.arunkumar.scabbard.gradle.processor
 
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.ANDROID_APP_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.ANDROID_LIBRARY_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_LIBRARY_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.JAVA_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.ScabbardGradlePlugin.Companion.KAPT_PLUGIN_ID
-import dev.arunkumar.scabbard.gradle.plugin.VERSION
+import dev.arunkumar.scabbard.gradle.util.*
+import dev.arunkumar.scabbard.gradle.util.ANDROID_APP_PLUGIN_ID
+import dev.arunkumar.scabbard.gradle.util.SCABBARD_GROUP
+import dev.arunkumar.scabbard.gradle.util.SCABBARD_NAME
+import dev.arunkumar.scabbard.gradle.util.SCABBARD_PROCESSOR_DEPENDENCY
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.plugins.PluginManager
 
 internal const val KAPT_CONFIG = "kapt"
 internal const val ANNOTATION_PROCESSOR_CONFIG = "annotationProcessor"
-
-internal const val SCABBARD_GROUP = "dev.arunkumar"
-internal const val SCABBARD_NAME = "scabbard-processor"
-internal const val SCABBARD_PROCESSOR_DEPENDENCY = "$SCABBARD_GROUP:$SCABBARD_NAME:$VERSION"
 
 internal const val DAGGER_GROUP = "com.google.dagger"
 internal const val DAGGER_COMPILER = "dagger-compiler"
@@ -57,7 +52,7 @@ internal val Dependency.isDaggerCompiler: Boolean
     )
 
 /** TODO(arun) Make this Android variant aware */
-internal fun configName(isKapt: Boolean) = when {
+internal fun apConfigName(isKapt: Boolean) = when {
   isKapt -> KAPT_CONFIG
   else -> ANNOTATION_PROCESSOR_CONFIG
 }
@@ -70,7 +65,7 @@ internal fun configName(isKapt: Boolean) = when {
  *     it is removed from `annotationProcessor`
  */
 private fun Project.removeScabbard(isKapt: Boolean = false) {
-  configurations.findByName(configName(isKapt))?.withDependencies {
+  configurations.findByName(apConfigName(isKapt))?.withDependencies {
     if (removeIf(Dependency::isScabbard)) {
       logger.info("Removed Scabbard from project:$path")
     }
@@ -86,7 +81,7 @@ private fun Project.removeScabbard(isKapt: Boolean = false) {
  * available, if not it is not added.
  */
 private fun Project.addScabbard(isKapt: Boolean = false) {
-  val configName = configName(isKapt)
+  val configName = apConfigName(isKapt)
   configurations.findByName(configName)?.withDependencies {
     if (none(Dependency::isScabbard) && any(Dependency::isDaggerCompiler)) {
       logger.info("Adding scabbard to $configName configuration")
@@ -102,9 +97,8 @@ private fun Project.addScabbard(isKapt: Boolean = false) {
  *
  * The logic relies on callback's from Gradle's [PluginManager] API
  * to determine the course of action to avoid reliance on plugin
- * application order to determine other applied plugins. Relying on
- * plugin application order can have issue when using `subprojects` or
- * `allprojects`
+ * application orders. Relying on plugin application order can have
+ * issue when using `subprojects` or `allprojects`
  *
  * The dependency is added without forcing any resolution of other
  * dependencies.

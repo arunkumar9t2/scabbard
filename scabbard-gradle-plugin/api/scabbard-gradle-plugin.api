@@ -1,11 +1,7 @@
 public final class dev/arunkumar/scabbard/gradle/ScabbardGradlePlugin : org/gradle/api/Plugin {
-	public static final field Companion Ldev/arunkumar/scabbard/gradle/ScabbardGradlePlugin$Companion;
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
 	public fun apply (Lorg/gradle/api/Project;)V
-}
-
-public final class dev/arunkumar/scabbard/gradle/ScabbardGradlePlugin$Companion {
 }
 
 public class dev/arunkumar/scabbard/gradle/ScabbardPluginExtension {
@@ -24,13 +20,13 @@ public class dev/arunkumar/scabbard/gradle/ScabbardPluginExtension {
 	public fun setQualifiedNames (Z)V
 }
 
-public final class dev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty {
-	public static final field Companion Ldev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty$Companion;
+public final class dev/arunkumar/scabbard/gradle/options/JvmCompilerProperty {
+	public static final field Companion Ldev/arunkumar/scabbard/gradle/options/JvmCompilerProperty$Companion;
 	public fun <init> (Ljava/lang/String;Ljava/lang/Object;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/Object;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Object;)Ldev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty;
-	public static synthetic fun copy$default (Ldev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty;Ljava/lang/String;Ljava/lang/Object;ILjava/lang/Object;)Ldev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Object;)Ldev/arunkumar/scabbard/gradle/options/JvmCompilerProperty;
+	public static synthetic fun copy$default (Ldev/arunkumar/scabbard/gradle/options/JvmCompilerProperty;Ljava/lang/String;Ljava/lang/Object;ILjava/lang/Object;)Ldev/arunkumar/scabbard/gradle/options/JvmCompilerProperty;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getName ()Ljava/lang/String;
 	public final fun getValue ()Ljava/lang/Object;
@@ -38,7 +34,7 @@ public final class dev/arunkumar/scabbard/gradle/compilerproperties/CompilerProp
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class dev/arunkumar/scabbard/gradle/compilerproperties/CompilerProperty$Companion {
+public final class dev/arunkumar/scabbard/gradle/options/JvmCompilerProperty$Companion {
 }
 
 public final class dev/arunkumar/scabbard/gradle/output/OutputFormat {
@@ -50,5 +46,9 @@ public final class dev/arunkumar/scabbard/gradle/output/OutputFormat {
 
 public final class dev/arunkumar/scabbard/gradle/plugin/VersionKt {
 	public static final field VERSION Ljava/lang/String;
+}
+
+public final class dev/arunkumar/scabbard/gradle/util/ConstantsKt {
+	public static final field SCABBARD Ljava/lang/String;
 }
 
