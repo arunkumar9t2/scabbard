@@ -29,11 +29,11 @@ internal fun Project.kotlinCommon() {
     kotlinOptions {
       jvmTarget = "1.8"
       freeCompilerArgs = freeCompilerArgs + listOf(
-        "-Xopt-in=kotlin.ExperimentalStdlibApi",
-        "-Xopt-in=kotlin.RequiresOptIn",
-        "-Xopt-in=kotlin.time.ExperimentalTime",
-        "-Xopt-in=kotlin.experimental.ExperimentalTypeInference",
-        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        "-opt-in=kotlin.ExperimentalStdlibApi",
+        "-opt-in=kotlin.RequiresOptIn",
+        "-opt-in=kotlin.time.ExperimentalTime",
+        "-opt-in=kotlin.experimental.ExperimentalTypeInference",
+        "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
         // "-Xexplicit-api=strict" // TODO Uncomment if strict API is needed
       )
     }
