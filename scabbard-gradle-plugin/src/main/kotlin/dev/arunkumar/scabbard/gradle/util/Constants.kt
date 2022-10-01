@@ -27,7 +27,6 @@ internal const val JAVA_LIBRARY_PLUGIN_ID = "java-library"
 internal const val ANDROID_APP_PLUGIN_ID = "com.android.application"
 internal const val ANDROID_LIBRARY_PLUGIN_ID = "com.android.library"
 
-
 internal const val SCABBARD_GROUP = "dev.arunkumar"
 internal const val SCABBARD_NAME = "scabbard-processor"
 internal const val SCABBARD_PROCESSOR_DEPENDENCY = "$SCABBARD_GROUP:$SCABBARD_NAME:$VERSION"

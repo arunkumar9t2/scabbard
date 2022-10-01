@@ -17,8 +17,7 @@ public abstract interface class dev/arunkumar/scabbard/plugin/di/BindingGraphVis
 	public abstract fun create (Ldagger/model/BindingGraph;Ldagger/spi/DiagnosticReporter;)Ldev/arunkumar/scabbard/plugin/di/BindingGraphVisitorComponent;
 }
 
-public final class dev/arunkumar/scabbard/plugin/di/DaggerScabbardComponent : dev/arunkumar/scabbard/plugin/di/ScabbardComponent {
-	public fun bindingGraphVisitorComponent ()Ldev/arunkumar/scabbard/plugin/di/BindingGraphVisitorComponent$Factory;
+public final class dev/arunkumar/scabbard/plugin/di/DaggerScabbardComponent {
 	public static fun factory ()Ldev/arunkumar/scabbard/plugin/di/ScabbardComponent$Factory;
 }
 

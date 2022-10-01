@@ -20,7 +20,7 @@ import org.gradle.api.Action
 import kotlin.properties.Delegates.observable
 
 public open class KtExtension(
-  private val onKaptChanged: Action<Boolean>,
+  private val onKaptChanged: Action<Boolean>
 ) {
 
   public open var kapt: Boolean by observable(false) { _, _, newValue ->

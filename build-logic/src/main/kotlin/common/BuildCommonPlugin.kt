@@ -59,6 +59,7 @@ public class BuildCommonPlugin : ConfigurablePlugin({
 
   configureApiValidation()
 
+  configureSpotless()
   subprojects {
     configureSpotless()
   }
@@ -87,7 +88,7 @@ private fun Project.configureSpotless() {
   configure<SpotlessExtension> {
     kotlin {
       target("**/*.kt")
-      targetExclude("$buildDir/**/*.kt", "bin/**/*.kt")
+      targetExclude("$buildDir/**/*.kt", "bin/**/*.kt", "**/Version.kt")
 
       ktlint(deps.version("ktlint"))
         .setUseExperimental(true)
@@ -95,7 +96,7 @@ private fun Project.configureSpotless() {
           mapOf(
             "indent_size" to "2",
             "continuation_indent_size" to "2",
-            "disabled_rules" to "no-wildcard-imports,filename",
+            "disabled_rules" to "no-wildcard-imports,filename"
           )
         )
     }
@@ -105,4 +106,3 @@ private fun Project.configureSpotless() {
 private fun Project.configureDokka() {
   apply<DokkaPlugin>()
 }
-

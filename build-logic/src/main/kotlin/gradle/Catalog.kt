@@ -21,7 +21,6 @@ import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.getByType
 
-
 internal val Project.catalogs get() = extensions.getByType<VersionCatalogsExtension>()
 
 internal val Project.deps: VersionCatalog get() = catalogs.named("deps")

@@ -38,7 +38,7 @@ class ScabbardExtensionTest : ScabbardFunctionalTest() {
               |    qualifiedNames false
               |    outputFormat "svg"
               | }
-            """.trimMargin()
+      """.trimMargin()
     )
     val result = gradleRunner
       .withArguments(":help")

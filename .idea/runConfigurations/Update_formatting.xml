@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Spotless Apply" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="Update formatting" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -10,7 +10,9 @@
       </option>
       <option name="taskNames">
         <list>
+          <option value="apiDump" />
           <option value="spotlessApply" />
+          <option value=":scabbard-gradle-plugin:spotlessApply" />
         </list>
       </option>
       <option name="vmOptions" value="" />

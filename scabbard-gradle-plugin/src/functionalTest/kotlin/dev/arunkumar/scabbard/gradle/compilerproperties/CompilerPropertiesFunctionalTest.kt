@@ -56,7 +56,7 @@ class CompilerPropertiesFunctionalTest : ScabbardFunctionalTest() {
               |   implementation "com.google.dagger:dagger:+"
               |   kapt "com.google.dagger:dagger-compiler:+"
               | }
-            """.trimMargin()
+      """.trimMargin()
     )
     val buildResult = gradleRunner
       .withDebug(true)
@@ -107,7 +107,7 @@ class CompilerPropertiesFunctionalTest : ScabbardFunctionalTest() {
               |   implementation "com.google.dagger:dagger:+"
               |   kapt "com.google.dagger:dagger-compiler:+"
               | }
-            """.trimMargin()
+      """.trimMargin()
     )
     val buildResult = gradleRunner
       .withDebug(true)
@@ -143,7 +143,7 @@ class CompilerPropertiesFunctionalTest : ScabbardFunctionalTest() {
               |   implementation "com.google.dagger:dagger:+"
               |   annotationProcessor "com.google.dagger:dagger-compiler:+"
               | }
-            """.trimMargin()
+      """.trimMargin()
     )
     val buildResult = gradleRunner
       .withDebug(true)

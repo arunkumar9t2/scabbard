@@ -1,8 +1,8 @@
 package dev.arunkumar.scabbard.gradle.compilerproperties
 
 import dev.arunkumar.scabbard.gradle.common.ScabbardBaseTest
-import dev.arunkumar.scabbard.gradle.options.FAIL_ON_ERROR
 import dev.arunkumar.scabbard.gradle.options.DAGGER_FULL_GRAPH_VALIDATION
+import dev.arunkumar.scabbard.gradle.options.FAIL_ON_ERROR
 import dev.arunkumar.scabbard.gradle.options.OUTPUT_FORMAT
 import dev.arunkumar.scabbard.gradle.options.QUALIFIED_NAMES
 import dev.arunkumar.scabbard.gradle.output.OutputFormat.SVG

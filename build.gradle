@@ -45,7 +45,7 @@ allprojects {
     kapt {
       arguments {
         // TODO(arun) Ensure scabbard does not rely on @Component subclassing and remove this.
-        arg("dagger.generatedClassExtendsComponent", "ENABLED")
+        // arg("dagger.generatedClassExtendsComponent", "ENABLED")
       }
     }
   }

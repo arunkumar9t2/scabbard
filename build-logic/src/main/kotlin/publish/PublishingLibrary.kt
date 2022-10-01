@@ -30,7 +30,6 @@ import org.gradle.plugins.signing.SigningExtension
 import org.jetbrains.dokka.gradle.AbstractDokkaTask
 import org.jetbrains.dokka.gradle.DokkaPlugin
 
-
 public class PublishingLibrary : ConfigurablePlugin({
   apply(plugin = "maven-publish")
   apply(plugin = "signing")
@@ -93,8 +92,8 @@ public class PublishingLibrary : ConfigurablePlugin({
             }
 
             scm {
-              connection.set("${website}.git")
-              developerConnection.set("${website}.git")
+              connection.set("$website.git")
+              developerConnection.set("$website.git")
               url.set(website)
             }
           }
@@ -128,12 +127,14 @@ private fun Project.registerSourceJarTask(): TaskProvider<Jar> {
   return tasks.register<Jar>(sourcesJar) {
     archiveClassifier.set("sources")
     if (isAndroid) {
-      from(project.provider {
-        extensions.getByType<BaseExtension>()
-          .sourceSets
-          .matching { it.name == "main" }
-          .flatMap { it.java.srcDirs + (it.kotlin as AndroidSourceDirectorySet).srcDirs }
-      })
+      from(
+        project.provider {
+          extensions.getByType<BaseExtension>()
+            .sourceSets
+            .matching { it.name == "main" }
+            .flatMap { it.java.srcDirs + (it.kotlin as AndroidSourceDirectorySet).srcDirs }
+        }
+      )
     } else {
       extensions.findByType<SourceSetContainer>()
         ?.getByName("main")
@@ -149,7 +150,7 @@ private fun Project.configureSigning() {
     useInMemoryPgpKeys(
       rootProject.extra[SIGNING_KEY_ID].toString(),
       rootProject.extra[SIGNING_KEY].toString(),
-      rootProject.extra[SIGNING_PASSWORD].toString(),
+      rootProject.extra[SIGNING_PASSWORD].toString()
     )
     sign(the<PublishingExtension>().publications)
   }
