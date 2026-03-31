@@ -17,7 +17,7 @@
 <idea-plugin>
     <name>Scabbard - Dagger 2 Visualizer</name>
     <id>dev.arunkumar.scabbard.idea-plugin</id>
-    <idea-version since-build="191" />
+    <idea-version since-build="242" />
     <vendor email="hi@arunkumar.dev" url="https://arunkumar.dev">Arunkumar</vendor>
     <category>Custom Languages</category>
 
@@ -53,14 +53,11 @@
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.java</depends>
     <depends>org.jetbrains.kotlin</depends>
-    <depends>org.jetbrains.android</depends>
+    <depends optional="true" config-file="scabbard-android.xml">org.jetbrains.android</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.KotlinComponentToDaggerGraphLineMarker"
-            language="kotlin" />
-        <codeInsight.lineMarkerProvider
-            implementationClass="dev.arunkumar.scabbard.intellij.dagger.android.KotlinContributesAndroidInjectorLineMarker"
             language="kotlin" />
         <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.hilt.KotlinHiltCustomComponentToDaggerGraphLineMarker"
@@ -69,16 +66,7 @@
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.hilt.JavaHiltCustomComponentToDaggerGraphLineMarker"
             language="JAVA" />
         <codeInsight.lineMarkerProvider
-            implementationClass="dev.arunkumar.scabbard.intellij.dagger.hilt.KotlinHiltAndroidToDaggerGraphLineMarker"
-            language="kotlin" />
-        <codeInsight.lineMarkerProvider
-            implementationClass="dev.arunkumar.scabbard.intellij.dagger.hilt.JavaHiltAndroidToDaggerGraphLineMarker"
-            language="JAVA" />
-        <codeInsight.lineMarkerProvider
             implementationClass="dev.arunkumar.scabbard.intellij.dagger.JavaComponentToDaggerGraphLineMarker"
-            language="JAVA" />
-        <codeInsight.lineMarkerProvider
-            implementationClass="dev.arunkumar.scabbard.intellij.dagger.android.JavaContributesAndroidInjectorLineMarker"
             language="JAVA" />
     </extensions>
 
@@ -86,5 +74,9 @@
         <consoleFilterProvider
             implementation="dev.arunkumar.scabbard.intellij.dagger.console.ScabbardConsoleFilterProvider"
             order="last" />
+    </extensions>
+
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <supportsKotlinPluginMode supportsK2="true" />
     </extensions>
 </idea-plugin>

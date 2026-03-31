@@ -71,7 +71,7 @@ fun AnnotationMirror.extractName(typeParser: (TypeMirror) -> String = { it.toStr
     elementValues.forEach { (key: ExecutableElement, value: AnnotationValue?) ->
       namedValuesBuilder.put(
         key.simpleName.toString(),
-        value.extractName()
+        value?.extractName()
       )
     }
     val namedValues = namedValuesBuilder.build()

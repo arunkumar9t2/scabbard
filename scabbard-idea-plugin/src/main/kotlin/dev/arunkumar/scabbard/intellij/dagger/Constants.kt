@@ -28,4 +28,6 @@ const val ANDROIDX_FRAGMENT = "androidx.fragment.app.Fragment"
 const val ANDROID_VIEW = "android.view.View"
 const val ANDROID_SERVICE = "android.app.Service"
 
-val SCABBARD_ICON = IconLoader.getIcon("/icons/gutter-icon.png")
+val SCABBARD_ICON = IconLoader.getIcon("/icons/gutter-icon.png", Constants::class.java.classLoader)
+
+private object Constants

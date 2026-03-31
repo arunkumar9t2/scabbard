@@ -28,9 +28,9 @@ import dev.arunkumar.scabbard.plugin.processor.graphviz.renderer.GraphVizRenderi
 interface GraphvizVisualizationModule {
   @Binds
   @IntoSet
-  fun ComponentVisualizationProcessor.bindingGraphProcessor(): BindingGraphProcessor
+  fun bindingGraphProcessor(impl: ComponentVisualizationProcessor): BindingGraphProcessor
 
   @Binds
   @IntoSet
-  fun ComponentTreeVisualizationProcessor.componentTreeProcessor(): BindingGraphProcessor
+  fun componentTreeProcessor(impl: ComponentTreeVisualizationProcessor): BindingGraphProcessor
 }

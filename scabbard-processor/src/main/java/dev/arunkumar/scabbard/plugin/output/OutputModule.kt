@@ -22,5 +22,5 @@ import dagger.Module
 @Module(includes = [OutputWriterModule::class])
 interface OutputModule {
   @Binds
-  fun DefaultOutputManager.bindOutputManager(): OutputManager
+  fun bindOutputManager(impl: DefaultOutputManager): OutputManager
 }

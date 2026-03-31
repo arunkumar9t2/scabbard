@@ -22,15 +22,12 @@ pluginManagement {
     mavenCentral()
   }
   plugins {
-    // TODO Replace with version catalogs once plugins are supported ready
-    id "com.gradle.enterprise" version "3.6.3"
+    id "com.gradle.develocity" version "4.2"
   }
 }
 plugins {
-  id "com.gradle.enterprise"
+  id "com.gradle.develocity"
 }
-
-enableFeaturePreview("VERSION_CATALOGS")
 
 dependencyResolutionManagement {
   // repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -60,6 +57,6 @@ include "samples:kotlin-anvil"
 
 includeBuild("scabbard-gradle-plugin") {
   dependencySubstitution {
-    substitute module("dev.arunkumar:scabbard-gradle-plugin") with project(":")
+    substitute module("dev.arunkumar:scabbard-gradle-plugin") using project(":")
   }
 }

@@ -25,8 +25,6 @@ pluginManagement {
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.6.0"
   }
 }
-enableFeaturePreview("VERSION_CATALOGS")
-
 dependencyResolutionManagement {
   repositories {
     google()
