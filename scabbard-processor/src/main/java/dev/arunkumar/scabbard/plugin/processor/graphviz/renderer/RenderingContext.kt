@@ -65,7 +65,7 @@ interface RenderingContext {
 @Module
 interface GraphVizRenderingModule {
   @Binds
-  fun DefaultRenderingContext.bind(): RenderingContext
+  fun bind(impl: DefaultRenderingContext): RenderingContext
 }
 
 class DefaultRenderingContext

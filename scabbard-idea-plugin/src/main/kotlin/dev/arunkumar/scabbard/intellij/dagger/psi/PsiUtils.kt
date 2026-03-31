@@ -24,10 +24,8 @@ import dev.arunkumar.scabbard.intellij.dagger.DAGGER_MODULE
 import dev.arunkumar.scabbard.intellij.dagger.DAGGER_SUBCOMPONENT
 import dev.arunkumar.scabbard.intellij.dagger.anvil.ANVIL_MERGE_COMPONENT
 import dev.arunkumar.scabbard.intellij.dagger.anvil.ANVIL_MERGE_SUBCOMPONENT
-import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtKeywordToken
 import org.jetbrains.kotlin.lexer.KtTokens
-import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 /**
@@ -76,7 +74,8 @@ fun LeafPsiElement.ktClassOrObject(): KtClassOrObject? {
 }
 
 fun KtClassOrObject.hasAnnotation(qualifiedAnnotationName: String): Boolean {
-  return findAnnotation(FqName(qualifiedAnnotationName)) != null
+  val shortName = qualifiedAnnotationName.substringAfterLast('.')
+  return annotationEntries.any { it.shortName?.asString() == shortName }
 }
 
 /**

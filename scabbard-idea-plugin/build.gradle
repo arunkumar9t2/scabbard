@@ -18,7 +18,7 @@
 import org.jetbrains.intellij.tasks.RunPluginVerifierTask.FailureLevel
 
 plugins {
-  id "org.jetbrains.intellij" version "1.0"
+  id "org.jetbrains.intellij" version "1.17.4"
   id "kotlin-library-plugin"
 }
 
@@ -34,14 +34,38 @@ dependencies {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
   updateSinceUntilBuild.set(false)
-  version.set("202.7660.26") // AS 4.2.1
+  version.set("2024.2")
   type.set("IC")
 
   plugins.set([
-    "Kotlin", "IntelliLang", "java", "android"
+    "com.intellij.java"
   ])
   pluginName.set("Scabbard - Dagger 2 Visualizer")
-  // localPath.set("C:\\Users\\arunk\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-0\\202.7351085")
+}
+
+// Kotlin plugin in 2024.2+ is not in the builtin registry.
+// Resolve Kotlin plugin jars from the downloaded IDE.
+configurations {
+  kotlinPlugin
+}
+afterEvaluate {
+  def ideSdkVersion = intellij.version.get()
+  def ideSdkType = intellij.type.get().toLowerCase()
+  // Find the downloaded IDE in Gradle cache
+  def cacheBase = new File(gradle.gradleUserHomeDir, "caches/modules-2/files-2.1/com.jetbrains.intellij.idea/idea${ideSdkType.toUpperCase()}/${ideSdkVersion}")
+  def kotlinPluginDir = null
+  if (cacheBase.exists()) {
+    cacheBase.eachDirRecurse { dir ->
+      if (dir.name == "Kotlin" && dir.parentFile.name == "plugins") {
+        kotlinPluginDir = new File(dir, "lib")
+      }
+    }
+  }
+  if (kotlinPluginDir?.exists()) {
+    dependencies {
+      compileOnly fileTree(dir: kotlinPluginDir, includes: ["*.jar"])
+    }
+  }
 }
 
 patchPluginXml {
@@ -69,10 +93,9 @@ patchPluginXml {
 
 runPluginVerifier {
   ideVersions = [
-    "IC-2020.1.4",
-    "IC-2020.2.4",
-    "IC-2020.3.2",
-    "IC-2021.1",
+    "IC-2024.2",
+    "IC-2024.3",
+    "IC-2025.1",
   ]
 
   def customFailureLevel = FailureLevel.ALL

@@ -20,10 +20,10 @@ import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
+import com.intellij.psi.util.PsiTreeUtil
 import dev.arunkumar.scabbard.intellij.dagger.prepareDaggerComponentLineMarkerWithFileName
 import dev.arunkumar.scabbard.intellij.dagger.psi.isDaggerAnnotationIdentifier
 import dev.arunkumar.scabbard.intellij.dagger.psi.isSubClassOf
-import org.jetbrains.kotlin.j2k.getContainingClass
 
 class JavaHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
@@ -43,7 +43,7 @@ class JavaHiltAndroidToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
     result: MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     if (element.isDaggerAnnotationIdentifier(hiltAnnotations)) {
-      val psiClass = element.getContainingClass()
+      val psiClass = PsiTreeUtil.getParentOfType(element, PsiClass::class.java)
       val qualifiedName = psiClass?.findHiltGeneratedComponent()?.qualifiedName
       qualifiedName?.let {
         val graphLineMarker = prepareDaggerComponentLineMarkerWithFileName(

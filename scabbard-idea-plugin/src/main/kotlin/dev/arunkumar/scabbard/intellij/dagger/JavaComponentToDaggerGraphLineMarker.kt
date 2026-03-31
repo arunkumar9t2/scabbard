@@ -18,9 +18,10 @@ package dev.arunkumar.scabbard.intellij.dagger
 
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider
+import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
+import com.intellij.psi.util.PsiTreeUtil
 import dev.arunkumar.scabbard.intellij.dagger.psi.isDaggerAnnotationIdentifier
-import org.jetbrains.kotlin.j2k.getContainingClass
 
 class JavaComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
 
@@ -29,7 +30,7 @@ class JavaComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
     result: MutableCollection<in RelatedItemLineMarkerInfo<*>>
   ) {
     if (element.isDaggerAnnotationIdentifier()) {
-      val psiClass = element.getContainingClass()
+      val psiClass = PsiTreeUtil.getParentOfType(element, PsiClass::class.java)
       val qualifiedName = psiClass?.qualifiedName
       qualifiedName?.let {
         val graphLineMarker = prepareDaggerComponentLineMarkerWithFileName(

@@ -26,9 +26,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 internal fun Project.kotlinCommon() {
   tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-      jvmTarget = "1.8"
-      freeCompilerArgs = freeCompilerArgs + listOf(
+    compilerOptions {
+      jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+      freeCompilerArgs.addAll(
         "-opt-in=kotlin.ExperimentalStdlibApi",
         "-opt-in=kotlin.RequiresOptIn",
         "-opt-in=kotlin.time.ExperimentalTime",

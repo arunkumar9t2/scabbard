@@ -31,14 +31,14 @@ allprojects {
   plugins.withType(com.android.build.gradle.BasePlugin).configureEach { plugin ->
     //noinspection GrDeprecatedAPIUsage
     plugin.extension.compileOptions {
-      sourceCompatibility = JavaVersion.VERSION_1_8
-      targetCompatibility = JavaVersion.VERSION_1_8
+      sourceCompatibility = JavaVersion.VERSION_17
+      targetCompatibility = JavaVersion.VERSION_17
     }
   }
 
   tasks.withType(JavaCompile).configureEach { task ->
-    task.sourceCompatibility = JavaVersion.VERSION_1_8
-    task.targetCompatibility = JavaVersion.VERSION_1_8
+    task.sourceCompatibility = JavaVersion.VERSION_17
+    task.targetCompatibility = JavaVersion.VERSION_17
   }
 
   pluginManager.withPlugin("kotlin-kapt") {

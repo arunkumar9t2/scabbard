@@ -23,7 +23,6 @@ import com.intellij.psi.impl.source.tree.LeafPsiElement
 import dev.arunkumar.scabbard.intellij.dagger.psi.DAGGER_COMPONENT_ANNOTATIONS
 import dev.arunkumar.scabbard.intellij.dagger.psi.hasAnnotation
 import dev.arunkumar.scabbard.intellij.dagger.psi.ktClassOrObject
-import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
 import org.jetbrains.kotlin.psi.KtClassOrObject
 
 class KotlinComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
@@ -41,7 +40,7 @@ class KotlinComponentToDaggerGraphLineMarker : RelatedItemLineMarkerProvider() {
         element.ktClassOrObject()?.let { ktClass ->
           if (ktClass.hasDaggerComponentAnnotations()) {
             val componentName = ktClass.name
-            val qualifiedName = ktClass.getKotlinFqName().toString()
+            val qualifiedName = ktClass.fqName?.asString() ?: return
             val graphLineMarker = prepareDaggerComponentLineMarkerWithFileName(
               element = element,
               componentName = componentName!!,
